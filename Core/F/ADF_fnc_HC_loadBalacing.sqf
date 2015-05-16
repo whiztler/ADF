@@ -9,7 +9,7 @@ Script version: 1.2
 Game type: N/A
 File: ADF_HC_loadBalancing.sqf
 ****************************************************************
-This is a load balancer that spreads AI's over 2 or 3 HC's
+This is a load balancer that spreads AI's over multiple HC's
 The script assumes HC's are named ADF_HC1, ADF_HC2, ADF_HC3
 ****************************************************************/
 
