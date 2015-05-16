@@ -93,7 +93,7 @@ if (isServer) then {
 		_ADF_debugLog_msg = format ["Elapsed time in sec: %1  --  Server FPS: %2  --  Server Min FPS: %3",_ADF_serverTime,_ADF_serverFPS,_ADF_minServerFPS];
 		ADF_debugLog_write = _ADF_debugLog_pre + _ADF_debugLog_msg;
 		diag_log ADF_debugLog_write;
-		[{systemChat ADF_debugLog_write},"BIS_fnc_call",true,false] spawn BIS_fnc_MP; // v1.39 a15		
+		[ADF_debugLog_write,"systemChat"] call BIS_fnc_MP; // v.39 B6
 		uiSleep 10; // 10 second cycles
 		ADF_debug_LoggingBreakout
 	};
