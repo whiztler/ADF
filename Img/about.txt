@@ -1,0 +1,15 @@
+ARMA Mission Development Framework
+
+Mission Images.
+
+To create your own mission images, best to use one of the existing images as a template.
+Please note that images require certain dimensions, e.g.:
+
+Flag	: 512 x 256 pixels
+Logo:	: 512 x 512 pixels
+Cover	: 2048 x 1024 pixels
+Intro	: 1024 x 512 pixels
+
+Create/edit your image in your favorite image editing software (e.g. Photoshop) and save as a PNG image with Alpha transparent background enabled.
+Then load the the ImagetoPAA function from the ARMA3 Toolset and select the folder where you saved your PNG image and click on convert.
+Copy the image into the missions' Img\ folder and edit the ADF_init_config.sqf file to load your image correctly.
