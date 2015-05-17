@@ -4,13 +4,15 @@ ADF version: 1.39 / MAY 2015
 
 Script: Loadout Client
 Author: Whiztler
-Script version: 5.4
+Script version: 5.41
 
 Game type: n/a
 File: ADF_clientLoadout.sqf
 ****************************************************************
 NOTE: Gear loads on actual players only. Does not load on AI's!!
 ****************************************************************/
+
+diag_log "ADF RPT: Init - executing ADF_clientLoadout.sqf"; // Reporting. Do NOT edit/remove
 
 _ADF_perfDiagStart = diag_tickTime;
 if (ADF_debug) then {["LOADOUT - Loadout Client started",false] call ADF_fnc_log};
