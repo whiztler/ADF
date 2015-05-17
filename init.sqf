@@ -4,7 +4,7 @@ ADF version: 1.39 / MAY 2015
 
 Script: Mission init
 Author: Whiztler
-Script version: 2.56
+Script version: 2.57
 
 Game type: n/a
 File: init.sqf
