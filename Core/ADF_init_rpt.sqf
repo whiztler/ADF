@@ -4,12 +4,14 @@ ADF version: 1.39 / MAY 2015
 
 Script: Mission init / Init reporting
 Author: Whiztler
-Script version: 1.01
+Script version: 1.02
 
 Game type: n/a
 File: ADF_init_rpt.sqf
 
 ****************************************************************/
+
+diag_log "ADF RPT: Init - executing ADF_init_rpt.sqf"; // Reporting. Do NOT edit/remove
 
 if (!isServer) exitWith {}; // Server only
 
