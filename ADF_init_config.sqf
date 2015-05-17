@@ -13,6 +13,8 @@ Use this file to configure and define mission parameters,
 modules and scripts.
 ****************************************************************/
 
+diag_log "ADF RPT: Init - executing ADF_init_config.sqf"; // Reporting. Do NOT edit/remove
+
 /********** GENERAL **********/
 _ADF_mission_version = 1.0; // Mission version
 _ADF_mission_init_time = 30; // Mission Init time counter. Min 30 secs. Add 1 sec per 2 players. 10 players = 35 secs.
