@@ -4,7 +4,7 @@ ADF version: 1.39 / MAY 2015
 
 Script: Local Player init
 Author: Whiztler
-Script version: 1.3
+Script version: 1.31
 
 Game type: n/a
 File: initPlayerLocal.sqf
@@ -14,6 +14,8 @@ start and JIP).
 
 [player:Object, didJIP:Boolean]
 ****************************************************************/
+
+diag_log "ADF RPT: Init - executing initPlayerLocal.sqf"; // Reporting. Do NOT edit/remove
 
 // init
 private ["_ADF_unit"];
