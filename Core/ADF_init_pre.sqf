@@ -4,13 +4,15 @@ ADF version: 1.39 / MAY 2015
 
 Script: Mission init / Variables init
 Author: Whiztler
-Script version: 1.10
+Script version: 1.11
 
 Game type: n/a
 File: ADF_init_pre.sqf
 Previous: ADF_init_vars.sqf
 
 ****************************************************************/
+
+diag_log "ADF RPT: Init - executing ADF_init_pre.sqf"; // Reporting. Do NOT edit/remove
 
 ADF_dlc_MarksMan 	= isClass (configFile >> "CfgMods" >> "Mark"); // Check if Marksman DLC is present
 ADF_dlc_Bundle 		= isClass (configFile >> "CfgMods" >> "DLCBundle"); // Check if DLC Bundle is present
