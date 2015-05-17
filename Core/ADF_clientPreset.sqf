@@ -4,7 +4,7 @@ ADF version: 1.39 / MAY 2015
 
 Script: Call Sings & Radio configuration
 Author: Whiztler
-Script version: 2.4
+Script version: 2.41
 
 Game type: n/a
 File: ADF_clientPreset.sqf
@@ -18,6 +18,9 @@ DO NOT EDIT THIS SCRIPT
 
 ACRE2 = WIP
 ****************************************************************/
+
+diag_log "ADF RPT: Init - executing ADF_clientPreset.sqf"; // Reporting. Do NOT edit/remove
+
 _ADF_perfDiagStart = diag_tickTime;
 
 // Init
