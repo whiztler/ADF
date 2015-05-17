@@ -12,6 +12,8 @@ File: init.sqf
 DO NOT EDIT. CONFIGURE IN 'ADF_init_config.sqf' 
 ****************************************************************/
 
+diag_log "ADF RPT: Init - executing init.sqf"; // Reporting. Do NOT edit/remove
+
 if (!isDedicated && (player != player)) then {waitUntil {!(isNull player)}; waitUntil {player == player}};
 
 #include "Core\ADF_init_pre.sqf"
@@ -26,7 +28,6 @@ if (isServer) then  { //server init
 	if (ADF_Tickets) then {[WEST, _ADF_wTixNr] call BIS_fnc_respawnTickets; [EAST, _ADF_eTixNr] call BIS_fnc_respawnTickets}; // init respawn tickets	
 	if (_ADF_CleanUp) then {[_ADF_CleanUp_viewDist,_ADF_CleanUp_manTimer,_ADF_CleanUp_vehTimer,_ADF_CleanUp_abaTimer] execVM "Core\TP\delete.sqf"}; // garbage collector.
 	if (_ADF_Caching && !ADF_HC_connected) then {[_ADF_Caching_UnitDistance,-1,ADF_debug,_ADF_Caching_vehicleDistance_land,_ADF_Caching_vehicleDistance_air,_ADF_Caching_vehicleDistance_sea,_ADF_Caching_debugInfo] execVM "Core\TP\zbe_cache\main.sqf"}; // Configure in ADF_init_config.sqf	
-	cTabSide = _ADF_cTAB_side;
 };
 
 /**********  Mission Intro **********/
