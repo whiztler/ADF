@@ -22,13 +22,14 @@ _ADF_HC_init = true; // Enable the Headless Client [true/false].
 _ADF_HCLB_enable = true; // Enable load balancing across multiple HC's (max 3)
 ADF_playerSide = WEST; // Which side are playable units on [WEST / EAST / GUER / CIV]
 ADF_debug = false; // For mission testing/debugging set to true. Make sure to set to false before compiling your final PBO.
+ADF_Log_ServerPerfEnable = true; // Enable server performance logging in RPT. [true/false]
 ADF_clanName = "ADF"; // What is the name of your community/clan. Used in Hints, intro's etc.
 ADF_clanTAG = "ADF"; // What is the tag of your community/clan. Used in Hints, intro's etc.
 ADF_clanLogo = "Img\clan_logo_ADF.paa"; // Full path to the clan logo. 
 ADF_clanFlag = "Img\clan_flag_ADF.paa"; // Full path to the clan flag (dimensions 512 x 256, pref PAA format).
 _ADF_MissionIntroImage = "Img\mission_cover_ADF.paa"; // Full path to the mission intro image (dimensions: 2038 x 1024, PAA format only). 
 ADF_Clan_uniformInsignia = true; // Apply custom clan insignia on uniform. Define in the description.ext [true/false]. 
-_ADF_preset = "DEFAULT"; // pre-defined call sign/radio freq presets. [DEFAULT / SHAPE / NOPRYL / CUSTOM]. Configure the presets in 'Core\F\ADF_fnc_presets.sqf'
+_ADF_preset = "NOPRYL"; // pre-defined call sign/radio freq presets. [DEFAULT / SHAPE / NOPRYL / CUSTOM]. Configure the presets in 'Core\F\ADF_fnc_presets.sqf'
 
 /********** GEAR & LOADOUT **********/
 ADF_sameGearRespawn = true; // enable respawn with same gear (either ADF or ACE3)? [true/false]
@@ -81,7 +82,7 @@ _ADF_Caching_unitDistance = 1000; // AI Unit caching distance default = 1000 met
 _ADF_Caching_vehicleDistance_land = 250; // Cars caching distance default = 250 meters.
 _ADF_Caching_vehicleDistance_air = 1500; // aircraft caching distance default = 250 meters.
 _ADF_Caching_vehicleDistance_sea = 2000; // boats caching distance default = 250 meters.
-_ADF_Caching_debugInfo = true; // Show caching debug info in ADF_debug mode
+_ADF_Caching_debugInfo = false; // Show caching debug info in ADF_debug mode
 
 /********** VIEW DISTANCE **********/
 setViewDistance 1500; // Default view distance.
@@ -129,7 +130,7 @@ _ADF_CleanUp_vehTimer = 600; // x seconds until delete of dead vehicles, for des
 _ADF_CleanUp_abaTimer = 6000; // x seconds a vehicle must be unmanned to be deleted, for _abandoned option.
 
 /********** MISC SETTINGS **********/
-_ADF_zeusEagle = true; // Enable the Zeus Eagle? False removes the eagle [true/false].
+_ADF_zeusEagle = false; // Enable the Zeus Eagle? False removes the eagle [true/false].
 
 /********** ADF DEV BUILD SETTINGS **********/
 _ADF_tpl_version = 1.39; // ADF version DO NOT EDIT
