@@ -16,6 +16,8 @@ Change the "Text goes here..." line with your info. Use a <br/> to
 start a new line.
 ****************************************************************/
 
+diag_log "ADF RPT: Init - executing briefing.sqf"; // Reporting. Do NOT edit/remove
+if (!isDedicated && (isNull player)) then {waitUntil {sleep 0.1; !isNull player};};
 
 ///// CREDITS
 player createDiaryRecord ["Diary",["Credits","
