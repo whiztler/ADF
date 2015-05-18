@@ -4,7 +4,7 @@ ADF version: 1.39 / MAY 2015
 
 Script: Loadout Client
 Author: Whiztler
-Script version: 5.41
+Script version: 5.42
 
 Game type: n/a
 File: ADF_clientLoadout.sqf
