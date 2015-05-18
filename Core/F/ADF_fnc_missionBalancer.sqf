@@ -4,7 +4,7 @@ ADF version: 1.39 / MAY 2015
 
 Script: Mission Balancer
 Author: Whiztler
-Script version: 1.1
+Script version: 1.11
 
 Game type: COOP
 File: ADF_fnc_missionBalancer.sqf
@@ -45,6 +45,8 @@ call ADF_fnc_missionBalance;
 Then use the If (ADF_MB_normal) then {//yourCode }; for balanced
 enemy spawn on demand.
 ****************************************************************/
+
+diag_log "ADF RPT: Init - executing ADF_fnc_missionBalancer.sqf"; // Reporting. Do NOT edit/remove
 
 // init	the vars
 ADF_MB_lite = false;
