@@ -4,7 +4,7 @@ ADF version: 1.39 / MAY 2015
 
 Script: Headless Client init
 Author: Whiztler
-Script version: 2.42
+Script version: 2.43
 
 Game type: N/A
 File: ADF_HC.sqf
@@ -29,6 +29,8 @@ with
 if (!ADF_HC_execute) exitWith {}; // Autodetect: execute on the HC else execute on the server
 ****************************************************************/
 
+diag_log "ADF RPT: Init - executing ADF_HC.sqf"; // Reporting. Do NOT edit/remove
+
 // Only server and HC's
 if ((local player) && hasInterface) exitWith {ADF_HC_execute = false};
 
@@ -44,14 +46,14 @@ if (!isServer && !hasInterface) then {
 	sleep 3; // Wait for HC to publicVar ADF_HC_connected (if a HC is present)
 	if (!ADF_HC_connected && isServer) then { // No HC present. Disable ADF_HC_execute on all clients except the server
 		ADF_HC_execute = true;
-		if (ADF_debug) then {["HC - NO Headless Client detected using server",false] call ADF_fnc_log} else {diag_log "ADF RPT: HC - NO Headless Client detected"};
-	} else { // HC is connected. Disable ADF_HC_execute on the server so that the HC runs scripts
-		if (isServer || isDedicated) then {ADF_HC_execute = false;};
+		if (ADF_debug) then {["HC - NO Headless Client detected, using server",false] call ADF_fnc_log} else {diag_log "ADF RPT: HC - NO Headless Client detected, using server"};
+	} else { 
+		if (isServer || isDedicated) then {ADF_HC_execute = false;}; // HC is connected. Disable ADF_HC_execute on the server so that the HC runs scripts
 	};
 };
-	
+
+if (!_ADF_HCLB_enable) exitWith {};	
 if (!isServer) exitWith {};
-if (!_ADF_HCLB_enable) exitWith {};
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_HC_loadBalacing.sqf";
 
 
