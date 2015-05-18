@@ -4,7 +4,7 @@ ADF version: 1.39 / MAY 2015
 
 Script: Headless Client init
 Author: eulerfoiler - edited by Whiztler
-Script version: 1.2
+Script version: 1.21
 
 Game type: N/A
 File: ADF_HC_loadBalancing.sqf
@@ -12,6 +12,8 @@ File: ADF_HC_loadBalancing.sqf
 This is a load balancer that spreads AI's over multiple HC's
 The script assumes HC's are named ADF_HC1, ADF_HC2, ADF_HC3
 ****************************************************************/
+
+diag_log "ADF RPT: Init - executing ADF_HC_loadBalancing.sqf"; // Reporting. Do NOT edit/remove
 
 if (!ADF_HC_connected) exitWith {if (ADF_debug) then {["HC - loadBalancing - NO HC detected",false] call ADF_fnc_log};};
 
