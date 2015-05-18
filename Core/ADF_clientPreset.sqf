@@ -1,10 +1,10 @@
-/****************************************************************
+﻿/****************************************************************
 ARMA Mission Development Framework
 ADF version: 1.39 / MAY 2015
 
 Script: Call Sings & Radio configuration
 Author: Whiztler
-Script version: 2.4
+Script version: 2.42
 
 Game type: n/a
 File: ADF_clientPreset.sqf
@@ -18,6 +18,9 @@ DO NOT EDIT THIS SCRIPT
 
 ACRE2 = WIP
 ****************************************************************/
+
+diag_log "ADF RPT: Init - executing ADF_clientPreset.sqf"; // Reporting. Do NOT edit/remove
+
 _ADF_perfDiagStart = diag_tickTime;
 
 // Init
@@ -26,7 +29,6 @@ private [
 	"_ADF_ACRE_fullDuplex",
 	"_ADF_ACRE_interference",
 	"_ADF_ACRE_AIcanHear",
-	"_ADF_unit",
 	"_ADF_uGroup",
 	"_ADF_uGroupID",
 	"_ADF_preset_companyGroups",
@@ -41,7 +43,6 @@ private [
 	"_ADF_preset"
 ];
 
-_ADF_unit = player;
 _ADF_uGroup = group player;
 _ADF_uGroupID = (groupID (_ADF_uGroup));
 _ADF_preset = _this select 0;
@@ -115,33 +116,36 @@ if (ADF_mod_ACRE) then {
 
 // Load all groups (as strings) into an array 
 _ADF_preset_companyGroups = [
-	"gCC", // XO
-	"gCO_1","gCO_11","gCO_11A","gCO_11B","gCO_12","gCO_12A","gCO_12B","gCO_13","gCO_13A","gCO_13B", // 1 INF PLT
-	"gCO_2","gCO_21A","gCO_21B","gCO_21C","gCO_22A","gCO_22B","gCO_23A","gCO_23B", // 2 CAV BAT
-	"gCO_3","gCO_31A","gCO_31B","gCO_32A","gCO_32B","gCO_32C","gCO_33A","gCO_33B", // 3 AIR WIN"g
-	"gCO_4","gCO_41M","gCO_41R","gCO_41Y","gCO_41Z","gCO_42A","gCO_42B","gCO_43F", // 4 SOR SQDR
-	"gGM1","gGM2" // GM's
+	"gCC", // XO - 0
+	"gCO_1","gCO_11","gCO_11A","gCO_11B","gCO_12","gCO_12A","gCO_12B","gCO_13","gCO_13A","gCO_13B", // 1 INF PLT - 1-10
+	"gCO_2","gCO_21A","gCO_21B","gCO_21C","gCO_22A","gCO_22B","gCO_23A","gCO_23B", // 2 CAV BAT - 11-18
+	"gCO_3","gCO_31A","gCO_31B","gCO_32A","gCO_32B","gCO_32C","gCO_33A","gCO_33B", // 3 AIR WIN"g - 19-26
+	"gCO_4","gCO_41M","gCO_41R","gCO_41Y","gCO_41Z","gCO_42A","gCO_42B","gCO_43F", // 4 SOR SQDR - 27-34
+	"gGM1","gGM2" // GM's - 35-36
 ];
 
 // Load the preset configured in ADF_init_config.sqf	
 If (_ADF_preset == "NOPRYL") then {ADF_presetData = call ADF_preset_NOPRYL;};
-If (_ADF_preset == "SHAPE" || _ADF_preset == "DEFAULT") then {ADF_presetData = call ADF_preset_DEFAULT;};
+If ((_ADF_preset == "SHAPE") || (_ADF_preset == "DEFAULT")) then {ADF_presetData = call ADF_preset_DEFAULT;};
 If (_ADF_preset == "CUSTOM") then {ADF_presetData = call ADF_preset_CUSTOM;};
 If (_ADF_preset == "WOLFPACK") then {ADF_presetData = call ADF_preset_WP;};
 // In case of an undefined preset or a typo, load the Default preset
-If (_ADF_preset != "NOPRYL" && _ADF_preset != "SHAPE" && _ADF_preset != "DEFAULT" && _ADF_preset != "CUSTOM" && _ADF_preset != "WOLFPACK") then {
+If ((_ADF_preset != "NOPRYL") && (_ADF_preset != "SHAPE") && (_ADF_preset != "DEFAULT") && (_ADF_preset != "CUSTOM") && (_ADF_preset != "WOLFPACK")) then {
 	ADF_presetData = call ADF_preset_DEFAULT;
 	if (ADF_debug) then {["PRESETS - No preset defined. Applying DEFAULT preset",false] call ADF_fnc_log};
 };
 
 // Clan preset has loaded, lets find the units group in the preset and retrieve the Call sign and freq data
 _i = _ADF_preset_companyGroups find _ADF_uGroupID;
-_ADF_uPreset = [ADF_presetData select _i, []] select (_i < 0);
-// Apply the call sign and freq data
-[[_ADF_uGroup,[_ADF_uPreset select 0]],'setGroupID',true,true] call BIS_FNC_MP; 
-ADF_TFAR_LR_freq = _ADF_uPreset select 1;
-ADF_TFAR_SW_freq = _ADF_uPreset select 2;
+_ADF_uPreset	= [ADF_presetData select _i] select 0;
+hint str _ADF_uPreset;
 
+// Apply the call sign and freq data
+[[_ADF_uGroup,[_ADF_uPreset select 0]],'setGroupID',true,true] call BIS_FNC_MP;
+if (ADF_mod_TFAR) then {
+	ADF_TFAR_LR_freq = _ADF_uPreset select 1;
+	ADF_TFAR_SW_freq = _ADF_uPreset select 2;
+};
 
 // Re-initialize cTAB (if activated) WIP
 if (ADF_mod_CTAB && isServer) then {
@@ -249,7 +253,7 @@ player createDiaryRecord ["Deployment Roster",["Deployment Roster",_ADF_rosterPu
 ADF_set_roster = true;
 
 // Announce call sign
-if (_ADF_unit == (leader (_ADF_uGroup))) then {_ADF_unit groupChat format ["Our call sign is: %1",groupID (_ADF_uGroup)];};
+if (player == (leader player)) then {player groupChat format ["Our call sign is: %1",groupID (_ADF_uGroup)];};
 
 if (ADF_debug) then {["INIT - Roster generated",false] call ADF_fnc_log};
 

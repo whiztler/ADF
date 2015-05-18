@@ -4,14 +4,15 @@ ADF version: 1.39 / MAY 2015
 
 Script: Mission init / Init reporting
 Author: Whiztler
-Script version: 1.01
+Script version: 1.03
 
 Game type: n/a
 File: ADF_init_rpt.sqf
 
+Executed on server only
 ****************************************************************/
 
-if (!isServer) exitWith {}; // Server only
+diag_log "ADF RPT: Init - executing ADF_init_rpt.sqf"; // Reporting. Do NOT edit/remove
 
 // Init
 ADF_log_CntHC = 0;
@@ -54,21 +55,37 @@ if (ADF_debug) then {
 	diag_log "--------------------------------------------------------------------------------------";
 	diag_log format ["ADF RPT: Init - Number of AI's active: %1", ADF_log_aiUnits];
 	diag_log "--------------------------------------------------------------------------------------";
-	diag_log format ["ADF RPT: Init - ADF addons active: %1", ADF_log_rptMods];
+	diag_log format ["ADF RPT: Init - ADF autodetect addons active: %1", ADF_log_rptMods];
 	diag_log "--------------------------------------------------------------------------------------";
+	diag_log "ADF_debug mode is disabled (set to 'false'). To debug missions please enable ADF_debug";
+	diag_log "by setting 'ADF_debug = true' in the 'ADF_init_config.sqf'";
+	diag_log "--------------------------------------------------------------------------------------";
+	diag_log ""; diag_log "";
 	ADF_log_pUnits = nil; ADF_log_aiUnits = nil; ADF_log_rptMods = nil; ADF_log_CntHC = nil;
 };
 
+if (!ADF_mod_CBA) exitWith { // Terminate init as CBA is NOT present	
+	["### <ERROR> CBA_A3 not present. CBA is required by ADF ###","systemChat"] call BIS_fnc_MP;
+	diag_log "";diag_log "";
+	diag_log "######################################################################################";
+	diag_log "ADF RPT: <ERROR>  CBA_A3 not present. CBA is required by ADF. Terminating init!";
+	diag_log "######################################################################################";
+	diag_log "";diag_log "";
+};
+
 // Server FPS reporting in RPT when ADF_debug is disabled. The frequency of the reporting is based on server performance.
-if (!ADF_debug && isServer) then { // ADF_debug already reports on server FPS
-	[] spawn {	
+if (!ADF_debug && ADF_Log_ServerPerfEnable) then { // ADF_debug already reports on server FPS
+	[] spawn {
+		if (isMultiplayer) then {ADF_log_players = playableUnits;} else {ADF_log_players = switchableUnits};
 		waitUntil {
 			ADF_rptSnooz = 60;
-			_ADF_serverFPS = round (diag_fps);
+			_ADF_serverFPS = round (diag_fps);			
+			if (((count allUnits)-(count ADF_log_players)) < 0) then {ADF_log_ai = 0} else {ADF_log_ai = ((count allUnits)-(count ADF_log_players))};
 			if (_ADF_serverFPS < 40) then {ADF_rptSnooz = 15};
 			if (_ADF_serverFPS < 30) then {ADF_rptSnooz = 10};
 			if (_ADF_serverFPS < 20) then {ADF_rptSnooz = 5};
 			if (_ADF_serverFPS < 15) then {ADF_rptSnooz = 1};
+			diag_log format ["ADF RPT: PERF - Total players: %1  --  Total AI's: %2",count ADF_log_players,ADF_log_ai];
 			diag_log format ["ADF RPT: PERF - Elapsed time in sec: %1  --  Server FPS: %2  --  Server Min FPS: %3",(round time),_ADF_serverFPS,round (diag_fpsmin)];
 			uiSleep ADF_rptSnooz;
 			false

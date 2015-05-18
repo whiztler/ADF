@@ -1,3 +1,5 @@
+diag_log "ADF RPT: Init - executing ADF_fnc_FOB.sqf"; // Reporting. Do NOT edit/remove
+
 // FOB functions
 
 ADF_fnc_fobDeploy = { // deploy the fob

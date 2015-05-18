@@ -4,7 +4,7 @@ ADF version: 1.39 / MAY 2015
 
 Script: Game Master/Instructor/Zeus configuration
 Author: Whiztler
-Script version: 1.4
+Script version: 1.41
 
 Game type: n/a
 File: ADF_GM.sqf
@@ -24,7 +24,11 @@ Place a 'ZEUS Game Master' module for each unit:
 
 // Init
 if ((isNil "GM_1") && (isNil "GM_2")) exitWith {// No Zeus playable slots detected
-	if (ADF_debug) then {["ZEUS: No GM units active. Terminating ADF_GM",false] call ADF_fnc_log};
+	if (ADF_debug) then {
+		["ZEUS: No GM units active. Terminating ADF_GM",false] call ADF_fnc_log
+	} else {
+		diag_log "ADF RPT: ZEUS: No GM units active. Terminating ADF_GM";
+	};
 }; 
 _ADF_zeusEagle_enable = _this select 0;
 showCuratorCompass true;

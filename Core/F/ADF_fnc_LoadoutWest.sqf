@@ -4,7 +4,7 @@ ADF version: 1.39 / MAY 2015
 
 Script: Loadout Gear West
 Author: Whiztler
-Script version: 5.51
+Script version: 5.52
 
 Game type: n/a
 File: ADF_fnc_loadoutWest.sqf
@@ -24,6 +24,8 @@ Make sure to check the capacity of the backpack and vest before adding
 (more) items. Do not delete lines but comment them out when you do not
 want it included.
 ****************************************************************/
+
+diag_log "ADF RPT: Init - executing ADF_fnc_LoadoutWest.sqf"; // Reporting. Do NOT edit/remove
 
 /**[  INFANTRY SQUAD  ]*******************************************************************************/
 
@@ -54,7 +56,7 @@ ADF_fnc_loudoutInf = {
 	if (_ADF_INF_LMG_weapon == 1) then { // MX SW		
 		ADF_INF_wpn_LMG = "arifle_MX_SW_Hamr_pointer_F";
 		// magazines
-		if (ADF_mod_ACE3) then {ADF_INF_mag_LMG = "100Rnd_65x39_caseless_mag_Tracer";} else {ADF_INF_mag_LMG = "ACE_100Rnd_65x39_caseless_mag_Tracer_Dim";};
+		if (ADF_mod_ACE3) then {ADF_INF_mag_LMG = "ACE_100Rnd_65x39_caseless_mag_Tracer_Dim";} else {ADF_INF_mag_LMG = "100Rnd_65x39_caseless_mag_Tracer";};
 		ADF_INF_magCount_LMG = 6;		
 	} else { // MK200		
 		ADF_INF_wpn_LMG = "LMG_Mk200_MRCO_F";
