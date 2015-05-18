@@ -4,7 +4,7 @@ ADF version: 1.39 / MAY 2015
 
 Script: Debug functions
 Author: whiztler
-Script version: 1.44
+Script version: 1.45
 
 Game type: N/A
 File: ADF_fnc_debug.sqf
@@ -24,6 +24,8 @@ that is used to spawn units/vehicles:
 
 Make sure that you call the function AFTER all units have spawned. It does NOT refresh!
 ****************************************************************/
+
+diag_log "ADF RPT: Init - executing ADF_debug.sqf"; // Reporting. Do NOT edit/remove
 
 // Add menu actions to mission maker for editor preview
 if (isServer && !isDedicated) then {
