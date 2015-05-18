@@ -4,7 +4,7 @@ ADF version: 1.39 / MAY 2015
 
 Script: Mission initialization countdown timer
 Author: Whiztler
-Script version: 1.43
+Script version: 1.44
 
 Game type: n/a
 File: ADF_init_post.sqf
@@ -67,7 +67,8 @@ if (ADF_debug) exitWith {ADF_missionInit = true; publicVariable "ADF_missionInit
 if (!isServer && (local player)) then {_ADF_unit enableSimulation false;};
 
 If ((ADF_devBuild == "Alpha") || (ADF_devBuild == "Beta")) then {
-	[{systemChat format ["This is a development build of ADF (%1 - %2 %3). Do not use for live missions!",ADF_tVersion,ADF_devBuild,ADF_devBuildNr]},"BIS_fnc_call",true,false] spawn BIS_fnc_MP;
+	_ADF_debugLog_msg = format ["This is a development build of ADF (%1 - %2 %3). Do not use for live missions!",ADF_tVersion,ADF_devBuild,ADF_devBuildNr];
+	[_ADF_debugLog_msg,"systemChat"] call BIS_fnc_MP; // v.39 B6
 };
 		
 while {(_cnt != 100)} do {
