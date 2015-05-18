@@ -4,7 +4,7 @@ ADF version: 1.39 / MAY 2015
 
 Script: Mission Briefing
 Author: Whiztler
-Script version: 1.4
+Script version: 1.41
 
 Game type: COOP
 File: ADF_Briefing.sqf
