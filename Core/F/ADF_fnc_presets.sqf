@@ -4,7 +4,7 @@ ADF version: 1.39 / MAY 2015
 
 Script: customize call signs and radio freq/channels for groups
 Author: Whiztler
-Script version: 2.11
+Script version: 2.12
 
 Game type: n/a
 File: ADF_presets.sqf
@@ -168,8 +168,8 @@ ADF_preset_DEFAULT = {
 				
 		//---------- GAME MASTER UNITS (ZEUS) ----------
 		
-		[	"GM-1",			35,		350],	// GM-1						35
-		[	"GM-2",			35,		350]	// GM-2						36
+		[	"HADES",		35,		350],	// GM-1						35
+		[	"APOLLO",		35,		350]	// GM-2						36
 	
 	// DO NOT EDIT BELOW
 	];
