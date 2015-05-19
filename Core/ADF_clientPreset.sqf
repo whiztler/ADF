@@ -138,7 +138,7 @@ If ((_ADF_preset != "NOPRYL") && (_ADF_preset != "SHAPE") && (_ADF_preset != "DE
 // Clan preset has loaded, lets find the units group in the preset and retrieve the Call sign and freq data
 _i = _ADF_preset_companyGroups find _ADF_uGroupID;
 _ADF_uPreset	= [ADF_presetData select _i] select 0;
-hint str _ADF_uPreset;
+//hint str _ADF_uPreset; // dev debug
 
 // Apply the call sign and freq data
 [[_ADF_uGroup,[_ADF_uPreset select 0]],'setGroupID',true,true] call BIS_FNC_MP;
@@ -149,7 +149,7 @@ if (ADF_mod_TFAR) then {
 
 // Re-initialize cTAB (if activated) WIP
 if (ADF_mod_CTAB && isServer) then {
-	call cTab_fnc_updateLists;
+	//call cTab_fnc_updateLists;
 	if (ADF_debug) then {["PRESETS - cTAB re-initialized",false] call ADF_fnc_log};
 };
 
