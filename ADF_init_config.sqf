@@ -29,7 +29,7 @@ ADF_clanLogo = "Img\clan_logo_ADF.paa"; // Full path to the clan logo.
 ADF_clanFlag = "Img\clan_flag_ADF.paa"; // Full path to the clan flag (dimensions 512 x 256, pref PAA format).
 _ADF_MissionIntroImage = "Img\mission_cover_ADF.paa"; // Full path to the mission intro image (dimensions: 2038 x 1024, PAA format only). 
 ADF_Clan_uniformInsignia = true; // Apply custom clan insignia on uniform. Define in the description.ext [true/false]. 
-_ADF_preset = "NOPRYL"; // pre-defined call sign/radio freq presets. [DEFAULT / SHAPE / NOPRYL / CUSTOM]. Configure the presets in 'Core\F\ADF_fnc_presets.sqf'
+_ADF_preset = "DEFAULT"; // pre-defined call sign/radio freq presets. [DEFAULT / SHAPE / NOPRYL / CUSTOM]. Configure the presets in 'Core\F\ADF_fnc_presets.sqf'
 
 /********** GEAR & LOADOUT **********/
 ADF_sameGearRespawn = true; // enable respawn with same gear (either ADF or ACE3)? [true/false]
@@ -135,4 +135,4 @@ _ADF_zeusEagle = false; // Enable the Zeus Eagle? False removes the eagle [true/
 /********** ADF DEV BUILD SETTINGS **********/
 _ADF_tpl_version = 1.39; // ADF version DO NOT EDIT
 _ADF_devBuild = "Beta"; // [Alpha/Beta/Production] DO NOT EDIT
-_ADF_devBuildNr = "6"; // Build number. DO NOT EDIT
+_ADF_devBuildNr = "7"; // Build number. DO NOT EDIT
