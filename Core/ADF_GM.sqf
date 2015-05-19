@@ -4,7 +4,7 @@ ADF version: 1.39 / MAY 2015
 
 Script: Game Master/Instructor/Zeus configuration
 Author: Whiztler
-Script version: 1.41
+Script version: 1.42
 
 Game type: n/a
 File: ADF_GM.sqf
@@ -81,8 +81,6 @@ if !(_ADF_zeusEagle_enable) then { // Kill the Zeus Eagle?
 	};
 };
 
-//["ADF_killEagle","onEachFrame",{{if (typeOf _x == "Eagle_F") then {deleteVehicle _x}} forEach (_curPos select 0)}] call BIS_fnc_addStackedEventHandler; // v1.39 A15
-
 // ADV_zeus by Belbo. Edited by Whiz
 waitUntil {ADF_set_callSigns};
 
@@ -116,6 +114,14 @@ if (((isNil "GMmod_1") && !(isNil "GMmod_2")) && (!(isNil "GM_1") && (isNil "GM_
 if ((!(isNil "GMmod_1") && (isNil "GMmod_2")) && ((isNil "GM_1") && !(isNil "GM_2"))) exitWith {
 	if (ADF_debug) then {["ZEUS - Cannot assign GM_2 to GMmod_1. Terminating",true] call ADF_fnc_log};
 };
+
+if (ADF_mod_Ares) exitWith { // Use ARES instead of ADF Zeus functions V1.39 B7
+	if (ADF_debug) then {
+		["ZEUS: Ares addon detected. Using Ares instead of ADF Zeus functions",false] call ADF_fnc_log
+	} else {
+		diag_log "ADF RPT: ZEUS: Ares addon detected. Using Ares instead of ADF Zeus functions";
+	};
+}; 
 
 _addCivilians = true;
 
