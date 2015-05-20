@@ -4,7 +4,7 @@ ADF version: 1.39 / MAY 2015
 
 Script: customize call signs and radio freq/channels for groups
 Author: Whiztler
-Script version: 2.12
+Script version: 2.13
 
 Game type: n/a
 File: ADF_presets.sqf
@@ -88,14 +88,15 @@ ADF_preset_NOPRYL = {
 		[	"ANGEL",		80,		431],	// SOR 4-3 FOXTROT JTAC			34
 		
 		//---------- GAME MASTER UNITS (ZEUS) ----------
-		
+
+		//	Call Sign,		TFAR LR,	TFAR SW			
 		[	"GM-1",			35,		350],	// GM-1						35
 		[	"GM-2",			35,		350]	// GM-2						36
 		
 		// DO NOT EDIT BELOW
 	];
 	if (ADF_debug) then {["PRESETS - NOPRYL preset loaded",false] call ADF_fnc_log};
-	_ADF_presetData_NOPRYL;
+	_ADF_presetData_NOPRYL
 };
 
 
@@ -162,19 +163,20 @@ ADF_preset_DEFAULT = {
 		[	"4-1 ZULU",		70,		414],	// SOR 4-1 ZULU Amph team		31
 
 		[	"4-2 TANGO",	70,		421],	// SOR 4-2 ALPHA Sniper team		32
-		[	"4-2 VICTOR",	70,		422],	// SOR 4-2 BRAVO Sniper team	3	3
+		[	"4-2 VICTOR",	70,		422],	// SOR 4-2 BRAVO Sniper team		33
 		
 		[	"4-3 FOXTROT",	80,		431],	// SOR 4-3 FOXTROT JTAC			34
 				
 		//---------- GAME MASTER UNITS (ZEUS) ----------
-		
+
+		//	Call Sign,		TFAR LR,	TFAR SW			
 		[	"HADES",		35,		350],	// GM-1						35
 		[	"APOLLO",		35,		350]	// GM-2						36
 	
 	// DO NOT EDIT BELOW
 	];
 	if (ADF_debug) then {["PRESETS - DEFAULT preset loaded",false] call ADF_fnc_log};
-	_ADF_presetData_DEFAULT;
+	_ADF_presetData_DEFAULT
 };
 
 // Custom preset. Use this preset if you want to create your own call signs and frequencies
@@ -245,14 +247,15 @@ ADF_preset_CUSTOM = {
 		[	"4-3 FOXTROT",	80,		431],	// SOR 4-3 FOXTROT JTAC			34
 				
 		//---------- GAME MASTER UNITS (ZEUS) ----------
-		
+
+		//	Call Sign,		TFAR LR,	TFAR SW			
 		[	"GM-1",			35,		350],	// GM-1						35
 		[	"GM-2",			35,		350]	// GM-2						36
 		
 	// DO NOT EDIT BELOW
 	];	
 	if (ADF_debug) then {["PRESETS - CUSTOM preset loaded",false] call ADF_fnc_log};
-	_ADF_presetData_CUSTOM;
+	_ADF_presetData_CUSTOM
 };
 
 // Wolfpack campaign preset
@@ -267,7 +270,7 @@ ADF_preset_WP = {
 	// DO NOT EDIT BELOW
 	];	
 	if (ADF_debug) then {["PRESETS - WOLFPACK preset loaded",false] call ADF_fnc_log};
-	_ADF_presetData_WP;
+	_ADF_presetData_WP
 };
 
 if (ADF_debug) then {["PRESETS - presets function processed",false] call ADF_fnc_log};
