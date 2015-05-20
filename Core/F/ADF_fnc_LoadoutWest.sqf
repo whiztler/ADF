@@ -4,7 +4,7 @@ ADF version: 1.39 / MAY 2015
 
 Script: Loadout Gear West
 Author: Whiztler
-Script version: 5.52
+Script version: 5.53
 
 Game type: n/a
 File: ADF_fnc_loadoutWest.sqf
@@ -519,6 +519,7 @@ ADF_fnc_loudoutInf = {
 	}; // Close Asst. Missile Specialist
 
 	_ADF_unit selectWeapon (primaryWeapon _ADF_unit);
+	if (ADF_mod_ACE3) then {[_ADF_unit, currentWeapon _ADF_unit, currentMuzzle _ADF_unit] call ACE_SafeMode_fnc_lockSafety;};
 	if (ADF_Clan_uniformInsignia) then {[_ADF_unit,"CLANPATCH"] call BIS_fnc_setUnitInsignia};
 	_ADF_perfDiagStop = diag_tickTime;
 	if (ADF_debug) then {
@@ -788,6 +789,7 @@ ADF_fnc_loadoutSor = {
 	
 	//_ADF_unit unassignItem "NVGoggles";	
 	_ADF_unit selectWeapon (primaryWeapon _ADF_unit);
+	if (ADF_mod_ACE3) then {[_ADF_unit, currentWeapon _ADF_unit, currentMuzzle _ADF_unit] call ACE_SafeMode_fnc_lockSafety;};
 	if (ADF_Clan_uniformInsignia) then {[_ADF_unit,"CLANPATCH"] call BIS_fnc_setUnitInsignia};
 	_ADF_perfDiagStop = diag_tickTime;
 	if (ADF_debug) then {
@@ -1057,6 +1059,7 @@ ADF_fnc_loadoutSod = {
 	//_ADF_unit unassignItem "NVGoggles";	
 
 	_ADF_unit selectWeapon (primaryWeapon _ADF_unit);
+	if (ADF_mod_ACE3) then {[_ADF_unit, currentWeapon _ADF_unit, currentMuzzle _ADF_unit] call ACE_SafeMode_fnc_lockSafety;};
 	if (ADF_Clan_uniformInsignia) then {[_ADF_unit,"CLANPATCH"] call BIS_fnc_setUnitInsignia};
 	_ADF_perfDiagStop = diag_tickTime;
 	if (ADF_debug) then {
@@ -1187,6 +1190,7 @@ ADF_fnc_loadoutSop = {
 	_ADF_unit setFace _ADF_SOP_face;
 	
 	_ADF_unit selectWeapon (primaryWeapon _ADF_unit);
+	if (ADF_mod_ACE3) then {[_ADF_unit, currentWeapon _ADF_unit, currentMuzzle _ADF_unit] call ACE_SafeMode_fnc_lockSafety;};
 	if (ADF_Clan_uniformInsignia) then {[_ADF_unit,"CLANPATCH"] call BIS_fnc_setUnitInsignia};
 	_ADF_perfDiagStop = diag_tickTime;
 	if (ADF_debug) then {
@@ -1260,6 +1264,7 @@ ADF_fnc_loadoutCav = {
 	[_ADF_unit, "hgun_P07_F", 3, "16Rnd_9x21_Mag"] call BIS_fnc_addWeapon;
 	
 	_ADF_unit selectWeapon (primaryWeapon _ADF_unit);
+	if (ADF_mod_ACE3) then {[_ADF_unit, currentWeapon _ADF_unit, currentMuzzle _ADF_unit] call ACE_SafeMode_fnc_lockSafety;};
 	if (ADF_Clan_uniformInsignia) then {[_ADF_unit,"CLANPATCH"] call BIS_fnc_setUnitInsignia};
 	_ADF_perfDiagStop = diag_tickTime;
 	if (ADF_debug) then {
@@ -1329,6 +1334,7 @@ ADF_fnc_loadoutAir = {
 		[_ADF_unit, "SMG_01_Holo_F", 3, "30Rnd_45ACP_Mag_SMG_01"] call BIS_fnc_addWeapon;		
 	};
 	
+	if (ADF_mod_ACE3) then {[_ADF_unit, currentWeapon _ADF_unit, currentMuzzle _ADF_unit] call ACE_SafeMode_fnc_lockSafety;};
 	if (ADF_Clan_uniformInsignia) then {[_ADF_unit,"CLANPATCH"] call BIS_fnc_setUnitInsignia};
 	
 	_ADF_perfDiagStop = diag_tickTime;
@@ -1357,6 +1363,7 @@ ADF_fnc_loadoutNotDef = {
 	_ADF_unit addItem "FirstAidKit";
 	_ADF_unit addItem "FirstAidKit";
 	_ADF_unit addWeapon "Binocular";
+	if (ADF_mod_ACE3) then {[_ADF_unit, currentWeapon _ADF_unit, currentMuzzle _ADF_unit] call ACE_SafeMode_fnc_lockSafety;};
 	_ADF_perfDiagStop = diag_tickTime;
 	if (ADF_debug) then {
 		_debugDiag = format [" (DIAG: %1)",_ADF_perfDiagStop - _ADF_perfDiagStart];

@@ -4,7 +4,7 @@ ADF version: 1.39 / MAY 2015
 
 Script: Mission Config
 Author: Whiztler
-Script version: 1.56
+Script version: 1.57
 
 Game type: n/a
 File: ADF_init_config.sqf
@@ -135,4 +135,4 @@ _ADF_zeusEagle = false; // Enable the Zeus Eagle? False removes the eagle [true/
 /********** ADF DEV BUILD SETTINGS **********/
 _ADF_tpl_version = 1.39; // ADF version DO NOT EDIT
 _ADF_devBuild = "Beta"; // [Alpha/Beta/Production] DO NOT EDIT
-_ADF_devBuildNr = "7"; // Build number. DO NOT EDIT
+_ADF_devBuildNr = "8"; // Build number. DO NOT EDIT
