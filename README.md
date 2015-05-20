@@ -373,6 +373,7 @@ You can spawn single units, groups, crewed vehicles, empty vehicles, etc. Have a
 ## Legal
 
 This file is part of the Arma Mission Development Framework (ADF). ADF is released under the Arma Public Licence (APL): https://www.bistudio.com/community/licenses/arma-public-license
+
 ADF uses the following third party scripts:
 
 *   F3 Spectator is part of the F3 Framework (http://ferstaberinde.com/f3/en/)
