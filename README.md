@@ -3,7 +3,7 @@
 ### Current version
 
 version: 1.39  
- build: Beta 8
+ build: Beta 9
 
 ## New Features 1.39
 
