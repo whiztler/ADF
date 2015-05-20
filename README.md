@@ -373,6 +373,15 @@ You can spawn single units, groups, crewed vehicles, empty vehicles, etc. Have a
 ## Legal
 
 This file is part of the Arma Mission Development Framework (ADF). ADF is released under the Arma Public Licence (APL): https://www.bistudio.com/community/licenses/arma-public-license
+ADF uses the following third party scripts:
+*   F3 Spectator is part of the F3 Framework (http://ferstaberinde.com/f3/en/)
+*   TAW View Distance by Tonic (http://forums.bistudio.com/showthread.php?151669-TAW-View-Distance-Script)
+*   ZBE_caching by Zorrobyte (http://forums.bistudio.com/showthread.php?179777-ZBE_Cache-AI-amp-Vehicle-caching-script-addon)
+*   MAD Ambient Life by MAD T (http://forums.bistudio.com/showthread.php?166896-MAD-Ambient-Life-(SP-MP))
+*   Delete All by Anjan (http://www.thebutcherbay.org/showthread.php?tid=63)
+*   Void Map Marker by Void (http://www.armaholic.com/forums.php?m=posts&q=25540)
+Commercial exploitation of the Software without written permission from The Author(s) is expressly prohibited. ADF is distributed without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose. The Software is not an official addon or tool. Use of the Software (in whole or in part) is entirely at your own risk.
+
 
 </aside>
 
