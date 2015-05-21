@@ -50,14 +50,11 @@ disableChannels[]={1,2,3,4}; // Restrict chat channels where (0=Global),(1=Side)
 
 /***********************************   DO NOT EDIT BELOW THIS LINE!   **********************************/
 
-
+#include "missionConfig.hpp" // 1.39 B9 moved CfgUnitInsignia and CfgRespawnTemplates to missionConfig.hpp
 #include "Core\TP\taw_vd\dialog.hpp"
 #include "Core\TP\spect\config.hpp"
-#include "cfg.hpp"
+#include "functions.hpp" // 1.39 B9 moved TAWvd + F3 spect into functions
 
-class CfgFunctions {
-	#include "functions.hpp" // 1.39 B9 moved TAWvd + spect into functions
-};
 
 
 
