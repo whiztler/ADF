@@ -383,8 +383,3 @@ ADF uses the following third party scripts:
 *   Void Map Marker by Void (http://www.armaholic.com/forums.php?m=posts&q=25540)
 
 Commercial exploitation of the Software without written permission from The Author(s) is expressly prohibited. ADF is distributed without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose. The Software is not an official addon or tool. Use of the Software (in whole or in part) is entirely at your own risk.
-
-
-</aside>
-
-<script type="text/javascript">floatingMenu.add('floatdiv', { targetRight: 10, targetTop: 10, snap: true });</script>
