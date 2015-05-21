@@ -4,7 +4,7 @@ ADF version: 1.39 / MAY 2015
 
 Script: Call Sings & Radio configuration
 Author: Whiztler
-Script version: 2.43
+Script version: 2.5
 
 Game type: n/a
 File: ADF_clientPreset.sqf
