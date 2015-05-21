@@ -125,36 +125,38 @@ _ADF_preset_companyGroups = [
 ];
 
 // Load the preset configured in ADF_init_config.sqf	
-If (_ADF_preset == "NOPRYL") then {ADF_presetData = call ADF_preset_NOPRYL;};
-If ((_ADF_preset == "SHAPE") || (_ADF_preset == "DEFAULT")) then {ADF_presetData = call ADF_preset_DEFAULT;};
-If (_ADF_preset == "CUSTOM") then {ADF_presetData = call ADF_preset_CUSTOM;};
-If (_ADF_preset == "WOLFPACK") then {ADF_presetData = call ADF_preset_WP;};
+If (_ADF_preset == "NOPRYL") then {ADF_presetData = ADF_preset_NOPRYL;};
+If ((_ADF_preset == "SHAPE") || (_ADF_preset == "DEFAULT")) then {ADF_presetData = ADF_preset_DEFAULT;};
+If (_ADF_preset == "CUSTOM") then {ADF_presetData = ADF_preset_CUSTOM;};
+If (_ADF_preset == "WOLFPACK") then {ADF_presetData = ADF_preset_WP;};
 // In case of an undefined preset or a typo, load the Default preset
 If ((_ADF_preset != "NOPRYL") && (_ADF_preset != "SHAPE") && (_ADF_preset != "DEFAULT") && (_ADF_preset != "CUSTOM") && (_ADF_preset != "WOLFPACK")) then {
-	ADF_presetData = call ADF_preset_DEFAULT;
+	ADF_presetData = ADF_preset_DEFAULT;
 	if (ADF_debug) then {["PRESETS - No preset defined. Applying DEFAULT preset",false] call ADF_fnc_log};
 };
 
 // Clan preset has loaded, lets find the units group in the preset and retrieve the Call sign and freq data
 _i = _ADF_preset_companyGroups find _ADF_uGroupID;
-_ADF_uPreset	= [ADF_presetData select _i] select 0;
-//hint str _ADF_uPreset; // dev debug
+if (_i == -1) exitwith {["PRESETS - ERROR! Unknown group or unit. Roster NOT created. Call sign NOT applied. Please use ADF units only!",true] call ADF_fnc_log};
+_ADF_uPreset	= ADF_presetData select _i;
 
 // Apply the call sign and freq data
-[[_ADF_uGroup,[_ADF_uPreset select 0]],'setGroupID',true,true] call BIS_FNC_MP;
+_ADF_uGroup setGroupId [_ADF_uPreset select 0];
 if (ADF_mod_TFAR) then {
 	ADF_TFAR_LR_freq = _ADF_uPreset select 1;
 	ADF_TFAR_SW_freq = _ADF_uPreset select 2;
 };
 
 // Re-initialize cTAB (if activated) WIP
-if (ADF_mod_CTAB && isServer) then {
-	//call cTab_fnc_updateLists;
+if (ADF_mod_CTAB) then {
+	//player setVariable ["cTab_groupId",_ADF_uPreset select 0,true]; // 1.39 B9 > not updating
+	//call cTab_fnc_updateLists; // 1.39 B5 > not updating
+	//["cTab_updatePulse",cTab_fnc_updateLists] call CBA_fnc_addEventHandler; // 1.39 B9 > not updating
 	if (ADF_debug) then {["PRESETS - cTAB re-initialized",false] call ADF_fnc_log};
 };
 
 // Initialize ACE3 BluForce Tracking (if activated) WIP
-if (ADF_mod_ACE3 && isServer) then {
+if (ADF_mod_ACE3) then {
 	// insert Blueforce tracking init
 	ace_map_BFT_Enabled = true;
 	ace_map_BFT_markers = [];
@@ -163,7 +165,7 @@ if (ADF_mod_ACE3 && isServer) then {
 };
 
 // Reapply for roster inclusion and announce
-_ADF_uGroup setGroupId [_ADF_uPreset select 0];
+[[_ADF_uGroup,[_ADF_uPreset select 0]],'setGroupID',true,true] call BIS_FNC_MP;
 ADF_set_callSigns = true; publicVariable "ADF_set_callSigns";
 if (ADF_debug) then {["PRESETS - Preset call signs applied",false] call ADF_fnc_log};
 
