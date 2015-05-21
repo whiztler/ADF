@@ -4,7 +4,7 @@ ADF version: 1.39 / MAY 2015
 
 Script: Loadout Gear West
 Author: Whiztler
-Script version: 5.54
+Script version: 5.55
 
 Game type: n/a
 File: ADF_fnc_loadoutWest.sqf
@@ -606,7 +606,7 @@ ADF_fnc_loadoutSor = {
 	if (ADF_dlc_MarksMan) then {_ADF_unit addVest "V_PlateCarrierSpec_blk";} else {_ADF_unit addVest "V_TacVestIR_blk";}; //MM DLC check
 	_ADF_unit addWeapon "G_Tactical_Black";	
 	// Store in Vest
-	if (ADF_mod_ACE3 && (_r != "uav")) then {for "_i" from 1 to 4 do {_ADF_unit addItemToVest "ACE_M84"}};
+	if (ADF_mod_ACE3 && (_r != "uav")) then {for "_i" from 1 to 3 do {_ADF_unit addItemToVest "ACE_M84"}};
 	_ADF_unit addItemToVest "acc_flashlight";
 	// Store in Uniform
 	if (ADF_mod_ACE3) then {
