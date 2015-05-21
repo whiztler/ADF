@@ -135,4 +135,4 @@ _ADF_zeusEagle = false; // Enable the Zeus Eagle? False removes the eagle [true/
 /********** ADF DEV BUILD SETTINGS **********/
 _ADF_tpl_version = 1.39; // ADF version DO NOT EDIT
 _ADF_devBuild = "Beta"; // [Alpha/Beta/Production] DO NOT EDIT
-_ADF_devBuildNr = "9"; // Build number. DO NOT EDIT
+_ADF_devBuildNr = "10"; // Build number. DO NOT EDIT
