@@ -4,7 +4,7 @@ ADF version: 1.39 / MAY 2015
 
 Script: Mission config
 Author: Whiztler
-Script version: 2.6
+Script version: 2.61
 
 Game type: n/a
 File: description.ext
@@ -54,9 +54,6 @@ disableChannels[]={1,2,3,4}; // Restrict chat channels where (0=Global),(1=Side)
 #include "Core\TP\taw_vd\dialog.hpp"
 #include "Core\TP\spect\config.hpp"
 #include "functions.hpp" // 1.39 B9 moved TAWvd + F3 spect into functions
-
-
-
 
 disabledAI = 1; // Enable AI's to fill empty playable slots (0=disable), (1=enable)
 enableDebugConsole = 1;	// Enable the debug console where (0=disabled),(1=Admins Only),(2=Everyone) DO NOT SET AS 2!
