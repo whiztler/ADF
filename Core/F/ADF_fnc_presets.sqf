@@ -4,7 +4,7 @@ ADF version: 1.39 / MAY 2015
 
 Script: customize call signs and radio freq/channels for groups
 Author: Whiztler
-Script version: 2.13
+Script version: 2.2
 
 Game type: n/a
 File: ADF_presets.sqf
