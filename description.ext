@@ -4,7 +4,7 @@ ADF version: 1.39 / MAY 2015
 
 Script: Mission config
 Author: Whiztler
-Script version: 2.51
+Script version: 2.6
 
 Game type: n/a
 File: description.ext
@@ -25,8 +25,8 @@ RespawnDialog = 0; // Respawn dialog in case of multiple locations
 joinUnassigned = 1; // Where 0 forces joining players into the first empty slot, 1 leaves them to select their own slot. Use 0 if the HC is anabled
 
 // Respawn Ticket system init. Vars defined in init
-respawnTemplatesWest[] = {"Counter", "Tickets", "spectator"};
-respawnTemplatesEast[] = {"Counter", "Tickets"};
+respawnTemplatesWest[] = {"Counter", "Tickets", "Seagull", "f_spectator"};
+respawnTemplatesEast[] = {"Counter", "Tickets", "Seagull", "f_spectator"};
 respawnTemplatesCiv[] = {"Counter"};
 
 /**********  Loading Screen **********/
@@ -50,21 +50,13 @@ disableChannels[]={1,2,3,4}; // Restrict chat channels where (0=Global),(1=Side)
 
 /***********************************   DO NOT EDIT BELOW THIS LINE!   **********************************/
 
-
+#include "missionConfig.hpp" // 1.39 B9 moved CfgUnitInsignia and CfgRespawnTemplates to missionConfig.hpp
 #include "Core\TP\taw_vd\dialog.hpp"
-class CfgFunctions {
-	#include "functions.hpp"
-	#include "Core\TP\taw_vd\CfgFunctions.hpp"
-};
+#include "Core\TP\spect\config.hpp"
+#include "functions.hpp" // 1.39 B9 moved TAWvd + F3 spect into functions
 
-class CfgUnitInsignia {
-	class CLANPATCH {
-		displayName = "Nopryl"; // Name displayed in Arsenal
-		author = "ADF / Whiztler";
-		texture = "Img\clan_patch_Nopryl.paa";
-		textureVehicle = ""; // Does nothing currently, reserved for future use
-	};
-};
+
+
 
 disabledAI = 1; // Enable AI's to fill empty playable slots (0=disable), (1=enable)
 enableDebugConsole = 1;	// Enable the debug console where (0=disabled),(1=Admins Only),(2=Everyone) DO NOT SET AS 2!

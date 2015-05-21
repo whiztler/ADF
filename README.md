@@ -3,7 +3,7 @@
 ### Current version
 
 version: 1.39  
- build: Beta 8
+ build: Beta 9
 
 ## New Features 1.39
 
@@ -165,7 +165,7 @@ With Notepad++ open ADF_init_config.sqf which can be found in the mission root f
 9.  Change '<span class="adf_topic">ADF_clanLogo = "**Img\clan_logo_ADF.paa**";</span>' to your clan logo. Clan logo's can be found in the Img\ folder. E.g. ADF_clanLogo = "Img\**clan_logo_Nopryl.paa**"; The clan logo is used for hints, intro screens, etc. Preset images can be found in the '\Img' folder.
 10.  Change '<span class="adf_topic">ADF_clanFlag = "**Img\clan_flag_ADF.paa**";</span>' to your clan flag. The flag image can be displayed on flags in-game. See the flagpole in the ADF mission with the Nopryl flag for instance (**clan_flag_Nopryl.paa**). Preset images can be found in the '\Img' folder.
 11.  Change '<span class="adf_topic">_ADF_MissionIntroImage = "**Img\mission_cover_ADF.paa**";</span>' to your own image that is displayed after the mission initialization (in-game). E.g. _ADF_MissionIntroImage = "Img\mission_cover_**nopryl**.paa. Preset images can be found in the '\Img' folder.
-12.  Change '<span class="adf_topic">ADF_Clan_uniformInsignia = **true**;</span>' to **true** or **false**. The clan insignia can be configured in the description.ext file. Default is Nopryl.
+12.  Change '<span class="adf_topic">ADF_Clan_uniformInsignia = **true**;</span>' to **true** or **false**. The clan insignia can be configured in the missionConfig.hpp (mission root folder) file. Default is Nopryl.
 13.  Change '<span class="adf_topic">_ADF_preset = "**Default**";</span>' to either **Default** or **Nopryl** or **SHAPE** or **Wolfpack** or **Custom**. The preset file represents clan call signs and preconfigured radio frequencies. The preset file can be found here: 'Core\F\ADF_fnc_presets.sqf'. If you wish to create your own preset than edit the **custom** preset and select _ADF_preset = "Custom";
 
 #### Gear & Loadout
@@ -373,7 +373,13 @@ You can spawn single units, groups, crewed vehicles, empty vehicles, etc. Have a
 ## Legal
 
 This file is part of the Arma Mission Development Framework (ADF). ADF is released under the Arma Public Licence (APL): https://www.bistudio.com/community/licenses/arma-public-license
+ADF uses the following third party scripts:
 
-</aside>
+*   F3 Spectator is part of the F3 Framework (http://ferstaberinde.com/f3/en/)
+*   TAW View Distance by Tonic (http://forums.bistudio.com/showthread.php?151669-TAW-View-Distance-Script)
+*   ZBE_caching by Zorrobyte (http://forums.bistudio.com/showthread.php?179777-ZBE_Cache-AI-amp-Vehicle-caching-script-addon)
+*   MAD Ambient Life by MAD T (http://forums.bistudio.com/showthread.php?166896-MAD-Ambient-Life-(SP-MP))
+*   Delete All by Anjan (http://www.thebutcherbay.org/showthread.php?tid=63)
+*   Void Map Marker by Void (http://www.armaholic.com/forums.php?m=posts&q=25540)
 
-<script type="text/javascript">floatingMenu.add('floatdiv', { targetRight: 10, targetTop: 10, snap: true });</script>
+Commercial exploitation of the Software without written permission from The Author(s) is expressly prohibited. ADF is distributed without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose. The Software is not an official addon or tool. Use of the Software (in whole or in part) is entirely at your own risk.

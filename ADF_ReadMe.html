@@ -37,7 +37,7 @@
     <h1><img src="Core/I/ADF_logo.png" width="500" height="240" alt="ADF - Arma Mission Development Framework" /></h1>
     <h3 id="curver">Current version</h3>
     <p>version: 1.39<br />
-      build: Beta 8</p>
+      build: Beta 9</p>
     <h2 id="features">New Features 1.39</h2>
     <p>ADF 1.39 is a major change release that comprises of script optimization and new features such as:</p>
     <ul>
@@ -211,7 +211,7 @@
       <li>Change '<span class="adf_topic">ADF_clanLogo = &quot;<strong>Img\clan_logo_ADF.paa</strong>&quot;;</span>' to your clan logo. Clan logo's can be found in the Img\ folder. E.g. ADF_clanLogo = &quot;Img\<strong>clan_logo_Nopryl.paa</strong>&quot;; The clan logo is used for hints, intro screens, etc. Preset images can be found in the '\Img' folder.</li>
       <li>Change '<span class="adf_topic">ADF_clanFlag = &quot;<strong>Img\clan_flag_ADF.paa</strong>&quot;;</span>' to your clan flag. The flag image can be displayed on flags in-game. See the flagpole in the ADF mission with the Nopryl flag for instance (<strong>clan_flag_Nopryl.paa</strong>). Preset images can be found in the '\Img' folder.</li>
       <li>Change '<span class="adf_topic">_ADF_MissionIntroImage = &quot;<strong>Img\mission_cover_ADF.paa</strong>&quot;;</span>' to your own image that is displayed after the mission initialization (in-game). E.g. _ADF_MissionIntroImage = &quot;Img\mission_cover_<strong>nopryl</strong>.paa. Preset images can be found in the '\Img' folder.</li>
-      <li>Change '<span class="adf_topic">ADF_Clan_uniformInsignia = <strong>true</strong>;</span>' to <strong>true</strong> or <strong>false</strong>. The clan insignia can be configured in the description.ext file. Default is Nopryl.</li>
+      <li>Change '<span class="adf_topic">ADF_Clan_uniformInsignia = <strong>true</strong>;</span>' to <strong>true</strong> or <strong>false</strong>. The clan insignia can be configured in the missionConfig.hpp (mission root folder) file. Default is Nopryl.</li>
       <li>Change '<span class="adf_topic">_ADF_preset = &quot;<strong>Default</strong>&quot;;</span>' to either <strong>Default</strong> or <strong>Nopryl</strong> or <strong>SHAPE</strong> or <strong>Wolfpack</strong> or <strong>Custom</strong>. The preset file represents clan call signs and preconfigured radio frequencies. The preset file can be found here: 'Core\F\ADF_fnc_presets.sqf'. If you wish to create your own preset than edit the <strong>custom</strong> preset and select _ADF_preset = &quot;Custom&quot;;</li>
     </ol>
     <h4>Gear &amp; Loadout</h4>
@@ -410,7 +410,17 @@ _g = [getMarkerPos "marker1",	EAST, (configFile >> "CfgGroups" >> "East" >> "OPF
 </section>
 <aside>
   <h2 id="legal">Legal</h2>
-  <p>This file is part of the Arma Mission Development Framework (ADF). ADF is released under the Arma Public Licence (APL): https://www.bistudio.com/community/licenses/arma-public-license</p>
+  <p>This file is part of the Arma Mission Development Framework (ADF). ADF is released under the Arma Public Licence (APL): <a href="https://www.bistudio.com/community/licenses/arma-public-license">https://www.bistudio.com/community/licenses/arma-public-license</a></p>
+  <p> ADF uses the following third party scripts:</p>
+  <ul>
+    <li> F3 Spectator is part of the F3 Framework (<a href="http://ferstaberinde.com/f3/en/">http://ferstaberinde.com/f3/en/</a>)</li>
+    <li> TAW View Distance by Tonic (<a href="http://forums.bistudio.com/showthread.php?151669-TAW-View-Distance-Script">http://forums.bistudio.com/showthread.php?151669-TAW-View-Distance-Script</a>)</li>
+    <li> ZBE_caching by Zorrobyte (<a href="http://forums.bistudio.com/showthread.php?179777-ZBE_Cache-AI-amp-Vehicle-caching-script-addon">http://forums.bistudio.com/showthread.php?179777-ZBE_Cache-AI-amp-Vehicle-caching-script-addon</a>)</li>
+    <li> MAD Ambient Life by MAD T (<a href="http://forums.bistudio.com/showthread.php?166896-MAD-Ambient-Life-(SP-MP)">http://forums.bistudio.com/showthread.php?166896-MAD-Ambient-Life-(SP-MP)</a>)</li>
+    <li> Delete All by Anjan (<a href="http://www.thebutcherbay.org/showthread.php?tid=63">http://www.thebutcherbay.org/showthread.php?tid=63</a>)</li>
+    <li> Void Map Marker by Void (<a href="http://www.armaholic.com/forums.php?m=posts&q=25540">http://www.armaholic.com/forums.php?m=posts&amp;q=25540</a>)</li>
+  </ul>
+  <p> Commercial exploitation of the Software without written permission from The Author(s) is expressly prohibited. ADF is distributed without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose. The Software is not an official addon or tool. Use of the Software (in whole or in part) is entirely at your own risk.</p>
 </aside>
 <footer></footer>
 <script src="Core/I/prism.js"></script> 
