@@ -4,7 +4,7 @@ ADF version: 1.39 / MAY 2015
 
 Script: Cfg entries
 Author: Whiztler
-Script version: 1.0
+Script version: 1.1
 
 Game type: n/a
 File: missionConfig.hpp
@@ -30,3 +30,4 @@ class CfgRespawnTemplates { // F3 Spectator Script
         onPlayerRespawn = "";
     };
 };
+
