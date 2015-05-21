@@ -203,7 +203,7 @@ ADF_fnc_loudoutInf = {
 		// Primary weapon
 		[_ADF_unit, ADF_INF_wpn_R, 4, ADF_INF_mag_R] call BIS_fnc_addWeapon;
 		_ADF_unit assignItem "B_UavTerminal"; 
-	}; // Close Heavy Weapons Team (HMG/GMG/MK6)
+	}; // Close UAV
 	
 	/*****************************************************************************************************/
 
@@ -340,6 +340,7 @@ ADF_fnc_loudoutInf = {
 			_ADF_unit addItemToBackpack "SmokeShell";
 			_ADF_unit addItemToBackpack "Chemlight_green";
 		};
+		if (ADF_mod_ACE3 && (ADF_INF_wpn_LMG == "LMG_Mk200_MRCO_F")) then {_ADF_unit addItemToBackpack "ACE_SpareBarrel";};
 		// Primary weapon
 		[_ADF_unit, ADF_INF_wpn_LMG, ADF_INF_magCount_LMG, ADF_INF_mag_LMG] call BIS_fnc_addWeapon
 	}; // Close Auto Rifleman
@@ -431,6 +432,7 @@ ADF_fnc_loudoutInf = {
 		_ADF_unit addItemToBackpack "HandGrenade";
 		_ADF_unit addItemToBackpack "SmokeShell";
 		_ADF_unit addItemToBackpack "Chemlight_green";
+		if (ADF_mod_ACE3) then {_ADF_unit addItemToBackpack "ACE_SpareBarrel";};
 		// Primary weapon
 		[_ADF_unit, ADF_INF_wpn_MG, 4, ADF_INF_mag_MG] call BIS_fnc_addWeapon;
 	}; // Close Heavy Machine
