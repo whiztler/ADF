@@ -4,14 +4,14 @@
 ### Index
 
 -   [New Features](https://github.com/whiztler/ADF/blob/beta10/README.md#new-features-139)
--   [Changelog](#https://github.com/whiztler/ADF/blob/beta10/README.md#changelog)
--   [Introduction](#https://github.com/whiztler/ADF/blob/beta10/README.md#introduction)
--   [Mission Development](#https://github.com/whiztler/ADF/blob/beta10/README.md#mission-development)
--   [Configuring your mission](#https://github.com/whiztler/ADF/blob/beta10/README.md#configuring-your-mission)
-    -   [description.ext](#https://github.com/whiztler/ADF/blob/beta10/README.md#descriptionext)
-    -   [ADF\_init\_config.sqf](#https://github.com/whiztler/ADF/blob/beta10/README.md#adf_init_configsqf)
--   [Advanced Editing](#https://github.com/whiztler/ADF/blob/beta10/README.md#advanced-editing---scripting-spawning-of-units)
--   [Legal](#https://github.com/whiztler/ADF/blob/beta10/README.md#legal)
+-   [Changelog](https://github.com/whiztler/ADF/blob/beta10/README.md#changelog)
+-   [Introduction](https://github.com/whiztler/ADF/blob/beta10/README.md#introduction)
+-   [Mission Development](https://github.com/whiztler/ADF/blob/beta10/README.md#mission-development)
+-   [Configuring your mission](https://github.com/whiztler/ADF/blob/beta10/README.md#configuring-your-mission)
+    -   [description.ext](https://github.com/whiztler/ADF/blob/beta10/README.md#descriptionext)
+    -   [ADF\_init\_config.sqf](https://github.com/whiztler/ADF/blob/beta10/README.md#adf_init_configsqf)
+-   [Advanced Editing](https://github.com/whiztler/ADF/blob/beta10/README.md#advanced-editing---scripting-spawning-of-units)
+-   [Legal](https://github.com/whiztler/ADF/blob/beta10/README.md#legal)
 
 ### Current version
 
