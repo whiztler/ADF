@@ -16,6 +16,7 @@
 ### Current version
 
 version: 1.39
+
 build: Beta 10
 
 New Features 1.39
@@ -104,8 +105,8 @@ To really use ADF to the fullest I recommend that you read/study-up on a few exi
 
 Excellent scripting tutorials are:
 
-[Fockers Arma3 Scripting Tutorials](http://forums.bistudio.com/showthread.php?154047-Arma-3-Scripting-Tutorial-For-Noobs)
-[Killzone Kid](http://killzonekid.com)
+-   [Fockers Arma3 Scripting Tutorials](http://forums.bistudio.com/showthread.php?154047-Arma-3-Scripting-Tutorial-For-Noobs)
+-   [Killzone Kid](http://killzonekid.com)
 
 ### ADF Template
 
