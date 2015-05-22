@@ -30,7 +30,7 @@ if ((isNil "GM_1") && (isNil "GM_2")) exitWith {// No Zeus playable slots detect
 		diag_log "ADF RPT: ZEUS: No GM units active. Terminating ADF_GM";
 	};
 }; 
-_ADF_zeusEagle_enable = _this select 0;
+_ADF_zeusEagle = _this select 0;
 showCuratorCompass true;
 
 if (!(isNil "GM_1") || !(isNil "GM_2")) then { // check if GM units exist 
@@ -63,7 +63,7 @@ if (!(isNil "GM_1") || !(isNil "GM_2")) then { // check if GM units exist
 
 if (!isServer) exitWith {};
 
-if !(_ADF_zeusEagle_enable) then { // Kill the Zeus Eagle?
+if !(_ADF_zeusEagle) then { // Kill the Zeus Eagle?
 	[] spawn {
 		private ["_curPos"];
 		_curPos = [];
@@ -73,8 +73,8 @@ if !(_ADF_zeusEagle_enable) then { // Kill the Zeus Eagle?
 		};
 		{
 			while {true} do {
-				{if (typeOf _x == "Eagle_F") then {deleteVehicle _x}} forEach ((_curPos select 0) nearEntities ["man", 50]); // v1.39
-				uiSleep 120;
+				{if (typeOf _x == "Eagle_F") then {deleteVehicle _x}} forEach ((_curPos select 0) nearEntities ["man", 500]); // v1.39 B10
+				Sleep 120;
 				if (ADF_debug) then {["ZEUS - Zeus Eagle deactivated",false] call ADF_fnc_log};
 			};
 		} forEach allCurators;		
