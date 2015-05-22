@@ -100,7 +100,8 @@ Mission Development
 -------------------
 
 To really use ADF to the fullest I recommend that you read/study-up on a few existing mission development tuts/pages. More information: [http://www.nopryl.no/smfprod/index.php?topic=5723.0](http://www.nopryl.no/smfprod/index.php?topic=5723.0)
- Excellent scripting tutorials are: [Fockers Arma3 scripting tutorials](http://forums.bistudio.com/showthread.php?154047-Arma-3-Scripting-Tutorial-For-Noobs](http://forums.bistudio.com/showthread.php?154047-Arma-3-Scripting-Tutorial-For-Noobs) - [Killzone Kid](http://killzonekid.com/](http://killzonekid.com/)
+
+Excellent scripting tutorials are: [Fockers Arma3 scripting tutorials](http://forums.bistudio.com/showthread.php?154047-Arma-3-Scripting-Tutorial-For-Noobs](http://forums.bistudio.com/showthread.php?154047-Arma-3-Scripting-Tutorial-For-Noobs) and [Killzone Kid](http://killzonekid.com/](http://killzonekid.com/).
 
 ### ADF Template
 
