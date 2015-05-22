@@ -1,22 +1,22 @@
-### Index
-
--   [New Features](#features)
--   [Changelog](#chglog)
--   [Introduction](#introd)
--   [Mission Development](#missdev)
--   [Configuring your mission](#Configuring your mission)
-    -   [description.ext](#description.ext)
-    -   [ADF\_init\_config.sqf](#ADF\_init\_config.sqf)
--   [Advanced Editing](#Advanced editing - scripting spawning of units)
--   [Legal](#legal)
-
 ![ADF - Arma Mission Development Framework](Core/I/ADF_logo.png)
 ================================================================
+
+### Index
+
+-   [New Features](https://github.com/whiztler/ADF/blob/beta10/README.md#new-features-139)
+-   [Changelog](#https://github.com/whiztler/ADF/blob/beta10/README.md#changelog)
+-   [Introduction](#https://github.com/whiztler/ADF/blob/beta10/README.md#introduction)
+-   [Mission Development](#https://github.com/whiztler/ADF/blob/beta10/README.md#mission-development)
+-   [Configuring your mission](#https://github.com/whiztler/ADF/blob/beta10/README.md#configuring-your-mission)
+    -   [description.ext](#https://github.com/whiztler/ADF/blob/beta10/README.md#descriptionext)
+    -   [ADF\_init\_config.sqf](#https://github.com/whiztler/ADF/blob/beta10/README.md#adf_init_configsqf)
+-   [Advanced Editing](#https://github.com/whiztler/ADF/blob/beta10/README.md#advanced-editing---scripting-spawning-of-units)
+-   [Legal](#https://github.com/whiztler/ADF/blob/beta10/README.md#legal)
 
 ### Current version
 
 version: 1.39
- build: Beta 10
+build: Beta 10
 
 New Features 1.39
 -----------------
@@ -130,7 +130,6 @@ Air Wing
 -   1 AH99
 -   1 AH9
 -   2 x UH-80
-
 -   1 x CH-67
 -   2 x A164
 
@@ -353,12 +352,12 @@ So now we have spawned a group at the marker1 location. But they have no orders 
     ] call CBA_fnc_taskPatrol; // Function (CBA) to create the patrol options
 
 We are using the CBA A3 function **CBA\_fnc\_taskPatrol** for this. It is a quick 'n' dirty solution to created random patrols. We use the same group variable and also the spawn position (they are already there) to start their patrol.
- We tell them the radius of the patrol area (measured from the start position (marker1) and then feed the function with waypoint information.
- The last array with three numbers is the min, avg, max time the group waits at each waypoint.
- More information: [https://dev.withsix.com/docs/cba/files/ai/fnc\_taskPatrol-sqf.html](https://dev.withsix.com/docs/cba/files/ai/fnc_taskPatrol-sqf.html "CBA task patrol function")
+We tell them the radius of the patrol area (measured from the start position (marker1) and then feed the function with waypoint information.
+The last array with three numbers is the min, avg, max time the group waits at each waypoint.
+More information: [https://dev.withsix.com/docs/cba/files/ai/fnc\_taskPatrol-sqf.html](https://dev.withsix.com/docs/cba/files/ai/fnc_taskPatrol-sqf.html "CBA task patrol function")
 
 So that's it. We created a 2 pax patrol group and gave them a patrol order with random waiypoints that are created by the CBA function.
- Save the script in the Scr folder as ' Scr\\**patrol.sqf**'. The entire script (without the comments) looks like this:
+Save the script in the Scr folder as ' Scr\\**patrol.sqf**'. The entire script (without the comments) looks like this:
 
     // patrol.sqf
 
@@ -379,7 +378,7 @@ Now you can create a Trigger in the editor with the following settings (I only m
 -   On Act.: **0 = execVM "Scr\\Patrol.sqf";**
 
 If you haven't already, create/place a marker on the map and name it "marker1". You may place the marker anywhere you want, inside or outside the trigger area. This is the position your enemy patrol group will spawn and start their patrol from.
- Save your mission and test by entering the trigger area as a Blufor unit. The enemy patrol should spawn immediately.
+Save your mission and test by entering the trigger area as a Blufor unit. The enemy patrol should spawn immediately.
 
 You can spawn single units, groups, crewed vehicles, empty vehicles, etc. Have a look at the sample spawn scripts. You find then in the Core\\ folder (**ADF\_DSG-Airborne.sqf**, **ADF\_DSG-FootPatrols.sqf**, **ADF\_DSG-Armored.sqf**). For further reading on spawning units and such, have a look at:
 
