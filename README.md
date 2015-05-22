@@ -311,69 +311,74 @@ Open Notepad++ with a blank file and select SQF as the scripting **language** fr
 
 We'll start by defining a variable for the group. This can be a local variable that we'll only use to create the group and nothing more. The local variable is deleted once the script has finished execution:
 
-```javascript
+```php
 // Create local vars for all connected clients:
 _g = []; // Infantry group/section/squad variable
 ```
 
-The '\_g' is the local variable that is used to identify the group. We basically create an empty fireteam which we can fill with units. The '[]' brackets are enclosures for an array. An array is basically a list of data, in our case units. A filled array could look like this [Soldier1, Soldier2, Soldier3]. Each item is seperated with a comma.
+The '_g' is the local variable that is used to identify the group. We basically create an empty fireteam which we can fill with units. The '[]' brackets are enclosures for an array. An array is basically a list of data, in our case units. A filled array could look like this [Soldier1, Soldier2, Soldier3]. Each item is seperated with a comma.
 
 Now that we have created an empty group, let's continue with the creation of the patrol units that are part of our still empty group. But first we inform ARMA3 that the units should only be created by the server or the headless client. If we don't do this than every connected client (all players and the server) will create a group of units. With 10 players conntected this means 10 Opfor groups. And we only want to create a single group of units.
 
+```php
+// Groups are created by/on the HC or server and visible for all clients.
+if (!ADF_HC_execute) exitWith {}; // Autodetect: execute on the HC else execute on the server
+```
+	
+Above 'if (!ADF_HC_execute) exitWith {};` means that only the HC or the server can continue with the script. All other clients (including all players) will exit the script (exitWith {};).
 
-    // Groups are created by/on the HC or server and visible for all clients.
-    if (!ADF_HC_execute) exitWith {}; // Autodetect: execute on the HC else execute on the server
+To create the units and store them in our '_g" group we use a ARMA3 function: **BIS_fnc_spawnGroup**. More information on this function can be found here: [BIS_fnc_spawnGroup](https://community.bistudio.com/wiki/BIS\_fnc\_spawnGroup)
 
-Above 'if (!ADF\_HC\_execute) exitWith {};` means that only the HC or the server can continue with the script. All other clients (including all players) will exit the script (exitWith {};).
+```php
+// Create a CSAT Recon Sentry group
+_g = [
+	getMarkerPos "marker1", // "marker1" is the location where the group is created
+	EAST, // The side of the group
+	(configFile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> "OI_reconSentry") // See http://community.bistudio.com/wiki/Ambient_Combat_Manager_-_Group_types for different types of groups.
+] call BIS_fnc_spawnGroup; // Function that creates the group
+```
 
-To create the units and store them in our '\_g" group we use a ARMA3 function: **BIS\_fnc\_spawnGroup**. More information on this function can be found here: [https://community.bistudio.com/wiki/BIS\_fnc\_spawnGroup](https://community.bistudio.com/wiki/BIS_fnc_spawnGroup "BIS_fnc_spawnGroup")
-
-
-    // Create a CSAT Recon Sentry group
-    _g = [
-        getMarkerPos "marker1", // "marker1" is the location where the group is created
-        EAST, // The side of the group
-        (configFile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> "OI_reconSentry") // See http://community.bistudio.com/wiki/Ambient_Combat_Manager_-_Group_types for different types of groups.
-    ] call BIS_fnc_spawnGroup; // Function that creates the group
-
-In above script we use the group variable (\_g) call the BIS\_fnc\_spawnGroup function. We supply the function with the position we want the group to spawn at (**getMarkerPos "marker1"**), the side of the group that we want to spawn (**EAST**), then we use a predefined group from the ARMA3 config (**configFile \>\> "CfgGroups" \>\> "East" \>\> "OPF\_F" \>\> "Infantry" \>\> "OI\_reconSentry"**). The (configFile \>\> ... "OI\_reconSentry") part is a predefined group in ARMA3. Just like in the editor when you place a group of soldiers, the group consists of predefined units with loadout specifically for their role. Just like in the editor you can use these predefined groups with scripting as well. The group 'templates' are stored in what is called the ARMA3 configFile. Basically a database of sorts that stores all preconfigured information that is needed by the ARMA3 engine. You can retrieve this information by clicking on the 'Config Viewer' icon (top of the screen) in the editor. In case of predefined groups, you can also look up the information on the BIS Wiki (much quicker than the editor): [http://community.bistudio.com/wiki/Ambient\_Combat\_Manager\_-\_Group\_types](http://community.bistudio.com/wiki/Ambient_Combat_Manager_-_Group_types "BIS Ambient Combat Manager"). The page explains how to make up the (configFile \>\> ... "OI\_reconSentry") line of code.
+In above script we use the group variable (_g) call the BIS_fnc_spawnGroup function. We supply the function with the position we want the group to spawn at (**getMarkerPos "marker1"**), the side of the group that we want to spawn (**EAST**), then we use a predefined group from the ARMA3 config (**configFile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> "OI_reconSentry"**). The (configFile >> ... "OI_reconSentry") part is a predefined group in ARMA3. Just like in the editor when you place a group of soldiers, the group consists of predefined units with loadout specifically for their role. Just like in the editor you can use these predefined groups with scripting as well. The group 'templates' are stored in what is called the ARMA3 configFile. Basically a database of sorts that stores all preconfigured information that is needed by the ARMA3 engine. You can retrieve this information by clicking on the 'Config Viewer' icon (top of the screen) in the editor. In case of predefined groups, you can also look up the information on the BIS Wiki (much quicker than the editor): [http://community.bistudio.com/wiki/Ambient_Combat_Manager_-_Group_types](http://community.bistudio.com/wiki/Ambient_Combat_Manager_-_Group_types "BIS Ambient Combat Manager"). The page explains how to make up the (configFile >> ... "OI_reconSentry") line of code.
 
 So now we have spawned a group at the marker1 location. But they have no orders so they will just stand there and look dangerous. We want them to go on patrol. For that we call another function that tells them to go on patrol based on parameters that we feed into the function. Easy as pie:
 
+```php
+// Set patrol options
+[
+	_g, // Group local variable (does not need to be unique)
+	getMarkerPos "marker1", // This is where the group will start patrolling. 
+	125, // The radius in meters that determines the patrol size area.
+	6, // The number of waypoints generated (use 4 to max 12 for really large areas. 5-7 is a good number.)
+	"MOVE", // Waypoint type. ("MOVE", "DESTROY", "SAD", "SENTRY", "GUARD")
+	"SAFE", // Behaviour type. ("CARELESS", "SAFE", "AWARE", "COMBAT", "STEALTH")
+	"YELLOW", // Combat mode. ("BLUE" (Never fire), "GREEN" (Hold fire - defend only), "WHITE" (Hold fire, engage at will), "YELLOW" (Fire at will), "RED" (Fire at will, engage at will))
+	"LIMITED", // Waypoint patrol speed. ("LIMITED", "NORMAL", "FULL")
+	"COLUMN", // Patrol formation. ("COLUMN", "STAG COLUMN", "WEDGE", "ECH LEFT", "ECH RIGHT", "VEE", "LINE", "FILE", "DIAMOND")
+	"this spawn CBA_fnc_taskSearchHouse", // Units will search houses (does not work afaik)
+	[1,4,9]
+] call CBA_fnc_taskPatrol; // Function (CBA) to create the patrol options
+```php
 
-    // Set patrol options
-    [
-        _g, // Group local variable (does not need to be unique)
-        getMarkerPos "marker1", // This is where the group will start patrolling. 
-        125, // The radius in meters that determines the patrol size area.
-        6, // The number of waypoints generated (use 4 to max 12 for really large areas. 5-7 is a good number.)
-        "MOVE", // Waypoint type. ("MOVE", "DESTROY", "SAD", "SENTRY", "GUARD")
-        "SAFE", // Behaviour type. ("CARELESS", "SAFE", "AWARE", "COMBAT", "STEALTH")
-        "YELLOW", // Combat mode. ("BLUE" (Never fire), "GREEN" (Hold fire - defend only), "WHITE" (Hold fire, engage at will), "YELLOW" (Fire at will), "RED" (Fire at will, engage at will))
-        "LIMITED", // Waypoint patrol speed. ("LIMITED", "NORMAL", "FULL")
-        "COLUMN", // Patrol formation. ("COLUMN", "STAG COLUMN", "WEDGE", "ECH LEFT", "ECH RIGHT", "VEE", "LINE", "FILE", "DIAMOND")
-        "this spawn CBA_fnc_taskSearchHouse", // Units will search houses (does not work afaik)
-        [1,4,9]
-    ] call CBA_fnc_taskPatrol; // Function (CBA) to create the patrol options
-
-We are using the CBA A3 function **CBA\_fnc\_taskPatrol** for this. It is a quick 'n' dirty solution to created random patrols. We use the same group variable and also the spawn position (they are already there) to start their patrol.
+We are using the CBA A3 function **CBA_fnc_taskPatrol** for this. It is a quick 'n' dirty solution to created random patrols. We use the same group variable and also the spawn position (they are already there) to start their patrol.
 We tell them the radius of the patrol area (measured from the start position (marker1) and then feed the function with waypoint information.
 The last array with three numbers is the min, avg, max time the group waits at each waypoint.
-More information: [https://dev.withsix.com/docs/cba/files/ai/fnc\_taskPatrol-sqf.html](https://dev.withsix.com/docs/cba/files/ai/fnc_taskPatrol-sqf.html "CBA task patrol function")
+More information: [https://dev.withsix.com/docs/cba/files/ai/fnc_taskPatrol-sqf.html](https://dev.withsix.com/docs/cba/files/ai/fnc_taskPatrol-sqf.html "CBA task patrol function")
 
 So that's it. We created a 2 pax patrol group and gave them a patrol order with random waiypoints that are created by the CBA function.
 Save the script in the Scr folder as ' Scr\\**patrol.sqf**'. The entire script (without the comments) looks like this:
 
-    // patrol.sqf
+```php
+// patrol.sqf
 
-    _g = [];
+_g = [];
 
-    if (!ADF_HC_execute) exitWith {}; 
+if (!ADF_HC_execute) exitWith {}; 
 
-    _g = [getMarkerPos "marker1",   EAST, (configFile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> "OI_reconSentry")] call BIS_fnc_spawnGroup;
-    [_g, getMarkerPos "marker1", 125, 6, "MOVE", "SAFE", "YELLOW", "LIMITED", "COLUMN", "this spawn CBA_fnc_taskSearchHouse", [1,4,9]] call CBA_fnc_taskPatrol; 
+_g = [getMarkerPos "marker1",   EAST, (configFile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> "OI_reconSentry")] call BIS_fnc_spawnGroup;
+[_g, getMarkerPos "marker1", 125, 6, "MOVE", "SAFE", "YELLOW", "LIMITED", "COLUMN", "this spawn CBA_fnc_taskSearchHouse", [1,4,9]] call CBA_fnc_taskPatrol; 
+```
 
-Note that if you are not using the ADF framework, then replace: **if (!ADF\_HC\_execute) exitWith {};** with **if (!isServer) exitWith {};**
+Note that if you are not using the ADF framework, then replace: **if (!ADF_HC_execute) exitWith {};** with **if (!isServer) exitWith {};**
 
 Now you can create a Trigger in the editor with the following settings (I only mention the settings you need to change):
 
