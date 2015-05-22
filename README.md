@@ -365,7 +365,7 @@ The last array with three numbers is the min, avg, max time the group waits at e
 More information: [https://dev.withsix.com/docs/cba/files/ai/fnc_taskPatrol-sqf.html](https://dev.withsix.com/docs/cba/files/ai/fnc_taskPatrol-sqf.html "CBA task patrol function")
 
 So that's it. We created a 2 pax patrol group and gave them a patrol order with random waiypoints that are created by the CBA function.
-Save the script in the Scr folder as ' Scr\**patrol.sqf**'. The entire script (without the comments) looks like this:
+Save the script in the Scr folder as ' Scr\\**patrol.sqf**'. The entire script (without the comments) looks like this:
 
 ```php
 // patrol.sqf
@@ -385,7 +385,7 @@ Now you can create a Trigger in the editor with the following settings (I only m
 -   Axis A: **500**
 -   Axis B: **500**
 -   Activation: **BLUFOR**
--   On Act.: **0 = execVM "Scr\Patrol.sqf";**
+-   On Act.: **0 = execVM "Scr\\Patrol.sqf";**
 
 If you haven't already, create/place a marker on the map and name it "marker1". You may place the marker anywhere you want, inside or outside the trigger area. This is the position your enemy patrol group will spawn and start their patrol from.
 Save your mission and test by entering the trigger area as a Blufor unit. The enemy patrol should spawn immediately.
