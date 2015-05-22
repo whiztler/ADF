@@ -82,7 +82,7 @@ Introduction
 
 ADF has been set-up for mission developers to created complex missions in \< 1 hour. The framework offers a full joint operations company with various pre-configured presets for Nopryl, SHAPE, Wolfpack, etc. Crates and vehicle loadout is pre-configured according to the role of the team that is using the crate/vehicle.
 
-At first glance, the ADF seems complex, but you'll probably need to work with only two files: **description.ext** and **ADF\_init\_config.sqf**. Once you get the hang of ADF you'll be able to do more advanced things such as [scripting units](#sod) to spawn after the mission has started. All scripts and files have been well documented. Please use a dedicated editor such as Notepad++ to work with mission files. Search on Armaholic for Notepad++ to get the latest version.
+At first glance, the ADF seems complex, but you'll probably need to work with only two files: **description.ext** and **ADF\_init\_config.sqf**. Once you get the hang of ADF you'll be able to do more advanced things such as [scripting units](#sod) to spawn after the mission has started. All scripts and files have been well documented. Please use a dedicated editor such as [Notepad++](https://notepad-plus-plus.org/news/notepad-plus-plus-on-github.html) to work with mission files. Once you have installed the Notepad++ editor, download and install the SQF plugin from [Armaholic](http://www.armaholic.com/page.php?id=8680).
 
 ### Performance
 
