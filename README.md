@@ -34,7 +34,7 @@ Due to the many changes 1.39 is **not compatible** with missions made with previ
 ### Changelog
 
 #### 1.38 - 1.39
-
+```
 -   ADDED: Preliminary GitHub support [https://github.com/whiztler/ADF/tree/master]
 -   ADDED: Debug function: OpFor Detection
 -   ADDED: ACE3 mod support (auto detect)
@@ -76,6 +76,7 @@ Due to the many changes 1.39 is **not compatible** with missions made with previ
 -   UPDATED: updated and optimized all scripts
 -   REMOVED: AGM mod support
 -   REMOVED: Various obsolete scripts
+```
 
 Introduction
 ------------
