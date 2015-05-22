@@ -82,7 +82,7 @@ Introduction
 
 ADF has been set-up for mission developers to created complex missions in \< 1 hour. The framework offers a full joint operations company with various pre-configured presets for Nopryl, SHAPE, Wolfpack, etc. Crates and vehicle loadout is pre-configured according to the role of the team that is using the crate/vehicle.
 
-At first glance, the ADF seems complex, but you'll probably need to work with only two files: **description.ext** and **ADF\_init\_config.sqf**. Once you get the hang of ADF you'll be able to do more advanced things such as [scripting units](#sod) to spawn after the mission has started. All scripts and files have been well documented. Please use a dedicated editor such as [Notepad++](https://notepad-plus-plus.org/news/notepad-plus-plus-on-github.html) to work with mission files. Once you have installed the Notepad++ editor, download and install the SQF plugin from [Armaholic](http://www.armaholic.com/page.php?id=8680).
+At first glance, the ADF seems complex, but you'll probably need to work with only two files: **description.ext** and **ADF\_init\_config.sqf**. Once you get the hang of ADF you'll be able to do more advanced things such as [scripting units](https://github.com/whiztler/ADF/blob/beta10/README.md#advanced-editing---scripting-spawning-of-units) to spawn after the mission has started. All scripts and files have been well documented. Please use a dedicated editor such as [Notepad++](https://notepad-plus-plus.org/news/notepad-plus-plus-on-github.html) to work with mission files. Once you have installed the Notepad++ editor, download and install the SQF plugin from [Armaholic](http://www.armaholic.com/page.php?id=8680).
 
 ### Performance
 
@@ -90,17 +90,17 @@ ADF has been optimized for multiplayer coop missions. All required (and user con
 
 -   **Headless Client loadbalacing** (when enabled). Will transfer units to the HC's every 30 seconds
 -   **GM / Zeus**. Will transfer server/client items to Curators every 10 seconds
--   **Performance reporting** (FPS). Every 60 seconds server performance is stamped into the RPT. If the server FPS drops than the function stamps the server performance more frequently (FPS \< 40, every 15 secs | FPS \< 30, every 10 secs | FPS \< 20, every 5 secs | FPS \< 15, every second).
+-   **Performance reporting** (FPS). Every 60 seconds server performance is stamped into the RPT. If the server FPS drops than the function stamps the server performance more frequently (FPS < 40, every 15 secs | FPS < 30, every 10 secs | FPS < 20, every 5 secs | FPS < 15, every second).
 
 Above functions are as much optimized as possible and will not affect game play performance.
 
-Performance could be further optimized but this means that most functionality of ADF would be rewriten as functions. This will make it a lot harden for beginner (and semi advanced) mission makers. Therefor the choice was made to balance 'easy of use' with performance.
+Performance could be further optimized but this means that most functionality of ADF would be rewriten as functions. This will make it a lot harden for beginner (and semi advanced) mission makers. Therefore the choice was made to balance 'easy of use' with performance.
 
 Mission Development
 -------------------
 
 To really use ADF to the fullest I recommend that you read/study-up on a few existing mission development tuts/pages. More information: [http://www.nopryl.no/smfprod/index.php?topic=5723.0](http://www.nopryl.no/smfprod/index.php?topic=5723.0)
- Excellent scripting tutorials are: [http://forums.bistudio.com/showthread.php?154047-Arma-3-Scripting-Tutorial-For-Noobs](http://forums.bistudio.com/showthread.php?154047-Arma-3-Scripting-Tutorial-For-Noobs "Fockers Arma3 scripting tutorials") - [http://killzonekid.com/](http://killzonekid.com/ "Killzone Kid")
+ Excellent scripting tutorials are: [Fockers Arma3 scripting tutorials](http://forums.bistudio.com/showthread.php?154047-Arma-3-Scripting-Tutorial-For-Noobs](http://forums.bistudio.com/showthread.php?154047-Arma-3-Scripting-Tutorial-For-Noobs) - [Killzone Kid](http://killzonekid.com/](http://killzonekid.com/)
 
 ### ADF Template
 
@@ -179,7 +179,7 @@ With Notepad++ open ADF_init_config.sqf which can be found in the mission root f
 4.  Change `_ADF_HCLB_enable = **false**;` to **true** or **false**. Set to true when using multiple HC's to enable load balancing of AI group's across the HC's.
 5.  Change `ADF_playerSide = WEST;` to **WEST** or **EAST** or **GUER** or **CIV**. Set to the side that playable units are on. *Please note that only WEST loadout presets exist in the ADF template.*
 6.  Change `ADF_debug = **false**;` to **true** of **false**. If you need to debug your mission then set to true. Debug information is displayed on screen and written to the mission RPT. Please note that debug can be resource heavy so FPS might be considerably lower. Don't enable ADF_debug with lots of clients else the server will crumble.
-7.  Change `ADF_Log_ServerPerfEnable = **true**;` to **true** of **false**. When set to true, server performance information is added to the RPT logfile. The frequency is based on the server performance. If FPS \> 40 than every 60 seconds. If FPS \< 40 than every 15 seconds. If FPS \< 30 than every 10 seconds. If FPS \< 20 than every 5 seconds and if server FPS drops below 15 than it is logged every second. Once server FPS decreases/increases, the frequency of logging changes also.
+7.  Change `ADF_Log_ServerPerfEnable = **true**;` to **true** of **false**. When set to true, server performance information is added to the RPT logfile. The frequency is based on the server performance. If FPS \> 40 than every 60 seconds. If FPS < 40 than every 15 seconds. If FPS < 30 than every 10 seconds. If FPS < 20 than every 5 seconds and if server FPS drops below 15 than it is logged every second. Once server FPS decreases/increases, the frequency of logging changes also.
 8.  Change `'ADF_clanName = "**A D F**";` into the name of your clan. This is freetext so any name will do. E.g. ADF_clanName = "**Nopryl**"; The name is displayed in hints, mission roster, briefing, etc.
 9.  Change `ADF_clanTAG = "**ADF**";` into the tag of your clan. This is freetext so any tag will do. E.g. ADF_clanTAG = **"L.A.M.B.S**"; The tag is displayed in hints, mission roster, briefing, etc.
 10. Change `ADF_clanLogo = "**img\clan_logo_ADF.paa**";` to your clan logo. Clan logo's can be found in the img\ folder. E.g. ADF_clanLogo = "img\**clan_logo_Nopryl.paa**"; The clan logo is used for hints, intro screens, etc. Preset images can be found in the '\\Img' folder.
