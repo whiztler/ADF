@@ -357,7 +357,7 @@ So now we have spawned a group at the marker1 location. But they have no orders 
 	"this spawn CBA_fnc_taskSearchHouse", // Units will search houses (does not work afaik)
 	[1,4,9]
 ] call CBA_fnc_taskPatrol; // Function (CBA) to create the patrol options
-```php
+```
 
 We are using the CBA A3 function **CBA_fnc_taskPatrol** for this. It is a quick 'n' dirty solution to created random patrols. We use the same group variable and also the spawn position (they are already there) to start their patrol.
 We tell them the radius of the patrol area (measured from the start position (marker1) and then feed the function with waypoint information.
@@ -365,7 +365,7 @@ The last array with three numbers is the min, avg, max time the group waits at e
 More information: [https://dev.withsix.com/docs/cba/files/ai/fnc_taskPatrol-sqf.html](https://dev.withsix.com/docs/cba/files/ai/fnc_taskPatrol-sqf.html "CBA task patrol function")
 
 So that's it. We created a 2 pax patrol group and gave them a patrol order with random waiypoints that are created by the CBA function.
-Save the script in the Scr folder as ' Scr\\**patrol.sqf**'. The entire script (without the comments) looks like this:
+Save the script in the Scr folder as ' Scr\**patrol.sqf**'. The entire script (without the comments) looks like this:
 
 ```php
 // patrol.sqf
@@ -378,39 +378,39 @@ _g = [getMarkerPos "marker1",   EAST, (configFile >> "CfgGroups" >> "East" >> "O
 [_g, getMarkerPos "marker1", 125, 6, "MOVE", "SAFE", "YELLOW", "LIMITED", "COLUMN", "this spawn CBA_fnc_taskSearchHouse", [1,4,9]] call CBA_fnc_taskPatrol; 
 ```
 
-Note that if you are not using the ADF framework, then replace: **if (!ADF_HC_execute) exitWith {};** with **if (!isServer) exitWith {};**
+> Note that if you are not using the ADF framework, then replace: **if (!ADF_HC_execute) exitWith {};** with **if (!isServer) exitWith {};**
 
 Now you can create a Trigger in the editor with the following settings (I only mention the settings you need to change):
 
 -   Axis A: **500**
 -   Axis B: **500**
 -   Activation: **BLUFOR**
--   On Act.: **0 = execVM "Scr\\Patrol.sqf";**
+-   On Act.: **0 = execVM "Scr\Patrol.sqf";**
 
 If you haven't already, create/place a marker on the map and name it "marker1". You may place the marker anywhere you want, inside or outside the trigger area. This is the position your enemy patrol group will spawn and start their patrol from.
 Save your mission and test by entering the trigger area as a Blufor unit. The enemy patrol should spawn immediately.
 
 You can spawn single units, groups, crewed vehicles, empty vehicles, etc. Have a look at the sample spawn scripts. You find then in the Core\\ folder (**ADF\_DSG-Airborne.sqf**, **ADF\_DSG-FootPatrols.sqf**, **ADF\_DSG-Armored.sqf**). For further reading on spawning units and such, have a look at:
 
--   [https://community.bistudio.com/wiki/BIS\_fnc\_spawnVehicle](https://community.bistudio.com/wiki/BIS_fnc_spawnVehicle "BIS spawn vehicle function")
--   [https://community.bistudio.com/wiki/createGroup](https://community.bistudio.com/wiki/createGroup "BIS function createGroup")
--   [https://community.bistudio.com/wiki/createUnit](https://community.bistudio.com/wiki/createUnit "BIS function createUnit")
--   [https://community.bistudio.com/wiki/createUnit\_array](https://community.bistudio.com/wiki/createUnit_array "BIS function createUnitArray")
--   [https://community.bistudio.com/wiki/createVehicle](https://community.bistudio.com/wiki/createVehicle "BIS createVehicle")
--   [https://community.bistudio.com/wiki/createVehicle\_array](https://community.bistudio.com/wiki/createVehicle_array "BIS createVehicleArray")
+-   [BIS spawn vehicle function](https://community.bistudio.com/wiki/BIS\_fnc\_spawnVehicle)
+-   [BIS function createGroup](https://community.bistudio.com/wiki/createGroup)
+-   [BIS function createUnit](https://community.bistudio.com/wiki/createUnit)
+-   [BIS function createUnitArray](https://community.bistudio.com/wiki/createUnit\_array)
+-   [BIS createVehicle](https://community.bistudio.com/wiki/createVehicle)
+-   [BIS createVehicleArray](https://community.bistudio.com/wiki/createVehicle\_array)
 
 Legal
 -----
 
-This file is part of the Arma Mission Development Framework (ADF). ADF is released under the Arma Public Licence (APL): [https://www.bistudio.com/community/licenses/arma-public-license](https://www.bistudio.com/community/licenses/arma-public-license)
+This file is part of the Arma Mission Development Framework (ADF). ADF is released under the [Arma Public Licence APL](https://www.bistudio.com/community/licenses/arma-public-license)
 
 ADF uses the following third party scripts:
 
--   F3 Spectator is part of the F3 Framework ([http://ferstaberinde.com/f3/en/](http://ferstaberinde.com/f3/en/))
--   TAW View Distance by Tonic ([http://forums.bistudio.com/showthread.php?151669-TAW-View-Distance-Script](http://forums.bistudio.com/showthread.php?151669-TAW-View-Distance-Script))
--   ZBE\_caching by Zorrobyte ([http://forums.bistudio.com/showthread.php?179777-ZBE\_Cache-AI-amp-Vehicle-caching-script-addon](http://forums.bistudio.com/showthread.php?179777-ZBE_Cache-AI-amp-Vehicle-caching-script-addon))
--   MAD Ambient Life by MAD T ([http://forums.bistudio.com/showthread.php?166896-MAD-Ambient-Life-(SP-MP)](http://forums.bistudio.com/showthread.php?166896-MAD-Ambient-Life-(SP-MP)))
--   Delete All by Anjan ([http://www.thebutcherbay.org/showthread.php?tid=63](http://www.thebutcherbay.org/showthread.php?tid=63))
--   Void Map Marker by Void ([http://www.armaholic.com/forums.php?m=posts&q=25540](http://www.armaholic.com/forums.php?m=posts&q=25540))
+-   F3 Spectator is part of the [F3 Framework](http://ferstaberinde.com/f3/en/)
+-   [TAW View Distance](http://forums.bistudio.com/showthread.php?151669-TAW-View-Distance-Script) by Tonic 
+-   [ZBE_caching](http://forums.bistudio.com/showthread.php?179777-ZBE\_Cache-AI-amp-Vehicle-caching-script-addon) by Zorrobyte 
+-   [MAD Ambient Life](http://forums.bistudio.com/showthread.php?166896-MAD-Ambient-Life-(SP-MP)) by MAD T
+-   [Delete All](http://www.thebutcherbay.org/showthread.php?tid=63) by Anjan 
+-   [Void Map Marker](http://www.armaholic.com/forums.php?m=posts&q=25540) by Void 
 
 Commercial exploitation of the Software without written permission from The Author(s) is expressly prohibited. ADF is distributed without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose. The Software is not an official addon or tool. Use of the Software (in whole or in part) is entirely at your own risk.
