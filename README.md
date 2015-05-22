@@ -135,15 +135,15 @@ Start with opening the ADF template mission in the mission editor. Please note t
 
 With Notepad++ open description.ext which can be found in the mission root folder.
 
-1.  Change `maxPlayers =**117**;` into the number of playable slots. E.g. maxPlayers = **32**; This number needs to match the number of playable slots exactly. This number should include all HC's!
-2.  Change `respawn = "**BASE**";` into the method of respawn. When no respawn is allowed than use BIRD. E.g. respawn = "**BIRD**";
-3.  Change `respawnDelay = **30**;` into the number of seconds the player waits for respawn (respawn timer). If you you have 'respawn = "BIRD";` (no respawn) then respawnDelay has no effect at all.
-4.  Change `author = "**Whiztler**";` into the name of the mission developer (you). E.g. author = "**John**"; (free text without formatting)
-5.  Change `overviewText = "**ADF by Whiztler**";` into a short mission description/name. E.g. overviewText = "**Operation Red Thunder by John**"; (free text without formatting)
-6.  Change `onLoadName = "**A D F**";` into your mission name. E.g. onLoadName = "**Operation Red Thunder**"; This appears in the mission loading screen before the mission briefing and is displayed with the mission_intro picture. (free text without formatting)
-7.  Change `onLoadMission = "**Arma Mission Development Framework**";` into a 1 paragraph mission description. E.g. onLoadMission = "**Assault Delta Hill and the Power Station and wait for further orders.**"; This appears in the mission loading screen before the mission briefing and is displayed with the mission_intro picture. (free text without formatting)
-8.  Change `loadScreen = "**img\mission_intro_ADF.paa**";` This is the mission intro picture that is show while the mission is loading. SHAPE/Nopryl/etc. pictures can be found in the /Img folder. E.g. loadScreen = "**img\mission_intro_Nopryl.paa**"; You can create your own mission intro image to give your mission some extra sauce.
-9.  Change `onLoadIntro = "**Powered by ADF**";` into some additional information you might want your players to know about. (free text without formatting)
+1.  Change `maxPlayers = 117;` into the number of playable slots. E.g. maxPlayers = 32; This number needs to match the number of playable slots exactly. This number should include all HC's!
+2.  Change `respawn = "BASE";` into the method of respawn. When no respawn is allowed than use BIRD. E.g. respawn = "BIRD";
+3.  Change `respawnDelay =30;` into the number of seconds the player waits for respawn (respawn timer). If you you have 'respawn = "BIRD";` (no respawn) then respawnDelay has no effect at all.
+4.  Change `author = "Whiztler";` into the name of the mission developer (you). E.g. author = "John"; (free text without formatting)
+5.  Change `overviewText = "ADF by Whiztler";` into a short mission description/name. E.g. overviewText = "Operation Red Thunder by John"; (free text without formatting)
+6.  Change `onLoadName = "A D F";` into your mission name. E.g. onLoadName = "Operation Red Thunder"; This appears in the mission loading screen before the mission briefing and is displayed with the mission_intro picture. (free text without formatting)
+7.  Change `onLoadMission = "Arma Mission Development Framework";` into a 1 paragraph mission description. E.g. onLoadMission = "Assault Delta Hill and the Power Station and wait for further orders."; This appears in the mission loading screen before the mission briefing and is displayed with the mission_intro picture. (free text without formatting)
+8.  Change `loadScreen = "img\mission_intro_ADF.paa";` This is the mission intro picture that is show while the mission is loading. SHAPE/Nopryl/etc. pictures can be found in the /Img folder. E.g. loadScreen = "img\mission_intro_Nopryl.paa"; You can create your own mission intro image to give your mission some extra sauce.
+9.  Change `onLoadIntro = "Powered by ADF";` into some additional information you might want your players to know about. (free text without formatting)
 10. Save and close.
 
 ### ADF_init_config.sqf
@@ -152,116 +152,116 @@ With Notepad++ open ADF_init_config.sqf which can be found in the mission root f
 
 #### General
 
-1.  Change `_ADF_mission_version = **1.0**;` into your current mission version. I high recommend you use version management to keep track of development progress/changes. When using e.g. _ADF_mission_version = 3; than save you mission as e.g. '**myMission_version_3**'
-2.  Change `_ADF_mission_init_time = **30**;` into the number of seconds the mission needs to initialize. With COOP missions it is important that the server (and clients) get enough time to initialize properly. Rule of the thumb is minimum 30 secs and add 1 sec per 2 players. 30 players = 45 seconds. The maximum should be 90 seconds (for 50+ players).
-3.  Change `_ADF_HC_init = **true**;` to **true** or **false**. If you do not want to use the HC and the HC is active on the server then set this to false else leave as is as the script will automatically detect HC presence.
-4.  Change `_ADF_HCLB_enable = **false**;` to **true** or **false**. Set to true when using multiple HC's to enable load balancing of AI group's across the HC's.
+1.  Change `_ADF_mission_version = 1.0;` into your current mission version. I high recommend you use version management to keep track of development progress/changes. When using e.g. _ADF_mission_version = 3; than save you mission as e.g. '**myMission_version_3**'
+2.  Change `_ADF_mission_init_time = 30;` into the number of seconds the mission needs to initialize. With COOP missions it is important that the server (and clients) get enough time to initialize properly. Rule of the thumb is minimum 30 secs and add 1 sec per 2 players. 30 players = 45 seconds. The maximum should be 90 seconds (for 50+ players).
+3.  Change `_ADF_HC_init = true;` to **true** or **false**. If you do not want to use the HC and the HC is active on the server then set this to false else leave as is as the script will automatically detect HC presence.
+4.  Change `_ADF_HCLB_enable =false;` to **true** or **false**. Set to true when using multiple HC's to enable load balancing of AI group's across the HC's.
 5.  Change `ADF_playerSide = WEST;` to **WEST** or **EAST** or **GUER** or **CIV**. Set to the side that playable units are on. *Please note that only WEST loadout presets exist in the ADF template.*
-6.  Change `ADF_debug = **false**;` to **true** of **false**. If you need to debug your mission then set to true. Debug information is displayed on screen and written to the mission RPT. Please note that debug can be resource heavy so FPS might be considerably lower. Don't enable ADF_debug with lots of clients else the server will crumble.
-7.  Change `ADF_Log_ServerPerfEnable = **true**;` to **true** of **false**. When set to true, server performance information is added to the RPT logfile. The frequency is based on the server performance. If FPS \> 40 than every 60 seconds. If FPS < 40 than every 15 seconds. If FPS < 30 than every 10 seconds. If FPS < 20 than every 5 seconds and if server FPS drops below 15 than it is logged every second. Once server FPS decreases/increases, the frequency of logging changes also.
-8.  Change `'ADF_clanName = "**A D F**";` into the name of your clan. This is freetext so any name will do. E.g. ADF_clanName = "**Nopryl**"; The name is displayed in hints, mission roster, briefing, etc.
-9.  Change `ADF_clanTAG = "**ADF**";` into the tag of your clan. This is freetext so any tag will do. E.g. ADF_clanTAG = **"L.A.M.B.S**"; The tag is displayed in hints, mission roster, briefing, etc.
-10. Change `ADF_clanLogo = "**img\clan_logo_ADF.paa**";` to your clan logo. Clan logo's can be found in the img\ folder. E.g. ADF_clanLogo = "img\**clan_logo_Nopryl.paa**"; The clan logo is used for hints, intro screens, etc. Preset images can be found in the '\\Img' folder.
-11. Change `ADF_clanFlag = "**img\clan_flag_ADF.paa**";` to your clan flag. The flag image can be displayed on flags in-game. See the flagpole in the ADF mission with the Nopryl flag for instance (**clan_flag_Nopryl.paa**). Preset images can be found in the '\\Img' folder.
-12. Change `_ADF_MissionIntroImage = "**img\mission_cover_ADF.paa**";` to your own image that is displayed after the mission initialization (in-game). E.g. _ADF_MissionIntroImage = "img\mission_cover_**nopryl**.paa. Preset images can be found in the '\\Img' folder.
-13. Change `ADF_Clan_uniformInsignia = **true**;` to **true** or **false**. The clan insignia can be configured in the missionConfig.hpp (mission root folder) file. Default is Nopryl.
-14. Change `_ADF_preset = "**Default**";` to either **Default** or **Nopryl** or **SHAPE** or **Wolfpack** or **Custom**. The preset file represents clan call signs and preconfigured radio frequencies. The preset file can be found here: 'Core\\F\\ADF_fnc_presets.sqf'. If you wish to create your own preset than edit the **custom** preset and select _ADF_preset = "Custom";
+6.  Change `ADF_debug =false;` to **true** of **false**. If you need to debug your mission then set to true. Debug information is displayed on screen and written to the mission RPT. Please note that debug can be resource heavy so FPS might be considerably lower. Don't enable ADF_debug with lots of clients else the server will crumble.
+7.  Change `ADF_Log_ServerPerfEnable = true;` to **true** of **false**. When set to true, server performance information is added to the RPT logfile. The frequency is based on the server performance. If FPS \> 40 than every 60 seconds. If FPS < 40 than every 15 seconds. If FPS < 30 than every 10 seconds. If FPS < 20 than every 5 seconds and if server FPS drops below 15 than it is logged every second. Once server FPS decreases/increases, the frequency of logging changes also.
+8.  Change `'ADF_clanName = "A D F";` into the name of your clan. This is freetext so any name will do. E.g. ADF_clanName = "Nopryl"; The name is displayed in hints, mission roster, briefing, etc.
+9.  Change `ADF_clanTAG = "ADF";` into the tag of your clan. This is freetext so any tag will do. E.g. ADF_clanTAG ="L.A.M.B.S"; The tag is displayed in hints, mission roster, briefing, etc.
+10. Change `ADF_clanLogo = "img\clan_logo_ADF.paa";` to your clan logo. Clan logo's can be found in the img\ folder. E.g. ADF_clanLogo = "img\**clan_logo_Nopryl.paa"; The clan logo is used for hints, intro screens, etc. Preset images can be found in the '\\Img' folder.
+11. Change `ADF_clanFlag = "img\clan_flag_ADF.paa";` to your clan flag. The flag image can be displayed on flags in-game. See the flagpole in the ADF mission with the Nopryl flag for instance (**clan_flag_Nopryl.paa**). Preset images can be found in the '\\Img' folder.
+12. Change `_ADF_MissionIntroImage = "img\mission_cover_ADF.paa";` to your own image that is displayed after the mission initialization (in-game). E.g. _ADF_MissionIntroImage = "img\mission_cover_**nopryl**.paa. Preset images can be found in the '\\Img' folder.
+13. Change `ADF_Clan_uniformInsignia = true;` to **true** or **false**. The clan insignia can be configured in the missionConfig.hpp (mission root folder) file. Default is Nopryl.
+14. Change `_ADF_preset = "Default";` to either **Default** or **Nopryl** or **SHAPE** or **Wolfpack** or **Custom**. The preset file represents clan call signs and preconfigured radio frequencies. The preset file can be found here: 'Core\\F\\ADF_fnc_presets.sqf'. If you wish to create your own preset than edit the **custom** preset and select _ADF_preset = "Custom";
 
 #### Gear & Loadout
 
-1.  Change `ADF_sameGearRespawn = **true**;` to **true** or **false**. In case of respawn this determines if players respawn with the same loadout as when they died. If ACE3 is active it will use the ACE sameGear function. Else it will use the ADF sameGear function.
-2.  Change `_ADF_customLoadout_MOD = **true**;` to **true** or **false**. When set to true it will use the preconfigured loadout scripts. When set to false it will use the BIS Vanilla gear + items from active mods such as cTAB, ACE3 and TFAR/ACRE2.
-3.  Change `_ADF_noLoadout = **false**;` to **true** or **false**. When set to true, ADF will not load any gear scripts. This is useful when using a custom loadout/gear mod. *Please note that call sign/radio frequencies are loaded no matter if you set '_ADF_noLoadout to true or false*.
-4.  Change `_ADF_uniform_inf = "**U_B_CombatUniform_mcam**";` to the classname of the uniform of **infantry** units. If you wish to change, classnames can be found here: [https://community.bistudio.com/wiki/Arma_3_CfgWeapons_Equipment](https://community.bistudio.com/wiki/Arma_3_CfgWeapons_Equipment "BIS Assets"). *Please note that vehicle/air crew members and snipers get default uniforms*.
-5.  Change `_ADF_uniform_sor = "**U_B_CombatUniform_mcam_vest**";` to the classname of the uniform of **specop** units. If you wish to change, classnames can be found here: [https://community.bistudio.com/wiki/Arma_3_CfgWeapons_Equipment](https://community.bistudio.com/wiki/Arma_3_CfgWeapons_Equipment "BIS Assets").
-6.  Change `_ADF_add_NVGoggles = **true**;` to **true** or **false**. If set to false than all units do NOT get night vision goggles. Only applies when _ADF_noLoadout is set to false.
-7.  Change `_ADF_add_GPS = **false**;` to **true** or **false**. This determines if ALL units get a BIS GPS. If set to false than only leadership units get a GPS. Only applies when _ADF_noLoadout is set to false.
-8.  Change `_ADF_Thermal = **true**;` to **true** or **false**. This enables (true) or disables (false) thermal sights in both vehicle weapons and personal weapons.
-9.  Change `_ADF_INF_assault_weapon = **1**;` to **1** for the MX-series or to **2** for the TRG-series. This determines the assault weapon loadout for **infantry** units.
-10. Change `_ADF_INF_LMG_weapon = **1**;` to **1** for the MX-SW autorifleman weapon or to **2** for the MK200 autorifleman weapon.
-11. Change `_ADF_INF_hand_weapon = **1**;` to **1** for the P07 hand weapon or to **2** for the 4-five .45 hand weapon for **infantry** units.
-12. Change `_ADF_INF_scopes = **false**;` to **true** or **false**. This determines if ALL infantry units get a MCRO scope. If set to false than only leadership and machinegunners gets scopes.
-13. Change `_ADF_SOR_assault_weapon = **1**;` to **1** for the MX black series, or to **2** for the TRG series or to **3** for the MX Compact series. This determines the assault weapon loadout for **SpecOp/Recon** units.
-14. Change `_ADF_SOR_hand_weapon = **1**;` to **1**for the 4-five .45. hand weapon or to **2** for the P07 hand weapon for **SpecOp/Recon** units
-15. Change `_ADF_CAV_assault_weapon = **1**;` to **1**for the MX Compact series or to **2**for the Vermin SMG. This determines the primary weapon loadout for **Cavalry crew** units.
-16. Change `_ADF_ACE3_microDAGR_all = **false**;` to **true** or **false**. When set to true, all units will get a ACE3 microDAGR. When set to false, no units will get a ACE3 microDAGR unless **_ADF_ACE3_microDAGR_leaders**is set to true. In that case leadership units get a ACE3 microDAGR. Only applies when _ADF_noLoadout is set to false.
-17. Change `_ADF_ACE3_microDAGR_leaders = **true**;` to **true** or **false**. When set to true, leadership will get a ACE3 microDAGR. When set to false all units will get a ACE3 microDAGR when _ADF_ACE3_microDAGR_allis set to true, else no one will get a ACE3 microDAGR. Only applies when _ADF_noLoadout is set to false.
-18. Change `_ADF_cTAB_side = **ADF_playerSide**;` to **WEST** or **EAST** if you wish cTAB for another side as the player side. Only change if you know what you're doing slse leave as is.
-19. Change `_ADF_cTAB_microDAGR_all = **false**;` to **true** or **false**. When set to true, all units will get a cTAB microDAGR. When set to false, no units will get a cTAB microDAGR unless **_ADF_cTAB_microDAGR_leaders**is set to true. In that case leadership units get a cTAB microDAGR. Note that when both ACE3 and cTAB microDAGR are set to true, the ACE3 microDAGR prevails and cTAB is set to false. Only applies when _ADF_noLoadout is set to false.
-20. Change `_ADF_cTAB_microDAGR_leaders = **false**;` to **true** or **false**. When set to true, leadership will get a cTAB microDAGR. When set to false all units will get a cTAB microDAGR when _ADF_cTAB_microDAGR_allis set to true, else no one will get a cTAB microDAGR. Note that when both ACE3 and cTAB microDAGR are set to true, the ACE3 microDAGR prevails and cTAB is set to false. Only applies when _ADF_noLoadout is set to false.
-21. Change `_ADF_TFAR_personalRadio = "**tf_rf7800str**";` to the classname of the TFAR personal rifleman radio. If you wish to change, classnames can be found here: [https://github.com/michail-nikolaev/task-force-arma-3-radio/wiki/API:-Classes](https://github.com/michail-nikolaev/task-force-arma-3-radio/wiki/API:-Classes "TFAR radio classes")
-22. Change `_ADF_TFAR_SWRadio = "**tf_anprc152**";` to the classname of the TFAR short wave radio. If you wish to change, classnames can be found here: [https://github.com/michail-nikolaev/task-force-arma-3-radio/wiki/API:-Classes](https://github.com/michail-nikolaev/task-force-arma-3-radio/wiki/API:-Classes "TFAR radio classes")
-23. Change `_ADF_TFAR_LRRadio = "**tf_rt1523g_big**";` to the classname of the TFAR long range radio. If you wish to change, classnames can be found here: [https://github.com/michail-nikolaev/task-force-arma-3-radio/wiki/API:-Classes](https://github.com/michail-nikolaev/task-force-arma-3-radio/wiki/API:-Classes "TFAR radio classes")
-24. Change `_ADF_TFAR_LRRadioSOR = "**ft_rt1523g_black**";` to the classname of the TFAR long range radio for **Recon/Specop** units. If you wish to change, classnames can be found here: [https://github.com/michail-nikolaev/task-force-arma-3-radio/wiki/API:-Classes](https://github.com/michail-nikolaev/task-force-arma-3-radio/wiki/API:-Classes "TFAR radio classes")
-25. Change `_ADF_TFAR_microDAGR = **false**;` to **true** or **false**. This determines if all units get the TFAR microDAGR. Can be used in conjunction with the ACE3/cTAB microdagr.
-26. Change `ADF_TFAR_preset = **true**;` to **true** or **false**. When set to true, the mission will use TFAR radio frequencies as defined in the **ADF_preset** ( 'Core\\F\\ADF_fnc_presets.sqf'.). If set to false than all radio's will use a flatnet for SW and one for LR.
-27. Change `_ADF_ACRE_personalRadio = "**ACRE_PRC343**";` to the classname of the ACRE2 personal radio. If you wish to change, classnames can be found here: [http://gitlab.idi-systems.com/idi-systems/acre2-public/wikis/basic-concepts](http://gitlab.idi-systems.com/idi-systems/acre2-public/wikis/basic-concepts "ACRE2 radio classnames")
-28. Change `_ADF_ACRE_SWRadio = "**ACRE_PRC148**";` to the classname of the ACRE2 commander radio. If you wish to change, classnames can be found here: [http://gitlab.idi-systems.com/idi-systems/acre2-public/wikis/basic-concepts](http://gitlab.idi-systems.com/idi-systems/acre2-public/wikis/basic-concepts "ACRE2 radio classnames")
-29. Change `_ADF_ACRE_LRRadio = "**ACRE_PRC117F**";` to the classname of the ACRE2 long range radio. If you wish to change, classnames can be found here: [http://gitlab.idi-systems.com/idi-systems/acre2-public/wikis/basic-concepts](http://gitlab.idi-systems.com/idi-systems/acre2-public/wikis/basic-concepts "ACRE2 radio classnames")
-30. Change `_ADF_ACRE_fullDuplex = **true**;` to **true** or **false**. Sets the duplex of radio transmissions. If set to **true**, it means that you will receive transmissions even while talking and multiple people can speak at the same time.
-31. Change `_ADF_ACRE_interference = **true**;` to **true** or **false**. Sets whether transmissions will interfere with each other. This, by default, causes signal loss when multiple people are transmitting on the same frequency..
-32. Change `_ADF_ACRE_AIcanHear = **true**;` to **true** or **false**. Sets whether AI can detect players speaking.
-33. Change `ADF_ACRE_preset = **false**;` to **true** or **false**. When set to true, the mission will use ACRE2 radio frequencies as defined in the **ADF_preset** ( 'Core\\F\\ADF_fnc_presets.sqf'.). If set to false than all radio's will use a flatnet for SW and one for LR. Please note that ACRE2 is WIP
+1.  Change `ADF_sameGearRespawn = true;` to **true** or **false**. In case of respawn this determines if players respawn with the same loadout as when they died. If ACE3 is active it will use the ACE sameGear function. Else it will use the ADF sameGear function.
+2.  Change `_ADF_customLoadout_MOD = true;` to **true** or **false**. When set to true it will use the preconfigured loadout scripts. When set to false it will use the BIS Vanilla gear + items from active mods such as cTAB, ACE3 and TFAR/ACRE2.
+3.  Change `_ADF_noLoadout =false;` to **true** or **false**. When set to true, ADF will not load any gear scripts. This is useful when using a custom loadout/gear mod. *Please note that call sign/radio frequencies are loaded no matter if you set '_ADF_noLoadout to true or false*.
+4.  Change `_ADF_uniform_inf = "U_B_CombatUniform_mcam";` to the classname of the uniform of **infantry** units. If you wish to change, classnames can be found here: [https://community.bistudio.com/wiki/Arma_3_CfgWeapons_Equipment](https://community.bistudio.com/wiki/Arma_3_CfgWeapons_Equipment "BIS Assets"). *Please note that vehicle/air crew members and snipers get default uniforms*.
+5.  Change `_ADF_uniform_sor = "U_B_CombatUniform_mcam_vest";` to the classname of the uniform of **specop** units. If you wish to change, classnames can be found here: [https://community.bistudio.com/wiki/Arma_3_CfgWeapons_Equipment](https://community.bistudio.com/wiki/Arma_3_CfgWeapons_Equipment "BIS Assets").
+6.  Change `_ADF_add_NVGoggles = true;` to **true** or **false**. If set to false than all units do NOT get night vision goggles. Only applies when _ADF_noLoadout is set to false.
+7.  Change `_ADF_add_GPS =false;` to **true** or **false**. This determines if ALL units get a BIS GPS. If set to false than only leadership units get a GPS. Only applies when _ADF_noLoadout is set to false.
+8.  Change `_ADF_Thermal = true;` to **true** or **false**. This enables (true) or disables (false) thermal sights in both vehicle weapons and personal weapons.
+9.  Change `_ADF_INF_assault_weapon =1;` to **1** for the MX-series or to **2** for the TRG-series. This determines the assault weapon loadout for **infantry** units.
+10. Change `_ADF_INF_LMG_weapon =1;` to **1** for the MX-SW autorifleman weapon or to **2** for the MK200 autorifleman weapon.
+11. Change `_ADF_INF_hand_weapon =1;` to **1** for the P07 hand weapon or to **2** for the 4-five .45 hand weapon for **infantry** units.
+12. Change `_ADF_INF_scopes =false;` to **true** or **false**. This determines if ALL infantry units get a MCRO scope. If set to false than only leadership and machinegunners gets scopes.
+13. Change `_ADF_SOR_assault_weapon =1;` to **1** for the MX black series, or to **2** for the TRG series or to **3** for the MX Compact series. This determines the assault weapon loadout for **SpecOp/Recon** units.
+14. Change `_ADF_SOR_hand_weapon =1;` to **1**for the 4-five .45. hand weapon or to **2** for the P07 hand weapon for **SpecOp/Recon** units
+15. Change `_ADF_CAV_assault_weapon =1;` to **1**for the MX Compact series or to **2**for the Vermin SMG. This determines the primary weapon loadout for **Cavalry crew** units.
+16. Change `_ADF_ACE3_microDAGR_all =false;` to **true** or **false**. When set to true, all units will get a ACE3 microDAGR. When set to false, no units will get a ACE3 microDAGR unless **_ADF_ACE3_microDAGR_leaders**is set to true. In that case leadership units get a ACE3 microDAGR. Only applies when _ADF_noLoadout is set to false.
+17. Change `_ADF_ACE3_microDAGR_leaders = true;` to **true** or **false**. When set to true, leadership will get a ACE3 microDAGR. When set to false all units will get a ACE3 microDAGR when _ADF_ACE3_microDAGR_allis set to true, else no one will get a ACE3 microDAGR. Only applies when _ADF_noLoadout is set to false.
+18. Change `_ADF_cTAB_side =ADF_playerSide;` to **WEST** or **EAST** if you wish cTAB for another side as the player side. Only change if you know what you're doing slse leave as is.
+19. Change `_ADF_cTAB_microDAGR_all =false;` to **true** or **false**. When set to true, all units will get a cTAB microDAGR. When set to false, no units will get a cTAB microDAGR unless **_ADF_cTAB_microDAGR_leaders**is set to true. In that case leadership units get a cTAB microDAGR. Note that when both ACE3 and cTAB microDAGR are set to true, the ACE3 microDAGR prevails and cTAB is set to false. Only applies when _ADF_noLoadout is set to false.
+20. Change `_ADF_cTAB_microDAGR_leaders =false;` to **true** or **false**. When set to true, leadership will get a cTAB microDAGR. When set to false all units will get a cTAB microDAGR when _ADF_cTAB_microDAGR_allis set to true, else no one will get a cTAB microDAGR. Note that when both ACE3 and cTAB microDAGR are set to true, the ACE3 microDAGR prevails and cTAB is set to false. Only applies when _ADF_noLoadout is set to false.
+21. Change `_ADF_TFAR_personalRadio = "tf_rf7800str";` to the classname of the TFAR personal rifleman radio. If you wish to change, classnames can be found here: [https://github.com/michail-nikolaev/task-force-arma-3-radio/wiki/API:-Classes](https://github.com/michail-nikolaev/task-force-arma-3-radio/wiki/API:-Classes "TFAR radio classes")
+22. Change `_ADF_TFAR_SWRadio = "tf_anprc152";` to the classname of the TFAR short wave radio. If you wish to change, classnames can be found here: [https://github.com/michail-nikolaev/task-force-arma-3-radio/wiki/API:-Classes](https://github.com/michail-nikolaev/task-force-arma-3-radio/wiki/API:-Classes "TFAR radio classes")
+23. Change `_ADF_TFAR_LRRadio = "tf_rt1523g_big";` to the classname of the TFAR long range radio. If you wish to change, classnames can be found here: [https://github.com/michail-nikolaev/task-force-arma-3-radio/wiki/API:-Classes](https://github.com/michail-nikolaev/task-force-arma-3-radio/wiki/API:-Classes "TFAR radio classes")
+24. Change `_ADF_TFAR_LRRadioSOR = "ft_rt1523g_black";` to the classname of the TFAR long range radio for **Recon/Specop** units. If you wish to change, classnames can be found here: [https://github.com/michail-nikolaev/task-force-arma-3-radio/wiki/API:-Classes](https://github.com/michail-nikolaev/task-force-arma-3-radio/wiki/API:-Classes "TFAR radio classes")
+25. Change `_ADF_TFAR_microDAGR =false;` to **true** or **false**. This determines if all units get the TFAR microDAGR. Can be used in conjunction with the ACE3/cTAB microdagr.
+26. Change `ADF_TFAR_preset = true;` to **true** or **false**. When set to true, the mission will use TFAR radio frequencies as defined in the **ADF_preset** ( 'Core\\F\\ADF_fnc_presets.sqf'.). If set to false than all radio's will use a flatnet for SW and one for LR.
+27. Change `_ADF_ACRE_personalRadio = "ACRE_PRC343";` to the classname of the ACRE2 personal radio. If you wish to change, classnames can be found here: [http://gitlab.idi-systems.com/idi-systems/acre2-public/wikis/basic-concepts](http://gitlab.idi-systems.com/idi-systems/acre2-public/wikis/basic-concepts "ACRE2 radio classnames")
+28. Change `_ADF_ACRE_SWRadio = "ACRE_PRC148";` to the classname of the ACRE2 commander radio. If you wish to change, classnames can be found here: [http://gitlab.idi-systems.com/idi-systems/acre2-public/wikis/basic-concepts](http://gitlab.idi-systems.com/idi-systems/acre2-public/wikis/basic-concepts "ACRE2 radio classnames")
+29. Change `_ADF_ACRE_LRRadio = "ACRE_PRC117F";` to the classname of the ACRE2 long range radio. If you wish to change, classnames can be found here: [http://gitlab.idi-systems.com/idi-systems/acre2-public/wikis/basic-concepts](http://gitlab.idi-systems.com/idi-systems/acre2-public/wikis/basic-concepts "ACRE2 radio classnames")
+30. Change `_ADF_ACRE_fullDuplex = true;` to **true** or **false**. Sets the duplex of radio transmissions. If set to **true**, it means that you will receive transmissions even while talking and multiple people can speak at the same time.
+31. Change `_ADF_ACRE_interference = true;` to **true** or **false**. Sets whether transmissions will interfere with each other. This, by default, causes signal loss when multiple people are transmitting on the same frequency..
+32. Change `_ADF_ACRE_AIcanHear = true;` to **true** or **false**. Sets whether AI can detect players speaking.
+33. Change `ADF_ACRE_preset =false;` to **true** or **false**. When set to true, the mission will use ACRE2 radio frequencies as defined in the **ADF_preset** ( 'Core\\F\\ADF_fnc_presets.sqf'.). If set to false than all radio's will use a flatnet for SW and one for LR. Please note that ACRE2 is WIP
 
 #### Mission Balancing
 
-1.  Change `_ADF_misBal = **false**;` to **true** or **false**. Load balancing (number of AI's vs number of players). For scripted missions only! See 'Core/F/ADF_fnc_missionBalancer.sqf' for more information.
-2.  Change `_ADF_misBal_low = **10**;` to the number of players that represent a **low** number for the mission balancer. For scripted missions only! See 'Core/F/ADF_fnc_missionBalancer.sqf' for more information.
-3.  Change `_ADF_misBal_high = **30**;` to the number of players that represent a **high** number for the mission balancer. For scripted missions only! See 'Core/F/ADF_fnc_missionBalancer.sqf' for more information.
+1.  Change `_ADF_misBal =false;` to **true** or **false**. Load balancing (number of AI's vs number of players). For scripted missions only! See 'Core/F/ADF_fnc_missionBalancer.sqf' for more information.
+2.  Change `_ADF_misBal_low =10;` to the number of players that represent a **low** number for the mission balancer. For scripted missions only! See 'Core/F/ADF_fnc_missionBalancer.sqf' for more information.
+3.  Change `_ADF_misBal_high =30;` to the number of players that represent a **high** number for the mission balancer. For scripted missions only! See 'Core/F/ADF_fnc_missionBalancer.sqf' for more information.
 
 #### Unit & Vehicle Caching
 
-1.  Change `_ADF_Caching = **true**;` to **true** or **false**. When set to true AI groups will be cached according to a preset distance. Note that ADF_Caching is automatically disabled when a HC is active.
-2.  Change `_ADF_Caching_unitDistance = **1000**;` to the distance from players that AI groups will be cached.
-3.  Change `_ADF_Caching_vehicleDistance_land = **250**;` to the distance from players that AI ground vehicles will be cached.
-4.  Change `_ADF_Caching_vehicleDistance_air = **1500**;` to the distance from players that AI air vehicles will be cached.
-5.  Change `_ADF_Caching_vehicleDistance_sea = **2000**;` to the distance from players that AI sea vehicles will be cached.
-6.  Change `_ADF_Caching_debugInfo = **false**;` to **true** or **false**. Set to true to log (screen and RPT) caching information.
+1.  Change `_ADF_Caching = true;` to **true** or **false**. When set to true AI groups will be cached according to a preset distance. Note that ADF_Caching is automatically disabled when a HC is active.
+2.  Change `_ADF_Caching_unitDistance =1000;` to the distance from players that AI groups will be cached.
+3.  Change `_ADF_Caching_vehicleDistance_land =250;` to the distance from players that AI ground vehicles will be cached.
+4.  Change `_ADF_Caching_vehicleDistance_air =1500;` to the distance from players that AI air vehicles will be cached.
+5.  Change `_ADF_Caching_vehicleDistance_sea =2000;` to the distance from players that AI sea vehicles will be cached.
+6.  Change `_ADF_Caching_debugInfo =false;` to **true** or **false**. Set to true to log (screen and RPT) caching information.
 
 #### View Distance
 
-1.  Change `setViewDistance **1500**;` to the default view distance for players
-2.  Change `ADF_VD_foot = **2000**;` to the **maximum** view distance for players on foot
-3.  Change `ADF_VD_vehicle = **3000**;` to the **maximum** view distance for players inside a ground/sea vehicle
-4.  Change `ADF_VD_air = **7500**;` to the **maximum** view distance for players inside an aircraft.
-5.  Change `ADF_VD_allowNoGrass = **true**;` to **true** or **false**. Allow players to change the terrain details option to **low** (no grass)
+1.  Change `setViewDistance **1500;` to the default view distance for players
+2.  Change `ADF_VD_foot =2000;` to the **maximum** view distance for players on foot
+3.  Change `ADF_VD_vehicle =3000;` to the **maximum** view distance for players inside a ground/sea vehicle
+4.  Change `ADF_VD_air =7500;` to the **maximum** view distance for players inside an aircraft.
+5.  Change `ADF_VD_allowNoGrass = true;` to **true** or **false**. Allow players to change the terrain details option to **low** (no grass)
 
 #### F.A.R.P. Repair/Refuel/Rearm
 
-1.  Change `ADF_FARP_repairTime = **180**;` to the **maximum** time in seconds it takes to repair a vehicle at the FARP.
-2.  Change `ADF_FARP_reloadTime = **10**;` to the **maximum** time in seconds it takes to re-arm each turret magazine at the FARP.
-3.  Change `ADF_FARP_refuelTime = **90**;` to the **maximum** time in seconds it takes to refuel a vehicle at the FARP.
+1.  Change `ADF_FARP_repairTime =180;` to the **maximum** time in seconds it takes to repair a vehicle at the FARP.
+2.  Change `ADF_FARP_reloadTime =10;` to the **maximum** time in seconds it takes to re-arm each turret magazine at the FARP.
+3.  Change `ADF_FARP_refuelTime =90;` to the **maximum** time in seconds it takes to refuel a vehicle at the FARP.
 
 #### Respawn / Mobile HQ (Mobile Respawn FOB)
 
-1.  Change `ADF_Tickets = **true**;` to **true** or **false**. Set to true to enable the respawn ticket system (limited player respawns). Make sure that respawn is set to **"BASE"** in the description.ext
-2.  Change `_ADF_wTixNr = **10**;` to the number of maximum respawns allowed for the **WEST** side (blufor)
-3.  Change `_ADF_eTixNr = **15**;` to the number of maximum respawns allowed for the **EAST** side (opfor). Leave as is when no OpFor playable units are used.
-4.  Change `_ADF_mhq_enable = **true**;` to **true** or **false**. Set to true to enable the Mobile HQ (MHQ). Players will respawn at the MHQ once the MHQ is deployed ingame.
-5.  Change `_ADF_mhq_respawn_nr = **3**;` to the number respawns for a destroyed MHQ vehicle. If there are no more respawns available, the respawn marker (location where players respawn) is move to the last know 'safe position' of the MHQ.
-6.  Change `ADF_mhq_respawn_time = **15**;` to the number of **minutes** it takes before a destroyed MHQ vehicle respawns (at the game's original start position, e.g. where the mission developer placed the MHQ vehicle in the editor).
-7.  Change `_ADF_mhq_respawn_class = "**B_APC_Tracked_01_CRV_F**";` to MHQ vehicle classname (default is the 'Bobcat'). Any vehicle can be used. If you wish to change, classnames can be found here: [https://community.bistudio.com/wiki/Arma_3_CfgVehicles_WEST](https://community.bistudio.com/wiki/Arma_3_CfgVehicles_WEST "BIS Assets vehicles")
-8.  Change `_ADF_mhq_deploy_time = **120**;` to the time in **seconds** it takes to deploy the MHQ (unpack the FOB). Setting this to a few minutes will add some immersion.
-9.  Change `_ADF_mhq_packup_time = **180**;` to the time in **seconds** it takes to mobilize the MHQ (pack-up the FOB). Setting this to a few minutes will add some immersion.
+1.  Change `ADF_Tickets = true;` to **true** or **false**. Set to true to enable the respawn ticket system (limited player respawns). Make sure that respawn is set to **"BASE" in the description.ext
+2.  Change `_ADF_wTixNr =10;` to the number of maximum respawns allowed for the **WEST** side (blufor)
+3.  Change `_ADF_eTixNr =15;` to the number of maximum respawns allowed for the **EAST** side (opfor). Leave as is when no OpFor playable units are used.
+4.  Change `_ADF_mhq_enable = true;` to **true** or **false**. Set to true to enable the Mobile HQ (MHQ). Players will respawn at the MHQ once the MHQ is deployed ingame.
+5.  Change `_ADF_mhq_respawn_nr =3;` to the number respawns for a destroyed MHQ vehicle. If there are no more respawns available, the respawn marker (location where players respawn) is move to the last know 'safe position' of the MHQ.
+6.  Change `ADF_mhq_respawn_time =15;` to the number of **minutes** it takes before a destroyed MHQ vehicle respawns (at the game's original start position, e.g. where the mission developer placed the MHQ vehicle in the editor).
+7.  Change `_ADF_mhq_respawn_class = "B_APC_Tracked_01_CRV_F";` to MHQ vehicle classname (default is the 'Bobcat'). Any vehicle can be used. If you wish to change, classnames can be found here: [https://community.bistudio.com/wiki/Arma_3_CfgVehicles_WEST](https://community.bistudio.com/wiki/Arma_3_CfgVehicles_WEST "BIS Assets vehicles")
+8.  Change `_ADF_mhq_deploy_time =120;` to the time in **seconds** it takes to deploy the MHQ (unpack the FOB). Setting this to a few minutes will add some immersion.
+9.  Change `_ADF_mhq_packup_time =180;` to the time in **seconds** it takes to mobilize the MHQ (pack-up the FOB). Setting this to a few minutes will add some immersion.
 
 #### Misc. third party mods/scripts
 
-1.  '_ADF_DAC = **false**;` is WIP. Leave as is.
-2.  Change `_ADF_civKia_enable = **false**;` to **true** or **false**. Set to true if you want to keep track of civilians killed by players.
-3.  Change `_ADF_ambient_uCiv = **false**;` to **true** or **false**. Set to true to enable ambient **civilian persons** that spawn around the player(s).
-4.  Change `_ADF_ambient_uCiv_nr =**1**;` to the number of civilians that spawn around the players. This number is the **maximum** number of civilian spawns (no matter the amount of players).
-5.  Change `_ADF_ambient_uCiv_wpnr =**5**;` to the number of waypoint civilians will use to walk around. Do not change this unless you know what you are doing.
-6.  Change `_ADF_ambient_uCiv_dist = **500**;` to the distance that civilians will spawn from the nearest player location. Do not set too high!
-7.  Change `_ADF_ambient_vCiv = **false**;` to **true** or **false**. Set to true to enable ambient **civilian vehicles** (driving) that spawn around the player(s).
-8.  Change `_ADF_ambient_vCiv_nr = **1**;` to the number of civilian vehicles that spawn around the players. This number is the **maximum** number of vehicle spawns (no matter the amount of players).
-9.  Change `_ADF_ambient_vCiv_dist = **500**;` to the distance that civilian vehicles will spawn from the nearest player location. Do not set too high!
-10. Change `_ADF_ambient_vCiv_del = **1000**;` to the distance that civilian vehicles will de-spawn from the nearest player location. Do not set too high!
-11. Change `_ADF_CleanUp = **true**;` to **true** or **false**. Set to true to enable cleaning up of dead bodies (friendly, enemy, vehicles, etc.).
-12. Change `_ADF_CleanUp_viewDist = **500**;` to set the minimum distance in meters from a player unit to allow deletion of dead bodies/vehicles, if you don't care if player sees the deletion, set it to 0.
-13. Change `_ADF_CleanUp_manTimer = **300**;` to the number of **seconds** it takes for the script to delete a dead bodies when the viewDist param has cleared
-14. Change `_ADF_CleanUp_vehTimer = **600**;`to the number of **seconds** it takes for the script to delete a destroyed vehicle when the viewDist param has cleared
-15. Change `_ADF_CleanUp_abaTimer = **6000**;` to the number of **seconds** a deserted/unmanned vehicle will be deleted.
-16. Change `_ADF_zeusEagle = **true**;` to **true** or **false**. Set to true to enable the Zeus Eagle? False removes the eagle.
+1.  '_ADF_DAC =false;` is WIP. Leave as is.
+2.  Change `_ADF_civKia_enable =false;` to **true** or **false**. Set to true if you want to keep track of civilians killed by players.
+3.  Change `_ADF_ambient_uCiv =false;` to **true** or **false**. Set to true to enable ambient **civilian persons** that spawn around the player(s).
+4.  Change `_ADF_ambient_uCiv_nr = 1;` to the number of civilians that spawn around the players. This number is the **maximum** number of civilian spawns (no matter the amount of players).
+5.  Change `_ADF_ambient_uCiv_wpnr = 5;` to the number of waypoint civilians will use to walk around. Do not change this unless you know what you are doing.
+6.  Change `_ADF_ambient_uCiv_dist =500;` to the distance that civilians will spawn from the nearest player location. Do not set too high!
+7.  Change `_ADF_ambient_vCiv =false;` to **true** or **false**. Set to true to enable ambient **civilian vehicles** (driving) that spawn around the player(s).
+8.  Change `_ADF_ambient_vCiv_nr =1;` to the number of civilian vehicles that spawn around the players. This number is the **maximum** number of vehicle spawns (no matter the amount of players).
+9.  Change `_ADF_ambient_vCiv_dist =500;` to the distance that civilian vehicles will spawn from the nearest player location. Do not set too high!
+10. Change `_ADF_ambient_vCiv_del =1000;` to the distance that civilian vehicles will de-spawn from the nearest player location. Do not set too high!
+11. Change `_ADF_CleanUp = true;` to **true** or **false**. Set to true to enable cleaning up of dead bodies (friendly, enemy, vehicles, etc.).
+12. Change `_ADF_CleanUp_viewDist =500;` to set the minimum distance in meters from a player unit to allow deletion of dead bodies/vehicles, if you don't care if player sees the deletion, set it to 0.
+13. Change `_ADF_CleanUp_manTimer =300;` to the number of **seconds** it takes for the script to delete a dead bodies when the viewDist param has cleared
+14. Change `_ADF_CleanUp_vehTimer =600;`to the number of **seconds** it takes for the script to delete a destroyed vehicle when the viewDist param has cleared
+15. Change `_ADF_CleanUp_abaTimer =6000;` to the number of **seconds** a deserted/unmanned vehicle will be deleted.
+16. Change `_ADF_zeusEagle = true;` to **true** or **false**. Set to true to enable the Zeus Eagle? False removes the eagle.
 
 Advanced editing - scripting spawning of units
 ----------------------------------------------
@@ -313,7 +313,7 @@ _g = [
 ] call BIS_fnc_spawnGroup; // Function that creates the group
 ```
 
-In above script we use the group variable (_g) call the BIS_fnc_spawnGroup function. We supply the function with the position we want the group to spawn at (**getMarkerPos "marker1"**), the side of the group that we want to spawn (**EAST**), then we use a predefined group from the ARMA3 config (**configFile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> "OI_reconSentry"**). The (configFile >> ... "OI_reconSentry") part is a predefined group in ARMA3. Just like in the editor when you place a group of soldiers, the group consists of predefined units with loadout specifically for their role. Just like in the editor you can use these predefined groups with scripting as well. The group 'templates' are stored in what is called the ARMA3 configFile. Basically a database of sorts that stores all preconfigured information that is needed by the ARMA3 engine. You can retrieve this information by clicking on the 'Config Viewer' icon (top of the screen) in the editor. In case of predefined groups, you can also look up the information on the BIS Wiki (much quicker than the editor): [http://community.bistudio.com/wiki/Ambient_Combat_Manager_-_Group_types](http://community.bistudio.com/wiki/Ambient_Combat_Manager_-_Group_types "BIS Ambient Combat Manager"). The page explains how to make up the (configFile >> ... "OI_reconSentry") line of code.
+In above script we use the group variable (_g) call the BIS_fnc_spawnGroup function. We supply the function with the position we want the group to spawn at (**getMarkerPos "marker1"), the side of the group that we want to spawn (**EAST**), then we use a predefined group from the ARMA3 config (**configFile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> "OI_reconSentry"). The (configFile >> ... "OI_reconSentry") part is a predefined group in ARMA3. Just like in the editor when you place a group of soldiers, the group consists of predefined units with loadout specifically for their role. Just like in the editor you can use these predefined groups with scripting as well. The group 'templates' are stored in what is called the ARMA3 configFile. Basically a database of sorts that stores all preconfigured information that is needed by the ARMA3 engine. You can retrieve this information by clicking on the 'Config Viewer' icon (top of the screen) in the editor. In case of predefined groups, you can also look up the information on the BIS Wiki (much quicker than the editor): [http://community.bistudio.com/wiki/Ambient_Combat_Manager_-_Group_types](http://community.bistudio.com/wiki/Ambient_Combat_Manager_-_Group_types "BIS Ambient Combat Manager"). The page explains how to make up the (configFile >> ... "OI_reconSentry") line of code.
 
 So now we have spawned a group at the marker1 location. But they have no orders so they will just stand there and look dangerous. We want them to go on patrol. For that we call another function that tells them to go on patrol based on parameters that we feed into the function. Easy as pie:
 
