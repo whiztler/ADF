@@ -311,9 +311,10 @@ Open Notepad++ with a blank file and select SQF as the scripting **language** fr
 
 We'll start by defining a variable for the group. This can be a local variable that we'll only use to create the group and nothing more. The local variable is deleted once the script has finished execution:
 
-
-    // Create local vars for all connected clients:
-    _g = []; // Infantry group/section/squad variable
+```javascript
+// Create local vars for all connected clients:
+_g = []; // Infantry group/section/squad variable
+```
 
 The '\_g' is the local variable that is used to identify the group. We basically create an empty fireteam which we can fill with units. The '[]' brackets are enclosures for an array. An array is basically a list of data, in our case units. A filled array could look like this [Soldier1, Soldier2, Soldier3]. Each item is seperated with a comma.
 
