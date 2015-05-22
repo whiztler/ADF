@@ -112,42 +112,15 @@ Excellent scripting tutorials are:
 
 The ADF template mission is a starting point for rapid mission creating. The template mission features 114 pre-defined units:
 
-Command element
-
-Infantry platoon
-
--   Platoon Command
--   2 Rifle Squads
-    -   2 fire teams per squad
--   1 Weapons Squad
-    -   1 Weapons Team
-    -   1 Heavy Weapons Team
-
-Cavalry Battery
-
--   Battery Command (DC)
--   1 APC Squadron
--   1 MBT Squadron
--   2 Artillery units
-
-Air Wing
-
--   Wing Command
--   1 AH99
--   1 AH9
--   2 x UH-80
--   1 x CH-67
--   2 x A164
-
-Special Operations Squadron
-
--   SO Command
--   1 SpecOp AssaultTeam
--   1 Demo Team
--   1 Recon Team
--   1 Frogman Team
--   2 Sniper Teams
--   1 JTAC
+| Command element | Infantry platoon       | Cavalry Battery      | Air Wing        | Special Operations Squadron |
+|-----------------|------------------------|----------------------|-----------------|-----------------------------|
+| Command Element | Platoon Command        | Battery Command (DC) | Wing Command    | SO Command                  |
+|                 | 2 Rifle Squads         | 1 APC Squadron       | 1 AH99 team     | 1 SpecOp AssaultTeam        |
+|                 | -   2 fire teams per squad | 1 MBT Squadron       | 1 AH9 team      | 1 Demo Team                 |
+|                 | 1 Weapons Squad        | 2 Artillery teams    | 2 x UH-80 teams | 1 Recon Team                |
+|                 | -   1 Weapons Team         |                      | 1 x CH-67 team  | 1 Frogman Team              |
+|                 | -   1 Heavy Weapons Team   |                      | 2 x A64         | 2 Sniper Teams              |
+|                 |                        |                      |                 | 1 JTAC                      |
 
 The units have specific names that **cannot** be changed else the framework cannot perform loadout / radio/ callsign configuration. You **can** change however the unit 'Description'. All units get their loadout as defined (by the mission maker) in the ADF\_init\_config.sqf ([see below](#initcfg)).
 
