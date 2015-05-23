@@ -19,6 +19,17 @@
       <ul>
         <li><a href="#descext">description.ext</a></li>
         <li><a href="#initcfg">ADF_init_config.sqf</a></li>
+        <ul>
+        	<li><a href="#general">General</a></li>
+            <li><a href="#gearLoadout">Gear &amp; Loadout</a></li>
+            <li><a href="#misbal">Mission Balancing</a></li>
+            <li><a href="#caching">Unit &amp; Vehicle Caching</a></li>
+            <li><a href="#viewDist">View Distance</a></li>
+            <li><a href="#farp">F.A.R.P. Repair/Refuel/Rearm</a></li>
+            <li><a href="#mhq">Respawn / Mobile HQ (Mobile Respawn FOB)</a></li>
+            <li><a href="#mods">Misc. third party mods/scripts</a></li>
+        </ul>
+        <li><a href="#ACE3Settings">ACE3 Settings</a></li>
       </ul>
     </li>
     <li><a href="#sod">Advanced Editing</a></li>
@@ -37,7 +48,7 @@
     <h1><img src="Core/I/ADF_logo.png" width="500" height="240" alt="ADF - Arma Mission Development Framework" /></h1>
     <h3 id="curver">Current version</h3>
     <p>version: 1.39<br />
-      build: Beta 10</p>
+      build: Beta 11</p>
     <h2 id="features">New Features 1.39</h2>
     <p>ADF 1.39 is a major change release that comprises of script optimization and new features such as:</p>
     <ul>
@@ -96,9 +107,9 @@
             <li>Script optimization</li>
           </ul>
         </li>
-        <li>UPDATED: ADF_init_vars.sqf
+        <li>UPDATED: ADF_init_pre.sqf
           <ul>
-            <li>Added ACE3 support</li>
+            <li>Added Added ACE3 / Ares / RHS / AiATP / TEC-CSAT mod autodetection support</li>
             <li>Added DLC support</li>
             <li>Added Debug write function</li>
             <li>Script optimization</li>
@@ -112,7 +123,7 @@
     </div>
     <h2 id="introd">Introduction</h2>
     <p>ADF has been set-up for mission developers to created complex missions in &lt; 1 hour. The framework offers a full joint operations company with various pre-configured presets for Nopryl, SHAPE, Wolfpack, etc. Crates and vehicle loadout is pre-configured according to the role of the team that is using the crate/vehicle.</p>
-    <p>At first glance, the ADF seems complex, but you'll probably   need to work with only two files: <strong>description.ext</strong> and <strong>ADF_init_config.sqf</strong>. Once you get the hang of ADF you'll be able to do more advanced things such as <a href="#sod">scripting units</a> to spawn after the mission has started. All scripts and files have been well documented. Please use a dedicated editor such as Notepad++ to work with mission files. Search on Armaholic for Notepad++ to get the latest version.</p>
+    <p>At first glance, the ADF seems complex, but you'll probably   need to work with only two files: <strong>description.ext</strong> and <strong>ADF_init_config.sqf</strong>. Once you get the hang of ADF you'll be able to do more advanced things such as <a href="#sod">scripting units</a> to spawn after the mission has started. All scripts and files have been well documented. Please use a dedicated editor such as Notepad++ to work with mission files. Search on Armaholic for Notepad++ to get the latest version. Alternatively you can use the <a href="https://github.com/whiztler/ADF/blob/beta11/Core/I/SQF_whiz.xml">plugin I use</a> which can be found in the <strong>Core\I\</strong> folder. To install the plugin, open Notepad++, from the Language menu select 'Define your language', click on import and select the 'SQF_whiz.xml' file. Restart Notepad++ and your good to go. </p>
     <h3>Performance</h3>
     <p>ADF has been optimized for multiplayer coop missions. All required (and user configured) scripts and options load during the mission init. There are NO loops exccept:</p>
     <ul>
@@ -123,60 +134,83 @@
     <p>Above functions are as much optimized as possible and will not affect game play performance.</p>
     <p>Performance could be further optimized but this means that most functionality of ADF would be rewriten as functions. This will make it a lot harden for beginner (and semi advanced) mission makers. Therefor the choice was made  to balance 'easy of use' with performance.</p>
     <h2 id="missdev">Mission Development</h2>
-    <p>To really use ADF to the fullest I recommend that you read/study-up on a few existing mission development tuts/pages. More information: <a href="http://www.nopryl.no/smfprod/index.php?topic=5723.0" target="_blank">http://www.nopryl.no/smfprod/index.php?topic=5723.0</a><br />
-      Excellent scripting tutorials are: <a href="http://forums.bistudio.com/showthread.php?154047-Arma-3-Scripting-Tutorial-For-Noobs" title="Fockers Arma3 scripting tutorials" target="_blank">http://forums.bistudio.com/showthread.php?154047-Arma-3-Scripting-Tutorial-For-Noobs</a> - <a href="http://killzonekid.com/" title="Killzone Kid" target="_blank">http://killzonekid.com/</a></p>
+    <p>To really use ADF to the fullest I recommend that you read/study-up on a few existing mission development tuts/pages. More information <a href="http://www.nopryl.no/smfprod/index.php?topic=5723.0">here</a>.<br />
+      Excellent scripting tutorials are: </p>
+    <ul>
+      <li><a href="http://forums.bistudio.com/showthread.php?154047-Arma-3-Scripting-Tutorial-For-Noobs" title="Fockers Arma3 scripting tutorials" target="_blank">http://forums.bistudio.com/showthread.php?154047-Arma-3-Scripting-Tutorial-For-Noobs</a></li>
+      <li><a href="http://killzonekid.com/" title="Killzone Kid" target="_blank">http://killzonekid.com/</a></li>
+    </ul>
     <h3>ADF Template</h3>
     <p>The ADF template mission is a starting point for rapid mission creating. The template mission features 114 pre-defined units:</p>
-    <ul>
-      <li>Command element</li>
-      <li>Infantry platoon
-        <ul>
-          <li>Platoon Command</li>
-          <li>2 Rifle Squads
-            <ul>
-              <li>2 fire teams per squad              </li>
-            </ul>
-          </li>
-          <li>1 Weapons Squad
-            <ul>
-              <li>1 Weapons Team</li>
-              <li>1 Heavy Weapons Team</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>Cavalry Battery
-        <ul>
-          <li>Battery Command (DC)</li>
-          <li>1 APC Squadron          </li>
-          <li>1 MBT Squadron</li>
-          <li>2 Artillery units</li>
-        </ul>
-      </li>
-      <li>Air Wing
-        <ul>
-          <li>Wing Command</li>
-          <li>1 AH99</li>
-          <li>1 AH9</li>
-          <li>2 x UH-80</li>
-        </ul>
-      </li>
-      <ul>
-        <li>1 x CH-67</li>
-        <li>2 x A164</li>
-      </ul>
-      <li>Special Operations Squadron
-        <ul>
-          <li>SO Command</li>
-          <li>1 SpecOp AssaultTeam</li>
-          <li>1 Demo Team</li>
-          <li>1 Recon Team</li>
-          <li>1 Frogman Team</li>
-          <li>2 Sniper Teams</li>
-          <li>1 JTAC</li>
-        </ul>
-      </li>
-    </ul>
+    <table id="ADF_table" summary="ADF Company Structure">
+      <colgroup>
+      <col class="ADFtbl-odd" />
+      <col class="ADFtbl-even" />
+      <col class="ADFtbl-odd" />
+      <col class="ADFtbl-even" />
+      <col class="ADFtbl-odd" />
+      </colgroup>
+      <thead>
+        <tr>
+          <th scope="col" id="ADFtbl-cmd">CO Command</th>
+          <th scope="col" id="ADFtbl-inf">Infantry platoon</th>
+          <th scope="col" id="ADFtbl-cav">Cavalry Battery</th>
+          <th scope="col" id="ADFtbl-air">Air Wing</th>
+          <th scope="col" id="ADFtbl-sor">Special Op Squadron</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Command Element</td>
+          <td>Platoon Command</td>
+          <td>Battery Command (DC)</td>
+          <td>Wing Command</td>
+          <td>SO Command</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>2 Rifle Squads</td>
+          <td>1 APC Squadron</td>
+          <td>1 AH99 team</td>
+          <td>1 SpecOp AssaultTeam</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>&gt;&gt; 2 fire teams / squad</td>
+          <td>1 MBT Squadron</td>
+          <td>1 AH9 team</td>
+          <td>1 Demo Team</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>1 Weapons Squad</td>
+          <td>2 Artillery teams</td>
+          <td>2 x UH-80 teams</td>
+          <td>1 Recon Team</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>&gt;&gt; 1 Weapons Team</td>
+          <td></td>
+          <td>1 x CH-67 team</td>
+          <td>1 Frogman Team</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>&gt;&gt; 1 Heavy Weapons Team</td>
+          <td></td>
+          <td>2 x A64</td>
+          <td>2 Sniper Teams</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>1 JTAC</td>
+        </tr>
+      </tbody>
+    </table>
     <p>The units have specific names that <strong>cannot</strong> be changed else the framework cannot perform loadout / radio/ callsign configuration. You <strong>can</strong> change however the unit 'Description'. All units get their loadout as defined (by the mission maker) in the ADF_init_config.sqf (<a href="#initcfg">see below</a>). </p>
     <p>Note that the template mission also features vehicles. The vehicles are named so that you know which vehicle belongs to which group/unit. All vehicles are supplied with kit according to the role of the group they belong to. Same goes for the various crates.</p>
     <h2 id="cfgmission">Configuring your mission</h2>
@@ -214,7 +248,7 @@
       <li>Change '<span class="adf_topic">ADF_Clan_uniformInsignia = <strong>true</strong>;</span>' to <strong>true</strong> or <strong>false</strong>. The clan insignia can be configured in the missionConfig.hpp (mission root folder) file. Default is Nopryl.</li>
       <li>Change '<span class="adf_topic">_ADF_preset = &quot;<strong>Default</strong>&quot;;</span>' to either <strong>Default</strong> or <strong>Nopryl</strong> or <strong>SHAPE</strong> or <strong>Wolfpack</strong> or <strong>Custom</strong>. The preset file represents clan call signs and preconfigured radio frequencies. The preset file can be found here: 'Core\F\ADF_fnc_presets.sqf'. If you wish to create your own preset than edit the <strong>custom</strong> preset and select _ADF_preset = &quot;Custom&quot;;</li>
     </ol>
-    <h4>Gear &amp; Loadout</h4>
+    <h4 id="gearLoadout">Gear &amp; Loadout</h4>
     <ol class="ADF_OL">
       <li>Change '<span class="adf_topic">ADF_sameGearRespawn = <strong>true</strong>;</span>' to <strong>true</strong> or <strong>false</strong>. In case of respawn this determines if players respawn with the same loadout as when they died. If ACE3 is active it will use the ACE sameGear function. Else it will use the ADF sameGear function.</li>
       <li>Change '<span class="adf_topic">_ADF_customLoadout_MOD = <strong>true</strong>;</span>' to <strong>true</strong> or <strong>false</strong>. When set to true it will use the preconfigured loadout scripts. When set to false it will use the BIS Vanilla gear + items from active mods such as cTAB, ACE3 and TFAR/ACRE2.</li>
@@ -265,7 +299,7 @@
       <li>Change '<span class="adf_topic">_ADF_Caching_vehicleDistance_sea = <strong>2000</strong>;</span>' to the distance from players that AI sea vehicles will   be cached.</li>
       <li>Change '<span class="adf_topic">_ADF_Caching_debugInfo = <strong>false</strong>;</span>'  to <strong>true</strong> or <strong>false</strong>. Set to true to log (screen and RPT) caching information.</li>
     </ol>
-    <h4 id="vdist">View Distance</h4>
+    <h4 id="viewDist">View Distance</h4>
     <ol class="ADF_OL">
       <li>Change '<span class="adf_topic">setViewDistance <strong>1500</strong>;</span>' to the default view distance for players</li>
       <li>Change '<span class="adf_topic">ADF_VD_foot = <strong>2000</strong>;</span>' to the <strong>maximum</strong> view distance for players on foot</li>
@@ -310,7 +344,36 @@
       <li>Change '<span class="adf_topic">_ADF_CleanUp_abaTimer = <strong>6000</strong>;</span>' to the number of <strong>seconds</strong> a deserted/unmanned vehicle will be deleted.</li>
       <li>Change '<span class="adf_topic">_ADF_zeusEagle = <strong>true</strong>;</span>'  to <strong>true</strong> or <strong>false</strong>. Set to true to enable the Zeus Eagle? False removes the eagle.</li>
     </ol>
-    <h2 id="sod">Advanced editing - scripting spawning of units</h2>
+    <h3 id="ACE3Settings">ACE3 Settings</h3>
+    <p>The mission maker can enforce certain ACE3 settings. <a href="http://ace3mod.com/wiki/framework/settings.html">How to do this can be found here</a>. For ADF you do <strong>not</strong> need to included the '<em>ACE_server.pbo</em>`. Instead you copy the exported settings (clipboard) into the `<strong>missionConfig.hpp</strong>` located in the root folder. Find the '<em>class ACE_Settings {</em>' and copy over the indented existing settings (in between the // Custom ACE3 Setting below'' and '// Custom ACE3 Setting above'). E.g.:</p>
+    <pre><code>
+    // ACE3 settings
+
+    class ACE_Settings {
+    	// Custom ACE3 Setting below
+        class ace_common_forceAllSettings {
+            value = 0;
+            typeName = "BOOL";
+            force = 1;
+        };
+        class ace_frag_enabled {
+            value = 1;
+            typeName = "BOOL";
+            force = 1;
+        };
+    
+        ... 
+        
+        };
+        class ace_advanced_ballistics_simulationRadius {
+            value = 3000;
+            typeName = "SCALAR";
+            force = 1;
+        };
+        // Custom ACE3 Setting above
+    }; // Close ACE Settings
+    </code></pre>
+    <h2 id="sod">Advanced editing</h2>
     <p>This section covers spawning of units/groups by scripts. Spawning using scripts we'll call Spawn on Demand (SOD). This enables mission makers to spawn units/groups/vehicles only when it is required/triggered and thus save server/HC performance. SOD can make your missions less linear and more dynamic. </p>
     <p>ADF offers a few well documented sample scripts for you to learn about SOD. You'll find them in the Core\ folder (<strong>ADF_DSG-Airborne.sqf</strong>, <strong>ADF_DSG-FootPatrols.sqf</strong>, <strong>ADF_DSG-Armored.sqf</strong>)</p>
     <h3>The basics</h3>
