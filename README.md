@@ -73,7 +73,7 @@ Due to the many changes 1.39 is **not compatible** with missions made with previ
     -   Changed: _ADF_HC_init option set to 'true' by default
 -   UPDATED: ADF_HC.sqf
     -   Added support for multiple HC's
-    -   Added load balacing across multiple HC's (can be switched on/off in ADF\_init\_config
+    -   Added load balacing across multiple HC's (can be switched on/off in ADF_init_config
     -   Script optimization
 -   UPDATED: ADF_init_pre.sqf
     -   Added ACE3 / Ares / RHS / AiATP / TEC-CSAT mod autodetection support
