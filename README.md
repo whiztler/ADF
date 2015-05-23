@@ -409,6 +409,7 @@ You can spawn single units, groups, crewed vehicles, empty vehicles, etc. Have a
 -   [BIS function createUnitArray](https://community.bistudio.com/wiki/createUnit\_array)
 -   [BIS createVehicle](https://community.bistudio.com/wiki/createVehicle)
 -   [BIS createVehicleArray](https://community.bistudio.com/wiki/createVehicle\_array)
+
 <a name="Legal"></a>
 ## Legal
 
