@@ -36,17 +36,18 @@ Due to the many changes 1.39 is **not compatible** with missions made with previ
 
 #### 1.38 - 1.39
 ```
--   ADDED: Preliminary GitHub support [https://github.com/whiztler/ADF/tree/master]
+-   ADDED: [Preliminary GitHub support](https://github.com/whiztler/ADF/tree/master)
 -   ADDED: Debug function: OpFor Detection
 -   ADDED: ACE3 mod support (auto detect)
 -   ADDED: Support for up to 3 HC's with load balancing
 -   ADDED: BIS DLC support (auto detect premium DLC)
 -   ADDED: Custom call signs configuration (Fox, Wolf, etc)
 -   ADDED: Call Signs and Radio Freq's/Channels presets (Nopryl, SHAPE, Wolfpack, Custom, Default)
--   ADDED: Debug feedback (both system chat and RPT log). ADF\_Debug needs to be set to 'true' for it to work.
+-   ADDED: Debug feedback (both system chat and RPT log). ADF_Debug needs to be set to 'true' for it to work.
+-   ADDED: Performance RPT reporting.
 -   ADDED: Marksman DLC items
--   UPDATED: cTAB now auto detected. cTAB does not re-initialize preset call signs!
--   UPDATED: ADF\_fnc\_LoadoutWest.sqf
+-   UPDATED: cTAB now auto detected.
+-   UPDATED: ADF_fnc_LoadoutWest.sqf
     -   Replaced: AGM components with ACE3 components
     -   Added: ACE3 components where applicable
     -   Added: MG role to INF
@@ -56,7 +57,7 @@ Due to the many changes 1.39 is **not compatible** with missions made with previ
 -   UPDATED: init.sqf
     -   Updated: execution order re HC vs ZBE Caching. With HC active server caching is deactivated
     -   Script optimization
--   UPDATED: ADF\_init\_config.sqf
+-   UPDATED: ADF_init_config.sqf
     -   Added: enhanced ACRE2 functionalities (WIP)
     -   Added: Dev Build version management
     -   Added: NoLoadout option for loadout MOD's or plain vanilla loadout
@@ -64,11 +65,11 @@ Due to the many changes 1.39 is **not compatible** with missions made with previ
     -   Added: Presets option (call signs and radio freqs/channels)
     -   Added: Dynamic AI Creator (DAC) option (WIP)
     -   Changed: \_ADF\_HC\_init\_ option set to 'true' by default
--   UPDATED: ADF\_HC.sqf
+-   UPDATED: ADF_HC.sqf
     -   Added support for multiple HC's
     -   Added load balacing across multiple HC's (can be switched on/off in ADF\_init\_config
     -   Script optimization
--   UPDATED: ADF\_init\_vars.sqf
+-   UPDATED: ADF_init_pre.sqf
     -   Added ACE3 support
     -   Added DLC support
     -   Added Debug write function
