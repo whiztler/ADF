@@ -1,6 +1,6 @@
 body{color:#4E4E4E;background-color:#F9FAF8;font-family:Tahoma,Geneva,sans-serif;font-size:10pt;text-align:left;line-height:16pt;margin-left:10px}
-a{color: #82a345;text-decoration:none;padding:4px}
-a:hover{color:#fff;background-color: #778b6b;text-decoration:none}
+a{color:#82a345;text-decoration:none;padding:4px}
+a:hover{color:#fff;background-color:#778b6b;text-decoration:none}
 h2{margin-top:30px}
 .ADF_OL strong{color:#036;padding:4px}
 .ADF_OL .adf_topic{color:#900;/*font-weight: bold;*/ padding:4px}
@@ -17,11 +17,18 @@ section{padding-right:250px}
 #floatdiv ul{list-style:square outside none;margin-left:16px;padding-left:0}
 #floatdiv ul ul{list-style:circle outside none}
 #floatdiv a{color:#4E4E4E}
-#floatdiv a:hover{color:#778b6b;background-color:transparent;text-decoration:underline;}
+#floatdiv a:hover{color:#778b6b;background-color:transparent;text-decoration:underline}
 h3:target{animation:highlight 1s ease}
 @keyframes highlight{
-from{background-color: #cbd4c6;
-}
+from{background-color:#cbd4c6}
 to{background-color:transparent}
 }
-#logBox{overflow-y:scroll;height:250px;background-color: #e6e6e6;font-family:"Courier New",Courier,monospace;font-size:10pt;color:#000;line-height:11pt}
+#logBox{overflow-y:scroll;height:250px;background-color:#e6e6e6;font-family:"Courier New",Courier,monospace;font-size:10pt;color:#000;line-height:11pt}
+/* ------------------
+styling for the tables 
+------------------   */
+#ADF_table{width:100%;text-align:left;border-collapse:collapse}
+#ADF_table th{width:20%;font-weight:bold;padding:5px 15px;border-right:2px solid #F9FAF8;border-left:2px solid #F9FAF8;border-bottom:2px solid #F9FAF8;color:#000}
+#ADF_table td{padding:3px 15px;border-right:2px solid #F9FAF8;border-left:2px solid #F9FAF8}
+.ADFtbl-odd{background:#dae0d8}
+.ADFtbl-even{background:#b1bead}
