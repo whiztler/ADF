@@ -45,6 +45,7 @@ Due to the many changes 1.39 is **not compatible** with missions made with previ
 -   ADDED: Call Signs and Radio Freq's/Channels presets (Nopryl, SHAPE, Wolfpack, Custom, Default)
 -   ADDED: Debug feedback (both system chat and RPT log). ADF_Debug needs to be set to 'true' for it to work.
 -   ADDED: Marksman DLC items
+-   ADDED: Notepad++ SQF plugin (whiz edit)
 -   UPDATED: cTAB now auto detected. cTAB does not re-initialize preset call signs!
 -   UPDATED: ADF_fnc_LoadoutWest.sqf
     -   Replaced: AGM components with ACE3 components
@@ -84,7 +85,7 @@ Introduction
 
 ADF has been set-up for mission developers to created complex missions in < 1 hour. The framework offers a full joint operations company with various pre-configured presets for Nopryl, SHAPE, Wolfpack, etc. Crates and vehicle loadout is pre-configured according to the role of the team that is using the crate/vehicle.
 
-At first glance, the ADF seems complex, but you'll probably need to work with only two files: **description.ext** and **ADF_init_config.sqf**. Once you get the hang of ADF you'll be able to do more advanced things such as [scripting units](https://github.com/whiztler/ADF/blob/beta10/README.md#advanced-editing---scripting-spawning-of-units) to spawn after the mission has started. All scripts and files have been well documented. Please use a dedicated editor such as [Notepad++](https://notepad-plus-plus.org/news/notepad-plus-plus-on-github.html) to work with mission files. Once you have installed the Notepad++ editor, download and install the SQF plugin from [Armaholic](http://www.armaholic.com/page.php?id=8680).
+At first glance, the ADF seems complex, but you'll probably need to work with only two files: **description.ext** and **ADF_init_config.sqf**. Once you get the hang of ADF you'll be able to do more advanced things such as [scripting units](https://github.com/whiztler/ADF/blob/beta10/README.md#advanced-editing---scripting-spawning-of-units) to spawn after the mission has started. All scripts and files have been well documented. Please use a dedicated editor such as [Notepad++](https://notepad-plus-plus.org/news/notepad-plus-plus-on-github.html) to work with mission files. Once you have installed the Notepad++ editor, download and install the SQF plugin from [Armaholic](http://www.armaholic.com/page.php?id=8680). Alternatively you can use the [plugin I use](https://github.com/whiztler/ADF/blob/beta11/Core/I/SQF_whiz.xml) which can be found in the `Core\I\` folder. To install the plugin, open Notepad++, from the Language menu select 'Define your language', click on import and select the `SQF_whiz.xml` file. Restart Notepad++ and your good to go. 
 
 ### Performance
 
