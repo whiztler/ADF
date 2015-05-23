@@ -3,24 +3,31 @@
 
 ### Index
 
--   [New Features](https://github.com/whiztler/ADF/blob/beta10/README.md#new-features-139)
--   [Changelog](https://github.com/whiztler/ADF/blob/beta10/README.md#changelog)
--   [Introduction](https://github.com/whiztler/ADF/blob/beta10/README.md#introduction)
--   [Mission Development](https://github.com/whiztler/ADF/blob/beta10/README.md#mission-development)
--   [Configuring your mission](https://github.com/whiztler/ADF/blob/beta10/README.md#configuring-your-mission)
-    -   [description.ext](https://github.com/whiztler/ADF/blob/beta10/README.md#descriptionext)
-    -   [ADF\_init\_config.sqf](https://github.com/whiztler/ADF/blob/beta10/README.md#adf_init_configsqf)
--   [Advanced Editing](https://github.com/whiztler/ADF/blob/beta10/README.md#advanced-editing---scripting-spawning-of-units)
--   [Legal](https://github.com/whiztler/ADF/blob/beta10/README.md#legal)
+-   [New Features](#New-Features-1.39)
+-   [Changelog](#Changelog)
+-   [Introduction](#Introduction)
+-   [Mission Development](#Mission-Development)
+-   [Configuring your mission](#Configuring-your-mission)
+    -   [description.ext](#description.ext)
+    -   [Mission Configuration](#Mission-Configuration)
+	    -   [General](#General)
+	    -   [Gear and Loadout](#Gear-and-Loadout)
+	    -   [Mission Balancing](#Mission-Balancing)
+	    -   [Unit and Vehicle Caching](#Unit-and-Vehicle-Caching)
+	    -   [View Distance](#View-Distance)
+	    -   [Misc third party mods/scripts](#Misc-third-party-mods/scripts)
+	    -   [FARP Repair/Refuel/Rearm](#FARP-Repair/Refuel/Rearm)
+	    -   [Respawn and Mobile HQ](Mobile Respawn FOB)](#Respawn-and-Mobile-HQ)
+	    -   [Misc third party mods and scripts](Misc-third-party-mods-and-scripts)
+	-   [ACE3 Settings](#ACE3-settings)
+-   [Advanced Editing](#Advanced-editing)
+-   [Legal](#Legal)
 
 ### Current version
 
-version: 1.39
+version: 1.39 | build: Beta 11
 
-build: Beta 11
-
-New Features 1.39
------------------
+## New Features 1.39
 
 ADF 1.39 is a major change release that comprises of script optimization and new features such as:
 
@@ -67,7 +74,7 @@ Due to the many changes 1.39 is **not compatible** with missions made with previ
     -   Changed: _ADF_HC_init option set to 'true' by default
 -   UPDATED: ADF_HC.sqf
     -   Added support for multiple HC's
-    -   Added load balancing across multiple HC's (can be switched on/off in ADF_init_config
+    -   Added load balacing across multiple HC's (can be switched on/off in ADF\_init\_config
     -   Script optimization
 -   UPDATED: ADF_init_pre.sqf
     -   Added ACE3 / Ares / RHS / AiATP / TEC-CSAT mod autodetection support
@@ -80,8 +87,7 @@ Due to the many changes 1.39 is **not compatible** with missions made with previ
 -   REMOVED: Various obsolete scripts
 ```
 
-Introduction
-------------
+## Introduction
 
 ADF has been set-up for mission developers to created complex missions in < 1 hour. The framework offers a full joint operations company with various pre-configured presets for Nopryl, SHAPE, Wolfpack, etc. Crates and vehicle loadout is pre-configured according to the role of the team that is using the crate/vehicle.
 
@@ -100,8 +106,7 @@ Above functions are as much optimized as possible and will not affect game play 
 
 Performance could be further optimized but this means that most functionality of ADF would be rewriten as functions. This will make it a lot harden for beginner (and semi advanced) mission makers. Therefore the choice was made to balance 'easy of use' with performance.
 
-Mission Development
--------------------
+## Mission Development
 
 To really use ADF to the fullest I recommend that you read/study-up on a few existing mission development tuts/pages. [More information](http://www.nopryl.no/smfprod/index.php?topic=5723.0)
 
@@ -128,8 +133,7 @@ The units have specific names that **cannot** be changed else the framework cann
 
 Note that the template mission also features vehicles. The vehicles are named so that you know which vehicle belongs to which group/unit. All vehicles are supplied with kit according to the role of the group they belong to. Same goes for the various crates.
 
-Configuring your mission
-------------------------
+## Configuring your mission
 
 Start with opening the ADF template mission in the mission editor. Please note that if you save it with a new name that you should copy the script/template files from the ADF folder to your mission folder.
 
@@ -148,7 +152,7 @@ With Notepad++ open description.ext which can be found in the mission root folde
 9.  `onLoadIntro = "Powered by ADF";` Change into some additional information you might want your players to know about. (free text without formatting)
 10. Save and close.
 
-### ADF_init_config.sqf
+### Mission Configuration
 
 With Notepad++ open ADF_init_config.sqf which can be found in the mission root folder. This is your main mission configuration. Basically everything, from loadout to radio/call sign presets can be configured here. **If you are not sure if you need to change a value then best leave it as is**. Make sure to test your mission in between changes, else you might loose track of your mission development process.
 
@@ -169,7 +173,7 @@ With Notepad++ open ADF_init_config.sqf which can be found in the mission root f
 13. `ADF_Clan_uniformInsignia = true;` Change to **true** or **false**. The clan insignia can be configured in the missionConfig.hpp (mission root folder) file. Default is Nopryl.
 14. `_ADF_preset = "Default";` Change to either **Default** or **Nopryl** or **SHAPE** or **Wolfpack** or **Custom**. The preset file represents clan call signs and preconfigured radio frequencies. The preset file can be found here: 'Core\F\ADF_fnc_presets.sqf'. If you wish to create your own preset than edit the **custom** preset and select _ADF_preset = "Custom";
 
-#### Gear & Loadout
+#### Gear and Loadout
 
 1.  `ADF_sameGearRespawn = true;` Change to **true** or **false**. In case of respawn this determines if players respawn with the same loadout as when they died. If ACE3 is active it will use the ACE sameGear function. Else it will use the ADF sameGear function.
 2.  `_ADF_customLoadout_MOD = true;` Change to **true** or **false**. When set to true it will use the preconfigured loadout scripts. When set to false it will use the BIS Vanilla gear + items from active mods such as cTAB, ACE3 and TFAR/ACRE2.
@@ -211,7 +215,7 @@ With Notepad++ open ADF_init_config.sqf which can be found in the mission root f
 2.  `_ADF_misBal_low = 10;` Change to the number of players that represent a **low** number for the mission balancer. For scripted missions only! See 'Core\F\ADF_fnc_missionBalancer.sqf' for more information.
 3.  `_ADF_misBal_high = 30;` Change to the number of players that represent a **high** number for the mission balancer. For scripted missions only! See 'Core\F\ADF_fnc_missionBalancer.sqf' for more information.
 
-#### Unit & Vehicle Caching
+#### Unit and Vehicle Caching
 
 1.  `_ADF_Caching = true;` Change to **true** or **false**. When set to true AI groups will be cached according to a preset distance. Note that caching is automatically disabled when a HC is active.
 2.  `_ADF_Caching_unitDistance = 1000;` Change to the distance from players that AI groups will be cached.
@@ -228,13 +232,13 @@ With Notepad++ open ADF_init_config.sqf which can be found in the mission root f
 4.  `ADF_VD_air = 7500;` Change to the **maximum** view distance for players inside an aircraft.
 5.  `ADF_VD_allowNoGrass = true;` Change to **true** or **false**. Allow players to change the terrain details option to **low** (no grass)
 
-#### F.A.R.P. Repair/Refuel/Rearm
+#### FARP Repair/Refuel/Rearm
 
 1.  `ADF_FARP_repairTime = 180;` Change to the **maximum** time in seconds it takes to repair a vehicle at the FARP.
 2.  `ADF_FARP_reloadTime = 10;` Change to the **maximum** time in seconds it takes to re-arm each turret magazine at the FARP.
 3.  `ADF_FARP_refuelTime = 90;` Change to the **maximum** time in seconds it takes to refuel a vehicle at the FARP.
 
-#### Respawn / Mobile HQ (Mobile Respawn FOB)
+#### Respawn and Mobile HQ
 
 1.  `ADF_Tickets = true;` Change to **true** or **false**. Set to true to enable the respawn ticket system (limited player respawns). Make sure that respawn is set to **"BASE"** in the description.ext
 2.  `_ADF_wTixNr = 10;` Change to the number of maximum respawns allowed for the **WEST** side (blufor)
@@ -246,7 +250,7 @@ With Notepad++ open ADF_init_config.sqf which can be found in the mission root f
 8.  `_ADF_mhq_deploy_time = 120;` Change to the time in **seconds** it takes to deploy the MHQ (unpack the FOB). Setting this to a few minutes will add some immersion.
 9.  `_ADF_mhq_packup_time = 180;` Change to the time in **seconds** it takes to mobilize the MHQ (pack-up the FOB). Setting this to a few minutes will add some immersion.
 
-#### Misc. third party mods/scripts
+#### Misc third party mods and scripts
 
 1.  `_ADF_DAC = false;` Change is WIP. Leave as is.
 2.  `_ADF_civKia_enable = false;` Change to **true** or **false**. Set to true if you want to keep track of civilians killed by players.
@@ -265,8 +269,40 @@ With Notepad++ open ADF_init_config.sqf which can be found in the mission root f
 15. `_ADF_CleanUp_abaTimer = 6000;` Change to the number of **seconds** a deserted/unmanned vehicle will be deleted.
 16. `_ADF_zeusEagle = true;` Change to **true** or **false**. Set to true to enable the Zeus Eagle? False removes the eagle.
 
-Advanced editing - scripting spawning of units
-----------------------------------------------
+### ACE3 settings
+
+The mission maker can enforce certain ACE3 settings. How to do this can be found [here](http://ace3mod.com/wiki/framework/settings.html). For ADF you do **not** need to included the `ACE_server.pbo`. Instead you copy the exported settings (clipboard) into the `missionConfig.hpp` located in the root folder. Find the 'class ACE_Settings {' and copy over the indented existing settings (in between the // Custom ACE3 Setting below'' and '// Custom ACE3 Setting above'). E.g.:
+
+```php
+// ACE3 settings
+
+class ACE_Settings {
+	// Custom ACE3 Setting below
+	class ace_common_forceAllSettings {
+		value = 0;
+		typeName = "BOOL";
+		force = 1;
+	};
+	class ace_frag_enabled {
+		value = 1;
+		typeName = "BOOL";
+		force = 1;
+	};
+
+	... 
+	
+	};
+	class ace_advanced_ballistics_simulationRadius {
+		value = 3000;
+		typeName = "SCALAR";
+		force = 1;
+	};
+	// Custom ACE3 Setting above
+}; // Close ACE Settings
+```
+
+
+## Advanced editing
 
 This section covers spawning of units/groups by scripts. Spawning using scripts we'll call Spawn on Demand (SOD). This enables mission makers to spawn units/groups/vehicles only when it is required/triggered and thus save server/HC performance. SOD can make your missions less linear and more dynamic.
 
@@ -375,8 +411,7 @@ You can spawn single units, groups, crewed vehicles, empty vehicles, etc. Have a
 -   [BIS createVehicle](https://community.bistudio.com/wiki/createVehicle)
 -   [BIS createVehicleArray](https://community.bistudio.com/wiki/createVehicle\_array)
 
-Legal
------
+## Legal
 
 This file is part of the Arma Mission Development Framework (ADF). ADF is released under the [Arma Public Licence APL](https://www.bistudio.com/community/licenses/arma-public-license)
 
