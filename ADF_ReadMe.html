@@ -19,6 +19,7 @@
       <ul>
         <li><a href="#descext">description.ext</a></li>
         <li><a href="#initcfg">ADF_init_config.sqf</a></li>
+        <li><a href="#ACE3Settings">ACE3 Settings</a></li>
       </ul>
     </li>
     <li><a href="#sod">Advanced Editing</a></li>
@@ -333,7 +334,36 @@
       <li>Change '<span class="adf_topic">_ADF_CleanUp_abaTimer = <strong>6000</strong>;</span>' to the number of <strong>seconds</strong> a deserted/unmanned vehicle will be deleted.</li>
       <li>Change '<span class="adf_topic">_ADF_zeusEagle = <strong>true</strong>;</span>'  to <strong>true</strong> or <strong>false</strong>. Set to true to enable the Zeus Eagle? False removes the eagle.</li>
     </ol>
-    <h2 id="sod">Advanced editing - scripting spawning of units</h2>
+    <h3 id="ACE3Settings">ACE3 Settings</h3>
+    <p>The mission maker can enforce certain ACE3 settings. <a href="http://ace3mod.com/wiki/framework/settings.html">How to do this can be found here</a>. For ADF you do <strong>not</strong> need to included the '<em>ACE_server.pbo</em>`. Instead you copy the exported settings (clipboard) into the `<strong>missionConfig.hpp</strong>` located in the root folder. Find the '<em>class ACE_Settings {</em>' and copy over the indented existing settings (in between the // Custom ACE3 Setting below'' and '// Custom ACE3 Setting above'). E.g.:</p>
+    <pre><code>
+    // ACE3 settings
+
+    class ACE_Settings {
+    	// Custom ACE3 Setting below
+        class ace_common_forceAllSettings {
+            value = 0;
+            typeName = "BOOL";
+            force = 1;
+        };
+        class ace_frag_enabled {
+            value = 1;
+            typeName = "BOOL";
+            force = 1;
+        };
+    
+        ... 
+        
+        };
+        class ace_advanced_ballistics_simulationRadius {
+            value = 3000;
+            typeName = "SCALAR";
+            force = 1;
+        };
+        // Custom ACE3 Setting above
+    }; // Close ACE Settings
+    </code></pre>
+    <h2 id="sod">Advanced editing</h2>
     <p>This section covers spawning of units/groups by scripts. Spawning using scripts we'll call Spawn on Demand (SOD). This enables mission makers to spawn units/groups/vehicles only when it is required/triggered and thus save server/HC performance. SOD can make your missions less linear and more dynamic. </p>
     <p>ADF offers a few well documented sample scripts for you to learn about SOD. You'll find them in the Core\ folder (<strong>ADF_DSG-Airborne.sqf</strong>, <strong>ADF_DSG-FootPatrols.sqf</strong>, <strong>ADF_DSG-Armored.sqf</strong>)</p>
     <h3>The basics</h3>
