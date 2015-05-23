@@ -170,7 +170,7 @@ With Notepad++ open ADF_init_config.sqf which can be found in the mission root f
 | `ADF_Clan_uniformInsignia = true;`                      | Change to **true** or **false**. The clan insignia can be configured in the missionConfig.hpp (mission root folder) file. Default is Nopryl.                                                                                                                                                                                                                                                                                                                         |
 | `_ADF_preset = "Default";`                              | Change to either **Default** or **Nopryl** or **SHAPE** or **Wolfpack** or **Custom**. The preset file represents clan call signs and preconfigured radio frequencies. The preset file can be found here: 'Core\\F\\ADF_fnc_presets.sqf'. If you wish to create your own preset than edit the **custom** preset and select _ADF_preset = "Custom";                                                                                                                   |
 
-| Gear & Loadout&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | |
+| Gear & Loadout | |
 |-----------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `ADF_sameGearRespawn = true;`                             | Change to **true** or **false**. In case of respawn this determines if players respawn with the same loadout as when they died. If ACE3 is active it will use the ACE sameGear function. Else it will use the ADF sameGear function.                                                                                                                                                                                         |
 | `_ADF_customLoadout_MOD = true;`                          | Change to **true** or **false**. When set to true it will use the preconfigured loadout scripts. When set to false it will use the BIS Vanilla gear + items from active mods such as cTAB, ACE3 and TFAR/ACRE2.                                                                                                                                                                                                              |
@@ -206,13 +206,13 @@ With Notepad++ open ADF_init_config.sqf which can be found in the mission root f
 | `_ADF_ACRE_AIcanHear = true;`                             | Change to **true** or **false**. Sets whether AI can detect players speaking.                                                                                                                                                                                                                                                                                                                                                |
 | `ADF_ACRE_preset = false;`                                | Change to **true** or **false**. When set to true, the mission will use ACRE2 radio frequencies as defined in the **ADF_preset** ( 'Core\\F\\ADF_fnc_presets.sqf'.). If set to false than all radio's will use a flatnet for SW and one for LR. Please note that ACRE2 is WIP                                                                                                                                                |
 
-| Mission Balancing&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | |
+| Mission Balancing | |
 |--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `_ADF_misBal = false;`   | Change to **true** or **false**. Load balancing (number of AI's vs number of players). For scripted missions only! See 'Core/F/ADF_fnc_missionBalancer.sqf' for more information.     |
 | `_ADF_misBal_low = 10;`  | Change to the number of players that represent a **low** number for the mission balancer. For scripted missions only! See 'Core/F/ADF_fnc_missionBalancer.sqf' for more information.  |
 | `_ADF_misBal_high = 30;` | Change to the number of players that represent a **high** number for the mission balancer. For scripted missions only! See 'Core/F/ADF_fnc_missionBalancer.sqf' for more information. |
 
-| Unit & Vehicle Caching&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | |
+| Unit & Vehicle Caching| |
 |--------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `_ADF_Caching = true;`                     | Change to **true** or **false**. When set to true AI groups will be cached according to a preset distance. Note that ADF_Caching is automatically disabled when a HC is active. |
 | `_ADF_Caching_unitDistance = 1000;`        | Change to the distance from players that AI groups will be cached.                                                                                                              |
@@ -221,7 +221,7 @@ With Notepad++ open ADF_init_config.sqf which can be found in the mission root f
 | `_ADF_Caching_vehicleDistance_sea = 2000;` | Change to the distance from players that AI sea vehicles will be cached.                                                                                                        |
 | `_ADF_Caching_debugInfo = false;`          | Change to **true** or **false**. Set to true to log (screen and RPT) caching information.                                                                                       |
 
-| View Distance&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  | |
+| View Distance  | |
 |-------------------------------|------------------------------------------------------------------------------------------------------------|
 | `setViewDistance **1500;`     | Change to the default view distance for players.                                                           |
 | `ADF_VD_foot = 2000;`         | Change to the **maximum** view distance for players on foot.                                               |
@@ -229,42 +229,42 @@ With Notepad++ open ADF_init_config.sqf which can be found in the mission root f
 | `ADF_VD_air = 7500;`          | Change to the **maximum** view distance for players inside an aircraft.                                    |
 | `ADF_VD_allowNoGrass = true;` | Change to **true** or **false**. Allow players to change the terrain details option to **low** (no grass). |
 
-| F.A.R.P. Repair/Refuel/Rearm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ||
+| F.A.R.P. Repair/Refuel/Rearm ||
 |------------------------------|------------------------------------------------------------------------------------------------|
 | `ADF_FARP_repairTime = 180;` | Change to the **maximum** time in seconds it takes to repair a vehicle at the FARP.            |
 | `ADF_FARP_reloadTime = 10;`  | Change to the **maximum** time in seconds it takes to re-arm each turret magazine at the FARP. |
 | `ADF_FARP_refuelTime = 90;`  | Change to the **maximum** time in seconds it takes to refuel a vehicle at the FARP.            |
 
-#### Respawn / Mobile HQ (Mobile Respawn FOB)
+| Respawn / Mobile HQ (Mobile Respawn FOB)             |                                                                                                                                                                                                              |
+|------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `ADF_Tickets = true;`                                | Change to **true** or **false**. Set to true to enable the respawn ticket system (limited player respawns). Make sure that respawn is set to **"BASE" in the description.ext                                 |
+| `_ADF_wTixNr = 10;`                                  | Change to the number of maximum respawns allowed for the **WEST** side (blufor)                                                                                                                              |
+| `_ADF_eTixNr = 15;`                                  | Change to the number of maximum respawns allowed for the **EAST** side (opfor). Leave as is when no OpFor playable units are used.                                                                           |
+| `_ADF_mhq_enable = true;`                            | Change to **true** or **false**. Set to true to enable the Mobile HQ (MHQ). Players will respawn at the MHQ once the MHQ is deployed ingame.                                                                 |
+| `_ADF_mhq_respawn_nr = 3;`                           | Change to the number respawns for a destroyed MHQ vehicle. If there are no more respawns available, the respawn marker (location where players respawn) is move to the last know 'safe position' of the MHQ. |
+| `ADF_mhq_respawn_time = 15;`                         | Change to the number of **minutes** it takes before a destroyed MHQ vehicle respawns (at the game's original start position, e.g. where the mission developer placed the MHQ vehicle in the editor).         |
+| `_ADF_mhq_respawn_class = "B_APC_Tracked_01_CRV_F";` | Change to MHQ vehicle classname (default is the 'Bobcat'). Any vehicle can be used. If you wish to change, classnames can be found [here](https://community.bistudio.com/wiki/Arma_3_CfgVehicles_WEST)       |
+| `_ADF_mhq_deploy_time = 120;`                        | Change to the time in **seconds** it takes to deploy the MHQ (unpack the FOB). Setting this to a few minutes will add some immersion.                                                                        |
+| `_ADF_mhq_packup_time = 180;`                        | Change to the time in **seconds** it takes to mobilize the MHQ (pack-up the FOB). Setting this to a few minutes will add some immersion.                                                                     |
 
-1.  Change `ADF_Tickets = true;` Change to **true** or **false**. Set to true to enable the respawn ticket system (limited player respawns). Make sure that respawn is set to **"BASE" in the description.ext
-2.  Change `_ADF_wTixNr = 10;` Change to the number of maximum respawns allowed for the **WEST** side (blufor)
-3.  Change `_ADF_eTixNr = 15;` Change to the number of maximum respawns allowed for the **EAST** side (opfor). Leave as is when no OpFor playable units are used.
-4.  Change `_ADF_mhq_enable = true;` Change to **true** or **false**. Set to true to enable the Mobile HQ (MHQ). Players will respawn at the MHQ once the MHQ is deployed ingame.
-5.  Change `_ADF_mhq_respawn_nr = 3;` Change to the number respawns for a destroyed MHQ vehicle. If there are no more respawns available, the respawn marker (location where players respawn) is move to the last know 'safe position' of the MHQ.
-6.  Change `ADF_mhq_respawn_time = 15;` Change to the number of **minutes** it takes before a destroyed MHQ vehicle respawns (at the game's original start position, e.g. where the mission developer placed the MHQ vehicle in the editor).
-7.  Change `_ADF_mhq_respawn_class = "B_APC_Tracked_01_CRV_F";` Change to MHQ vehicle classname (default is the 'Bobcat'). Any vehicle can be used. If you wish to change, classnames can be found here: [https://community.bistudio.com/wiki/Arma_3_CfgVehicles_WEST](https://community.bistudio.com/wiki/Arma_3_CfgVehicles_WEST "BIS Assets vehicles")
-8.  Change `_ADF_mhq_deploy_time = 120;` Change to the time in **seconds** it takes to deploy the MHQ (unpack the FOB). Setting this to a few minutes will add some immersion.
-9.  Change `_ADF_mhq_packup_time = 180;` Change to the time in **seconds** it takes to mobilize the MHQ (pack-up the FOB). Setting this to a few minutes will add some immersion.
-
-#### Misc. third party mods/scripts
-
-1.  '_ADF_DAC = false;` is WIP. Leave as is.
-2.  Change `_ADF_civKia_enable = false;` Change to **true** or **false**. Set to true if you want to keep track of civilians killed by players.
-3.  Change `_ADF_ambient_uCiv = false;` Change to **true** or **false**. Set to true to enable ambient **civilian persons** that spawn around the player(s).
-4.  Change `_ADF_ambient_uCiv_nr = 1;` Change to the number of civilians that spawn around the players. This number is the **maximum** number of civilian spawns (no matter the amount of players).
-5.  Change `_ADF_ambient_uCiv_wpnr = 5;` Change to the number of waypoint civilians will use to walk around. Do not change this unless you know what you are doing.
-6.  Change `_ADF_ambient_uCiv_dist = 500;` Change to the distance that civilians will spawn from the nearest player location. Do not set too high!
-7.  Change `_ADF_ambient_vCiv = false;` Change to **true** or **false**. Set to true to enable ambient **civilian vehicles** (driving) that spawn around the player(s).
-8.  Change `_ADF_ambient_vCiv_nr = 1;` Change to the number of civilian vehicles that spawn around the players. This number is the **maximum** number of vehicle spawns (no matter the amount of players).
-9.  Change `_ADF_ambient_vCiv_dist = 500;` Change to the distance that civilian vehicles will spawn from the nearest player location. Do not set too high!
-10. Change `_ADF_ambient_vCiv_del = 1000;` Change to the distance that civilian vehicles will de-spawn from the nearest player location. Do not set too high!
-11. Change `_ADF_CleanUp = true;` Change to **true** or **false**. Set to true to enable cleaning up of dead bodies (friendly, enemy, vehicles, etc.).
-12. Change `_ADF_CleanUp_viewDist = 500;` Change to set the minimum distance in meters from a player unit to allow deletion of dead bodies/vehicles, if you don't care if player sees the deletion, set it to 0.
-13. Change `_ADF_CleanUp_manTimer = 300;` Change to the number of **seconds** it takes for the script to delete a dead bodies when the viewDist param has cleared
-14. Change `_ADF_CleanUp_vehTimer = 600;`to the number of **seconds** it takes for the script to delete a destroyed vehicle when the viewDist param has cleared
-15. Change `_ADF_CleanUp_abaTimer = 6000;` Change to the number of **seconds** a deserted/unmanned vehicle will be deleted.
-16. Change `_ADF_zeusEagle = true;` Change to **true** or **false**. Set to true to enable the Zeus Eagle? False removes the eagle.
+| Misc. third party mods/scripts  |                                                                                                                                                                        |
+|---------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| '_ADF_DAC = false;`             | WIP. Leave as is.                                                                                                                                                      |
+| `_ADF_civKia_enable = false;`   | Change to **true** or **false**. Set to true if you want to keep track of civilians killed by players.                                                                 |
+| `_ADF_ambient_uCiv = false;`    | Change to **true** or **false**. Set to true to enable ambient **civilian persons** that spawn around the player(s).                                                   |
+| `_ADF_ambient_uCiv_nr = 1;`     | Change to the number of civilians that spawn around the players. This number is the **maximum** number of civilian spawns (no matter the amount of players).           |
+| `_ADF_ambient_uCiv_wpnr = 5;`   | Change to the number of waypoint civilians will use to walk around. Do not change this unless you know what you are doing.                                             |
+| `_ADF_ambient_uCiv_dist = 500;` | Change to the distance that foot civilians will spawn from the nearest player location. Do not set too high!                                                           |
+| `_ADF_ambient_vCiv = false;`    | Change to **true** or **false**. Set to true to enable ambient **civilian vehicles** (driving) that spawn around the player(s).                                        |
+| `_ADF_ambient_vCiv_nr = 1;`     | Change to the number of civilian vehicles that spawn around the players. This number is the **maximum** number of vehicle spawns (no matter the amount of players).    |
+| `_ADF_ambient_vCiv_dist = 500;` | Change to the distance that civilian vehicles will spawn from the nearest player location. Do not set too high!                                                        |
+| `_ADF_ambient_vCiv_del = 1000;` | Change to the distance that civilian vehicles will de-spawn from the nearest player location. Do not set too high!                                                     |
+| `_ADF_CleanUp = true;`          | Change to **true** or **false**. Set to true to enable cleaning up of dead bodies (friendly, enemy, vehicles, etc.).                                                   |
+| `_ADF_CleanUp_viewDist = 500;`  | Change to set the minimum distance in meters from a player unit to allow deletion of dead bodies/vehicles, if you don't care if player sees the deletion, set it to 0. |
+| `_ADF_CleanUp_manTimer = 300;`  | Change to the number of **seconds** it takes for the script to delete a dead bodies when the viewDist param has cleared.                                               |
+| `_ADF_CleanUp_vehTimer = 600;`  | Change to the number of **seconds** it takes for the script to delete a destroyed vehicle when the viewDist param has cleared                                          |
+| `_ADF_CleanUp_abaTimer = 6000;` | Change to the number of **seconds** a deserted/unmanned vehicle will be deleted.                                                                                       |
+| `_ADF_zeusEagle = true;`        | Change to **true** or **false**. Set to true to enable the Zeus Eagle? False removes the eagle.                                                                        |
 
 Advanced editing - scripting spawning of units
 ----------------------------------------------
