@@ -17,7 +17,7 @@
 	    -   [View Distance](#View-Distance)
 	    -   [Misc third party mods/scripts](#Misc-third-party-mods/scripts)
 	    -   [FARP Repair/Refuel/Rearm](#FARP-Repair/Refuel/Rearm)
-	    -   [Respawn and Mobile HQ](Mobile Respawn FOB)](#Respawn-and-Mobile-HQ)
+	    -   [Respawn and Mobile HQ (Mobile Respawn FOB)](#Respawn-and-Mobile-HQ)
 	    -   [Misc third party mods and scripts](Misc-third-party-mods-and-scripts)
 	-   [ACE3 Settings](#ACE3-settings)
 -   [Advanced Editing](#Advanced-editing)
