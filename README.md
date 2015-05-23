@@ -206,13 +206,13 @@ With Notepad++ open ADF_init_config.sqf which can be found in the mission root f
 | `_ADF_ACRE_AIcanHear = true;`                             | Change to **true** or **false**. Sets whether AI can detect players speaking.                                                                                                                                                                                                                                                                                                                                                |
 | `ADF_ACRE_preset = false;`                                | Change to **true** or **false**. When set to true, the mission will use ACRE2 radio frequencies as defined in the **ADF_preset** ( 'Core\\F\\ADF_fnc_presets.sqf'.). If set to false than all radio's will use a flatnet for SW and one for LR. Please note that ACRE2 is WIP                                                                                                                                                |
 
-| Mission-Balancing&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | |
+| Mission-Balancing&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | |
 |--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `_ADF_misBal = false;`   | Change to **true** or **false**. Load balancing (number of AI's vs number of players). For scripted missions only! See 'Core/F/ADF_fnc_missionBalancer.sqf' for more information.     |
 | `_ADF_misBal_low = 10;`  | Change to the number of players that represent a **low** number for the mission balancer. For scripted missions only! See 'Core/F/ADF_fnc_missionBalancer.sqf' for more information.  |
 | `_ADF_misBal_high = 30;` | Change to the number of players that represent a **high** number for the mission balancer. For scripted missions only! See 'Core/F/ADF_fnc_missionBalancer.sqf' for more information. |
 
-| Unit & Vehicle Caching&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| |
+| Unit & Vehicle Caching&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| |
 |--------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `_ADF_Caching = true;`                     | Change to **true** or **false**. When set to true AI groups will be cached according to a preset distance. Note that ADF_Caching is automatically disabled when a HC is active. |
 | `_ADF_Caching_unitDistance = 1000;`        | Change to the distance from players that AI groups will be cached.                                                                                                              |
@@ -221,7 +221,7 @@ With Notepad++ open ADF_init_config.sqf which can be found in the mission root f
 | `_ADF_Caching_vehicleDistance_sea = 2000;` | Change to the distance from players that AI sea vehicles will be cached.                                                                                                        |
 | `_ADF_Caching_debugInfo = false;`          | Change to **true** or **false**. Set to true to log (screen and RPT) caching information.                                                                                       |
 
-| View Distance&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  | |
+| View Distance&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | |
 |-------------------------------|------------------------------------------------------------------------------------------------------------|
 | `setViewDistance **1500;`     | Change to the default view distance for players.                                                           |
 | `ADF_VD_foot = 2000;`         | Change to the **maximum** view distance for players on foot.                                               |
@@ -247,7 +247,7 @@ With Notepad++ open ADF_init_config.sqf which can be found in the mission root f
 | `_ADF_mhq_deploy_time = 120;`                        | Change to the time in **seconds** it takes to deploy the MHQ (unpack the FOB). Setting this to a few minutes will add some immersion.                                                                        |
 | `_ADF_mhq_packup_time = 180;`                        | Change to the time in **seconds** it takes to mobilize the MHQ (pack-up the FOB). Setting this to a few minutes will add some immersion.                                                                     |
 
-| Misc. third party mods/scripts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  | |
+| Misc. mods/scripts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  | |
 |---------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | '_ADF_DAC = false;`             | WIP. Leave as is.                                                                                                                                                      |
 | `_ADF_civKia_enable = false;`   | Change to **true** or **false**. Set to true if you want to keep track of civilians killed by players.                                                                 |
