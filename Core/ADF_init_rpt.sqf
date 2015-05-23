@@ -4,7 +4,7 @@ ADF version: 1.39 / MAY 2015
 
 Script: Mission init / Init reporting
 Author: Whiztler
-Script version: 1.03
+Script version: 1.04
 
 Game type: n/a
 File: ADF_init_rpt.sqf
@@ -27,6 +27,10 @@ if (ADF_mod_ACRE) then {ADF_log_rptMods = ADF_log_rptMods + ", ACRE2";};
 if (ADF_mod_TFAR) then {ADF_log_rptMods = ADF_log_rptMods + ", TFAR";};
 if (ADF_mod_CTAB) then {ADF_log_rptMods = ADF_log_rptMods + ", cTab";};
 if (ADF_mod_ACE3) then {ADF_log_rptMods = ADF_log_rptMods + ", ACE3";};
+if (ADF_mod_AIA) then {ADF_log_rptMods = ADF_log_rptMods + ", AiATP";};
+if (ADF_mod_Ares) then {ADF_log_rptMods = ADF_log_rptMods + ", Ares";};
+if (ADF_mod_CSAT) then {ADF_log_rptMods = ADF_log_rptMods + ", TEC CSAT";};
+if (ADF_mod_RHS) then {ADF_log_rptMods = ADF_log_rptMods + ", RHS";};
 
 // Init reporting
 if (ADF_debug) then {
@@ -65,7 +69,7 @@ if (ADF_debug) then {
 };
 
 if (!ADF_mod_CBA) exitWith { // Terminate init as CBA is NOT present	
-	["### <ERROR> CBA_A3 not present. CBA is required by ADF ###","systemChat"] call BIS_fnc_MP;
+	["### ERROR! CBA_A3 not present. CBA is required by ADF ###","systemChat"] call BIS_fnc_MP;
 	diag_log "";diag_log "";
 	diag_log "######################################################################################";
 	diag_log "ADF RPT: <ERROR>  CBA_A3 not present. CBA is required by ADF. Terminating init!";
@@ -78,16 +82,17 @@ if (!ADF_debug && ADF_Log_ServerPerfEnable) then { // ADF_debug already reports 
 	[] spawn {
 		if (isMultiplayer) then {ADF_log_players = playableUnits;} else {ADF_log_players = switchableUnits};
 		waitUntil {
-			ADF_rptSnooz = 60;
+			_ADF_rptSnooz = 60;
 			_ADF_serverFPS = round (diag_fps);			
 			if (((count allUnits)-(count ADF_log_players)) < 0) then {ADF_log_ai = 0} else {ADF_log_ai = ((count allUnits)-(count ADF_log_players))};
-			if (_ADF_serverFPS < 40) then {ADF_rptSnooz = 15};
-			if (_ADF_serverFPS < 30) then {ADF_rptSnooz = 10};
-			if (_ADF_serverFPS < 20) then {ADF_rptSnooz = 5};
-			if (_ADF_serverFPS < 15) then {ADF_rptSnooz = 1};
+			if (_ADF_serverFPS < 40) then {_ADF_rptSnooz = 15};
+			if (_ADF_serverFPS < 30) then {_ADF_rptSnooz = 10};
+			if (_ADF_serverFPS < 20) then {_ADF_rptSnooz = 5};
+			if (_ADF_serverFPS < 15) then {_ADF_rptSnooz = 1};
+			_ADF_GameTime_HMS = [(round time)] call BIS_fnc_secondsToString;
 			diag_log format ["ADF RPT: PERF - Total players: %1  --  Total AI's: %2",count ADF_log_players,ADF_log_ai];
-			diag_log format ["ADF RPT: PERF - Elapsed time in sec: %1  --  Server FPS: %2  --  Server Min FPS: %3",(round time),_ADF_serverFPS,round (diag_fpsmin)];
-			uiSleep ADF_rptSnooz;
+			diag_log format ["ADF RPT: PERF - Elapsed time [H:M:S]: %1  --  Server FPS: %2  --  Server Min FPS: %3",_ADF_GameTime_HMS,_ADF_serverFPS,round (diag_fpsmin)];
+			uiSleep _ADF_rptSnooz;
 			false
 		};
 	};

@@ -122,7 +122,7 @@ _ADF_ambient_vCiv_nr = 1; // number of vehicles to spawn around the players. Thi
 _ADF_ambient_vCiv_dist = 500; // Vehicle spawn distance from player in meters.
 _ADF_ambient_vCiv_del = 1000; // Vehicle delete distance from player in meters.
 
-//Garbage collector
+// Garbage collector
 _ADF_CleanUp = true; // enable cleaning up of dead bodies (friendly, enemy, vehicles, etc.) [true/false].
 _ADF_CleanUp_viewDist = 500; // min distance in meter from a player unit to allow delete, if you dont care if player sees the delete, set it to 0.
 _ADF_CleanUp_manTimer = 300; // x seconds until delete of dead man units.
@@ -130,9 +130,9 @@ _ADF_CleanUp_vehTimer = 600; // x seconds until delete of dead vehicles, for des
 _ADF_CleanUp_abaTimer = 6000; // x seconds a vehicle must be unmanned to be deleted, for _abandoned option.
 
 /********** MISC SETTINGS **********/
-_ADF_zeusEagle = false; // Enable the Zeus Eagle? False removes the eagle [true/false].
+_ADF_zeusEagle = true; // Enable the Zeus Eagle? False removes the eagle [true/false].
 
 /********** ADF DEV BUILD SETTINGS **********/
 _ADF_tpl_version = 1.39; // ADF version DO NOT EDIT
 _ADF_devBuild = "Beta"; // [Alpha/Beta/Production] DO NOT EDIT
-_ADF_devBuildNr = "9"; // Build number. DO NOT EDIT
+_ADF_devBuildNr = "10"; // Build number. DO NOT EDIT

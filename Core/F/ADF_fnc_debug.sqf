@@ -4,7 +4,7 @@ ADF version: 1.39 / MAY 2015
 
 Script: Debug functions
 Author: whiztler
-Script version: 1.45
+Script version: 1.46
 
 Game type: N/A
 File: ADF_fnc_debug.sqf
@@ -90,9 +90,9 @@ if (isServer) then {
 		private ["_ADF_debugLog_pre","_ADF_debugLog_msg","_ADF_serverFPS","_ADF_minServerFPS"];
 		_ADF_serverFPS = round (diag_fps);
 		_ADF_minServerFPS = round (diag_fpsmin);
-		_ADF_serverTime = (round time);
+		_ADF_GameTime_HMS = [(round time)] call BIS_fnc_secondsToString;
 		_ADF_debugLog_pre = "ADF Debug: PERF - ";
-		_ADF_debugLog_msg = format ["Elapsed time in sec: %1  --  Server FPS: %2  --  Server Min FPS: %3",_ADF_serverTime,_ADF_serverFPS,_ADF_minServerFPS];
+		_ADF_debugLog_msg = format ["Elapsed time [H:M:S]: %1  --  Server FPS: %2  --  Server Min FPS: %3",_ADF_GameTime_HMS,_ADF_serverFPS,_ADF_minServerFPS];
 		ADF_debugLog_write = _ADF_debugLog_pre + _ADF_debugLog_msg;
 		diag_log ADF_debugLog_write;
 		[ADF_debugLog_write,"systemChat"] call BIS_fnc_MP; // v.39 B6

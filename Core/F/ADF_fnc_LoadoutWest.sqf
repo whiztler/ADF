@@ -4,7 +4,7 @@ ADF version: 1.39 / MAY 2015
 
 Script: Loadout Gear West
 Author: Whiztler
-Script version: 5.53
+Script version: 5.55
 
 Game type: n/a
 File: ADF_fnc_loadoutWest.sqf
@@ -203,7 +203,7 @@ ADF_fnc_loudoutInf = {
 		// Primary weapon
 		[_ADF_unit, ADF_INF_wpn_R, 4, ADF_INF_mag_R] call BIS_fnc_addWeapon;
 		_ADF_unit assignItem "B_UavTerminal"; 
-	}; // Close Heavy Weapons Team (HMG/GMG/MK6)
+	}; // Close UAV
 	
 	/*****************************************************************************************************/
 
@@ -340,6 +340,7 @@ ADF_fnc_loudoutInf = {
 			_ADF_unit addItemToBackpack "SmokeShell";
 			_ADF_unit addItemToBackpack "Chemlight_green";
 		};
+		if (ADF_mod_ACE3 && (ADF_INF_wpn_LMG == "LMG_Mk200_MRCO_F")) then {_ADF_unit addItemToBackpack "ACE_SpareBarrel";};
 		// Primary weapon
 		[_ADF_unit, ADF_INF_wpn_LMG, ADF_INF_magCount_LMG, ADF_INF_mag_LMG] call BIS_fnc_addWeapon
 	}; // Close Auto Rifleman
@@ -431,6 +432,7 @@ ADF_fnc_loudoutInf = {
 		_ADF_unit addItemToBackpack "HandGrenade";
 		_ADF_unit addItemToBackpack "SmokeShell";
 		_ADF_unit addItemToBackpack "Chemlight_green";
+		if (ADF_mod_ACE3) then {_ADF_unit addItemToBackpack "ACE_SpareBarrel";};
 		// Primary weapon
 		[_ADF_unit, ADF_INF_wpn_MG, 4, ADF_INF_mag_MG] call BIS_fnc_addWeapon;
 	}; // Close Heavy Machine
@@ -582,10 +584,10 @@ ADF_fnc_loadoutSor = {
 	// Containers
 	if (_r == "ssc") then {		
 		_ADF_unit forceAddUniform "U_I_G_resistanceLeader_F";
-		_ADF_unit setObjectTexture [0, "\A3\Characters_F\Common\Data\basicbody_black_co.paa"];
+		_ADF_unit setObjectTextureGlobal [0, "\A3\Characters_F\Common\Data\basicbody_black_co.paa"];
 	} else {
 		_ADF_unit forceAddUniform _ADF_uniform_sor;
-		_ADF_unit setObjectTexture [0, "\A3\Characters_F\Common\Data\basicbody_black_co.paa"];
+		_ADF_unit setObjectTextureGlobal [0, "\A3\Characters_F\Common\Data\basicbody_black_co.paa"];
 	};		
 	if (_r != "uav") then {	
 		if ((_r == "ssc") || (_r == "rtl") || (_r == "rto")) then {	
@@ -606,7 +608,7 @@ ADF_fnc_loadoutSor = {
 	if (ADF_dlc_MarksMan) then {_ADF_unit addVest "V_PlateCarrierSpec_blk";} else {_ADF_unit addVest "V_TacVestIR_blk";}; //MM DLC check
 	_ADF_unit addWeapon "G_Tactical_Black";	
 	// Store in Vest
-	if (ADF_mod_ACE3 && (_r != "uav")) then {for "_i" from 1 to 4 do {_ADF_unit addItemToVest "ACE_M84"}};
+	if (ADF_mod_ACE3 && (_r != "uav")) then {for "_i" from 1 to 3 do {_ADF_unit addItemToVest "ACE_M84"}};
 	_ADF_unit addItemToVest "acc_flashlight";
 	// Store in Uniform
 	if (ADF_mod_ACE3) then {

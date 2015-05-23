@@ -4,17 +4,15 @@ ADF version: 1.39 / MAY 2015
 
 Script: Config Functions
 Author: Whiztler
-Script version: 1.0
+Script version: 1.1
 
 Game type: n/a
 File: functions.hpp
 ****************************************************************
 Functions registration goes in here.
 ****************************************************************/
-class CfgFunctions
-{
-	class TAWVD
-	{
+class CfgFunctions {
+	class TAWVD 	{
 		tag = "TAWVD";
 		class TAW_VD {
 			file = "Core\TP\taw_vd";
@@ -27,10 +25,8 @@ class CfgFunctions
 		};
 	};
 
-	class F // F3 Framework (http://ferstaberinde.com/f3/en/)
-	{	
-		class fspectator
-		{
+	class F 	{ // F3 Framework (http://ferstaberinde.com/f3/en/)
+		class fspectator {
 			file = "Core\TP\spect";
 			class CamInit{};
 			class OnUnload{};

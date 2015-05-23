@@ -4,7 +4,7 @@ ADF version: 1.39 / MAY 2015
 
 Script: Call Sings & Radio configuration
 Author: Whiztler
-Script version: 2.5
+Script version: 2.51
 
 Game type: n/a
 File: ADF_clientPreset.sqf
@@ -20,6 +20,8 @@ ACRE2 = WIP
 ****************************************************************/
 
 diag_log "ADF RPT: Init - executing ADF_clientPreset.sqf"; // Reporting. Do NOT edit/remove
+
+if (!hasInterface) exitWith {}; // HC exits
 
 _ADF_perfDiagStart = diag_tickTime;
 
@@ -98,18 +100,6 @@ if (ADF_mod_ACRE) then { // ACRE2 detected
 	[_ADF_ACRE_interference] call acre_api_fnc_setInterference;
 	[_ADF_ACRE_AIcanHear] call acre_api_fnc_setRevealToAI;
 	if (ADF_debug) then {["MOD - ACRE settings initialized",false] call ADF_fnc_log};
-};
-
-///// Configure radio freq's & call signs
-
-if (ADF_mod_TFAR) then {
-	ADF_LR_pass = 1;
-	ADF_SW_pass = 2;
-	if (ADF_debug) then {["RADIO - TFAR preset starting",false] call ADF_fnc_log};
-}; 
-if (ADF_mod_ACRE) then {
-	//WIP
-	if (ADF_debug) then {["RADIO - ACRE2 preset starting",false] call ADF_fnc_log};
 };
 
 ///// Apply the call signs and radio freq for each player
@@ -263,6 +253,7 @@ waitUntil {ADF_set_callSigns && ADF_set_roster && ADF_set_radios};
 // Everything is set, lets destroy the variables, we don't need them anymore
 ADF_roster_uArray = nil; ADF_roster_uName = nil;
 ADF_roster_Intro = nil; ADF_roster_line = nil; ADF_roster_userGroup = nil;
+ADF_preset_NOPRYL = nil; ADF_preset_DEFAULT = nil; ADF_preset_CUSTOM = nil; ADF_preset_WP = nil; // dump Call sign arrays
 
 _ADF_perfDiagStop = diag_tickTime;
 if (ADF_debug) then {
