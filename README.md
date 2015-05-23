@@ -206,7 +206,7 @@ With Notepad++ open ADF_init_config.sqf which can be found in the mission root f
 | `_ADF_ACRE_AIcanHear = true;`                             | Change to **true** or **false**. Sets whether AI can detect players speaking.                                                                                                                                                                                                                                                                                                                                                |
 | `ADF_ACRE_preset = false;`                                | Change to **true** or **false**. When set to true, the mission will use ACRE2 radio frequencies as defined in the **ADF_preset** ( 'Core\\F\\ADF_fnc_presets.sqf'.). If set to false than all radio's will use a flatnet for SW and one for LR. Please note that ACRE2 is WIP                                                                                                                                                |
 
-| Mission-Balancing&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | |
+| MissionBalancing&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | |
 |--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `_ADF_misBal = false;`   | Change to **true** or **false**. Load balancing (number of AI's vs number of players). For scripted missions only! See 'Core/F/ADF_fnc_missionBalancer.sqf' for more information.     |
 | `_ADF_misBal_low = 10;`  | Change to the number of players that represent a **low** number for the mission balancer. For scripted missions only! See 'Core/F/ADF_fnc_missionBalancer.sqf' for more information.  |
@@ -221,7 +221,7 @@ With Notepad++ open ADF_init_config.sqf which can be found in the mission root f
 | `_ADF_Caching_vehicleDistance_sea = 2000;` | Change to the distance from players that AI sea vehicles will be cached.                                                                                                        |
 | `_ADF_Caching_debugInfo = false;`          | Change to **true** or **false**. Set to true to log (screen and RPT) caching information.                                                                                       |
 
-| View Distance&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | |
+| ViewDistance&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | |
 |-------------------------------|------------------------------------------------------------------------------------------------------------|
 | `setViewDistance **1500;`     | Change to the default view distance for players.                                                           |
 | `ADF_VD_foot = 2000;`         | Change to the **maximum** view distance for players on foot.                                               |
@@ -235,7 +235,7 @@ With Notepad++ open ADF_init_config.sqf which can be found in the mission root f
 | `ADF_FARP_reloadTime = 10;`  | Change to the **maximum** time in seconds it takes to re-arm each turret magazine at the FARP. |
 | `ADF_FARP_refuelTime = 90;`  | Change to the **maximum** time in seconds it takes to refuel a vehicle at the FARP.            |
 
-| Respawn / Mobile HQ (Mobile Respawn FOB)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| |
+| Respawn / Mobile HQ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| |
 |------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `ADF_Tickets = true;`                                | Change to **true** or **false**. Set to true to enable the respawn ticket system (limited player respawns). Make sure that respawn is set to **"BASE" in the description.ext                                 |
 | `_ADF_wTixNr = 10;`                                  | Change to the number of maximum respawns allowed for the **WEST** side (blufor)                                                                                                                              |
