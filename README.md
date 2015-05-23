@@ -3,7 +3,7 @@
 
 ### Index
 
--   [New Features](#New-Features-1.39)
+-   [New Features](#New-Features)
 -   [Changelog](#Changelog)
 -   [Introduction](#Introduction)
 -   [Mission Development](#Mission-Development)
@@ -11,14 +11,14 @@
     -   [description.ext](#description.ext)
     -   [Mission Configuration](#Mission-Configuration)
 	    -   [General](#General)
-	    -   [Gear and Loadout](#Gear-and-Loadout)
+	    -   [Gear & Loadout](#Gear-and-Loadout)
 	    -   [Mission Balancing](#Mission-Balancing)
 	    -   [Unit and Vehicle Caching](#Unit-and-Vehicle-Caching)
 	    -   [View Distance](#View-Distance)
 	    -   [Misc third party mods/scripts](#Misc-third-party-mods/scripts)
-	    -   [FARP Repair/Refuel/Rearm](#FARP-Repair/Refuel/Rearm)
+	    -   [F.A.R.P. Repair/Refuel/Rearm](#FARP-Repair/Refuel/Rearm)
 	    -   [Respawn and Mobile HQ (Mobile Respawn FOB)](#Respawn-and-Mobile-HQ)
-	    -   [Misc third party mods and scripts](Misc-third-party-mods-and-scripts)
+	    -   [Misc third party mods and scripts](#Misc-third-party-mods-and-scripts)
 	-   [ACE3 Settings](#ACE3-settings)
 -   [Advanced Editing](#Advanced-editing)
 -   [Legal](#Legal)
@@ -27,7 +27,7 @@
 
 version: 1.39 | build: Beta 11
 
-## New Features 1.39
+## New Features 1.39<a name="New-Features"></a>
 
 ADF 1.39 is a major change release that comprises of script optimization and new features such as:
 
