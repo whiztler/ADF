@@ -32,4 +32,5 @@ styling for the tables
 #ADF_table th{width:20%;font-weight:bold;padding:5px 15px;border-right:2px solid #F9FAF8;border-left:2px solid #F9FAF8;border-bottom:2px solid #F9FAF8;color:#000}
 #ADF_table td{padding:3px 15px;border-right:2px solid #F9FAF8;border-left:2px solid #F9FAF8}
 .ADFtbl-odd{background:#dae0d8}
-.ADFtbl-even{background:#b1bead}
+.ADFtbl-even{background: #e6eae5;
+}
