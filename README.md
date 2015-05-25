@@ -271,7 +271,7 @@ With Notepad++ open ADF_init_config.sqf which can be found in the mission root f
 <a name="ACE3settings"></a>
 ### ACE3 settings
 
-The mission maker can enforce certain ACE3 settings. How to do this can be found [here](http://ace3mod.com/wiki/framework/settings.html). For ADF you do **not** need to included the `ACE_server.pbo`. Instead you copy the exported settings (clipboard) into the `missionConfig.hpp` located in the root folder. Find the `class ACE_Settings {` and copy over the indented existing settings (in between the // Custom ACE3 Setting below'' and '// Custom ACE3 Setting above'). E.g.:
+The mission maker can enforce certain ACE3 settings. How to do this can be found [here](http://ace3mod.com/wiki/framework/settings.html). For ADF you do **not** need to included the `ACE_server.pbo`. Instead you copy the exported settings (clipboard) into the `missionConfig.hpp` located in the root folder. Find the 'class ACE_Settings {' and copy over the indented existing settings (in between the // Custom ACE3 Setting below'' and '// Custom ACE3 Setting above'). E.g.:
 
 ```php
 // ACE3 settings
@@ -300,6 +300,8 @@ class ACE_Settings {
 	// Custom ACE3 Setting above
 }; // Close ACE Settings
 ```
+
+By default ADF has implemented ACE3 Advanced settings such as Advanced Medical, Advanced Ballistics, etc.
 
 <a name="AdvancedEditing"></a>
 ## Advanced editing
