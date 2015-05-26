@@ -103,7 +103,7 @@ ADF has been optimized for multiplayer coop missions. All required (and user con
 
 Above functions are as much optimized as possible and will not affect game play performance.
 
-Performance could be further optimized but this means that most functionality of ADF would be rewriten as functions. This will make it a lot harden for beginner (and semi advanced) mission makers. Therefore the choice was made to balance 'easy of use' with performance.
+Performance could be further optimized but this means that most functionality of ADF would be rewriten as functions. This will make it a lot harder for beginner (and semi advanced) mission makers. Therefore the choice was made to balance 'easy of use' with performance.
 <a name="MissionDevelopment"></a>
 ## Mission Development
 
