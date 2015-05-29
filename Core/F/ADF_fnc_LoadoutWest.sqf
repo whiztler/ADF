@@ -4,7 +4,7 @@ ADF version: 1.39 / MAY 2015
 
 Script: Loadout Gear West
 Author: Whiztler
-Script version: 5.56
+Script version: 5.57
 
 Game type: n/a
 File: ADF_fnc_loadoutWest.sqf
@@ -92,9 +92,12 @@ ADF_fnc_loudoutInf = {
 	_ADF_unit addItemToVest "acc_flashlight";
 	// Store in Uniform
 	if (ADF_mod_ACE3 && ((_r != "cls") && (_r != "doc"))) then {
-		_ADF_unit addItemToUniform "ACE_fieldDressing";
-		_ADF_unit addItemToUniform "ACE_fieldDressing";
-		_ADF_unit addItemToUniform "ACE_morphine";
+		for "_i" from 1 to 3 do {			
+			_ADF_unit addItemToUniform "ACE_fieldDressing";
+			_ADF_unit addItemToUniform "ACE_elasticBandage";
+			_ADF_unit addItemToUniform "ACE_quikclot";						
+		};	
+		_ADF_unit addItemToUniform "ACE_morphine";	
 	} else {
 		_ADF_unit addItemToUniform "FirstAidKit";
 		_ADF_unit addItemToUniform "FirstAidKit";			
@@ -221,28 +224,28 @@ ADF_fnc_loudoutInf = {
 		};
 		if (ADF_microDAGR_all == 2) then {_ADF_unit addItemToUniform ADF_microDAGR};
 		// Store in Backpack
-		if (ADF_mod_ACE3) then { // ACE3
-			for "_i" from 1 to 8 do {			
+		if (ADF_mod_ACE3) then { // ACE3 Advanced Medical
+			for "_i" from 1 to 12 do {			
 				_ADF_unit addItemToBackpack "ACE_fieldDressing";
-				_ADF_unit addItemToBackpack "ACE_morphine";
-				_ADF_unit addItemToBackpack "ACE_packingBandage";	
 				_ADF_unit addItemToBackpack "ACE_elasticBandage";
-				_ADF_unit addItemToBackpack "ACE_quikclot";				
+				_ADF_unit addItemToBackpack "ACE_quikclot";
+				_ADF_unit addItemToBackpack "ACE_atropine";				
+			};		
+			for "_i" from 1 to 8 do {			
+				_ADF_unit addItemToBackpack "ACE_morphine";
+				_ADF_unit addItemToBackpack "ACE_epinephrine";				
+				_ADF_unit addItemToBackpack "ACE_packingBandage";			
 			};
 			for "_i" from 1 to 5 do {			
-				_ADF_unit addItemToBackpack "ACE_epinephrine";
-				_ADF_unit addItemToBackpack "ACE_atropine";	
-				_ADF_unit addItemToBackpack "ACE_packingBandage";	
-				_ADF_unit addItemToBackpack "ACE_elasticBandage";	
+				_ADF_unit addItemToBackpack "ACE_salineIV_500";					
+				_ADF_unit addItemToBackpack "ACE_tourniquet";				
 			};
 			for "_i" from 1 to 2 do {			
-				_ADF_unit addItemToBackpack "ACE_bloodIV";
-				_ADF_unit addItemToBackpack "ACE_salineIV_500";
-				_ADF_unit addItemToBackpack "ACE_plasmaIV_500";
-				_ADF_unit addItemToBackpack "ACE_tourniquet";
+				_ADF_unit addItemToBackpack "ACE_bloodIV";				
+				_ADF_unit addItemToBackpack "ACE_plasmaIV";
+				_ADF_unit addItemToBackpack "ACE_personalAidKit";
 			};
-			if (_r == "doc") then {_ADF_unit addItemToBackpack "ACE_surgicalKit"} else {_ADF_unit addItemToBackpack "ACE_bodyBag";};
-			_ADF_unit addItemToBackpack "ACE_personalAidKit";
+			if (_r == "doc") then {_ADF_unit addItemToBackpack "ACE_surgicalKit"} else {_ADF_unit addItemToBackpack "ACE_bodyBag";};			
 		} else { // Vanilla
 			for "_i" from 1 to 10 do {			
 				_ADF_unit addItemToBackpack "FirstAidKit";
@@ -601,7 +604,7 @@ ADF_fnc_loadoutSor = {
 			if (!ADF_mod_TFAR && !ADF_mod_ACRE) then {_ADF_unit addBackpack "B_AssaultPack_rgr"};
 			if (ADF_microDAGR_all == 2) then {_ADF_unit addItemToUniform ADF_microDAGR};
 		} else {
-			_ADF_unit addBackpack "B_AssaultPack_blk";
+			if (_r != "rm") then {_ADF_unit addBackpack "B_AssaultPack_blk";} else {_ADF_unit addBackpack "B_Bergen_mcamo";};
 		};
 		// Store in Backpack
 		_ADF_unit addItemToBackpack "MiniGrenade";
@@ -614,8 +617,12 @@ ADF_fnc_loadoutSor = {
 	_ADF_unit addItemToVest "acc_flashlight";
 	// Store in Uniform
 	if (ADF_mod_ACE3) then {
-		_ADF_unit addItemToUniform "ACE_fieldDressing";
-		_ADF_unit addItemToUniform "ACE_fieldDressing";			
+		for "_i" from 1 to 3 do {			
+			_ADF_unit addItemToVest "ACE_fieldDressing";
+			_ADF_unit addItemToVest "ACE_elasticBandage";
+			_ADF_unit addItemToVest "ACE_quikclot";						
+		};	
+		_ADF_unit addItemToVest "ACE_morphine";	
 	} else {
 		_ADF_unit addItemToUniform "FirstAidKit";
 		_ADF_unit addItemToUniform "FirstAidKit";			
@@ -751,29 +758,28 @@ ADF_fnc_loadoutSor = {
 			_ADF_unit addItemToVest "Chemlight_green";
 		};
 		// Store in Backpack
-		if (ADF_mod_ACE3) then { // ACE3
-			for "_i" from 1 to 8 do {			
+		if (ADF_mod_ACE3) then { // ACE3 Advanced Medical
+			for "_i" from 1 to 10 do {			
 				_ADF_unit addItemToBackpack "ACE_fieldDressing";
-				_ADF_unit addItemToBackpack "ACE_morphine";
-				_ADF_unit addItemToBackpack "ACE_packingBandage";	
 				_ADF_unit addItemToBackpack "ACE_elasticBandage";
-				_ADF_unit addItemToBackpack "ACE_quikclot";				
+				_ADF_unit addItemToBackpack "ACE_quikclot";
+				_ADF_unit addItemToBackpack "ACE_atropine";				
+			};		
+			for "_i" from 1 to 7 do {			
+				_ADF_unit addItemToBackpack "ACE_morphine";
+				_ADF_unit addItemToBackpack "ACE_epinephrine";				
+				_ADF_unit addItemToBackpack "ACE_packingBandage";			
 			};
-			for "_i" from 1 to 5 do {			
-				_ADF_unit addItemToBackpack "ACE_epinephrine";
-				_ADF_unit addItemToBackpack "ACE_atropine";	
-				_ADF_unit addItemToBackpack "ACE_packingBandage";	
-				_ADF_unit addItemToBackpack "ACE_elasticBandage";	
+			for "_i" from 1 to 4 do {			
+				_ADF_unit addItemToBackpack "ACE_salineIV_500";					
+				_ADF_unit addItemToBackpack "ACE_tourniquet";				
 			};
 			for "_i" from 1 to 2 do {			
-				_ADF_unit addItemToBackpack "ACE_bloodIV";
-				_ADF_unit addItemToBackpack "ACE_salineIV_500";
-				_ADF_unit addItemToBackpack "ACE_plasmaIV_500";
-				_ADF_unit addItemToBackpack "ACE_tourniquet";
+				_ADF_unit addItemToBackpack "ACE_bloodIV";				
+				_ADF_unit addItemToBackpack "ACE_plasmaIV";
+				_ADF_unit addItemToBackpack "ACE_personalAidKit";
 			};
-			_ADF_unit addItemToBackpack "ACE_bodyBag";
-			_ADF_unit addItemToBackpack "ACE_personalAidKit";
-			if (_r == "doc") then {_ADF_unit addItemToBackpack "ACE_surgicalKit"};
+			_ADF_unit addItemToBackpack "ACE_surgicalKit";
 		} else { // Vanilla
 			for "_i" from 1 to 10 do {			
 				_ADF_unit addItemToBackpack "FirstAidKit";
