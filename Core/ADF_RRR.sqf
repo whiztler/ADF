@@ -4,7 +4,7 @@ ADF version: 1.39 / MAY 2015
 
 Script: Reload/Rearm/Repair Script
 Author: Xeno (Adapted for A3 by Whiztler)
-Script version: 2.6
+Script version: 2.61
 
 Game type: N/A
 File: ADF_RRR.sqf
@@ -52,9 +52,9 @@ if ((_object isKindOf "Plane") || (_object isKindOf "Helicopter")) then {
 	_vehCat = "vehicle";
 };
 
-_repairSleep = ADF_FARP_repairTime / 25; // Configure in ADF_init_turretConfig.sqf
-_reloadSleep = ADF_FARP_reloadTime / 3; // Configure in ADF_init_turretConfig.sqf
-_refuelSleep = ADF_FARP_refuelTime / 60; // Configure in ADF_init_turretConfig.sqf
+_repairSleep = ADF_FARP_repairTime / 25; // Configure in ADF_init_Config.sqf
+_reloadSleep = ADF_FARP_reloadTime / 3; // Configure in ADF_init_Config.sqf
+_refuelSleep = ADF_FARP_refuelTime / 60; // Configure in ADF_init_Config.sqf
 
 _objectFuel = fuel _object;
 _objectDamage = damage _object;
@@ -183,9 +183,8 @@ _serviceTime = round ((time - _serviceStartTime) / 60);
 _serviceTimeType = "minutes";
 _dayType = "day";
 _dayTime = date select 3;
-if (_dayTime < 12) then {_dayType = "morning"};
-if (_dayTime > 12) then {_dayType = "afternoon"};
+if (_dayTime < 12) then {_dayType = "day"};
+if (_dayTime > 12) then {_dayType = "day"};
 if (_dayTime > 18) then {_dayType = "evening"};
 if ((time - _serviceStartTime) < 90) then {_serviceTime = 1;_serviceTimeType = "minute"};
-_object vehicleChat format ["%1 was serviced in %2 %3", _vehName,_serviceTime,_serviceTimeType];
-_object vehicleChat format ["%1 is ready. Enjoy your %2", _vehName,_dayType];
+_object vehicleChat format ["%1 was serviced in %2 %3. Enjoy your %4", _vehName,_serviceTime,_serviceTimeType,_dayType];
