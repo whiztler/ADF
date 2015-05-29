@@ -245,7 +245,7 @@ player createDiaryRecord ["Deployment Roster",["Deployment Roster",_ADF_rosterPu
 ADF_set_roster = true;
 
 // Announce call sign
-if (player == (leader player)) then {player groupChat format ["Our call sign is: %1",groupID (_ADF_uGroup)];};
+if (player == leader (group (vehicle player))) then {player groupChat format ["Our call sign is: %1",groupID (_ADF_uGroup)];};
 
 if (ADF_debug) then {["INIT - Roster generated",false] call ADF_fnc_log};
 
