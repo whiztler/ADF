@@ -34,6 +34,7 @@ class CfgRespawnTemplates { // F3 Spectator Script
 // ACE3 settings
 
 class ACE_Settings {
+	// Custom ACE3 Setting below
 	class ace_common_forceAllSettings {
 		value = 0;
 		typeName = "BOOL";
@@ -483,5 +484,6 @@ class ACE_Settings {
 		value = 3000;
 		typeName = "SCALAR";
 		force = 1;
-	};    
+	};
+	// Custom ACE3 Setting above
 };

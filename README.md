@@ -24,7 +24,7 @@
 
 ### Current version
 
-version: 1.39 | build: Beta 11
+version: 1.39 | build: Beta 12
 <a name="New-Features"></a>
 ## New Features 1.39
 
@@ -103,7 +103,7 @@ ADF has been optimized for multiplayer coop missions. All required (and user con
 
 Above functions are as much optimized as possible and will not affect game play performance.
 
-Performance could be further optimized but this means that most functionality of ADF would be rewriten as functions. This will make it a lot harden for beginner (and semi advanced) mission makers. Therefore the choice was made to balance 'easy of use' with performance.
+Performance could be further optimized but this means that most functionality of ADF would be rewriten as functions. This will make it a lot harder for beginner (and semi advanced) mission makers. Therefore the choice was made to balance 'easy of use' with performance.
 <a name="MissionDevelopment"></a>
 ## Mission Development
 
@@ -150,6 +150,7 @@ With Notepad++ open description.ext which can be found in the mission root folde
 8.  `loadScreen = "img\mission_intro_ADF.paa";` Change This is the mission intro picture that is show while the mission is loading. SHAPE/Nopryl/etc. pictures can be found in the /Img folder. E.g. loadScreen = "**img\mission_intro_Nopryl.paa**"; You can create your own mission intro image to give your mission some extra sauce.
 9.  `onLoadIntro = "Powered by ADF";` Change into some additional information you might want your players to know about. (free text without formatting)
 10. Save and close.
+
 <a name="MissionConfiguration"></a>
 ### ADF_init_config.sqf
 
@@ -267,6 +268,7 @@ With Notepad++ open ADF_init_config.sqf which can be found in the mission root f
 14. `_ADF_CleanUp_vehTimer = 600;` Changeto the number of **seconds** it takes for the script to delete a destroyed vehicle when the viewDist param has cleared
 15. `_ADF_CleanUp_abaTimer = 6000;` Change to the number of **seconds** a deserted/unmanned vehicle will be deleted.
 16. `_ADF_zeusEagle = true;` Change to **true** or **false**. Set to true to enable the Zeus Eagle? False removes the eagle.
+
 <a name="ACE3settings"></a>
 ### ACE3 settings
 
@@ -299,6 +301,8 @@ class ACE_Settings {
 	// Custom ACE3 Setting above
 }; // Close ACE Settings
 ```
+
+By default ADF has implemented ACE3 Advanced settings such as Advanced Medical, Advanced Ballistics, etc.
 
 <a name="AdvancedEditing"></a>
 ## Advanced editing
