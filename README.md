@@ -24,7 +24,7 @@
 
 ### Current version
 
-version: 1.39 | build: Beta 13
+version: 1.39 | build: Beta 13 
 <a name="New-Features"></a>
 ## New Features 1.39
 

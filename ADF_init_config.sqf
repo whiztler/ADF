@@ -13,7 +13,7 @@ Use this file to configure and define mission parameters,
 modules and scripts.
 ****************************************************************/
 
-diag_log "ADF RPT: Init - executing ADF_init_config.sqf"; // Reporting. Do NOT edit/remove
+diag_log "ADF RPT: Init - executing ADF_init_config.sqf"; // Reporting. Do NOT edit/remove 
 
 /********** GENERAL **********/
 _ADF_mission_version = 1.0; // Mission version
