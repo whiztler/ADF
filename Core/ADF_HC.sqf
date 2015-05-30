@@ -53,5 +53,3 @@ if (!isServer && !hasInterface) then {
 if (!_ADF_HCLB_enable) exitWith {};	
 if (!isServer) exitWith {};
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_HC_loadBalacing.sqf";
-
-
