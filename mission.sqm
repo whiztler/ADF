@@ -76,7 +76,7 @@ class Mission
 	randomSeed=15384162;
 	class Intel
 	{
-		briefingName="CO117 ADF v1.39_b12";
+		briefingName="CO117 ADF v1.39";
 		overviewText="Arma Mission Development Framework v1.39";
 		resistanceWest=0;
 		timeOfChanges=7200;
@@ -215,7 +215,7 @@ class Mission
 					id=5;
 					side="WEST";
 					vehicle="B_officer_F";
-					player="PLAY CDG";
+					player="PLAYER COMMANDER";
 					leader=1;
 					rank="CAPTAIN";
 					skill=0.2;

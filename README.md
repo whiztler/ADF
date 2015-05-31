@@ -24,7 +24,7 @@
 
 ### Current version
 
-version: 1.39 | build: Beta 12
+version: 1.39 | build: Production
 <a name="New-Features"></a>
 ## New Features 1.39
 
@@ -150,7 +150,6 @@ With Notepad++ open description.ext which can be found in the mission root folde
 8.  `loadScreen = "img\mission_intro_ADF.paa";` Change This is the mission intro picture that is show while the mission is loading. SHAPE/Nopryl/etc. pictures can be found in the /Img folder. E.g. loadScreen = "**img\mission_intro_Nopryl.paa**"; You can create your own mission intro image to give your mission some extra sauce.
 9.  `onLoadIntro = "Powered by ADF";` Change into some additional information you might want your players to know about. (free text without formatting)
 10. Save and close.
-
 <a name="MissionConfiguration"></a>
 ### ADF_init_config.sqf
 

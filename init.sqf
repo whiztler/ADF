@@ -4,7 +4,7 @@ ADF version: 1.39 / MAY 2015
 
 Script: Mission init
 Author: Whiztler
-Script version: 2.58
+Script version: 2.59
 
 Game type: n/a
 File: init.sqf
@@ -16,6 +16,7 @@ diag_log "ADF RPT: Init - executing init.sqf"; // Reporting. Do NOT edit/remove
 
 if (!isDedicated && (isNull player)) then {waitUntil {!(isNull player)}; waitUntil {player == player}};
 
+execVM "Scr\ADF_briefing.sqf"; // Mission Briefing
 #include "Core\ADF_init_pre.sqf"
 #include "ADF_init_config.sqf"
 
@@ -66,10 +67,6 @@ if (ADF_debug) then {execVM "Core\F\ADF_fnc_debug.sqf";}; // Debugging/MM only! 
 
 execVM "Scr\init.sqf"; // Mission custom init
  
-/**********  Mission Init Briefing **********/
-
-execVM "Scr\ADF_briefing.sqf"; // Mission Briefing
-
 /********** Post processing **********/
 
 [_ADF_mission_init_time,_ADF_tpl_version,_ADF_mission_version,_ADF_devBuild,_ADF_devBuildNr] execVM "Core\ADF_init_post.sqf"; // Nr of secs for mission Init countdown. Should be the last line of the init.sqf
