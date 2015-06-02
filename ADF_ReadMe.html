@@ -48,11 +48,7 @@
     <h1><img src="Core/I/ADF_logo.png" width="500" height="240" alt="ADF - Arma Mission Development Framework" /></h1>
     <h3 id="curver">Current version</h3>
     <p>version: 1.39<br />
-<<<<<<< HEAD
       build: Production (B13)</p>
-=======
-      build: Production</p>
->>>>>>> origin/master
     <h2 id="features">New Features 1.39</h2>
     <p>ADF 1.39 is a major change release that comprises of script optimization and new features such as:</p>
     <ul>
@@ -113,11 +109,7 @@
         </li>
         <li>UPDATED: ADF_init_pre.sqf
           <ul>
-<<<<<<< HEAD
             <li>Added Added ACE3 / Ares / RHS / AiATP / TEC-CSAT mod auto-detection support</li>
-=======
-            <li>Added Added ACE3 / Ares / RHS / AiATP / TEC-CSAT mod autodetection support</li>
->>>>>>> origin/master
             <li>Added DLC support</li>
             <li>Added Debug write function</li>
             <li>Script optimization</li>
@@ -131,11 +123,7 @@
     </div>
     <h2 id="introd">Introduction</h2>
     <p>ADF has been set-up for mission developers to created complex missions in &lt; 1 hour. The framework offers a full joint operations company with various pre-configured presets for Nopryl, SHAPE, Wolfpack, etc. Crates and vehicle loadout is pre-configured according to the role of the team that is using the crate/vehicle.</p>
-<<<<<<< HEAD
     <p>At first glance, the ADF seems complex, but you'll probably   need to work with only two files: <strong>description.ext</strong> and <strong>ADF_init_config.sqf</strong>. Once you get the hang of ADF you'll be able to do more advanced things such as <a href="#sod">scripting units</a> to spawn after the mission has started. All scripts and files have been well documented. Please use a dedicated editor such as Notepad++ to work with mission files. Search on Armaholic for Notepad++ to get the latest version. Alternatively you can use the <a href="https://github.com/whiztler/ADF/blob/beta11/Core/I/SQF_whiz.xml">plug-in I use</a> which can be found in the <strong>Core\I\</strong> folder. To install the plug-in, open Notepad++, from the Language menu select 'Define your language', click on import and select the 'SQF_whiz.xml' file. Restart Notepad++ and your good to go. </p>
-=======
-    <p>At first glance, the ADF seems complex, but you'll probably   need to work with only two files: <strong>description.ext</strong> and <strong>ADF_init_config.sqf</strong>. Once you get the hang of ADF you'll be able to do more advanced things such as <a href="#sod">scripting units</a> to spawn after the mission has started. All scripts and files have been well documented. Please use a dedicated editor such as Notepad++ to work with mission files. Search on Armaholic for Notepad++ to get the latest version. Alternatively you can use the <a href="https://github.com/whiztler/ADF/blob/beta11/Core/I/SQF_whiz.xml">plugin I use</a> which can be found in the <strong>Core\I\</strong> folder. To install the plugin, open Notepad++, from the Language menu select 'Define your language', click on import and select the 'SQF_whiz.xml' file. Restart Notepad++ and your good to go. </p>
->>>>>>> origin/master
     <h3>Performance</h3>
     <p>ADF has been optimized for multiplayer coop missions. All required (and user configured) scripts and options load during the mission init. There are NO loops except:</p>
     <ul>
@@ -153,11 +141,7 @@
       <li><a href="http://killzonekid.com/" title="Killzone Kid" target="_blank">http://killzonekid.com/</a></li>
     </ul>
     <h3>ADF Template</h3>
-<<<<<<< HEAD
     <p>The ADF template mission is a starting point for rapid mission creating. The template mission features 114 per-defined units:</p>
-=======
-    <p>The ADF template mission is a starting point for rapid mission creating. The template mission features 114 pre-defined units:</p>
->>>>>>> origin/master
     <table id="ADF_table" summary="ADF Company Structure">
       <colgroup>
       <col class="ADFtbl-odd" />
@@ -188,11 +172,7 @@
           <td>2 Rifle Squads</td>
           <td>1 APC Squadron</td>
           <td>1 AH99 team</td>
-<<<<<<< HEAD
           <td>1 SpecOp Assault Team</td>
-=======
-          <td>1 SpecOp AssaultTeam</td>
->>>>>>> origin/master
         </tr>
         <tr>
           <td></td>
@@ -260,22 +240,13 @@
       <li>Change '<span class="adf_topic">ADF_playerSide = WEST;</span>' to <strong>WEST</strong> or <strong>EAST</strong> or <strong>GUER</strong> or <strong>CIV</strong>. Set to the side that playable units are on. <em>Please note that only WEST loadout presets exist in the ADF template.</em></li>
       <li>Change '<span class="adf_topic">ADF_debug = <strong>false</strong>;</span>' to <strong>true</strong> of <strong>false</strong>. If you need to debug your mission then set to true. Debug information is displayed on screen and written to the mission RPT. Please note that debug can be resource heavy so FPS might be considerably lower. Don't enable ADF_debug with lots of clients else the server will crumble.</li>
       <li>Change '<span class="adf_topic">ADF_Log_ServerPerfEnable = <strong>true</strong>;</span>' to <strong>true</strong> of <strong>false</strong>. When set to true, server performance information is added to the RPT logfile. The frequency is based on the server performance. If FPS &gt; 40 than every 60 seconds.  If FPS &lt; 40 than every 15 seconds.  If FPS &lt; 30 than every 10 seconds.  If FPS &lt; 20 than every 5 seconds and if server FPS drops below 15 than it is logged every second. Once server FPS decreases/increases, the frequency of logging changes also.</li>
-<<<<<<< HEAD
       <li>Change '<span class="adf_topic">'ADF_clanName = &quot;<strong>A D F</strong>&quot;;</span>' into the name of your clan. This is free text so any name will do. E.g. ADF_clanName = &quot;<strong>Nopryl</strong>&quot;; The name is displayed in hints, mission roster, briefing, etc.</li>
       <li>Change '<span class="adf_topic">ADF_clanTAG = &quot;<strong>ADF</strong>&quot;;</span>' into the tag of your clan. This is free text so any tag will do. E.g. ADF_clanTAG = <strong>&quot;L.A.M.B.S</strong>&quot;;  The tag is displayed in hints, mission roster, briefing, etc.</li>
-=======
-      <li>Change '<span class="adf_topic">'ADF_clanName = &quot;<strong>A D F</strong>&quot;;</span>' into the name of your clan. This is freetext so any name will do. E.g. ADF_clanName = &quot;<strong>Nopryl</strong>&quot;; The name is displayed in hints, mission roster, briefing, etc.</li>
-      <li>Change '<span class="adf_topic">ADF_clanTAG = &quot;<strong>ADF</strong>&quot;;</span>' into the tag of your clan. This is freetext so any tag will do. E.g. ADF_clanTAG = <strong>&quot;L.A.M.B.S</strong>&quot;;  The tag is displayed in hints, mission roster, briefing, etc.</li>
->>>>>>> origin/master
       <li>Change '<span class="adf_topic">ADF_clanLogo = &quot;<strong>Img\clan_logo_ADF.paa</strong>&quot;;</span>' to your clan logo. Clan logo's can be found in the Img\ folder. E.g. ADF_clanLogo = &quot;Img\<strong>clan_logo_Nopryl.paa</strong>&quot;; The clan logo is used for hints, intro screens, etc. Preset images can be found in the '\Img' folder.</li>
       <li>Change '<span class="adf_topic">ADF_clanFlag = &quot;<strong>Img\clan_flag_ADF.paa</strong>&quot;;</span>' to your clan flag. The flag image can be displayed on flags in-game. See the flagpole in the ADF mission with the Nopryl flag for instance (<strong>clan_flag_Nopryl.paa</strong>). Preset images can be found in the '\Img' folder.</li>
       <li>Change '<span class="adf_topic">_ADF_MissionIntroImage = &quot;<strong>Img\mission_cover_ADF.paa</strong>&quot;;</span>' to your own image that is displayed after the mission initialization (in-game). E.g. _ADF_MissionIntroImage = &quot;Img\mission_cover_<strong>nopryl</strong>.paa. Preset images can be found in the '\Img' folder.</li>
       <li>Change '<span class="adf_topic">ADF_Clan_uniformInsignia = <strong>true</strong>;</span>' to <strong>true</strong> or <strong>false</strong>. The clan insignia can be configured in the missionConfig.hpp (mission root folder) file. Default is Nopryl.</li>
-<<<<<<< HEAD
       <li>Change '<span class="adf_topic">_ADF_preset = &quot;<strong>Default</strong>&quot;;</span>' to either <strong>Default</strong> or <strong>Nopryl</strong> or <strong>SHAPE</strong> or <strong>Wolfpack</strong> or <strong>Custom</strong>. The preset file represents clan call signs and pre-configured radio frequencies. The preset file can be found here: 'Core\F\ADF_fnc_presets.sqf'. If you wish to create your own preset than edit the <strong>custom</strong> preset and select _ADF_preset = &quot;Custom&quot;;</li>
-=======
-      <li>Change '<span class="adf_topic">_ADF_preset = &quot;<strong>Default</strong>&quot;;</span>' to either <strong>Default</strong> or <strong>Nopryl</strong> or <strong>SHAPE</strong> or <strong>Wolfpack</strong> or <strong>Custom</strong>. The preset file represents clan call signs and preconfigured radio frequencies. The preset file can be found here: 'Core\F\ADF_fnc_presets.sqf'. If you wish to create your own preset than edit the <strong>custom</strong> preset and select _ADF_preset = &quot;Custom&quot;;</li>
->>>>>>> origin/master
     </ol>
     <h4 id="gearLoadout">Gear &amp; Loadout</h4>
     <ol class="ADF_OL">
@@ -503,11 +474,7 @@ _g = [getMarkerPos "marker1",	EAST, (configFile >> "CfgGroups" >> "East" >> "OPF
 </section>
 <aside>
   <h2 id="legal">Legal</h2>
-<<<<<<< HEAD
   <p>This file is part of the Arma Mission Development Framework (ADF). ADF is released under the Arma Public License (APL): <a href="https://www.bistudio.com/community/licenses/arma-public-license">https://www.bistudio.com/community/licenses/arma-public-license</a></p>
-=======
-  <p>This file is part of the Arma Mission Development Framework (ADF). ADF is released under the Arma Public Licence (APL): <a href="https://www.bistudio.com/community/licenses/arma-public-license">https://www.bistudio.com/community/licenses/arma-public-license</a></p>
->>>>>>> origin/master
   <p> ADF uses the following third party scripts:</p>
   <ul>
     <li> F3 Spectator is part of the F3 Framework (<a href="http://ferstaberinde.com/f3/en/">http://ferstaberinde.com/f3/en/</a>)</li>
@@ -517,11 +484,7 @@ _g = [getMarkerPos "marker1",	EAST, (configFile >> "CfgGroups" >> "East" >> "OPF
     <li> Delete All by Anjan (<a href="http://www.thebutcherbay.org/showthread.php?tid=63">http://www.thebutcherbay.org/showthread.php?tid=63</a>)</li>
     <li> Void Map Marker by Void (<a href="http://www.armaholic.com/forums.php?m=posts&q=25540">http://www.armaholic.com/forums.php?m=posts&amp;q=25540</a>)</li>
   </ul>
-<<<<<<< HEAD
   <p> Commercial exploitation of the Software without written permission from The Author(s) is expressly prohibited. ADF is distributed without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose. The Software is not an official add-on or tool. Use of the Software (in whole or in part) is entirely at your own risk.</p>
-=======
-  <p> Commercial exploitation of the Software without written permission from The Author(s) is expressly prohibited. ADF is distributed without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose. The Software is not an official addon or tool. Use of the Software (in whole or in part) is entirely at your own risk.</p>
->>>>>>> origin/master
 </aside>
 <footer></footer>
 <script src="Core/I/prism.js"></script> 
