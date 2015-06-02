@@ -4,7 +4,7 @@ ADF version: 1.39 / MAY 2015
 
 Script: Loadout Gear West
 Author: Whiztler
-Script version: 5.51
+Script version: 5.57
 
 Game type: n/a
 File: ADF_fnc_loadoutWest.sqf
@@ -24,6 +24,8 @@ Make sure to check the capacity of the backpack and vest before adding
 (more) items. Do not delete lines but comment them out when you do not
 want it included.
 ****************************************************************/
+
+diag_log "ADF RPT: Init - executing ADF_fnc_LoadoutWest.sqf"; // Reporting. Do NOT edit/remove
 
 /**[  INFANTRY SQUAD  ]*******************************************************************************/
 
@@ -54,7 +56,7 @@ ADF_fnc_loudoutInf = {
 	if (_ADF_INF_LMG_weapon == 1) then { // MX SW		
 		ADF_INF_wpn_LMG = "arifle_MX_SW_Hamr_pointer_F";
 		// magazines
-		if (ADF_mod_ACE3) then {ADF_INF_mag_LMG = "100Rnd_65x39_caseless_mag_Tracer";} else {ADF_INF_mag_LMG = "ACE_100Rnd_65x39_caseless_mag_Tracer_Dim";};
+		if (ADF_mod_ACE3) then {ADF_INF_mag_LMG = "ACE_100Rnd_65x39_caseless_mag_Tracer_Dim";} else {ADF_INF_mag_LMG = "100Rnd_65x39_caseless_mag_Tracer";};
 		ADF_INF_magCount_LMG = 6;		
 	} else { // MK200		
 		ADF_INF_wpn_LMG = "LMG_Mk200_MRCO_F";
@@ -90,9 +92,12 @@ ADF_fnc_loudoutInf = {
 	_ADF_unit addItemToVest "acc_flashlight";
 	// Store in Uniform
 	if (ADF_mod_ACE3 && ((_r != "cls") && (_r != "doc"))) then {
-		_ADF_unit addItemToUniform "ACE_fieldDressing";
-		_ADF_unit addItemToUniform "ACE_fieldDressing";
-		_ADF_unit addItemToUniform "ACE_morphine";
+		for "_i" from 1 to 3 do {			
+			_ADF_unit addItemToUniform "ACE_fieldDressing";
+			_ADF_unit addItemToUniform "ACE_elasticBandage";
+			_ADF_unit addItemToUniform "ACE_quikclot";						
+		};	
+		_ADF_unit addItemToUniform "ACE_morphine";	
 	} else {
 		_ADF_unit addItemToUniform "FirstAidKit";
 		_ADF_unit addItemToUniform "FirstAidKit";			
@@ -201,7 +206,7 @@ ADF_fnc_loudoutInf = {
 		// Primary weapon
 		[_ADF_unit, ADF_INF_wpn_R, 4, ADF_INF_mag_R] call BIS_fnc_addWeapon;
 		_ADF_unit assignItem "B_UavTerminal"; 
-	}; // Close Heavy Weapons Team (HMG/GMG/MK6)
+	}; // Close UAV
 	
 	/*****************************************************************************************************/
 
@@ -219,26 +224,28 @@ ADF_fnc_loudoutInf = {
 		};
 		if (ADF_microDAGR_all == 2) then {_ADF_unit addItemToUniform ADF_microDAGR};
 		// Store in Backpack
-		if (ADF_mod_ACE3) then { // ACE3
-			for "_i" from 1 to 8 do {			
+		if (ADF_mod_ACE3) then { // ACE3 Advanced Medical
+			for "_i" from 1 to 12 do {			
 				_ADF_unit addItemToBackpack "ACE_fieldDressing";
+				_ADF_unit addItemToBackpack "ACE_elasticBandage";
+				_ADF_unit addItemToBackpack "ACE_quikclot";
+				_ADF_unit addItemToBackpack "ACE_atropine";				
+			};		
+			for "_i" from 1 to 8 do {			
 				_ADF_unit addItemToBackpack "ACE_morphine";
+				_ADF_unit addItemToBackpack "ACE_epinephrine";				
+				_ADF_unit addItemToBackpack "ACE_packingBandage";			
 			};
 			for "_i" from 1 to 5 do {			
-				_ADF_unit addItemToBackpack "ACE_epinephrine";
-				_ADF_unit addItemToBackpack "ACE_atropine";	
-				_ADF_unit addItemToBackpack "ACE_packingBandage";	
-				_ADF_unit addItemToBackpack "ACE_elasticBandage";	
+				_ADF_unit addItemToBackpack "ACE_salineIV_500";					
+				_ADF_unit addItemToBackpack "ACE_tourniquet";				
 			};
 			for "_i" from 1 to 2 do {			
-				_ADF_unit addItemToBackpack "ACE_bloodIV";
-				_ADF_unit addItemToBackpack "ACE_salineIV_500";
-				_ADF_unit addItemToBackpack "ACE_tourniquet";
-				_ADF_unit addItemToBackpack "ACE_quikclot";
+				_ADF_unit addItemToBackpack "ACE_bloodIV";				
+				_ADF_unit addItemToBackpack "ACE_plasmaIV";
+				_ADF_unit addItemToBackpack "ACE_personalAidKit";
 			};
-			_ADF_unit addItemToBackpack "ACE_bodyBag";
-			_ADF_unit addItemToBackpack "ACE_personalAidKit";
-			if (_r == "doc") then {_ADF_unit addItemToBackpack "ACE_surgicalKit"};
+			if (_r == "doc") then {_ADF_unit addItemToBackpack "ACE_surgicalKit"} else {_ADF_unit addItemToBackpack "ACE_bodyBag";};			
 		} else { // Vanilla
 			for "_i" from 1 to 10 do {			
 				_ADF_unit addItemToBackpack "FirstAidKit";
@@ -338,6 +345,7 @@ ADF_fnc_loudoutInf = {
 			_ADF_unit addItemToBackpack "SmokeShell";
 			_ADF_unit addItemToBackpack "Chemlight_green";
 		};
+		if (ADF_mod_ACE3 && (ADF_INF_wpn_LMG == "LMG_Mk200_MRCO_F")) then {_ADF_unit addItemToBackpack "ACE_SpareBarrel";};
 		// Primary weapon
 		[_ADF_unit, ADF_INF_wpn_LMG, ADF_INF_magCount_LMG, ADF_INF_mag_LMG] call BIS_fnc_addWeapon
 	}; // Close Auto Rifleman
@@ -429,6 +437,7 @@ ADF_fnc_loudoutInf = {
 		_ADF_unit addItemToBackpack "HandGrenade";
 		_ADF_unit addItemToBackpack "SmokeShell";
 		_ADF_unit addItemToBackpack "Chemlight_green";
+		if (ADF_mod_ACE3) then {_ADF_unit addItemToBackpack "ACE_SpareBarrel";};
 		// Primary weapon
 		[_ADF_unit, ADF_INF_wpn_MG, 4, ADF_INF_mag_MG] call BIS_fnc_addWeapon;
 	}; // Close Heavy Machine
@@ -517,6 +526,7 @@ ADF_fnc_loudoutInf = {
 	}; // Close Asst. Missile Specialist
 
 	_ADF_unit selectWeapon (primaryWeapon _ADF_unit);
+	if (ADF_mod_ACE3) then {[_ADF_unit, currentWeapon _ADF_unit, currentMuzzle _ADF_unit] call ACE_SafeMode_fnc_lockSafety;};
 	if (ADF_Clan_uniformInsignia) then {[_ADF_unit,"CLANPATCH"] call BIS_fnc_setUnitInsignia};
 	_ADF_perfDiagStop = diag_tickTime;
 	if (ADF_debug) then {
@@ -579,10 +589,10 @@ ADF_fnc_loadoutSor = {
 	// Containers
 	if (_r == "ssc") then {		
 		_ADF_unit forceAddUniform "U_I_G_resistanceLeader_F";
-		_ADF_unit setObjectTexture [0, "\A3\Characters_F\Common\Data\basicbody_black_co.paa"];
+		_ADF_unit setObjectTextureGlobal [0, "\A3\Characters_F\Common\Data\basicbody_black_co.paa"];
 	} else {
 		_ADF_unit forceAddUniform _ADF_uniform_sor;
-		_ADF_unit setObjectTexture [0, "\A3\Characters_F\Common\Data\basicbody_black_co.paa"];
+		_ADF_unit setObjectTextureGlobal [0, "\A3\Characters_F\Common\Data\basicbody_black_co.paa"];
 	};		
 	if (_r != "uav") then {	
 		if ((_r == "ssc") || (_r == "rtl") || (_r == "rto")) then {	
@@ -594,7 +604,7 @@ ADF_fnc_loadoutSor = {
 			if (!ADF_mod_TFAR && !ADF_mod_ACRE) then {_ADF_unit addBackpack "B_AssaultPack_rgr"};
 			if (ADF_microDAGR_all == 2) then {_ADF_unit addItemToUniform ADF_microDAGR};
 		} else {
-			_ADF_unit addBackpack "B_AssaultPack_blk";
+			if (_r != "rm") then {_ADF_unit addBackpack "B_AssaultPack_blk";} else {_ADF_unit addBackpack "B_Bergen_mcamo";};
 		};
 		// Store in Backpack
 		_ADF_unit addItemToBackpack "MiniGrenade";
@@ -603,12 +613,16 @@ ADF_fnc_loadoutSor = {
 	if (ADF_dlc_MarksMan) then {_ADF_unit addVest "V_PlateCarrierSpec_blk";} else {_ADF_unit addVest "V_TacVestIR_blk";}; //MM DLC check
 	_ADF_unit addWeapon "G_Tactical_Black";	
 	// Store in Vest
-	if (ADF_mod_ACE3 && (_r != "uav")) then {for "_i" from 1 to 4 do {_ADF_unit addItemToVest "ACE_M84"}};
+	if (ADF_mod_ACE3 && (_r != "uav")) then {for "_i" from 1 to 3 do {_ADF_unit addItemToVest "ACE_M84"}};
 	_ADF_unit addItemToVest "acc_flashlight";
 	// Store in Uniform
 	if (ADF_mod_ACE3) then {
-		_ADF_unit addItemToUniform "ACE_fieldDressing";
-		_ADF_unit addItemToUniform "ACE_fieldDressing";			
+		for "_i" from 1 to 3 do {			
+			_ADF_unit addItemToVest "ACE_fieldDressing";
+			_ADF_unit addItemToVest "ACE_elasticBandage";
+			_ADF_unit addItemToVest "ACE_quikclot";						
+		};	
+		_ADF_unit addItemToVest "ACE_morphine";	
 	} else {
 		_ADF_unit addItemToUniform "FirstAidKit";
 		_ADF_unit addItemToUniform "FirstAidKit";			
@@ -744,18 +758,28 @@ ADF_fnc_loadoutSor = {
 			_ADF_unit addItemToVest "Chemlight_green";
 		};
 		// Store in Backpack
-		if (ADF_mod_ACE3) then { // ACE3
+		if (ADF_mod_ACE3) then { // ACE3 Advanced Medical
 			for "_i" from 1 to 10 do {			
 				_ADF_unit addItemToBackpack "ACE_fieldDressing";
+				_ADF_unit addItemToBackpack "ACE_elasticBandage";
+				_ADF_unit addItemToBackpack "ACE_quikclot";
+				_ADF_unit addItemToBackpack "ACE_atropine";				
+			};		
+			for "_i" from 1 to 7 do {			
 				_ADF_unit addItemToBackpack "ACE_morphine";
-			};
-			for "_i" from 1 to 8 do {			
 				_ADF_unit addItemToBackpack "ACE_epinephrine";				
+				_ADF_unit addItemToBackpack "ACE_packingBandage";			
 			};
 			for "_i" from 1 to 4 do {			
-				_ADF_unit addItemToBackpack "ACE_bloodIV";				
+				_ADF_unit addItemToBackpack "ACE_salineIV_500";					
+				_ADF_unit addItemToBackpack "ACE_tourniquet";				
 			};
-			_ADF_unit addItemToBackpack "ACE_personalAidKit";				
+			for "_i" from 1 to 2 do {			
+				_ADF_unit addItemToBackpack "ACE_bloodIV";				
+				_ADF_unit addItemToBackpack "ACE_plasmaIV";
+				_ADF_unit addItemToBackpack "ACE_personalAidKit";
+			};
+			_ADF_unit addItemToBackpack "ACE_surgicalKit";
 		} else { // Vanilla
 			for "_i" from 1 to 10 do {			
 				_ADF_unit addItemToBackpack "FirstAidKit";
@@ -786,6 +810,7 @@ ADF_fnc_loadoutSor = {
 	
 	//_ADF_unit unassignItem "NVGoggles";	
 	_ADF_unit selectWeapon (primaryWeapon _ADF_unit);
+	if (ADF_mod_ACE3) then {[_ADF_unit, currentWeapon _ADF_unit, currentMuzzle _ADF_unit] call ACE_SafeMode_fnc_lockSafety;};
 	if (ADF_Clan_uniformInsignia) then {[_ADF_unit,"CLANPATCH"] call BIS_fnc_setUnitInsignia};
 	_ADF_perfDiagStop = diag_tickTime;
 	if (ADF_debug) then {
@@ -1055,6 +1080,7 @@ ADF_fnc_loadoutSod = {
 	//_ADF_unit unassignItem "NVGoggles";	
 
 	_ADF_unit selectWeapon (primaryWeapon _ADF_unit);
+	if (ADF_mod_ACE3) then {[_ADF_unit, currentWeapon _ADF_unit, currentMuzzle _ADF_unit] call ACE_SafeMode_fnc_lockSafety;};
 	if (ADF_Clan_uniformInsignia) then {[_ADF_unit,"CLANPATCH"] call BIS_fnc_setUnitInsignia};
 	_ADF_perfDiagStop = diag_tickTime;
 	if (ADF_debug) then {
@@ -1185,6 +1211,7 @@ ADF_fnc_loadoutSop = {
 	_ADF_unit setFace _ADF_SOP_face;
 	
 	_ADF_unit selectWeapon (primaryWeapon _ADF_unit);
+	if (ADF_mod_ACE3) then {[_ADF_unit, currentWeapon _ADF_unit, currentMuzzle _ADF_unit] call ACE_SafeMode_fnc_lockSafety;};
 	if (ADF_Clan_uniformInsignia) then {[_ADF_unit,"CLANPATCH"] call BIS_fnc_setUnitInsignia};
 	_ADF_perfDiagStop = diag_tickTime;
 	if (ADF_debug) then {
@@ -1258,6 +1285,7 @@ ADF_fnc_loadoutCav = {
 	[_ADF_unit, "hgun_P07_F", 3, "16Rnd_9x21_Mag"] call BIS_fnc_addWeapon;
 	
 	_ADF_unit selectWeapon (primaryWeapon _ADF_unit);
+	if (ADF_mod_ACE3) then {[_ADF_unit, currentWeapon _ADF_unit, currentMuzzle _ADF_unit] call ACE_SafeMode_fnc_lockSafety;};
 	if (ADF_Clan_uniformInsignia) then {[_ADF_unit,"CLANPATCH"] call BIS_fnc_setUnitInsignia};
 	_ADF_perfDiagStop = diag_tickTime;
 	if (ADF_debug) then {
@@ -1327,6 +1355,7 @@ ADF_fnc_loadoutAir = {
 		[_ADF_unit, "SMG_01_Holo_F", 3, "30Rnd_45ACP_Mag_SMG_01"] call BIS_fnc_addWeapon;		
 	};
 	
+	if (ADF_mod_ACE3) then {[_ADF_unit, currentWeapon _ADF_unit, currentMuzzle _ADF_unit] call ACE_SafeMode_fnc_lockSafety;};
 	if (ADF_Clan_uniformInsignia) then {[_ADF_unit,"CLANPATCH"] call BIS_fnc_setUnitInsignia};
 	
 	_ADF_perfDiagStop = diag_tickTime;
@@ -1355,6 +1384,7 @@ ADF_fnc_loadoutNotDef = {
 	_ADF_unit addItem "FirstAidKit";
 	_ADF_unit addItem "FirstAidKit";
 	_ADF_unit addWeapon "Binocular";
+	if (ADF_mod_ACE3) then {[_ADF_unit, currentWeapon _ADF_unit, currentMuzzle _ADF_unit] call ACE_SafeMode_fnc_lockSafety;};
 	_ADF_perfDiagStop = diag_tickTime;
 	if (ADF_debug) then {
 		_debugDiag = format [" (DIAG: %1)",_ADF_perfDiagStop - _ADF_perfDiagStart];

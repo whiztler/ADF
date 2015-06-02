@@ -4,7 +4,7 @@ ADF version: 1.39 / MAY 2015
 
 Script: Loadouts EAST
 Author: Saetheer
-Script version: 2.3
+Script version: 2.31
 
 Game type: n/a
 File: ADF_loadOutsEast.sqf
@@ -23,3 +23,5 @@ want it included.
 
 The script runs on initial join, on jip and on respawn.
 ****************************************************************/
+
+diag_log "ADF RPT: Init - executing ADF_fnc_LoadoutEast.sqf"; // Reporting. Do NOT edit/remove

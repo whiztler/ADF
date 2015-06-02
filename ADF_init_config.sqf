@@ -4,7 +4,7 @@ ADF version: 1.39 / MAY 2015
 
 Script: Mission Config
 Author: Whiztler
-Script version: 1.56
+Script version: 1.57
 
 Game type: n/a
 File: ADF_init_config.sqf
@@ -13,6 +13,8 @@ Use this file to configure and define mission parameters,
 modules and scripts.
 ****************************************************************/
 
+diag_log "ADF RPT: Init - executing ADF_init_config.sqf"; // Reporting. Do NOT edit/remove
+
 /********** GENERAL **********/
 _ADF_mission_version = 1.0; // Mission version
 _ADF_mission_init_time = 30; // Mission Init time counter. Min 30 secs. Add 1 sec per 2 players. 10 players = 35 secs.
@@ -20,6 +22,7 @@ _ADF_HC_init = true; // Enable the Headless Client [true/false].
 _ADF_HCLB_enable = true; // Enable load balancing across multiple HC's (max 3)
 ADF_playerSide = WEST; // Which side are playable units on [WEST / EAST / GUER / CIV]
 ADF_debug = false; // For mission testing/debugging set to true. Make sure to set to false before compiling your final PBO.
+ADF_Log_ServerPerfEnable = true; // Enable server performance logging in RPT. [true/false]
 ADF_clanName = "ADF"; // What is the name of your community/clan. Used in Hints, intro's etc.
 ADF_clanTAG = "ADF"; // What is the tag of your community/clan. Used in Hints, intro's etc.
 ADF_clanLogo = "Img\clan_logo_ADF.paa"; // Full path to the clan logo. 
@@ -79,7 +82,7 @@ _ADF_Caching_unitDistance = 1000; // AI Unit caching distance default = 1000 met
 _ADF_Caching_vehicleDistance_land = 250; // Cars caching distance default = 250 meters.
 _ADF_Caching_vehicleDistance_air = 1500; // aircraft caching distance default = 250 meters.
 _ADF_Caching_vehicleDistance_sea = 2000; // boats caching distance default = 250 meters.
-_ADF_Caching_debugInfo = true; // Show caching debug info in ADF_debug mode
+_ADF_Caching_debugInfo = false; // Show caching debug info in ADF_debug mode
 
 /********** VIEW DISTANCE **********/
 setViewDistance 1500; // Default view distance.
@@ -119,7 +122,7 @@ _ADF_ambient_vCiv_nr = 1; // number of vehicles to spawn around the players. Thi
 _ADF_ambient_vCiv_dist = 500; // Vehicle spawn distance from player in meters.
 _ADF_ambient_vCiv_del = 1000; // Vehicle delete distance from player in meters.
 
-//Garbage collector
+// Garbage collector
 _ADF_CleanUp = true; // enable cleaning up of dead bodies (friendly, enemy, vehicles, etc.) [true/false].
 _ADF_CleanUp_viewDist = 500; // min distance in meter from a player unit to allow delete, if you dont care if player sees the delete, set it to 0.
 _ADF_CleanUp_manTimer = 300; // x seconds until delete of dead man units.
@@ -131,5 +134,5 @@ _ADF_zeusEagle = true; // Enable the Zeus Eagle? False removes the eagle [true/f
 
 /********** ADF DEV BUILD SETTINGS **********/
 _ADF_tpl_version = 1.39; // ADF version DO NOT EDIT
-_ADF_devBuild = "Beta"; // [Alpha/Beta/Production] DO NOT EDIT
-_ADF_devBuildNr = "5"; // Build number. DO NOT EDIT
+_ADF_devBuild = "Production"; // [Alpha/Beta/Production] DO NOT EDIT
+_ADF_devBuildNr = "13"; // Build number. DO NOT EDIT

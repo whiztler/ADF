@@ -4,7 +4,7 @@ ADF version: 1.39 / MAY 2015
 
 Script: Mobile Respawn
 Author: Whiztler
-Script version: 3.3
+Script version: 3.31
 
 Game type: COOP
 File: ADF_MHQ.sqf
@@ -24,6 +24,8 @@ If the MHQ is moving then the player respawn is NOT updated to the (moving) MHQ 
 Instructions:
 Place a vehicle on the map and name it MHQ.
 ****************************************************************/
+
+diag_log "ADF RPT: Init - executing ADF_MHQ.sqf"; // Reporting. Do NOT edit/remove
 
 _ADF_perfDiagStart = diag_tickTime;
 if (side player == EAST) exitWith {if (ADF_debug) then {["MHQ - MHQ only works for WEST side",true] call ADF_fnc_log;}}; // Blufor only!

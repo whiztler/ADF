@@ -4,7 +4,7 @@ ADF version: 1.39 / MAY 2015
 
 Script: Game Master/Instructor/Zeus configuration
 Author: Whiztler
-Script version: 1.4
+Script version: 1.42
 
 Game type: n/a
 File: ADF_GM.sqf
@@ -24,9 +24,13 @@ Place a 'ZEUS Game Master' module for each unit:
 
 // Init
 if ((isNil "GM_1") && (isNil "GM_2")) exitWith {// No Zeus playable slots detected
-	if (ADF_debug) then {["ZEUS: No GM units active. Terminating ADF_GM",false] call ADF_fnc_log};
+	if (ADF_debug) then {
+		["ZEUS: No GM units active. Terminating ADF_GM",false] call ADF_fnc_log
+	} else {
+		diag_log "ADF RPT: ZEUS: No GM units active. Terminating ADF_GM";
+	};
 }; 
-_ADF_zeusEagle_enable = _this select 0;
+_ADF_zeusEagle = _this select 0;
 showCuratorCompass true;
 
 if (!(isNil "GM_1") || !(isNil "GM_2")) then { // check if GM units exist 
@@ -59,7 +63,7 @@ if (!(isNil "GM_1") || !(isNil "GM_2")) then { // check if GM units exist
 
 if (!isServer) exitWith {};
 
-if !(_ADF_zeusEagle_enable) then { // Kill the Zeus Eagle?
+if !(_ADF_zeusEagle) then { // Kill the Zeus Eagle?
 	[] spawn {
 		private ["_curPos"];
 		_curPos = [];
@@ -69,15 +73,13 @@ if !(_ADF_zeusEagle_enable) then { // Kill the Zeus Eagle?
 		};
 		{
 			while {true} do {
-				{if (typeOf _x == "Eagle_F") then {deleteVehicle _x}} forEach ((_curPos select 0) nearEntities ["man", 50]); // v1.39
-				uiSleep 120;
+				{if (typeOf _x == "Eagle_F") then {deleteVehicle _x}} forEach ((_curPos select 0) nearEntities ["man", 500]); // v1.39 B10
+				Sleep 120;
 				if (ADF_debug) then {["ZEUS - Zeus Eagle deactivated",false] call ADF_fnc_log};
 			};
 		} forEach allCurators;		
 	};
 };
-
-//["ADF_killEagle","onEachFrame",{{if (typeOf _x == "Eagle_F") then {deleteVehicle _x}} forEach (_curPos select 0)}] call BIS_fnc_addStackedEventHandler; // v1.39 A15
 
 // ADV_zeus by Belbo. Edited by Whiz
 waitUntil {ADF_set_callSigns};
@@ -112,6 +114,14 @@ if (((isNil "GMmod_1") && !(isNil "GMmod_2")) && (!(isNil "GM_1") && (isNil "GM_
 if ((!(isNil "GMmod_1") && (isNil "GMmod_2")) && ((isNil "GM_1") && !(isNil "GM_2"))) exitWith {
 	if (ADF_debug) then {["ZEUS - Cannot assign GM_2 to GMmod_1. Terminating",true] call ADF_fnc_log};
 };
+
+if (ADF_mod_Ares) exitWith { // Use ARES instead of ADF Zeus functions V1.39 B7
+	if (ADF_debug) then {
+		["ZEUS: Ares addon detected. Using Ares instead of ADF Zeus functions",false] call ADF_fnc_log
+	} else {
+		diag_log "ADF RPT: ZEUS: Ares addon detected. Using Ares instead of ADF Zeus functions";
+	};
+}; 
 
 _addCivilians = true;
 
