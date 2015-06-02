@@ -1,22 +1,13 @@
-<p align="center">
-    <img src="https://github.com/whiztler/ADF/raw/master/Core/I/ADF_logo.png"
-         height="112">
-</p>
-
-
+<p align="center"><img src="https://github.com/whiztler/ADF/raw/master/Core/I/ADF_logo.png" height="240"></p>
 <p align="center">
    <a href="https://github.com/whiztler/ADF/releases">
-    v1.39
-        <img src="http://img.shields.io/badge/Version-1.39-blue.svg?style=flat"
-             alt="ADF version">
+        <img src="http://img.shields.io/badge/Version-1.39-blue.svg?style=flat" alt="ADF version">
     </a>
     <a href="https://github.com/whiztler/ADF/archive/master.zip">
-    2.4 Mb
-        <img src="http://img.shields.io/badge/Download-40.9_MB-green.svg?style=flat"
-             alt="ACE download">
+        <img src="http://img.shields.io/badge/Download-2.4_MB-green.svg?style=flat" alt="ADF download">
     </a>
     <a href="https://www.bistudio.com/community/licenses/arma-public-license">
-        <img src="http://img.shields.io/badge/License-GPLv2-red.svg?style=flat"
+        <img src="http://img.shields.io/badge/License-APL-red.svg?style=flat"
              alt="ARMA Public license">
     </a>
 </p>
