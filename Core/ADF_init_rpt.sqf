@@ -4,7 +4,7 @@ ADF version: 1.39 / MAY 2015
 
 Script: Mission init / Init reporting
 Author: Whiztler
-Script version: 1.04
+Script version: 1.05
 
 Game type: n/a
 File: ADF_init_rpt.sqf
@@ -41,6 +41,8 @@ if (ADF_debug) then {
 	[_ADF_log_compileMsg,false] call ADF_fnc_log;
 	_ADF_log_compileMsg = format ["Init - Number of clients connected: %1", (count ADF_log_pUnits)];
 	[_ADF_log_compileMsg,false] call ADF_fnc_log;
+	_ADF_log_compileMsg = format ["Init - Number of HC's connected: %1", ADF_log_CntHC];
+	[_ADF_log_compileMsg,false] call ADF_fnc_log;	
 	_ADF_log_compileMsg = format ["Init - Number of AI's active: %1", ADF_log_aiUnits];
 	[_ADF_log_compileMsg,false] call ADF_fnc_log;
 	diag_log "--------------------------------------------------------------------------------------";
@@ -91,7 +93,7 @@ if (!ADF_debug && ADF_Log_ServerPerfEnable) then { // ADF_debug already reports 
 			if (_ADF_serverFPS < 15) then {_ADF_rptSnooz = 1};
 			_ADF_GameTime_HMS = [(round time)] call BIS_fnc_secondsToString;
 			diag_log format ["ADF RPT: PERF - Total players: %1  --  Total AI's: %2",count ADF_log_players,ADF_log_ai];
-			diag_log format ["ADF RPT: PERF - Elapsed time [H:M:S]: %1  --  Server FPS: %2  --  Server Min FPS: %3",_ADF_GameTime_HMS,_ADF_serverFPS,round (diag_fpsmin)];
+			diag_log format ["ADF RPT: PERF - Elapsed time: %1  --  Server FPS: %2  --  Server Min FPS: %3",_ADF_GameTime_HMS,_ADF_serverFPS,round (diag_fpsmin)];
 			uiSleep _ADF_rptSnooz;
 			false
 		};
