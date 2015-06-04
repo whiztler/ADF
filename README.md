@@ -40,7 +40,7 @@
 version: 1.40 | build: Beta 01
 
 <a name="New-Features"></a>
-## New Features 1.39
+## New Features 1.39 
 
 ADF 1.39 is a major change release that comprises of script optimization and new features such as:
 
