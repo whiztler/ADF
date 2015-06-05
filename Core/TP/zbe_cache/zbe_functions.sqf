@@ -14,7 +14,7 @@ zbe_cache = {
 		_x enablesimulationglobal false;
 		_x hideobjectglobal true;};
 	} forEach _toCache;
-	};
+};
 
 zbe_unCache = {
 	{if (!(isPlayer _x) && {!("driver" in assignedVehicleRole _x)}) then {

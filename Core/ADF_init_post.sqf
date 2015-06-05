@@ -1,10 +1,10 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.39 / MAY 2015
+ADF version: 1.40 / JUNE 2015
 
 Script: Mission initialization countdown timer
 Author: Whiztler
-Script version: 1.44
+Script version: 1.46
 
 Game type: n/a
 File: ADF_init_post.sqf
@@ -52,17 +52,16 @@ if (isServer) then {
 	_m setMarkerType "mil_box";
 	_m setMarkerColor "ColorWhite";
 	_m setMarkerDir 0;
-	_m setMarkerText ADF_mapMrkText;	
+	_m setMarkerText ADF_mapMrkText;
+	
+	if ({side _x == EAST} count allUnits == 0) then {createCenter EAST;};
+	if ({side _x == west} count allUnits == 0) then {createCenter WEST;};
+	if ({side _x == RESISTANCE} count allUnits == 0) then {createCenter RESISTANCE;};
+	if ({side _x == CIVILIAN} count allUnits == 0) then {createCenter CIVILIAN;};
 };
 
 if (time > 300) exitWith {ADF_missionInit = true;};
-
-if ({side _x == EAST} count allUnits == 0) then {createCenter EAST;};
-if ({side _x == west} count allUnits == 0) then {createCenter WEST;};
-if ({side _x == RESISTANCE} count allUnits == 0) then {createCenter RESISTANCE;};
-if ({side _x == CIVILIAN} count allUnits == 0) then {createCenter CIVILIAN;};
-
-If (isDedicated || !hasInterface) exitWith {ADF_missionInit = true;};
+If (isDedicated || ADF_isHC) exitWith {ADF_missionInit = true;};
 if (ADF_debug) exitWith {ADF_missionInit = true; publicVariable "ADF_missionInit";["INIT - debug mode detected, skipping mission init timer",false] call ADF_fnc_log;};
 if (!isServer && (local player)) then {_ADF_unit enableSimulation false;};
 
