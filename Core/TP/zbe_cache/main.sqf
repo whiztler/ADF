@@ -1,12 +1,12 @@
 zbe_aiCacheDist				= _this select 0;
-zbe_minFrameRate			= _this select 1;
+zbe_minFrameRate				= _this select 1;
 zbe_debug					= _this select 2;
 zbe_vehicleCacheDistCar		= _this select 3;
 zbe_vehicleCacheDistAir		= _this select 4;
-zbe_vehicleCacheDistBoat	= _this select 5;
+zbe_vehicleCacheDistBoat		= _this select 5;
 _ADF_Caching_debugInfo		= _this select 6;
 
-zbe_allGroups	   			= 0;
+zbe_allGroups	   				= 0;
 zbe_cachedGroups   			= [];
 zbe_cachedUnits	   			= 0;
 zbe_allVehicles	   			= 0;

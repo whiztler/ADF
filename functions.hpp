@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.39 / MAY 2015
+ADF version: 1.40 / JUNE 2015
 
 Script: Config Functions
 Author: Whiztler
@@ -11,6 +11,7 @@ File: functions.hpp
 ****************************************************************
 Functions registration goes in here.
 ****************************************************************/
+
 class CfgFunctions {
 	class TAWVD 	{
 		tag = "TAWVD";
