@@ -4,7 +4,7 @@ ADF version: 1.40 / JUNE 2015
 
 Script: Loadout Client
 Author: Whiztler
-Script version: 5.43
+Script version: 5.42
 
 Game type: n/a
 File: ADF_clientLoadout.sqf
@@ -16,7 +16,7 @@ diag_log "ADF RPT: Init - executing ADF_clientLoadout.sqf"; // Reporting. Do NOT
 
 _ADF_perfDiagStart = diag_tickTime;
 if (ADF_debug) then {["LOADOUT - Loadout Client started",false] call ADF_fnc_log};
-If (IsDedicated || !(local player) || ADF_isHC) exitWith {}; // 5.43
+If (IsDedicated || !(local player) || !hasInterface) exitWith {}; // 5.4
 private ["_ADF_noLoadout"];
 _ADF_noLoadout = _this select 15;
 if (_ADF_noLoadout) exitWith {if (ADF_debug) then {["Loadout - noLoadout option selected. Exiting loadout client.",false] call ADF_fnc_log;} else {diag_log "ADF RPT: Loadout - noLoadout option selected. Exiting loadout client.";};};

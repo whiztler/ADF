@@ -4,7 +4,7 @@ ADF version: 1.40 / JUNE 2015
 
 Script: Mission init
 Author: Whiztler
-Script version: 2.60
+Script version: 2.59
 
 Game type: n/a
 File: init.sqf
@@ -34,7 +34,7 @@ if (isServer) then  { //server init
 
 /**********  Mission Intro **********/
 
-if (!isDedicated && !ADF_debug && !ADF_missionInit && !ADF_isHC) then {
+if (!isDedicated && !ADF_debug && !ADF_missionInit) then {
 	if (_ADF_MissionIntroImage == "") then {_ADF_MissionIntroImage = ADF_clanLogo};
 	_ADF_MissionDesc = getText (missionConfigFile >> "onLoadMission");  	
 	[_ADF_mission_init_time,_ADF_MissionIntroImage,_ADF_MissionDesc] spawn {
@@ -47,7 +47,7 @@ if (!isDedicated && !ADF_debug && !ADF_missionInit && !ADF_isHC) then {
 
 /**********  Execute Core init/scripts **********/
 
-if (!ADF_isHC) then {call compile preprocessFileLineNumbers "Core\f\ADF_fnc_presets.sqf";};
+call compile preprocessFileLineNumbers "Core\f\ADF_fnc_presets.sqf";
 ADF_getLoadOut = [_ADF_customLoadout_MOD,_ADF_uniform_inf,_ADF_uniform_sor,_ADF_add_NVGoggles,_ADF_add_GPS,_ADF_INF_assault_weapon,_ADF_INF_LMG_weapon,_ADF_INF_hand_weapon,_ADF_INF_scopes,_ADF_SOR_assault_weapon,_ADF_SOR_hand_weapon,_ADF_CAV_assault_weapon,_ADF_TFAR_PersonalRadio,_ADF_TFAR_SWRadio,_ADF_TFAR_LRRadio,_ADF_noLoadout,_ADF_TFAR_LRRadioSOR,_ADF_ACE3_microDAGR_all,_ADF_ACE3_microDAGR_leaders,_ADF_cTAB_microDAGR_all,_ADF_cTAB_microDAGR_leaders] execVM "Core\ADF_clientLoadout.sqf"; // Loadout client. Configure in ADF_init_config.sqf
 if (_ADF_mhq_enable) then {[_ADF_mhq_enable,_ADF_mhq_respawn_time,_ADF_mhq_respawn_nr,_ADF_mhq_respawn_class,_ADF_mhq_deploy_time,_ADF_mhq_packup_time,_ADF_wTixNr] execVM "Core\ADF_MHQ.sqf"}; // Configure in ADF_init_config.sqf
 if (_ADF_misBal) then {[_ADF_misBal_low,_ADF_misBal_high] execVM "Core\F\ADF_fnc_missionBalancer.sqf";};

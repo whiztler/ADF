@@ -29,7 +29,6 @@ diag_log "ADF RPT: Init - executing ADF_MHQ.sqf"; // Reporting. Do NOT edit/remo
 
 _ADF_perfDiagStart = diag_tickTime;
 if (side player == EAST) exitWith {if (ADF_debug) then {["MHQ - MHQ only works for WEST side",true] call ADF_fnc_log;}}; // Blufor only!
-if (ADF_isHC) exitWith {}; // HC exits script
 
 // Check if we should run the script at all
 if (isNil "MHQ") then {  // Let's see if there is an MHQ vehicle
