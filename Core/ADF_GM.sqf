@@ -4,7 +4,7 @@ ADF version: 1.40 / JUNE 2015
 
 Script: Game Master/Instructor/Zeus configuration
 Author: Whiztler
-Script version: 1.42
+Script version: 1.43
 
 Game type: n/a
 File: ADF_GM.sqf
@@ -21,6 +21,9 @@ Place a 'ZEUS Game Master' module for each unit:
 - Default addons: All addons (incl unofficial ones)
 - Forced interface: disabled
 ****************************************************************/
+
+diag_log "ADF RPT: Init - executing ADF_GM.sqf"; // Reporting. Do NOT edit/remove
+if (ADF_isHC) exitWith {}; // HC exits script
 
 // Init
 if ((isNil "GM_1") && (isNil "GM_2")) exitWith {// No Zeus playable slots detected
