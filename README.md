@@ -1,7 +1,7 @@
 <p align="center"><img src="https://github.com/whiztler/ADF/raw/master/Core/I/ADF_logo.png" height="240"></p>
 <p align="center">
    <a href="https://github.com/whiztler/ADF/releases">
-        <img src="http://img.shields.io/badge/Version-1.40-blue.svg?style=flat" alt="ADF version">
+        <img src="http://img.shields.io/badge/Version-1.39-blue.svg?style=flat" alt="ADF version">
     </a>
     <a href="https://github.com/whiztler/ADF/archive/master.zip">
         <img src="http://img.shields.io/badge/Download-2.4_MB-green.svg?style=flat" alt="ADF download">
@@ -40,7 +40,7 @@
 version: 1.40 | build: Beta 01
 
 <a name="New-Features"></a>
-## New Features 1.39
+## New Features 1.39 
 
 ADF 1.39 is a major change release that comprises of script optimization and new features such as:
 
