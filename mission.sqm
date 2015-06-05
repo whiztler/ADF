@@ -76,7 +76,7 @@ class Mission
 	randomSeed=15384162;
 	class Intel
 	{
-		briefingName="CO117 ADF v1.40";
+		briefingName="CO117 ADF v1.40 B01";
 		overviewText="Arma Mission Development Framework v1.40";
 		resistanceWest=0;
 		timeOfChanges=7200;
