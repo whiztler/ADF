@@ -4,7 +4,7 @@ ADF version: 1.40 / JUNE 2015
 
 Script: Loadout Client
 Author: Whiztler
-Script version: 5.50
+Script version: 5.51
 
 Game type: n/a
 File: ADF_clientLoadout.sqf
@@ -100,7 +100,29 @@ if ((_ADF_unitFaction == "BLU_F") && _ADF_customLoadout_MOD) exitWith { // BLUFO
 		ADF_microDAGR = "ACE_microDAGR";
 		if (_ADF_ACE3_microDAGR_all) then {ADF_microDAGR_all = 1} else {ADF_microDAGR_all = 2};
 	};
-				
+	
+	// SOR uniform texture update
+	if (_s == "sor") then {
+		[_ADF_unit] spawn {
+			ADF_sorUnits = [];		
+			// Check if the SOR groups are populated/exist and add to ADF_sorUnits array
+			if !(isNil "gCO_4") then {ADF_sorUnits append gCO_4};
+			if !(isNil "gCO_41M") then {ADF_sorUnits append gCO_41M};
+			if !(isNil "gCO_41R") then {ADF_sorUnits append gCO_41R};
+			if !(isNil "gCO_41Y") then {ADF_sorUnits append gCO_41Y};
+			if !(isNil "gCO_41Z") then {ADF_sorUnits append gCO_41Z};			
+		
+			waitUntil {time > 10};
+			
+			player setObjectTexture [0, "\A3\Characters_F\Common\Data\basicbody_black_co.paa"];
+			{
+				{			
+					_x setObjectTexture [0, "\A3\Characters_F\Common\Data\basicbody_black_co.paa"];
+				} forEach units _x;
+			} forEach ADF_sorUnits;
+		};
+	};
+	
 	// Load the appropriate Squad/Role gear											
 	if (_s == "inf") exitWith {[_s,_r] call ADF_fnc_loudoutInf}; // Infantry Platoon
 	if (_s == "cav") exitWith {[_s,_r] call ADF_fnc_loadoutCav}; // Cavalry Battery
