@@ -20,14 +20,14 @@
         <li><a href="#descext">description.ext</a></li>
         <li><a href="#initcfg">ADF_init_config.sqf</a></li>
         <ul>
-        	<li><a href="#general">General</a></li>
-            <li><a href="#gearLoadout">Gear &amp; Loadout</a></li>
-            <li><a href="#misbal">Mission Balancing</a></li>
-            <li><a href="#caching">Unit &amp; Vehicle Caching</a></li>
-            <li><a href="#viewDist">View Distance</a></li>
-            <li><a href="#farp">F.A.R.P. Repair/Refuel/Rearm</a></li>
-            <li><a href="#mhq">Respawn / Mobile HQ (Mobile Respawn FOB)</a></li>
-            <li><a href="#mods">Misc. third party mods/scripts</a></li>
+          <li><a href="#general">General</a></li>
+          <li><a href="#gearLoadout">Gear &amp; Loadout</a></li>
+          <li><a href="#misbal">Mission Balancing</a></li>
+          <li><a href="#caching">Unit &amp; Vehicle Caching</a></li>
+          <li><a href="#viewDist">View Distance</a></li>
+          <li><a href="#farp">F.A.R.P. Repair/Refuel/Rearm</a></li>
+          <li><a href="#mhq">Respawn / Mobile HQ (Mobile Respawn FOB)</a></li>
+          <li><a href="#mods">Misc. third party mods/scripts</a></li>
         </ul>
         <li><a href="#ACE3Settings">ACE3 Settings</a></li>
       </ul>
@@ -49,8 +49,7 @@
     <h3 id="curver">Current version</h3>
     <p>version: 1.40<br />
       build: Production (06RC2)</p>
-    <h2 id="features">New Features 1.39</h2>
-    <p>ADF 1.39 is a major change release that comprises of script optimization and new features such as:</p>
+    <h2 id="features">New Features 1.39+</h2>
     <ul>
       <li><strong>Support for multiple Headless Clients with automatic Load Balancing</strong> - ADF 1.39 offers up to three HC's that should be named ADF_HC1, ADF_HC2, ADF_HC3. The mission maker can enable/disable load balancing. When enabled ADF transfers AI groups across available HC's (Round Robin method). See 'Core\ADF_HC.sqf' for more information.</li>
       <li><strong>ACE3 support</strong> - ADF 1.39 automatically detects the ACE3 mod (and cTAB, TFAR, ACRE2) on both clients and the server and applies loadout/supplies to personnel and vehicles where needed.</li>
@@ -58,10 +57,21 @@
       <li><strong>Extended debug information</strong> - when ADF_debug is enabled an extensive log of debug information is show on screen and written to the server RPT file. Note that the debug function influences FPS by a few frames.</li>
       <li><strong>Extended Loadout options</strong> - Predefined (ADF) loadout, Vanilla + ACE/CTAB/TFAR/ACRE loadout, No Loadout (for third party loadout mods)</li>
     </ul>
-    <p>Due to the many changes 1.39 is <strong>not  compatible</strong> with missions made with previous ADF versions.</p>
     <h3 id="chglog">Changelog</h3>
-    <h4> 1.38 - 1.39</h4>
     <div id="logBox">
+      <h4>1.40 </h4>
+      <ul>
+        <li>ADDED: Teleport to Group leader script.</li>
+        <li>ADDED: ACE 3.1.1 items to loadout/crates (HuntIR, TacLadder, Spotting Scope, Rangecard, etc.).</li>
+        <li>UPDATED: Preset client, faster initialization with added debugging information.</li>
+        <li>UPDATED: ACE3 Mission Config. Pease note that Advanced Medical and Advanced Ballistics are enabled by default.</li>
+        <li>UPDATED: MHQ FOB - now deploys the FOB items one by one.</li>
+        <li>UPDATED: Gamemaster/Zeus script. Now initializes faster.</li>
+        <li>FIXED: SOR uniforms - now synch correctly on Multiplayer, also after respawn.</li>
+        <li>FIXED: Preset client, sometimes no radio frequencies were applied.</li>
+        <li>FIXED: Initialization of supply crates.</li>
+      </ul>
+      <h4> 1.38 - 1.39</h4>
       <ul>
         <li>ADDED: Preliminary GitHub support [https://github.com/whiztler/ADF/tree/master]</li>
         <li>ADDED: Debug function: OpFor Detection</li>
