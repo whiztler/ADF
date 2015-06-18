@@ -40,9 +40,7 @@
 version: 1.40 | build: Production (06RC2)
 
 <a name="New-Features"></a>
-## New Features 1.39
-
-ADF 1.39 is a major change release that comprises of script optimization and new features such as:
+## New Features 1.39+
 
 -   **Support for multiple Headless Clients with automatic Load Balancing** - ADF 1.39 offers up to three HC's that should be named ADF_HC1, ADF_HC2, ADF_HC3. The mission maker can enable/disable load balancing. When enabled ADF transfers AI groups across available HC's (Round Robin method). See 'Core\\ADF_HC.sqf' for more information.
 -   **ACE3 support** - ADF 1.39 automatically detects the ACE3 mod (and cTAB, TFAR, ACRE2) on both clients and the server and applies loadout/supplies to personnel and vehicles where needed.
@@ -50,10 +48,21 @@ ADF 1.39 is a major change release that comprises of script optimization and new
 -   **Extended debug information** - when ADF_debug is enabled an extensive log of debug information is show on screen and written to the server RPT file. Note that the debug function influences FPS by a few frames.
 -   **Extended Loadout options** - Predefined (ADF) loadout, Vanilla + ACE/CTAB/TFAR/ACRE loadout, No Loadout (for third party loadout mods)
 
-Due to the many changes 1.39 is **not compatible** with missions made with previous ADF versions.
-
 <a name="Changelog"></a>
 ## Changelog
+
+### 1.40
+```
+-	ADDED: Teleport to Group leader script.
+-	ADDED: ACE 3.1.1 items to loadout/crates (HuntIR, TacLadder, Spotting Scope, Rangecard, etc.).
+-	UPDATED: Preset client, faster initialization with added debugging information.
+-	UPDATED: ACE3 Mission Config. Pease note that Advanced Medical and Advanced Ballistics are enabled by default.
+-	UPDATED: MHQ FOB - now deploys the FOB items one by one.
+-	UPDATED: Gamemaster/Zeus script. Now initializes faster.
+-	FIXED: SOR uniforms - now synch correctly on Multiplayer, also after respawn.
+-	FIXED: Preset client, sometimes no radio frequencies were applied.
+-	FIXED: Initialization of supply crates.
+```
 
 ### 1.38 - 1.39
 ```
