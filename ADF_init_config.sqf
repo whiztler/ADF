@@ -26,7 +26,7 @@ ADF_Log_ServerPerfEnable = true; // Enable server performance logging in RPT. [t
 ADF_clanName = "ADF"; // What is the name of your community/clan. Used in Hints, intro's etc.
 ADF_clanTAG = "ADF"; // What is the tag of your community/clan. Used in Hints, intro's etc.
 ADF_clanLogo = "Img\clan_logo_ADF.paa"; // Full path to the clan logo. 
-ADF_clanFlag = "Img\clan_flag_ADF.paa"; // Full path to the clan flag (dimensions 512 x 256, pref PAA format).
+ADF_clanFlag = "Img\clan_flag_Nopryl.paa"; // Full path to the clan flag (dimensions 512 x 256, pref PAA format).
 _ADF_MissionIntroImage = "Img\mission_cover_ADF.paa"; // Full path to the mission intro image (dimensions: 2038 x 1024, PAA format only). 
 ADF_Clan_uniformInsignia = true; // Apply custom clan insignia on uniform. Define in the description.ext [true/false]. 
 _ADF_preset = "DEFAULT"; // pre-defined call sign/radio freq presets. [DEFAULT / SHAPE / NOPRYL / CUSTOM]. Configure the presets in 'Core\F\ADF_fnc_presets.sqf'
@@ -50,7 +50,7 @@ _ADF_SOR_hand_weapon = 1; // SpecOp/Recon Hand weapon: 1 = 4-five .45.  #  2 = P
 _ADF_CAV_assault_weapon = 1; // Cavalry crew weapon: 1 = MX Compact series  #  2 = Vermin SMG.
 // ACE
 _ADF_ACE3_microDAGR_all = false; // enable the ACE3 MicroDAGR for all players [true/false]
-_ADF_ACE3_microDAGR_leaders = true; // enable the ACE3 MicroDAGR for leadership only [true/false]
+_ADF_ACE3_microDAGR_leaders = true; // enable the ACE3 MicroDAGR for leadership only [true/false]. Note that when both are set to false ACE BFT will be disabled.
 // cTAB
 _ADF_cTAB_side = ADF_playerSide; // Gets the information from ADF_playerside. Only change (EAST, WEST) if needed to.
 _ADF_cTAB_microDAGR_all = false; // enable the ACE3 MicroDAGR for all players [true/false]
@@ -134,5 +134,5 @@ _ADF_zeusEagle = true; // Enable the Zeus Eagle? False removes the eagle [true/f
 
 /********** ADF DEV BUILD SETTINGS **********/
 _ADF_tpl_version = "1.40"; // ADF version DO NOT EDIT
-_ADF_devBuild = "Beta"; // [Alpha/Beta/Production] DO NOT EDIT
-_ADF_devBuildNr = "04"; // Build number. DO NOT EDIT
+_ADF_devBuild = "Production"; // [Alpha/Beta/Production] DO NOT EDIT
+_ADF_devBuildNr = "06"; // Build number. DO NOT EDIT

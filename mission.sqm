@@ -37,7 +37,8 @@ class Mission
 		"A3_Boat_F_SDV_01",
 		"A3_Characters_F_EPC",
 		"A3_Weapons_F_Ammoboxes",
-		"A3_Signs_F"
+		"A3_Signs_F",
+		"A3_Characters_F_OPFOR"
 	};
 	addOnsAuto[]=
 	{
@@ -76,7 +77,7 @@ class Mission
 	randomSeed=15384162;
 	class Intel
 	{
-		briefingName="CO117 ADF v1.40 B04";
+		briefingName="CO117 ADF v1.40 B6 RC2";
 		overviewText="Arma Mission Development Framework v1.40";
 		resistanceWest=0;
 		timeOfChanges=7200;
@@ -155,7 +156,7 @@ class Mission
 					rank="LIEUTENANT";
 					skill=0.2;
 					text="GM_1";
-					init="player setCaptive true; player allowDamage false; gGM1 = group this; gGM1 setGroupID [""gGM1""];";
+					init="player setCaptive true; player allowDamage false; gGM1 = group this; gGM1 setGroupID [""gGM1""]; this setObjectTexture [0, ""\A3\characters_f\common\data\coveralls_black_co.paa""];";
 					description="GM/INSTRUCTOR 1";
 				};
 			};
@@ -177,7 +178,7 @@ class Mission
 					rank="LIEUTENANT";
 					skill=0.2;
 					text="GM_2";
-					init="player setCaptive true; player allowDamage false; gGM2 = group this; gGM2 setGroupID [""gGM2""];";
+					init="player setCaptive true; player allowDamage false; gGM2 = group this; gGM2 setGroupID [""gGM2""]; this setObjectTexture [0, ""\A3\characters_f\common\data\coveralls_black_co.paa""];";
 					description="GM/INSTRUCTOR 2";
 				};
 			};
