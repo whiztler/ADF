@@ -50,7 +50,7 @@ _ADF_SOR_hand_weapon = 1; // SpecOp/Recon Hand weapon: 1 = 4-five .45.  #  2 = P
 _ADF_CAV_assault_weapon = 1; // Cavalry crew weapon: 1 = MX Compact series  #  2 = Vermin SMG.
 // ACE
 _ADF_ACE3_microDAGR_all = false; // enable the ACE3 MicroDAGR for all players [true/false]
-_ADF_ACE3_microDAGR_leaders = true; // enable the ACE3 MicroDAGR for leadership only [true/false]
+_ADF_ACE3_microDAGR_leaders = true; // enable the ACE3 MicroDAGR for leadership only [true/false]. Note that when both are set to false ACE BFT will be disabled.
 // cTAB
 _ADF_cTAB_side = ADF_playerSide; // Gets the information from ADF_playerside. Only change (EAST, WEST) if needed to.
 _ADF_cTAB_microDAGR_all = false; // enable the ACE3 MicroDAGR for all players [true/false]
@@ -134,5 +134,5 @@ _ADF_zeusEagle = true; // Enable the Zeus Eagle? False removes the eagle [true/f
 
 /********** ADF DEV BUILD SETTINGS **********/
 _ADF_tpl_version = "1.40"; // ADF version DO NOT EDIT
-_ADF_devBuild = "Beta"; // [Alpha/Beta/Production] DO NOT EDIT
-_ADF_devBuildNr = "05"; // Build number. DO NOT EDIT
+_ADF_devBuild = "Production"; // [Alpha/Beta/Production] DO NOT EDIT
+_ADF_devBuildNr = "06"; // Build number. DO NOT EDIT
