@@ -4,7 +4,7 @@ ADF version: 1.40 / JUNE 2015
 
 Script: customize call signs and radio freq/channels for groups
 Author: Whiztler
-Script version: 2.2
+Script version: 2.3
 
 Game type: n/a
 File: ADF_presets.sqf
@@ -250,7 +250,9 @@ ADF_preset_WP = [
 	[	"gCO_41M",		"WOLF-1",		50,		100],	// Wolfpack Wolf-1				28
 	[	"gCO_41R",		"WOLF-2",		50,		200],	// Wolfpack Wolf-2				29
 	[	"gCO_41Y",		"WOLF-3",		50,		300],	// Wolfpack Wolf-3				30
-	[],[],[],[],[],[]	 									// 31-36
+	[],[],[],[],											// 31-34
+	[	"gGM1",			"TRAINER",		35,		350],	// GM-1						35 > 141B01
+	[]	 												// 36
 // DO NOT EDIT BELOW
 ];	
 

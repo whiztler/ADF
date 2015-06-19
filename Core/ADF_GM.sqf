@@ -4,7 +4,7 @@ ADF version: 1.40 / JUNE 2015
 
 Script: Game Master/Instructor/Zeus configuration
 Author: Whiztler
-Script version: 1.46
+Script version: 1.49
 
 Game type: n/a
 File: ADF_GM.sqf
@@ -41,40 +41,83 @@ if !(isNil "GM_1") then {
 	if !(player == GM_1) exitWith {};
 
 	GM_1 addAction ["<t align='left' color='#FBF4DF'>GM - Teleport</t>",{openMap true;hintSilent format ["%1, click on a location on the map to teleport...", name vehicle player];onMapSingleClick "vehicle player setPos _pos; onMapSingleClick ' '; true; openMap false; hint format ['%1, you are now at: %2', name vehicle player, getPosATL player];";},[],-85,true,true,"",""];	
-	GM_1 addAction ["<t align='left' color='#FBF4DF'>GM - Splendid Camera</t>",{[] execVM "a3\functions_f\Debug\fn_camera.sqf";},[],-85,true,true,"",""];	
 	
 	removeBackpackGlobal GM_1;
-	GM_1 addBackpack "tf_rt1523g";
+	removeUniform GM_1;
 	removeHeadgear GM_1;
-	if (ADF_mod_ACE3) then {
-		GM_1 setVariable ["ace_medical_allowDamage", false];
-		GM_1 addItemToUniform "ACE_microDAGR";
-		GM_1 addItemToUniform "ace_mapTools";
-		GM_1 addItemToUniform "ACE_EarPlugs";
-	};
-	if (ADF_mod_CTAB) then {GM_1 addItemToBackpack "ItemAndroid"};
+	GM_1 forceAddUniform "U_BG_Guerrilla_6_1";
+	GM_1 addHeadgear "H_Booniehat_khk_hs";
+	if (ADF_mod_TFAR) then {GM_1 addBackpack "tf_rt1523g";} else {GM_1 addBackpack "B_TacticalPack_blk";};
+	GM_1 addVest "V_Rangemaster_belt";
+	GM_1 unassignItem "NVGoggles";
+	GM_1 addWeapon "ItemGPS";
+	GM_1 addWeapon "NVGoggles";
+	GM_1 addWeapon "Laserdesignator";
+	GM_1 addMagazine "Laserbatteries";
+	GM_1 unassignItem "NVGoggles";
 	GM_1 linkItem "ItemGPS";
-	if (ADF_debug) then {["ZEUS: GM-1 active",false] call ADF_fnc_log};
+	if (ADF_mod_ACE3) then {
+		GM_1 setVariable ["ace_medical_allowDamage", false];	
+		GM_1 addItem "ACE_fieldDressing";
+		GM_1 addItem "ACE_fieldDressing";
+		GM_1 addItem "ACE_morphine";
+		GM_1 addItem "ACE_EarPlugs";
+		GM_1 addItem "ace_mapTools";
+		GM_1 addItem "ACE_CableTie";
+		GM_1 addItem "ACE_IR_Strobe_Item";		
+	} else {
+		GM_1 addItem "FirstAidKit";
+		GM_1 addItem "FirstAidKit";			
+	};
+	if (ADF_mod_ACRE) then {GM_1 addWeapon "ACRE_PRC343"};
+	if (ADF_mod_TFAR) then {GM_1 addWeapon "tf_anprc152"};	
+	if (!ADF_mod_ACRE && !ADF_mod_TFAR) then {GM_1 addWeapon "ItemRadio"};
+	if (ADF_mod_CTAB) then {(backpackContainer GM_1) addItemCargoGlobal ["ItemcTab",1]};
+	if (ADF_Clan_uniformInsignia) then {[GM_1,"CLANPATCH"] call BIS_fnc_setUnitInsignia};
+	ADF_GM_init = true;
+	if (ADF_debug) then {["ZEUS: GM-1 active",false] call ADF_fnc_log};	
 };
 
 if !(isNil "GM_2") then {
 	if !(player == GM_2) exitWith {};
 
 	GM_2 addAction ["<t align='left' color='#FBF4DF'>GM - Teleport</t>",{openMap true;hintSilent format ["%1, click on a location on the map to teleport...", name vehicle player];onMapSingleClick "vehicle player setPos _pos; onMapSingleClick ' '; true; openMap false; hint format ['%1, you are now at: %2', name vehicle player, getPosATL player];";},[],-85,true,true,"",""];	
-	GM_2 addAction ["<t align='left' color='#FBF4DF'>GM - Splendid Camera</t>",{[] execVM "a3\functions_f\Debug\fn_camera.sqf";},[],-85,true,true,"",""];
 	
 	removeBackpackGlobal GM_2;
-	GM_2 addBackpack "tf_rt1523g";
+	removeUniform GM_2;
 	removeHeadgear GM_2;
-	if (ADF_mod_ACE3) then {
-		GM_2 setVariable ["ace_medical_allowDamage", false];
-		GM_2 addItemToUniform "ACE_microDAGR";
-		GM_2 addItemToUniform "ace_mapTools";
-		GM_2 addItemToUniform "ACE_EarPlugs";
-	};
-	if (ADF_mod_CTAB) then {GM_2 addItemToBackpack "ItemAndroid"};
+	GM_2 forceAddUniform "U_BG_Guerrilla_6_1";
+	GM_2 addHeadgear "H_Booniehat_khk_hs";
+	if (ADF_mod_TFAR) then {GM_2 addBackpack "tf_rt1523g";} else {GM_2 addBackpack "B_TacticalPack_blk";};
+	GM_2 addVest "V_Rangemaster_belt";
+	GM_2 unassignItem "NVGoggles";
+	GM_2 addWeapon "ItemGPS";
+	GM_2 addWeapon "NVGoggles";
+	GM_2 addWeapon "Laserdesignator";
+	GM_2 addMagazine "Laserbatteries";
+	GM_2 unassignItem "NVGoggles";
 	GM_2 linkItem "ItemGPS";
-	if (ADF_debug) then {["ZEUS: GM-2 active",false] call ADF_fnc_log};
+	
+	if (ADF_mod_ACE3) then {
+		GM_2 setVariable ["ace_medical_allowDamage", false];	
+		GM_2 addItem "ACE_fieldDressing";
+		GM_2 addItem "ACE_fieldDressing";
+		GM_2 addItem "ACE_morphine";
+		GM_2 addItem "ACE_EarPlugs";
+		GM_2 addItem "ace_mapTools";
+		GM_2 addItem "ACE_CableTie";
+		GM_2 addItem "ACE_IR_Strobe_Item";		
+	} else {
+		GM_2 addItem "FirstAidKit";
+		GM_2 addItem "FirstAidKit";			
+	};
+	if (ADF_mod_ACRE) then {GM_2 addWeapon "ACRE_PRC343"};
+	if (ADF_mod_TFAR) then {GM_2 addWeapon "tf_anprc152"};	
+	if (!ADF_mod_ACRE && !ADF_mod_TFAR) then {GM_2 addWeapon "ItemRadio"};
+	if (ADF_mod_CTAB) then {(backpackContainer GM_2) addItemCargoGlobal ["ItemcTab",1]};
+	if (ADF_Clan_uniformInsignia) then {[GM_2,"CLANPATCH"] call BIS_fnc_setUnitInsignia};
+	ADF_GM_init = true;
+	if (ADF_debug) then {["ZEUS: GM-2 active",false] call ADF_fnc_log};	
 };
 
 if (!isServer) exitWith {};
@@ -96,14 +139,6 @@ if !(_ADF_zeusEagle) then { // Kill the Zeus Eagle?
 		} forEach allCurators;		
 	};
 };
-
-if (ADF_mod_Ares) exitWith { // Use ARES instead of ADF Zeus functions > V1.39 B7
-	if (ADF_debug) then {
-		["ZEUS - Ares addon detected. Using Ares instead of ADF Zeus functions",false] call ADF_fnc_log
-	} else {
-		diag_log "ADF RPT: ZEUS - Ares addon detected. Using Ares instead of ADF Zeus functions";
-	};
-}; 
 
 if ((isNil "GMmod_1") && (isNil "GMmod_2")) exitWith {
 	if (ADF_debug) then {["ZEUS - No Zeus Modules exist (GMmod_1/2). Terminating",false] call ADF_fnc_log};
@@ -136,9 +171,15 @@ if ((!(isNil "GMmod_1") && (isNil "GMmod_2")) && ((isNil "GM_1") && !(isNil "GM_
 	if (ADF_debug) then {["ZEUS - Cannot assign GM_2 to GMmod_1. Terminating",true] call ADF_fnc_log};
 };
 
-// ADV_zeus by Belbo. Edited by Whiz
+if (ADF_mod_Ares) exitWith { // Use ARES instead of ADF Zeus functions > V1.39 B7
+	if (ADF_debug) then {
+		["ZEUS - Ares addon detected. Using Ares instead of ADF Zeus functions",false] call ADF_fnc_log
+	} else {
+		diag_log "ADF RPT: ZEUS - Ares addon detected. Using Ares instead of ADF Zeus functions";
+	};
+}; 
 
-waitUntil {ADF_set_callSigns};
+// ADV_zeus by Belbo. Edited by Whiz
 
 _addCivilians = true;
 

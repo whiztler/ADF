@@ -4,7 +4,7 @@ ADF version: 1.40 / JUNE 2015
 
 Script: Call Sings & Radio configuration
 Author: Whiztler
-Script version: 2.55
+Script version: 2.56
 
 Game type: n/a
 File: ADF_clientPreset.sqf
@@ -92,7 +92,8 @@ _ADF_preset_companyGroups = [
 
 ///// Finish player loadout init
 waitUntil {scriptDone ADF_getLoadOut}; 
-
+if !(isNil "GM_1") then {if (player == GM_1) then {waitUntil {ADF_GM_init}}};  // > 141B01
+if !(isNil "GM_2") then {if (player == GM_2) then {waitUntil {ADF_GM_init}}};  // > 141B01
 
 ///// TFAR pre-init
 
@@ -144,14 +145,6 @@ if (!isDedicated) then {
 	_i = _ADF_preset_companyGroups find _ADF_uGroupID;
 	if (_i == -1) exitWith {["PRESETS - ERROR! Unknown group or unit. Roster NOT created. Call sign NOT applied. Please use ADF units only!",true] call ADF_fnc_log};
 	ADF_uPreset = [ADF_presetData select _i, []] select (_i < 0);
-	/*
-	// Debug
-	systemChat format ["ADF_uPreset = %1 - %2",_i,ADF_uPreset];
-	systemChat format ["Channels = %1 , %2",ADF_uPreset select 2,ADF_uPreset select 3];
-	_ADF_TFAR_SW_radio2 = call TFAR_fnc_haveSWRadio;
-	_ADF_TFAR_LR_radio2 = call TFAR_fnc_haveLRRadio;
-	systemChat format ["LR: %1  --  SW: %2",_ADF_TFAR_LR_radio2,_ADF_TFAR_SW_radio2];
-	*/
 
 	//  Apply call signs across the board
 	{_x call ADF_fnc_PresetSetGroupID} forEach ADF_presetData;
@@ -162,14 +155,6 @@ if (!isDedicated) then {
 		ADF_TFAR_LR_freq = ADF_uPreset select 2; // 1.40B03
 		ADF_TFAR_SW_freq = ADF_uPreset select 3; // 1.40B03
 	};
-};
-
-// Re-initialize cTAB (if activated) WIP
-if (ADF_mod_CTAB) then {
-	//player setVariable ["cTab_groupId",ADF_uPreset select 0,true]; // 1.39 B9 > not updating
-	//call cTab_fnc_updateLists; // 1.39 B5 > not updating
-	//["cTab_updatePulse",cTab_fnc_updateLists] call CBA_fnc_addEventHandler; // 1.39 B9 > not updating
-	if (ADF_debug) then {["PRESETS - cTAB re-initialized",false] call ADF_fnc_log};
 };
 
 // Initialize ACE3 BluForce Tracking (if activated)

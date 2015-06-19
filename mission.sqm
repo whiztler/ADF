@@ -35,16 +35,16 @@ class Mission
 		"A3_Modules_F_Curator_Curator",
 		"A3_Characters_F_Mark",
 		"A3_Boat_F_SDV_01",
-		"A3_Characters_F_EPC",
 		"A3_Weapons_F_Ammoboxes",
 		"A3_Signs_F",
-		"A3_Characters_F_OPFOR"
+		"A3_Characters_F_OPFOR",
+		"A3_Characters_F_Civil"
 	};
 	addOnsAuto[]=
 	{
 		"A3_Modules_F",
 		"cba_main",
-		"A3_Characters_F_EPC",
+		"A3_Characters_F_Civil",
 		"a3_characters_f",
 		"A3_Characters_F_BLUFOR",
 		"A3_Characters_F_Gamma",
@@ -150,13 +150,13 @@ class Mission
 					position[]={23668.012,3.1900001,18536.91};
 					id=2;
 					side="CIV";
-					vehicle="C_scientist_F";
+					vehicle="C_man_pilot_F";
 					player="PLAY CDG";
 					leader=1;
 					rank="LIEUTENANT";
 					skill=0.2;
 					text="GM_1";
-					init="player setCaptive true; player allowDamage false; gGM1 = group this; gGM1 setGroupID [""gGM1""]; this setObjectTexture [0, ""\A3\characters_f\common\data\coveralls_black_co.paa""];";
+					init="player setCaptive true; player allowDamage false; gGM1 = group this; gGM1 setGroupID [""gGM1""]; ";
 					description="GM/INSTRUCTOR 1";
 				};
 			};
@@ -172,13 +172,13 @@ class Mission
 					position[]={23670.883,3.1900001,18536.906};
 					id=3;
 					side="CIV";
-					vehicle="C_scientist_F";
+					vehicle="C_man_pilot_F";
 					player="PLAY CDG";
 					leader=1;
 					rank="LIEUTENANT";
 					skill=0.2;
 					text="GM_2";
-					init="player setCaptive true; player allowDamage false; gGM2 = group this; gGM2 setGroupID [""gGM2""]; this setObjectTexture [0, ""\A3\characters_f\common\data\coveralls_black_co.paa""];";
+					init="player setCaptive true; player allowDamage false; gGM2 = group this; gGM2 setGroupID [""gGM2""]; ";
 					description="GM/INSTRUCTOR 2";
 				};
 			};

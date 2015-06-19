@@ -41,6 +41,7 @@ ADF_set_callSigns 			= false;
 ADF_set_radios 				= false;
 tf_no_auto_long_range_radio 	= true;
 ADF_isHC 					= false;
+ADF_GM_init					= false;
 ADF_microDAGR 				= ""; // 140B06
 if (isNil "ADF_HC_connected") then {ADF_HC_connected = false;}; // HC init
  
