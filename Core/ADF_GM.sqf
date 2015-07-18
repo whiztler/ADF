@@ -4,7 +4,7 @@ ADF version: 1.40 / JUNE 2015
 
 Script: Game Master/Instructor/Zeus configuration
 Author: Whiztler
-Script version: 1.49
+Script version: 1.51
 
 Game type: n/a
 File: ADF_GM.sqf
@@ -33,89 +33,59 @@ if ((isNil "GM_1") && (isNil "GM_2")) exitWith {// No Zeus playable slots detect
 		diag_log "ADF RPT: ZEUS - No GM units active. Terminating ADF_GM";
 	};
 }; 
-_ADF_zeusEagle = _this select 0;
+
+params ["_ADF_zeusEagle"];
 showCuratorCompass true;
 
 // GM roles
+ADF_GM_gear = {
+	params ["_ADF_unit"];
+	removeBackpackGlobal _ADF_unit;
+	removeUniform _ADF_unit;
+	removeHeadgear _ADF_unit;
+	_ADF_unit forceAddUniform "U_BG_Guerrilla_6_1";
+	_ADF_unit addHeadgear "H_Booniehat_khk_hs";
+	if (ADF_mod_TFAR) then {_ADF_unit addBackpack "tf_rt1523g";} else {_ADF_unit addBackpack "B_TacticalPack_blk";};
+	_ADF_unit addVest "V_Rangemaster_belt";
+	_ADF_unit unassignItem "NVGoggles";
+	_ADF_unit addWeapon "ItemGPS";
+	_ADF_unit addWeapon "NVGoggles";
+	_ADF_unit addWeapon "Laserdesignator";
+	_ADF_unit addMagazine "Laserbatteries";
+	_ADF_unit unassignItem "NVGoggles";
+	_ADF_unit linkItem "ItemGPS";
+	if (ADF_mod_ACE3) then {
+		_ADF_unit setVariable ["ace_medical_allowDamage", false];	
+		_ADF_unit addItem "ACE_fieldDressing";
+		_ADF_unit addItem "ACE_fieldDressing";
+		_ADF_unit addItem "ACE_morphine";
+		_ADF_unit addItem "ACE_EarPlugs";
+		_ADF_unit addItem "ace_mapTools";
+		_ADF_unit addItem "ACE_CableTie";
+		_ADF_unit addItem "ACE_IR_Strobe_Item";		
+	} else {
+		_ADF_unit addItem "FirstAidKit";
+		_ADF_unit addItem "FirstAidKit";			
+	};
+	if (ADF_mod_ACRE) then {_ADF_unit addWeapon "ACRE_PRC343"};
+	if (ADF_mod_TFAR) then {_ADF_unit addWeapon "tf_anprc152"};	
+	if (!ADF_mod_ACRE && !ADF_mod_TFAR) then {_ADF_unit addWeapon "ItemRadio"};
+	if (ADF_mod_CTAB) then {(backpackContainer _ADF_unit) addItemCargoGlobal ["ItemcTab",1]};
+	if (ADF_Clan_uniformInsignia) then {[_ADF_unit,"CLANPATCH"] call BIS_fnc_setUnitInsignia};
+};
+
 if !(isNil "GM_1") then {
 	if !(player == GM_1) exitWith {};
-
 	GM_1 addAction ["<t align='left' color='#FBF4DF'>GM - Teleport</t>",{openMap true;hintSilent format ["%1, click on a location on the map to teleport...", name vehicle player];onMapSingleClick "vehicle player setPos _pos; onMapSingleClick ' '; true; openMap false; hint format ['%1, you are now at: %2', name vehicle player, getPosATL player];";},[],-85,true,true,"",""];	
-	
-	removeBackpackGlobal GM_1;
-	removeUniform GM_1;
-	removeHeadgear GM_1;
-	GM_1 forceAddUniform "U_BG_Guerrilla_6_1";
-	GM_1 addHeadgear "H_Booniehat_khk_hs";
-	if (ADF_mod_TFAR) then {GM_1 addBackpack "tf_rt1523g";} else {GM_1 addBackpack "B_TacticalPack_blk";};
-	GM_1 addVest "V_Rangemaster_belt";
-	GM_1 unassignItem "NVGoggles";
-	GM_1 addWeapon "ItemGPS";
-	GM_1 addWeapon "NVGoggles";
-	GM_1 addWeapon "Laserdesignator";
-	GM_1 addMagazine "Laserbatteries";
-	GM_1 unassignItem "NVGoggles";
-	GM_1 linkItem "ItemGPS";
-	if (ADF_mod_ACE3) then {
-		GM_1 setVariable ["ace_medical_allowDamage", false];	
-		GM_1 addItem "ACE_fieldDressing";
-		GM_1 addItem "ACE_fieldDressing";
-		GM_1 addItem "ACE_morphine";
-		GM_1 addItem "ACE_EarPlugs";
-		GM_1 addItem "ace_mapTools";
-		GM_1 addItem "ACE_CableTie";
-		GM_1 addItem "ACE_IR_Strobe_Item";		
-	} else {
-		GM_1 addItem "FirstAidKit";
-		GM_1 addItem "FirstAidKit";			
-	};
-	if (ADF_mod_ACRE) then {GM_1 addWeapon "ACRE_PRC343"};
-	if (ADF_mod_TFAR) then {GM_1 addWeapon "tf_anprc152"};	
-	if (!ADF_mod_ACRE && !ADF_mod_TFAR) then {GM_1 addWeapon "ItemRadio"};
-	if (ADF_mod_CTAB) then {(backpackContainer GM_1) addItemCargoGlobal ["ItemcTab",1]};
-	if (ADF_Clan_uniformInsignia) then {[GM_1,"CLANPATCH"] call BIS_fnc_setUnitInsignia};
+	[GM_1] call ADF_GM_gear;
 	ADF_GM_init = true;
 	if (ADF_debug) then {["ZEUS: GM-1 active",false] call ADF_fnc_log};	
 };
 
 if !(isNil "GM_2") then {
 	if !(player == GM_2) exitWith {};
-
 	GM_2 addAction ["<t align='left' color='#FBF4DF'>GM - Teleport</t>",{openMap true;hintSilent format ["%1, click on a location on the map to teleport...", name vehicle player];onMapSingleClick "vehicle player setPos _pos; onMapSingleClick ' '; true; openMap false; hint format ['%1, you are now at: %2', name vehicle player, getPosATL player];";},[],-85,true,true,"",""];	
-	
-	removeBackpackGlobal GM_2;
-	removeUniform GM_2;
-	removeHeadgear GM_2;
-	GM_2 forceAddUniform "U_BG_Guerrilla_6_1";
-	GM_2 addHeadgear "H_Booniehat_khk_hs";
-	if (ADF_mod_TFAR) then {GM_2 addBackpack "tf_rt1523g";} else {GM_2 addBackpack "B_TacticalPack_blk";};
-	GM_2 addVest "V_Rangemaster_belt";
-	GM_2 unassignItem "NVGoggles";
-	GM_2 addWeapon "ItemGPS";
-	GM_2 addWeapon "NVGoggles";
-	GM_2 addWeapon "Laserdesignator";
-	GM_2 addMagazine "Laserbatteries";
-	GM_2 unassignItem "NVGoggles";
-	GM_2 linkItem "ItemGPS";
-	
-	if (ADF_mod_ACE3) then {
-		GM_2 setVariable ["ace_medical_allowDamage", false];	
-		GM_2 addItem "ACE_fieldDressing";
-		GM_2 addItem "ACE_fieldDressing";
-		GM_2 addItem "ACE_morphine";
-		GM_2 addItem "ACE_EarPlugs";
-		GM_2 addItem "ace_mapTools";
-		GM_2 addItem "ACE_CableTie";
-		GM_2 addItem "ACE_IR_Strobe_Item";		
-	} else {
-		GM_2 addItem "FirstAidKit";
-		GM_2 addItem "FirstAidKit";			
-	};
-	if (ADF_mod_ACRE) then {GM_2 addWeapon "ACRE_PRC343"};
-	if (ADF_mod_TFAR) then {GM_2 addWeapon "tf_anprc152"};	
-	if (!ADF_mod_ACRE && !ADF_mod_TFAR) then {GM_2 addWeapon "ItemRadio"};
-	if (ADF_mod_CTAB) then {(backpackContainer GM_2) addItemCargoGlobal ["ItemcTab",1]};
-	if (ADF_Clan_uniformInsignia) then {[GM_2,"CLANPATCH"] call BIS_fnc_setUnitInsignia};
+	[GM_2] call ADF_GM_gear;
 	ADF_GM_init = true;
 	if (ADF_debug) then {["ZEUS: GM-2 active",false] call ADF_fnc_log};	
 };

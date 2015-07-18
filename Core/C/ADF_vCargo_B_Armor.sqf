@@ -31,8 +31,6 @@ clearWeaponCargoGlobal _vAmmo; // Empty vehicle CargoGlobal contents on init
 clearMagazineCargoGlobal _vAmmo; // Empty vehicle CargoGlobal contents on init
 clearItemCargoGlobal _vAmmo; // Empty vehicle CargoGlobal contents on init
 
-
-
 // Magazines primary weapon
 if (ADF_mod_ACE3) then {
 	_vAmmo addMagazineCargoGlobal ["ACE_30Rnd_65x39_caseless_mag_Tracer_Dim", 5];
@@ -77,9 +75,11 @@ if (!ADF_mod_ACRE && !ADF_mod_TFAR) then {_vAmmo addItemCargoGlobal ["ItemRadio"
 };*/
 
 // ACE3 Specific	
-if (ADF_mod_ACE3) then {_vAmmo addItemCargoGlobal ["ACE_EarPlugs",5]};
-if (ADF_mod_ACE3) then {_vAmmo addItemCargoGlobal ["ace_mapTools",1]};
-if (ADF_mod_ACE3) then {_vAmmo addItemCargoGlobal ["ACE_CableTie",5]}; // ACE3 094
+if (ADF_mod_ACE3) then {
+	_vAmmo addItemCargoGlobal ["ACE_EarPlugs",5];
+	_vAmmo addItemCargoGlobal ["ace_mapTools",1];
+	_vAmmo addItemCargoGlobal ["ACE_CableTie",5];
+}; // ACE3 094
 
 // Medical Items
 if (ADF_mod_ACE3) then {

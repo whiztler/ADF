@@ -828,7 +828,7 @@ ADF_fnc_loadoutSor = {
 		_debugText = "LOADOUT - SOR Squadron loadout applied.";
 		_debugMsg = _debugText + _debugDiag;
 		[_debugMsg,false] call ADF_fnc_log;
-	};
+	};	
 }; // Close ADF_fnc_loadoutSor	
 
 

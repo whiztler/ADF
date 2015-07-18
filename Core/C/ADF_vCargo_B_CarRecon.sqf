@@ -141,6 +141,9 @@ _vAmmo addMagazineCargoGlobal ["SmokeShellRed", 5];
 if (ADF_mod_ACE3) then {
 	_vAmmo addItemCargoGlobal ["ACE_EarPlugs",5];
 	_vAmmo addItemCargoGlobal ["ace_mapTools",5];
+	_vAmmo addItemCargoGlobal ["ACE_CableTie",5];
+	_vAmmo addItemCargoGlobal ["ACE_UAVBattery", 1];
+	_vAmmo addItemCargoGlobal ["ACE_TacticalLadder_Pack", 1];
 };
 
 // Medical Items

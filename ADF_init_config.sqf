@@ -4,7 +4,7 @@ ADF version: 1.40 / JUNE 2015
 
 Script: Mission Config
 Author: Whiztler
-Script version: 1.57
+Script version: 1.58
 
 Game type: n/a
 File: ADF_init_config.sqf
@@ -21,7 +21,7 @@ _ADF_mission_init_time = 30; // Mission Init time counter. Min 30 secs. Add 1 se
 _ADF_HC_init = true; // Enable the Headless Client [true/false].
 _ADF_HCLB_enable = true; // Enable load balancing across multiple HC's (max 3)
 ADF_playerSide = WEST; // Which side are playable units on [WEST / EAST / GUER / CIV]
-ADF_debug = false; // For mission testing/debugging set to true. Make sure to set to false before compiling your final PBO.
+ADF_debug = true; // For mission testing/debugging set to true. Make sure to set to false before compiling your final PBO.
 ADF_Log_ServerPerfEnable = true; // Enable server performance logging in RPT. [true/false]
 ADF_clanName = "ADF"; // What is the name of your community/clan. Used in Hints, intro's etc.
 ADF_clanTAG = "ADF"; // What is the tag of your community/clan. Used in Hints, intro's etc.
@@ -70,6 +70,8 @@ _ADF_ACRE_fullDuplex = true; // Sets the duplex of radio transmissions. If set t
 _ADF_ACRE_interference = true; // Sets whether transmissions will interfere with each other. This, by default, causes signal loss when multiple people are transmitting on the same frequency. [true/false].
 _ADF_ACRE_AIcanHear = true; // Sets whether AI can detect players speaking. [true/false].
 ADF_ACRE_preset = false; // Preset ACRE freq's per group? Define in 'Core\ADF_ACRE-freq.sqf'. [true/false].
+// Crates / Vehicle supplies
+_ADF_suppliesInit = true; // load crate/vehicle supplies for ADF template crates/vehicles
 
 /********** MISSION BALANCING **********/
 _ADF_misBal = false; // Enable/disable Mission Balancer [true/false]. See 'Core/F/ADF_fnc_missionBalancer.sqf' for more info.
@@ -108,6 +110,10 @@ _ADF_mhq_respawn_class = "B_APC_Tracked_01_CRV_F"; // MHQ vehicle classname (def
 _ADF_mhq_deploy_time = 120; // MHQ deployment time in seconds.
 _ADF_mhq_packup_time = 180; // MHQ packup time in seconds.
 
+/********** VEHICLE RESTRICTION (CREW CHECK) **********/
+_ADF_crewCheck_Pilots = true; // enable the crew check function for Jet/Heli (co-)pilots and heli pilot/crew. [true/false]. Vehicles can be configured here: 'Core\F\ADF_fnc_crewCheckClasses.sqf'
+_ADF_crewCheck_Armoured = true; // enable the crew check function for armored vehicle crew [true/false]. Vehicles can be configured here: 'Core\F\ADF_fnc_crewCheckClasses.sqf'
+
 /********** THIRD PARTY MODS/SCRIPTS **********/
 _ADF_DAC = false; // Dynamic AI Creator. Auto detects MOD/Addon version. Manual set the script version -> WIP
 _ADF_civKia_enable = false; // CivKia. A functions that keeps track of civilian kills by players.
@@ -131,6 +137,7 @@ _ADF_CleanUp_abaTimer = 6000; // x seconds a vehicle must be unmanned to be dele
 
 /********** MISC SETTINGS **********/
 _ADF_zeusEagle = true; // Enable the Zeus Eagle? False removes the eagle [true/false].
+_ADF_altitude = false; // Enable altitude based fatigue (altitude mountain sickness)? True increases fatigue when > 1500 meter altitude [true/false].
 
 /********** ADF DEV BUILD SETTINGS **********/
 _ADF_tpl_version = 1.41; // ADF version DO NOT EDIT

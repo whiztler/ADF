@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project name="ADF">
+    <Package name="DescriptionExt">
+        <Key ID="STR_ADF_DescExt_overviewText">
+			<Original>ADF by Whiztler</Original>
+            <Polish></Polish>
+            <Italian></Italian>
+            <Russian></Russian>
+            <French></French>
+            <Spanish></Spanish>
+            <German></German>
+            <Hungarian></Hungarian>
+            <Czech></Czech>
+            <Portuguese></Portuguese>
+        </Key>
+		<Key ID="STR_ADF_DescExt_onLoadName">
+			<Original>A D F</Original>
+            <Polish></Polish>
+            <Italian></Italian>
+            <Russian></Russian>
+            <French></French>
+            <Spanish></Spanish>
+            <German></German>
+            <Hungarian></Hungarian>
+            <Czech></Czech>
+            <Portuguese></Portuguese>
+        </Key>
+		<Key ID="STR_ADF_DescExt_onLoadMission">
+			<Original>Arma Mission Development Framework</Original>
+            <Polish></Polish>
+            <Italian></Italian>
+            <Russian></Russian>
+            <French></French>
+            <Spanish></Spanish>
+            <German></German>
+            <Hungarian></Hungarian>
+            <Czech></Czech>
+            <Portuguese></Portuguese>
+        </Key>
+		<Key ID="STR_ADF_DescExt_onLoadIntro">
+			<Original>Powered by ADF</Original>
+            <Polish></Polish>
+            <Italian></Italian>
+            <Russian></Russian>
+            <French></French>
+            <Spanish></Spanish>
+            <German></German>
+            <Hungarian></Hungarian>
+            <Czech></Czech>
+            <Portuguese></Portuguese>
+        </Key>		
+    </Package>
+    <Package name="Briefing">
+        <Key ID="STR_ADF_BriefingText">
+			<Original>ADF by Whiztler</Original>
+            <Polish></Polish>
+            <Italian></Italian>
+            <Russian></Russian>
+            <French></French>
+            <Spanish></Spanish>
+            <German></German>
+            <Hungarian></Hungarian>
+            <Czech></Czech>
+            <Portuguese></Portuguese>
+        </Key>
+    </Package>	
+</Project>
+
+
+<!-- template
+<Key ID="STR_ADF_XXXX">
+	<Original>XXXX</Original>
+	<Polish></Polish>
+	<Italian></Italian>
+	<Russian></Russian>
+	<French></French>
+	<Spanish></Spanish>
+	<German></German>
+	<Hungarian></Hungarian>
+	<Czech></Czech>
+	<Portuguese></Portuguese>
+</Key>
+-->

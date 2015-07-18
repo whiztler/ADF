@@ -51,5 +51,3 @@ if (ADF_sameGearRespawn && !ADF_mod_ACE3) then {
 	ADF_StoreLoadout_items = items _ADF_unit;
 	ADF_StoreLoadout_assignedItems = assignedItems _ADF_unit;
 };
-
-

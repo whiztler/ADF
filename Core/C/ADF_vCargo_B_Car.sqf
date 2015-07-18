@@ -4,7 +4,7 @@ ADF version: 1.40 / JUNE 2015
 
 Script: Vehicle Cargo Script (BLUEFOR) (BLUEFOR) - Car General Loadout
 Author: Whiztler
-Script version: 1.5
+Script version: 1.6
 
 Game type: n/a
 File: ADF_vCargo_B_CarART.sqf
@@ -88,9 +88,12 @@ if (!ADF_mod_ACRE && !ADF_mod_TFAR) then {_vAmmo addItemCargoGlobal ["ItemRadio"
 };*/
 
 // ACE3 Specific	
-if (ADF_mod_ACE3) then {_vAmmo addItemCargoGlobal ["ACE_EarPlugs",15]};
-if (ADF_mod_ACE3) then {_vAmmo addItemCargoGlobal ["ace_mapTools",4]};
-if (ADF_mod_ACE3) then {_vAmmo addItemCargoGlobal ["ACE_CableTie",5]}; // ACE3 094
+if (ADF_mod_ACE3) then {
+	_vAmmo addItemCargoGlobal ["ACE_EarPlugs",5];
+	_vAmmo addItemCargoGlobal ["ace_mapTools",1];
+	_vAmmo addItemCargoGlobal ["ACE_CableTie",5];
+	_vAmmo addItemCargoGlobal ["ACE_UAVBattery", 1];
+}; // ACE3 094
 
 
 // Medical Items
@@ -102,8 +105,3 @@ if (ADF_mod_ACE3) then {
 	_vAmmo addItemCargoGlobal ["FirstAidKit",10];
 	_vAmmo addItemCargoGlobal ["Medikit",1];
 };
-
-if (ADF_mod_ACE3) then {
-	_vAmmo addItemCargoGlobal ["ACE_UAVBattery", 1];
-};
-//hintSilent "vAmmo loaded."; // For debug only.

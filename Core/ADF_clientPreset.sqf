@@ -27,9 +27,6 @@ if (ADF_isHC) exitWith {}; // HC exits script
 
 private [
 	"_ADF_ACRE_init",
-	"_ADF_ACRE_fullDuplex",
-	"_ADF_ACRE_interference",
-	"_ADF_ACRE_AIcanHear",
 	"_ADF_uGroup",
 	"_ADF_uGroupID",
 	"_ADF_preset_companyGroups",
@@ -40,18 +37,19 @@ private [
 	"_ADF_roster_groupOld",
 	"_ADF_roster_groupNew",
 	"_ADF_roster_groupID",
-	"_ADF_roster_pub",	
-	"_ADF_preset"
+	"_ADF_roster_pub"
 ];
 
+params [
+	"_ADF_preset",
+	"_ADF_ACRE_fullDuplex",
+	"_ADF_ACRE_interference",
+	"_ADF_ACRE_AIcanHear",
+	"_ADF_TFAR_microDAGR"
+];
 _ADF_perfDiagStart 		= diag_tickTime;
 _ADF_uGroup 				= group player;
 _ADF_uGroupID 			= (groupID (_ADF_uGroup));
-_ADF_preset 				= _this select 0;
-_ADF_ACRE_fullDuplex 		= _this select 1;
-_ADF_ACRE_interference 	= _this select 2;
-_ADF_ACRE_AIcanHear 		= _this select 3;
-_ADF_TFAR_microDAGR 		= _this select 4;
 _ADF_roster_uRole 		= "";
 _ADF_roster_groupOld 		= grpNull;
 _ADF_roster_groupNew		= grpNull;
@@ -107,7 +105,7 @@ if (ADF_mod_TFAR) then { // TFAR detected
 	player setVariable ["tf_globalVolume", 1.0]; // 0 -1 Global volume for radio and speech.
 	player setVariable ["tf_receivingDistanceMultiplicator", 1]; // 1-2 A multiplier for increasing, or lowering the distance from transmitter to receiver
 	player setVariable ["tf_sendingDistanceMultiplicator", 1.0]; // 0-1 A multiplier for increasing or lowering the range of transmission.	
-	{
+	{ 
 		if ((side _x == ADF_playerSide) && ((_x isKindOf "Tank") || (_x isKindOf "car"))) then {
 		_x setVariable ["tf_range", 30000, true] // Sets the maximum range (meters) of transmission for a vehicle-mounted radio.
 		};
@@ -139,7 +137,7 @@ if (ADF_mod_ACRE) then { // ACRE2 detected
 
 ///// Apply Call Sign and get Freq data
 
-if (!isDedicated) then {
+if (hasInterface) then {
 	waitUntil {time > 10}; // Let TFAR init properly
 	// Find the players group in the '_ADF_preset_companyGroups' array
 	_i = _ADF_preset_companyGroups find _ADF_uGroupID;
@@ -149,6 +147,8 @@ if (!isDedicated) then {
 	//  Apply call signs across the board
 	{_x call ADF_fnc_PresetSetGroupID} forEach ADF_presetData;
 	waitUntil {ADF_set_callSigns}; // wait until a call sign has been been applied > 140B05
+	//_ADF_uGroup setGroupIdGlobal [ADF_uPreset select 1]; // 141B01
+	
 	if (ADF_debug) then {["PRESETS - Preset call signs applied",false] call ADF_fnc_log};
 
 	if (ADF_mod_TFAR) then {
@@ -213,8 +213,7 @@ if (isMultiplayer) then {ADF_roster_uArray = playableUnits;} else {ADF_roster_uA
 		_ADF_roster_uGroup = _ADF_roster_groupNew;
 		_ADF_roster_uGroupName = groupID (_ADF_roster_groupNew);
 		ADF_roster_userGroup = "";
-		_ADF_roster_uRole = " - " + getText(configFile >> "CfgVehicles" >> typeOf(_x) >> "displayName");
-		
+		_ADF_roster_uRole = " - " + roleDescription _x + " - (" + getText(configFile >> "CfgVehicles" >> typeOf(_x) >> "displayName") + ")"; // V1.41B01
 		if (ADF_TFAR_preset && ADF_mod_TFAR) then {
 			if (_ADF_roster_groupNew != _ADF_roster_groupOld) then {
 				ADF_roster_userGroup = format ["<br/><font size='16' color='#D7DBD5'>%1</font>  <font color='#9DA698'>[</font><font color='#FF9E05'>%2</font><font color='#9DA698'>][</font><font color='#10D471'>%3</font><font color='#9DA698'>]<br/>",_ADF_roster_uGroupName, ADF_TFAR_LR_freq, ADF_TFAR_SW_freq];

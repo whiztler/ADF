@@ -4,7 +4,7 @@ ADF version: 1.40 / JUNE 2015
 
 Script: Crate Cargo Script (BLUEFOR) - Cavalry Squadron (Knight)
 Author: Whiztler
-Script version: 1.7
+Script version: 1.8
 
 Game type: n/a
 File: ADF_cCargo_B_Cav.sqf
@@ -33,8 +33,6 @@ _dem = 1;	// Demo/Explosives
 _mis = 1;	// Missiles/Rockets
 _itm = 3;	// Items
 _uni = 1;	// Uniform/Vest/Backpack/etc
-
-
 
 // Settings 
 clearWeaponCargoGlobal _crate; // Empty vehicle CargoGlobal contents on init
@@ -115,8 +113,6 @@ if (ADF_mod_CTAB) then {
 	_crate addItemCargoGlobal ["ItemAndroid", 1];
 	_crate addItemCargoGlobal ["ItemcTabHCam",_itm];		
 };
-
-// Gear kit (not working from crates/veh)
 
 // Misc items
 _crate addItemCargoGlobal ["ItemGPS", _itm];

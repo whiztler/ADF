@@ -4,7 +4,7 @@ ADF version: 1.40 / JUNE 2015
 
 Script: Detection Sensor
 Author: Whiztler
-Script version: 1.1
+Script version: 1.2
 
 Game type: n/a
 File: ADF_DetectSensor.sqf
@@ -24,11 +24,7 @@ if (ADF_debug) then {["TRIGGER - DetectSensor Activated",false] call ADF_fnc_log
 
 if (!isServer) exitwith {};
 
-private ["_ADF_trig","_ADF_side","_ADF_list","_ADF_rad"];
-
-_ADF_trig = _this select 0;
-_ADF_side = _this select 1;
-_ADF_rad = _this select 2;
+params ["_ADF_trig","_ADF_side","_ADF_rad"];
 _ADF_list = (getPos _ADF_trig) nearEntities [["Man"], _ADF_rad];
 
 {

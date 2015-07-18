@@ -4,7 +4,7 @@ ADF version: 1.40 / JUNE 2015
 
 Script: Mission init / Variables init
 Author: Whiztler
-Script version: 1.17
+Script version: 1.18
 
 Game type: n/a
 File: ADF_init_pre.sqf
@@ -54,8 +54,7 @@ enableTeamSwitch false; // Disables team switch.
 
 ADF_fnc_log = { // if (ADF_debug) then {["YourTextMessageHere",true] call ADF_fnc_log}; // where true or false for error message
 	private ["_ADF_log_pre","_ADF_msg","_ADF_err_write","_ADF_err_pre","_ADF_error"];
-	_ADF_msg = _this select 0;
-	_ADF_error = _this select 1;	
+	params ["_ADF_msg","_ADF_error"];
 	if (_ADF_error) then { // Is it an error message?
 		_ADF_err_pre = "ADF Error: ";
 		_ADF_err_write = _ADF_err_pre + _ADF_msg;

@@ -21,9 +21,9 @@ Sleep 10;
 
 
 // Create local vars for all connected clients.
-_heli_crew 	= []; // Helicopter crew.
+_heli_crew 		= []; // Helicopter crew.
 _heli_vehicle 	= []; // Helicopter vehicle.
-_inf_group 	= []; // Infantry squad that will be transported by the helicopter.
+_inf_group 		= []; // Infantry squad that will be transported by the helicopter.
 
 // Groups and vehicles are created by/on the server and visible for all clients.
 if (!ADF_HC_execute) exitWith {}; // Autodetect: execute on the HC else execute on the server

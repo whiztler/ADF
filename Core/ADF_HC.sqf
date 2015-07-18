@@ -4,7 +4,7 @@ ADF version: 1.40 / JUNE 2015
 
 Script: Headless Client init
 Author: Whiztler
-Script version: 2.45
+Script version: 2.47
 
 Game type: N/A
 File: ADF_HC.sqf
@@ -33,7 +33,7 @@ diag_log "ADF RPT: Init - executing ADF_HC.sqf"; // Reporting. Do NOT edit/remov
 
 // Init
 ADF_HC_execute = false;
-_ADF_HCLB_enable = _this select 0;
+params ["_ADF_HCLB_enable"];
 
 // HC check
 if (!isServer && !hasInterface) then {

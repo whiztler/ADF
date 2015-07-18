@@ -43,8 +43,8 @@ if (isNil "MHQ") exitWith {  // No MHQ vehicle detected
 		<img size= '6' shadow='false' image='" + ADF_clanLogo + "'/><br/><br/>
 		<t color='#6C7169' size='1.5'>" + ADF_clanName + " Cmd MHQ</t><br/><br/>
 		<t color='#FE2E2E'>ERROR!</t><br/><br/>
-		<t color='#A1A4AD>The Mobile HQ (MHQ) is disabled.<br/>No vehicle was defined as MHQ</t><br/><br/>
-		<t color='#A1A4AD>Make sure you place a vehicle in the editor and name it MHQ.</t><br/><br/>
+		<t color='#A1A4AD'>The Mobile HQ (MHQ) is disabled.<br/>No vehicle was defined as MHQ</t><br/><br/>
+		<t color='#A1A4AD'>Make sure you place a vehicle in the editor and name it MHQ.</t><br/><br/>
 	";
 	if (ADF_debug) then {["MHQ - <Error> No MHQ vehicle detected",true] call ADF_fnc_log;};
 };

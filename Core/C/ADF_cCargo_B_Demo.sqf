@@ -33,8 +33,6 @@ clearWeaponCargoGlobal _crate; // Empty vehicle CargoGlobal contents on init
 clearMagazineCargoGlobal _crate; // Empty vehicle CargoGlobal contents on init
 clearItemCargoGlobal _crate; // Empty vehicle CargoGlobal contents on init
 
-
-
 // Demo/Explosives
 _crate addMagazineCargoGlobal ["DemoCharge_Remote_Mag", _dem];
 _crate addMagazineCargoGlobal ["SatchelCharge_Remote_Mag", _dem];

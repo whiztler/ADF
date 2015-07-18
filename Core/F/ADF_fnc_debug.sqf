@@ -52,8 +52,7 @@ if (isServer && !isDedicated) then {
 ADF_fnc_debugMarkers = {
 	if (!isServer) exitWith {}; // server only
 	if (count _this < 2) exitwith {["DEBUG - OpFor Tracking marker parameters are incorrect",false] call ADF_fnc_log;}; // incorrect config
-	_ADF_debug_side = _this select 0;	
-	_ADF_debug_labels = _this select 1;
+	params ["_ADF_debug_side","_ADF_debug_labels"];
 	{
 		if (side _x == _ADF_debug_side) then { // Check side
 			[_x,_ADF_debug_labels] spawn { // Spawn a script instance per unit per defined side

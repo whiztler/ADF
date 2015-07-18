@@ -4,7 +4,7 @@ ADF version: 1.40 / JUNE 2015
 
 Script: Loadout Client
 Author: Whiztler
-Script version: 5.54
+Script version: 5.61
 
 Game type: n/a
 File: ADF_clientLoadout.sqf
@@ -18,7 +18,7 @@ _ADF_perfDiagStart = diag_tickTime;
 if (ADF_debug) then {["LOADOUT - Loadout Client started",false] call ADF_fnc_log};
 If (IsDedicated || !(local player) || ADF_isHC) exitWith {}; // 5.43
 private ["_ADF_noLoadout"];
-_ADF_noLoadout = [_this, 15, false, [true,false]] call BIS_fnc_param;
+_ADF_noLoadout = param [15, false, [true,false]];
 if (_ADF_noLoadout) exitWith {if (ADF_debug) then {["Loadout - noLoadout option selected. Exiting loadout client.",false] call ADF_fnc_log;} else {diag_log "ADF RPT: Loadout - noLoadout option selected. Exiting loadout client.";};};
 
 //Init vars
@@ -29,26 +29,26 @@ private [
 	"_ADF_unitFaction","_ADF_inf_headgear","_ADF_unit","_ADF_unitCheck","_ADF_unitString","_u","_p","_r"
 ];
 
-_ADF_customLoadout_MOD 		= [_this, 0, false, [true,false]] call BIS_fnc_param;
+_ADF_customLoadout_MOD 		= param [0, false, [true,false]];
 _ADF_uniform_inf 				= _this select 1;
 _ADF_uniform_sor 				= _this select 2;
-_ADF_NVGoggles 				= [_this, 3, true, [true,false]] call BIS_fnc_param;
-_ADF_GPS 					= [_this, 4, false, [true,false]] call BIS_fnc_param;
-_ADF_INF_assault_weapon		= [_this, 5, 1, [1,2]] call BIS_fnc_param;
-_ADF_INF_LMG_weapon 			= [_this, 6, 1, [1,2]] call BIS_fnc_param;
-_ADF_INF_hand_weapon 			= [_this, 7, 1, [1,2]] call BIS_fnc_param;
-_ADF_INF_scopes 				= [_this, 8, false, [true,false]] call BIS_fnc_param;
-_ADF_SOR_assault_weapon		= [_this, 9, 1, [1,2,3]] call BIS_fnc_param;
-_ADF_SOR_hand_weapon 			= [_this, 10, 1, [1,2]] call BIS_fnc_param;
-_ADF_CAV_assault_weapon 		= [_this, 11, 1, [1,2]] call BIS_fnc_param;
-_ADF_TFAR_PersonalRadio 		= [_this, 12, "tf_rf7800str", ["tf_rf7800str","tf_anprc152"]] call BIS_fnc_param;
-_ADF_TFAR_SWRadio 			= [_this, 13, "tf_anprc152", ["tf_rf7800str","tf_anprc152"]] call BIS_fnc_param;
-_ADF_TFAR_LRRadio 			= [_this, 14, "tf_rt1523g_big", ["tf_rt1523g","tf_rt1523g_big","tf_rt1523g_black","tf_rt1523g_fabric","tf_rt1523g_green","tf_rt1523g_rhs","tf_rt1523g_sage"]] call BIS_fnc_param;
-_ADF_TFAR_LRRadioSOR 			= [_this, 16, "tf_rt1523g_black", ["tf_rt1523g","tf_rt1523g_big","tf_rt1523g_black","tf_rt1523g_fabric","tf_rt1523g_green","tf_rt1523g_rhs","tf_rt1523g_sage"]] call BIS_fnc_param;
-_ADF_ACE3_microDAGR_all 		= [_this, 17, false, [true,false]] call BIS_fnc_param;
-_ADF_ACE3_microDAGR_leaders 	= [_this, 18, false, [true,false]] call BIS_fnc_param;
-_ADF_cTAB_microDAGR_all 		= [_this, 19, false, [true,false]] call BIS_fnc_param;
-_ADF_cTAB_microDAGR_leaders 	= [_this, 20, false, [true,false]] call BIS_fnc_param;
+_ADF_NVGoggles 				= param [3, true, [true,false]];
+_ADF_GPS 					= param [4, false, [true,false]];
+_ADF_INF_assault_weapon		= param [5, 1, [1,2]];
+_ADF_INF_LMG_weapon 			= param [6, 1, [1,2]];
+_ADF_INF_hand_weapon 			= param [7, 1, [1,2]];
+_ADF_INF_scopes 				= param [8, false, [true,false]];
+_ADF_SOR_assault_weapon		= param [9, 1, [1,2,3]];
+_ADF_SOR_hand_weapon 			= param [10, 1, [1,2]];
+_ADF_CAV_assault_weapon 		= param [11, 1, [1,2]];
+_ADF_TFAR_PersonalRadio 		= param [12, "tf_rf7800str", ["tf_rf7800str","tf_anprc152"]];
+_ADF_TFAR_SWRadio 			= param [13, "tf_anprc152", ["tf_rf7800str","tf_anprc152"]];
+_ADF_TFAR_LRRadio 			= param [14, "tf_rt1523g_big", ["tf_rt1523g","tf_rt1523g_big","tf_rt1523g_black","tf_rt1523g_fabric","tf_rt1523g_green","tf_rt1523g_rhs","tf_rt1523g_sage"]];
+_ADF_TFAR_LRRadioSOR 			= param [16, "tf_rt1523g_black", ["tf_rt1523g","tf_rt1523g_big","tf_rt1523g_black","tf_rt1523g_fabric","tf_rt1523g_green","tf_rt1523g_rhs","tf_rt1523g_sage"]];
+_ADF_ACE3_microDAGR_all 		= param [17, false, [true,false]];
+_ADF_ACE3_microDAGR_leaders 	= param [18, false, [true,false]];
+_ADF_cTAB_microDAGR_all 		= param [19, false, [true,false]];
+_ADF_cTAB_microDAGR_leaders 	= param [20, false, [true,false]];
 
 tf_no_auto_long_range_radio 	= true;
 ADF_SOR_MK20 				= false;
@@ -136,7 +136,7 @@ if ((_ADF_unitFaction == "BLU_F") && _ADF_customLoadout_MOD) exitWith { // BLUFO
 	if (_s == "sor") exitWith {[_s,_r] call ADF_fnc_loadoutSor}; // SpecOp/Recon Squadron
 	if (_s == "sod") exitWith {[_s,_r] call ADF_fnc_loadoutSod}; // Divers
 	if (_s == "sop") exitWith {[_s,_r] call ADF_fnc_loadoutSop}; // Snipers/JTAC
-	if (_s == "dev") exitWith {									 // Mission Developer
+	if (_s == "dev") exitWith {								 // Mission Developer
 		_ADF_unit addVest "V_Rangemaster_belt";
 		_ADF_unit unassignItem "NVGoggles";
 		_ADF_unit addWeapon "LaserDesignator";

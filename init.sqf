@@ -29,7 +29,8 @@ if (isServer) then  { //server init
 	#include "Core\ADF_init_rpt.sqf"
 	if (ADF_Tickets) then {[WEST, _ADF_wTixNr] call BIS_fnc_respawnTickets; [EAST, _ADF_eTixNr] call BIS_fnc_respawnTickets}; // init respawn tickets	
 	if (_ADF_CleanUp) then {[_ADF_CleanUp_viewDist,_ADF_CleanUp_manTimer,_ADF_CleanUp_vehTimer,_ADF_CleanUp_abaTimer] execVM "Core\TP\delete.sqf"}; // garbage collector.
-	if (_ADF_Caching && !ADF_HC_connected) then {[_ADF_Caching_UnitDistance,-1,ADF_debug,_ADF_Caching_vehicleDistance_land,_ADF_Caching_vehicleDistance_air,_ADF_Caching_vehicleDistance_sea,_ADF_Caching_debugInfo] execVM "Core\TP\zbe_cache\main.sqf"}; // Configure in ADF_init_config.sqf	
+	if (_ADF_Caching && !ADF_HC_connected) then {[_ADF_Caching_UnitDistance,-1,ADF_debug,_ADF_Caching_vehicleDistance_land,_ADF_Caching_vehicleDistance_air,_ADF_Caching_vehicleDistance_sea,_ADF_Caching_debugInfo] execVM "Core\TP\zbe_cache\main.sqf"}; // Configure in ADF_init_config.sqf
+	if (_ADF_suppliesInit) then {execVM "Core\ADF_init_supplies.sqf";}; // crate/vehicle supplies. Configure in ADF_init_config.sqf
 };
 
 /**********  Mission Intro **********/
@@ -52,6 +53,8 @@ ADF_getLoadOut = [_ADF_customLoadout_MOD,_ADF_uniform_inf,_ADF_uniform_sor,_ADF_
 if (_ADF_mhq_enable) then {[_ADF_mhq_enable,_ADF_mhq_respawn_time,_ADF_mhq_respawn_nr,_ADF_mhq_respawn_class,_ADF_mhq_deploy_time,_ADF_mhq_packup_time,_ADF_wTixNr] execVM "Core\ADF_MHQ.sqf"}; // Configure in ADF_init_config.sqf
 if (_ADF_misBal) then {[_ADF_misBal_low,_ADF_misBal_high] execVM "Core\F\ADF_fnc_missionBalancer.sqf";};
 [_ADF_zeusEagle] execVM "Core\ADF_GM.sqf";
+if (_ADF_altitude && hasInterface) then {execVM "Core\ADF_ABF.sqf";};
+if (_ADF_crewCheck_Pilots || _ADF_crewCheck_Armoured) then {[_ADF_crewCheck_Pilots,_ADF_crewCheck_Armoured] execVM "Core\ADF_crewCheck.sqf";};
 
 // addon scripts
 if (_ADF_civKia_enable) then {execVM "Core\ADF_civKiaCheck.sqf"}; // Civilian KIA checker. Configure in ADF_init_config.sqf
