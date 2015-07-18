@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.40 / JUNE 2015
+ADF version: 1.41 / JULY 2015
 
 Script: Altitude Based Fatigue (ABF)
 Author: Whiztler
@@ -17,14 +17,14 @@ Configure in ADF_init_config.sqf
 if (!hasInterface) exitWith {}; // clients only - double check
 
 // Init
-private ["ADF_unit","_ADF_ABF_factorMinor","_ADF_ABF_factorMild","_ADF_ABF_factorMajor","_ADF_ABF_factorSevere","_ADF_ABF_factorExtreme","_ADF_ABF_actual"];
+private ["_ADF_unit","_ADF_ABF_factorMinor","_ADF_ABF_factorMild","_ADF_ABF_factorMajor","_ADF_ABF_factorSevere","_ADF_ABF_factorExtreme","_ADF_ABF_actual"];
 
 _ADF_unit 				= player;
 _ADF_ABF_factorMinor		= 1.10 + random 0.05;	// 10%
 _ADF_ABF_factorMild		= 1.20 + random 0.05; 	// 25%
 _ADF_ABF_factorMajor		= 1.40 + random 0.10; 	// 50%
 _ADF_ABF_factorSevere		= 1.60 + random 0.10; 	// 75
-_ADF_ABF_factorExtreme	= 2 					// 125
+_ADF_ABF_factorExtreme	= 2; 					// 125
 _ADF_ABF_pause			= 60;					// runs every xx seconds
 _ADF_ABF_actual 			= [];
 _ADF_unit enableFatigue true;

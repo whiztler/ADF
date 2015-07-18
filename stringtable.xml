@@ -3,65 +3,65 @@
     <Package name="DescriptionExt">
         <Key ID="STR_ADF_DescExt_overviewText">
 			<Original>ADF by Whiztler</Original>
-            <Polish></Polish>
-            <Italian></Italian>
-            <Russian></Russian>
-            <French></French>
-            <Spanish></Spanish>
-            <German></German>
-            <Hungarian></Hungarian>
-            <Czech></Czech>
-            <Portuguese></Portuguese>
+            <Polish>ADF: Whiztler</Polish>
+            <Italian>ADF di Whiztler</Italian>
+            <Russian>АПД Whiztler</Russian>
+            <French>ADF par Whiztler</French>
+            <Spanish>ADF por Whiztler</Spanish>
+            <German>ADF durch Whiztler</German>
+            <Hungarian>ADF által Whiztler</Hungarian>
+            <Czech>ADF by Whiztler</Czech>
+            <Portuguese>ADF por Whiztler</Portuguese>
         </Key>
 		<Key ID="STR_ADF_DescExt_onLoadName">
 			<Original>A D F</Original>
-            <Polish></Polish>
-            <Italian></Italian>
-            <Russian></Russian>
-            <French></French>
-            <Spanish></Spanish>
-            <German></German>
-            <Hungarian></Hungarian>
-            <Czech></Czech>
-            <Portuguese></Portuguese>
+            <Polish>A D F</Polish>
+            <Italian>A D F</Italian>
+            <Russian>А П Д</Russian>
+            <French>A D F</French>
+            <Spanish>A D F</Spanish>
+            <German>A D F</German>
+            <Hungarian>A D F</Hungarian>
+            <Czech>A D F</Czech>
+            <Portuguese>A D F</Portuguese>
         </Key>
 		<Key ID="STR_ADF_DescExt_onLoadMission">
 			<Original>Arma Mission Development Framework</Original>
-            <Polish></Polish>
-            <Italian></Italian>
-            <Russian></Russian>
-            <French></French>
-            <Spanish></Spanish>
-            <German></German>
-            <Hungarian></Hungarian>
-            <Czech></Czech>
-            <Portuguese></Portuguese>
+            <Polish>Misja Development Framework Arma</Polish>
+            <Italian>Quadro Arma Missione Sviluppo</Italian>
+            <Russian>Рамочная Арма развития Миссия</Russian>
+            <French>Cadre Arma Mission Développement</French>
+            <Spanish>Marco Arma Desarrollo Misión</Spanish>
+            <German>Arma Mission Development Framework</German>
+            <Hungarian>Arma Mission Development Framework</Hungarian>
+            <Czech>Rámcová Arma Mission Development</Czech>
+            <Portuguese>Quadro Arma Missão Desenvolvimento</Portuguese>
         </Key>
 		<Key ID="STR_ADF_DescExt_onLoadIntro">
 			<Original>Powered by ADF</Original>
-            <Polish></Polish>
-            <Italian></Italian>
-            <Russian></Russian>
-            <French></French>
-            <Spanish></Spanish>
-            <German></German>
-            <Hungarian></Hungarian>
-            <Czech></Czech>
-            <Portuguese></Portuguese>
+            <Polish>Oparte na ADF</Polish>
+            <Italian>Powered by ADF</Italian>
+            <Russian>Работает на АПД</Russian>
+            <French>Propulsé par ADF</French>
+            <Spanish>Desarrollado por ADF</Spanish>
+            <German>Präsentiert von ADF</German>
+            <Hungarian>Powered by ADF</Hungarian>
+            <Czech>Powered by ADF</Czech>
+            <Portuguese>Alimentado por ADF</Portuguese>
         </Key>		
     </Package>
     <Package name="Briefing">
         <Key ID="STR_ADF_BriefingText">
 			<Original>ADF by Whiztler</Original>
-            <Polish></Polish>
-            <Italian></Italian>
-            <Russian></Russian>
-            <French></French>
-            <Spanish></Spanish>
-            <German></German>
-            <Hungarian></Hungarian>
-            <Czech></Czech>
-            <Portuguese></Portuguese>
+            <Polish>ADF: Whiztler</Polish>
+            <Italian>ADF di Whiztler</Italian>
+            <Russian>АПД Whiztler</Russian>
+            <French>ADF par Whiztler</French>
+            <Spanish>ADF por Whiztler</Spanish>
+            <German>ADF durch Whiztler</German>
+            <Hungarian>ADF által Whiztler</Hungarian>
+            <Czech>ADF by Whiztler</Czech>
+            <Portuguese>ADF por Whiztler</Portuguese>
         </Key>
     </Package>	
 </Project>
