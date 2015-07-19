@@ -7,10 +7,11 @@
 
 if (ADF_isHC) exitWith {}; // HC exits script
 
-MAD_maxCarDensity = _this select 0; //number of cars around 1 player at the same time
-MAD_carSpawnDistance = _this select 1; //how far cars spawn away from player
-MAD_maxCarDistance = _this select 2; //max distance until cars despawn
-_ADF_civKia_enable = _this select 3; // CivKia EH
+MAD_maxCarDensity 	= _this select 0; //number of cars around 1 player at the same time
+MAD_carSpawnDistance 	= _this select 1; //how far cars spawn away from player
+MAD_maxCarDistance 	= _this select 2; //max distance until cars despawn
+_ADF_civKia_enable 	= _this select 3; // CivKia EH
+ADF_terminateCivScr	= false;
 
 MAD_carsArray = [];
 
@@ -89,6 +90,7 @@ MAD_getSpawnRoads = {
 };
 
 if (!isDedicated and isMultiplayer) then {
+	if (ADF_terminateCivScr) exitWith {};
 	[] spawn
 	{
 		while {true} do {
@@ -101,6 +103,7 @@ if (!isDedicated and isMultiplayer) then {
 				if (_var) then {player setVariable ["MAD_roadsNear", false, true];};
 			};
 			sleep 10;
+			if (ADF_terminateCivScr) exitWith {};
 		};
 	};
 };
@@ -152,6 +155,7 @@ MAD_carWaypoint = {
 };
 
 MAD_deleteCars = {
+	if (ADF_terminateCivScr) exitWith {};
 	private ["_car", "_owner", "_players", "_driver"];	
 	_players = [];
 
@@ -184,6 +188,7 @@ MAD_deleteCars = {
 };
 
 if (isServer) then {
+	if (ADF_terminateCivScr) exitWith {};
 	if (isMultiplayer) then {
 		while {true} do {
 			call MAD_deleteCars;
@@ -201,6 +206,7 @@ if (isServer) then {
 				};
 			} forEach playableUnits;
 			sleep 10;
+			if (ADF_terminateCivScr) exitWith {};
 		};
 	} else {
 		while {true} do {
@@ -216,6 +222,7 @@ if (isServer) then {
 				if (_count < MAD_maxCarDensity) then {[(position player), _count] call MAD_spawnCar;};
 			};
 			sleep 10;
+			if (ADF_terminateCivScr) exitWith {};
 		};
 	};
 };
