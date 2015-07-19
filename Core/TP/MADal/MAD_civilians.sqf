@@ -195,9 +195,8 @@ if (ADF_terminateCivScr) exitWith {};
 	} forEach MAD_CivsArray;
 };
 
-if (isServer) then
-if (ADF_terminateCivScr) exitWith {};
-{
+if (isServer) then {
+	if (ADF_terminateCivScr) exitWith {};
 	if (isMultiplayer) then {
 		while {true} do {
 			call MAD_deleteCivs;
