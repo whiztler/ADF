@@ -127,6 +127,7 @@ _ADF_ambient_vCiv = true; // enable ambient civilians VEHICLES that spawn around
 _ADF_ambient_vCiv_nr = 1; // number of vehicles to spawn around the players. This nr. is the max nr. of civilian vehicle spawns (no matter the amount of players).
 _ADF_ambient_vCiv_dist = 500; // Vehicle spawn distance from player in meters.
 _ADF_ambient_vCiv_del = 1000; // Vehicle delete distance from player in meters.
+// Note: if for some reason the civilian spawning gets out of hand, one can terminate the civilian spawn scripts (must be admin) by opening the debug console and enter 'ADF_terminateCivScr = true;' and execute globally (click on GLOBAL EXEC).
 
 // Garbage collector
 _ADF_CleanUp = true; // enable cleaning up of dead bodies (friendly, enemy, vehicles, etc.) [true/false].
@@ -142,4 +143,4 @@ _ADF_altitude = false; // Enable altitude based fatigue (altitude mountain sickn
 /********** ADF DEV BUILD SETTINGS **********/
 _ADF_tpl_version = 1.41; // ADF version DO NOT EDIT
 _ADF_devBuild = "Beta"; // [Alpha/Beta/Production] DO NOT EDIT
-_ADF_devBuildNr = "01"; // Build number. DO NOT EDIT
+_ADF_devBuildNr = "02"; // Build number. DO NOT EDIT
