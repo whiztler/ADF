@@ -12,7 +12,7 @@ File: ADF_init_rpt.sqf
 Executed on server only
 ****************************************************************/
 
-diag_log "ADF RPT: Init - executing ADF_init_rpt.sqf"; // Reporting. Do NOT edit/remove
+if (isServer) then {diag_log "ADF RPT: Init - executing ADF_init_rpt.sqf"}; // Reporting. Do NOT edit/remove
 
 // Init
 ADF_log_CntHC = 0;

@@ -4,7 +4,7 @@ ADF version: 1.41 / JULY 2015
 
 Script: Reload/Rearm/Repair Script
 Author: Xeno (Adapted for ADF by Whiztler)
-Script version: 2.65
+Script version: 2.66
 
 Game type: N/A
 File: ADF_RRR.sqf
@@ -16,7 +16,7 @@ Activation Anybody Present
 Repeat
 
 For Helicopters:
-Condition: ("Helicopter" countType thislist  > 0) && ((getpos (thislist select 0)) select 2 < 1)
+Condition: ("Helicopter" countType thislist  > 0) && ((getpos (thislist select 0)) select 2 < .5)
 On activation: _xhandle = [(thislist select 0)] execVM "Core\ADF_RRR.sqf";
 
 For Airplanes:

@@ -29,7 +29,7 @@ with
 if (!ADF_HC_execute) exitWith {}; // Autodetect: execute on the HC else execute on the server
 ****************************************************************/
 
-diag_log "ADF RPT: Init - executing ADF_HC.sqf"; // Reporting. Do NOT edit/remove
+if (isServer) then {diag_log "ADF RPT: Init - executing ADF_HC.sqf"}; // Reporting. Do NOT edit/remove
 
 // Init
 ADF_HC_execute = false;

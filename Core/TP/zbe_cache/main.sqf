@@ -1,3 +1,5 @@
+if (isServer) then {diag_log "ADF RPT: Init - executing zbe_cache\main.sqf"}; // Reporting. Do NOT edit/remove
+
 zbe_aiCacheDist				= _this select 0;
 zbe_minFrameRate				= _this select 1;
 zbe_debug					= _this select 2;

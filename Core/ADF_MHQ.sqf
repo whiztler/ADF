@@ -25,7 +25,7 @@ Instructions:
 Place a vehicle on the map and name it MHQ.
 ****************************************************************/
 
-diag_log "ADF RPT: Init - executing ADF_MHQ.sqf"; // Reporting. Do NOT edit/remove
+if (isServer) then {diag_log "ADF RPT: Init - executing ADF_MHQ.sqf"}; // Reporting. Do NOT edit/remove
 
 _ADF_perfDiagStart = diag_tickTime;
 if (side player == EAST) exitWith {if (ADF_debug) then {["MHQ - MHQ only works for WEST side",true] call ADF_fnc_log;}}; // Blufor only!

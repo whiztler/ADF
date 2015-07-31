@@ -4,7 +4,7 @@ ADF version: 1.41 / JULY 2015
 
 Script: Call Sings & Radio configuration
 Author: Whiztler
-Script version: 2.56
+Script version: 2.60
 
 Game type: n/a
 File: ADF_clientPreset.sqf
@@ -19,7 +19,7 @@ DO NOT EDIT THIS SCRIPT
 ACRE2 = WIP
 ****************************************************************/
 
-diag_log "ADF RPT: Init - executing ADF_clientPreset.sqf"; // Reporting. Do NOT edit/remove
+if (isServer) then {diag_log "ADF RPT: Init - executing ADF_clientPreset.sqf"}; // Reporting. Do NOT edit/remove
 
 if (ADF_isHC) exitWith {}; // HC exits script
 
@@ -41,7 +41,7 @@ private [
 ];
 
 params [
-	"_ADF_preset",
+	["_ADF_preset", "DEFAULT", ["SHAPE","DEFAULT","CUSTOM","WOLFPACK","2SIERRA"]],
 	"_ADF_ACRE_fullDuplex",
 	"_ADF_ACRE_interference",
 	"_ADF_ACRE_AIcanHear",
@@ -65,7 +65,7 @@ If (_ADF_preset == "NOPRYL") then {ADF_presetData = ADF_preset_NOPRYL;};
 If ((_ADF_preset == "SHAPE") || (_ADF_preset == "DEFAULT")) then {ADF_presetData = ADF_preset_DEFAULT;};
 If (_ADF_preset == "CUSTOM") then {ADF_presetData = ADF_preset_CUSTOM;};
 If (_ADF_preset == "WOLFPACK") then {ADF_presetData = ADF_preset_WP;};
-If ((_ADF_preset != "NOPRYL") && (_ADF_preset != "SHAPE") && (_ADF_preset != "DEFAULT") && (_ADF_preset != "CUSTOM") && (_ADF_preset != "WOLFPACK")) then {ADF_presetData = ADF_preset_DEFAULT; if (ADF_debug) then {["PRESETS - No preset defined. Applying DEFAULT preset",false] call ADF_fnc_log};};
+If (_ADF_preset == "2SIERRA") then {ADF_presetData = ADF_preset_2S;};
 
 ADF_fnc_PresetSetGroupID = { // 1.40B03
 	private ["_g","_cs"];
@@ -80,16 +80,16 @@ ADF_fnc_PresetSetGroupID = { // 1.40B03
 
 // Load all groups (as strings) into an array 
 _ADF_preset_companyGroups = [
-	"gCC", 																													// XO 		- 0
-	"gCO_1",	"gCO_11",	"gCO_11A",	"gCO_11B",	"gCO_12",	"gCO_12A",	"gCO_12B",	"gCO_13",	"gCO_13A",	"gCO_13B", 	// 1 INF PLT 	- 1-10
-	"gCO_2",	"gCO_21A",	"gCO_21B",	"gCO_21C",	"gCO_22A",	"gCO_22B",	"gCO_23A",	"gCO_23B", 							// 2 CAV BAT 	- 11-18
-	"gCO_3",	"gCO_31A",	"gCO_31B",	"gCO_32A",	"gCO_32B",	"gCO_32C",	"gCO_33A",	"gCO_33B", 							// 3 AIR WING	- 19-26
-	"gCO_4",	"gCO_41M",	"gCO_41R",	"gCO_41Y",	"gCO_41Z",	"gCO_42A",	"gCO_42B",	"gCO_43F", 							// 4 SOR SQDR 	- 27-34
-	"gGM1",		"gGM2"																										// GM's 		- 35-36
+	"gCC", 																																// XO 		- 0
+	"gCO_1",	"gCO_11",	"gCO_11A",	"gCO_11B",	"gCO_12",	"gCO_12A",	"gCO_12B",	"gCO_13",	"gCO_13A",	"gCO_13B",	"gCO_13C",	// 1 INF PLT 	- 1-11
+	"gCO_2",	"gCO_21A",	"gCO_21B",	"gCO_21C",	"gCO_22A",	"gCO_22B",	"gCO_23A",	"gCO_23B", 										// 2 CAV BAT 	- 12-19
+	"gCO_3",	"gCO_31A",	"gCO_31B",	"gCO_32A",	"gCO_32B",	"gCO_32C",	"gCO_33A",	"gCO_33B", 										// 3 AIR WING	- 20-27
+	"gCO_4",	"gCO_41M",	"gCO_41R",	"gCO_41Y",	"gCO_41Z",	"gCO_42A",	"gCO_42B",	"gCO_43F", 										// 4 SOR SQDR 	- 28-35
+	"gGM1",		"gGM2"																													// GM's 		- 37-37
 ];
 
 ///// Finish player loadout init
-waitUntil {scriptDone ADF_getLoadOut}; 
+waitUntil {ADF_gearLoaded}; 
 if !(isNil "GM_1") then {if (player == GM_1) then {waitUntil {ADF_GM_init}}};  // > 141B01
 if !(isNil "GM_2") then {if (player == GM_2) then {waitUntil {ADF_GM_init}}};  // > 141B01
 
@@ -273,8 +273,8 @@ if (ADF_debug) then {
 // ADF
 player createDiarySubject ["ADF","ADF"];
 player createDiaryRecord ["ADF",["ARMA Mission Development Framework","
-<br/><img shadow='false' image='Core\I\ADF_logo.paa'/><br/><br/>
-<br/><br/>---------------------------------------------------------------
+<img shadow='false' image='Core\I\ADF_logo.paa'/><br/><br/>
+---------------------------------------------------------------
 <br/><br/>ARMA Mission Development Framework<br/>
 ADF version: 1.41 / JULY 2015
 <br/><br/>

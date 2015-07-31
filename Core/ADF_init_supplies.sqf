@@ -17,8 +17,8 @@ See the 'Core\C\' folder for all supply scripts.
 This script is executed on the server only.
 ****************************************************************/
 
-diag_log "ADF RPT: Init - executing ADF_init_supplies.sqf"; // Reporting. Do NOT edit/remove
-	
+if (isServer) then {diag_log "ADF RPT: Init - executing ADF_init_supplies.sqf"}; // Reporting. Do NOT edit/remove
+
 // Crates
 if !(isNil "crate_IFT_1") then {[crate_IFT_1] execVM "Core\C\ADF_cCargo_B_IFT.sqf";};
 if !(isNil "crate_IFT_2") then {[crate_IFT_2] execVM "Core\C\ADF_cCargo_B_IFT.sqf";};

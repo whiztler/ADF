@@ -19,7 +19,7 @@ this addAction ["<t align='left' color='#E4F2AA'>Teleport to Troop Leader</t>", 
 
 // Init
 params ["_ADF_unit"];
-_ADF_unitName		= name vehicle _ADF_unit;
+_ADF_unitName			= name vehicle _ADF_unit;
 _ADF_unitLeader		= leader (group _ADF_unit);
 _ADF_unitLeaderPos	= getPosATL _ADF_unitLeader;
 _ADF_unitLeaderDir	= getDirVisual _ADF_unitLeader;

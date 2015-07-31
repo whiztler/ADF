@@ -25,7 +25,7 @@ that is used to spawn units/vehicles:
 Make sure that you call the function AFTER all units have spawned. It does NOT refresh!
 ****************************************************************/
 
-diag_log "ADF RPT: Init - executing ADF_debug.sqf"; // Reporting. Do NOT edit/remove
+if (isServer) then {diag_log "ADF RPT: Init - executing ADF_debug.sqf"}; // Reporting. Do NOT edit/remove
 
 // Add menu actions to mission maker for editor preview
 if (isServer && !isDedicated) then {

@@ -22,7 +22,7 @@ Place a 'ZEUS Game Master' module for each unit:
 - Forced interface: disabled
 ****************************************************************/
 
-diag_log "ADF RPT: Init - executing ADF_GM.sqf"; // Reporting. Do NOT edit/remove
+if (isServer) then {diag_log "ADF RPT: Init - executing ADF_GM.sqf"}; // Reporting. Do NOT edit/remove
 if (ADF_isHC) exitWith {}; // HC exits script
 
 // Init

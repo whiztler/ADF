@@ -46,7 +46,7 @@ Then use the If (ADF_MB_normal) then {//yourCode }; for balanced
 enemy spawn on demand.
 ****************************************************************/
 
-diag_log "ADF RPT: Init - executing ADF_fnc_missionBalancer.sqf"; // Reporting. Do NOT edit/remove
+if (isServer) then {diag_log "ADF RPT: Init - executing ADF_fnc_missionBalancer.sqf"}; // Reporting. Do NOT edit/remove
 
 // init	the vars
 ADF_MB_lite = false;

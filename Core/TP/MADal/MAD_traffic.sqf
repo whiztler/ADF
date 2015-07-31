@@ -5,6 +5,7 @@
 //Note: This is a derivative work of TPW´s TPW MODS: enhanced realism/immersion. It contains some code of it but it´s main difference is that this
 //works on dedicated servers. It is still WIP;
 
+if (isServer) then {diag_log "ADF RPT: Init - executing MAD_traffic.sqf"}; // Reporting. Do NOT edit/remove
 if (ADF_isHC) exitWith {}; // HC exits script
 
 MAD_maxCarDensity 	= _this select 0; //number of cars around 1 player at the same time

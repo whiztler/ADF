@@ -12,7 +12,7 @@ Previous: ADF_init_vars.sqf
 
 ****************************************************************/
 
-diag_log "ADF RPT: Init - executing ADF_init_pre.sqf"; // Reporting. Do NOT edit/remove
+if (isServer) then {diag_log "ADF RPT: Init - executing ADF_init_pre.sqf"}; // Reporting. Do NOT edit/remove
 
 // Get addon/mod/dlc availability from the A3 config file and store them in easy to use variables
 ADF_dlc_MarksMan 		= isClass (configFile >> "CfgMods" >> "Mark"); // Check if Marksman DLC is present
@@ -43,6 +43,7 @@ tf_no_auto_long_range_radio 	= true;
 ADF_isHC 					= false;
 ADF_GM_init					= false;
 ADF_microDAGR 				= ""; // 140B06
+ADF_gearLoaded				= false;
 if (isNil "ADF_HC_connected") then {ADF_HC_connected = false;}; // HC init
  
 player setVariable ["BIS_noCoreConversations",true]; // Disable AI chatter.
