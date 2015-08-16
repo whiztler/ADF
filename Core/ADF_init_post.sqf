@@ -50,7 +50,7 @@ if (isServer) then {
 	_m setMarkerSize [0,0];
 	_m setMarkerShape "ICON";
 	_m setMarkerType "mil_box";
-	_m setMarkerColor "ColorWhite";
+	_m setMarkerColor "ColorGrey";
 	_m setMarkerDir 0;
 	_m setMarkerText _ADF_mapMrkText;
 	

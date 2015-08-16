@@ -99,11 +99,11 @@ ADF_FARP_reloadTime = 10; // Maximum time in seconds it takes to re-arm per turr
 ADF_FARP_refuelTime = 90; // Maximum time in seconds it takes to refuel a vehicle at the FARP.
 
 /********** RESPAWN / MOBILE HQ (MOBILE RESPAWN FOB) **********/
-ADF_Tickets = true; // enable respawn tickets [true/false]. Make sure to configure in description.ext as well!!
+ADF_Tickets = false; // enable respawn tickets [true/false]. Make sure to configure in description.ext as well!!
 _ADF_wTixNr = 10; // Respawn Tickets. Number available respawns for WEST Blufor.
 _ADF_eTixNr = 15; // Respawn Tickets. Number available respawns for EAST Opfor.
 
-_ADF_mhq_enable = true; // enable the MHQ function [true/false].
+_ADF_mhq_enable = false; // enable the MHQ function [true/false].
 _ADF_mhq_respawn_nr = 3; // Number of MHQ vehicle respawn available.
 _ADF_mhq_respawn_time = 15; // MHQ vehicle respawn time in minutes.
 _ADF_mhq_respawn_class = "B_APC_Tracked_01_CRV_F"; // MHQ vehicle classname (default is the 'Bobcat').

@@ -92,10 +92,10 @@ if ((typeOf player) IN ["B_recon_F","B_recon_LAT_F","B_recon_exp_F","B_recon_med
 	
 		waitUntil {time > 10};
 		
-		player setObjectTexture [0, "\A3\Characters_F\Common\Data\basicbody_black_co.paa"];
+		player setObjectTextureGlobal [0, "\A3\Characters_F\Common\Data\basicbody_black_co.paa"];
 		{
 			{			
-				_x setObjectTexture [0, "\A3\Characters_F\Common\Data\basicbody_black_co.paa"];
+				_x setObjectTextureGlobal [0, "\A3\Characters_F\Common\Data\basicbody_black_co.paa"];
 			} forEach units _x;
 		} forEach ADF_sorUnits;
 	};

@@ -4,7 +4,7 @@ ADF version: 1.41 / JULY 2015
 
 Script: Reload/Rearm/Repair Script
 Author: Xeno (Adapted for ADF by Whiztler)
-Script version: 2.66
+Script version: 2.71
 
 Game type: N/A
 File: ADF_RRR.sqf
@@ -16,30 +16,32 @@ Activation Anybody Present
 Repeat
 
 For Helicopters:
-Condition: ("Helicopter" countType thislist  > 0) && ((getpos (thislist select 0)) select 2 < .5)
-On activation: _xhandle = [(thislist select 0)] execVM "Core\ADF_RRR.sqf";
+Condition: ("Helicopter" countType thisList  > 0) && ((getPos (thisList select 0)) select 2 < .5)
+On activation: 0 = [(thisList select 0)] execVM "Core\ADF_RRR.sqf";
 
 For Airplanes:
-Condition: (("Plane" countType thislist  > 0) || ("airplane" countType thislist  > 0) || ("airplanex" countType thislist  > 0)) && ((getpos (thislist select 0)) select 2 < 1) && (speed (thislist select 0) < 10)
-On activation: _xhandle = [(thislist select 0)] execVM "Core\ADF_RRR.sqf";
+Condition: (("Plane" countType thisList  > 0) || ("airplane" countType thisList  > 0) || ("airplanex" countType thisList  > 0)) && ((getPos (thisList select 0)) select 2 < 1) && (speed (thisList select 0) < 10)
+On activation: 0 = [(thisList select 0)] execVM "Core\ADF_RRR.sqf";
 
 For Vehicles:
-Condition: ("LandVehicle" countType thislist  > 0) && ((getpos (thislist select 0)) select 2 < 1)
-On activation: _xhandle = [(thislist select 0)] execVM "Core\ADF_RRR.sqf";
+Condition: (("CAR" countType thisList  > 0) || ("TRUCK" countType thisList  > 0) || ("TANK" countType thisList  > 0) || ("APC" countType thisList  > 0)) &&  ((getPos (thisList select 0)) select 2 < 2);
+On activation: 0 = [(thisList select 0)] execVM "Core\ADF_RRR.sqf";
 ****************************************************************/
+
+// Reporting
+if (isServer) then {diag_log "ADF RPT: Init - executing ADF_RRR.sqf"}; // Reporting. Do NOT edit/remove
 
 // Init
 private [
-	"_ADF_turretConfig","_ADF_turretCount","_i","_ADF_vehMag","_ADF_object","_ADF_vehName"
+	"_ADF_turretConfig","_ADF_turretCount","_ADF_vehMag","_ADF_object","_ADF_vehName",
 	"_ADF_vehType","_ADF_vehCat","_ADF_vehDriver","_ADF_objectDamage","_ADF_objectFuel",
 	"_ADF_repairSleep","_ADF_reloadSleep","_ADF_reloadSleep","_ADF_maxTime","_ADF_serviceStartTime",
-	"_ADF_serviceTime","_ADF_serviceTimeType","ADF_dayType","_ADF_dayTime"
+	"_ADF_serviceTime","_ADF_serviceTimeType","_ADF_dayType","_ADF_dayTime"
 ];
 
-_ADF_object = _this select 0;
-_ADF_vehType = typeof _ADF_object;
+params ["_ADF_object"];
+_ADF_vehType = typeOf _ADF_object;
 _ADF_vehName = getText(configFile >> "CfgVehicles" >> _ADF_vehType >> "displayName");
-
 
 if (_ADF_object isKindOf "ParachuteBase") exitWith {};
 if (!alive _ADF_object) exitWith {};

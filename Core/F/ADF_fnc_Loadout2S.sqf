@@ -4,7 +4,7 @@ ADF version: 1.41 / JULY 2015
 
 Script: Loadout Gear 2 SIERRA campaign
 Author: Whiztler
-Script version: 1.02
+Script version: 1.03
 
 Game type: n/a
 File: ADF_fnc_loadout2S.sqf
@@ -18,7 +18,7 @@ private ["_ADF_unit","_ADF_unitString","_u","_r","_ADF_INF_headGear","_ADF_INF_p
 		"_ADF_INF_priWpn_LMG","_ADF_INF_priWpn_MG","_ADF_INF_handWpn","_ADF_INF_tube_Lite","_ADF_INF_tube_AT","_ADF_INF_tube_AA",
 		"_ADF_INF_priWpnScope_lite","_ADF_INF_priWpnMag","_ADF_INF_priWpnMag_LMG","_ADF_INF_priWpnMag_MG","_ADF_INF_handWpn_mag",
 		"_ADF_INF_tubeMag_Lite","_ADF_INF_tubeMag_AT","_ADF_INF_tubeMag_AA","_ADF_INF_40mike","_ADF_INF_handgrenade","_ADF_INF_ACE3_default",
-		"_ADF_INF_ACE3_defaultMed","_ADF_TFAR_PersonalRadio", "_ADF_TFAR_SWRadio", "_ADF_TFAR_LRRadio"];
+		"_ADF_INF_ACE3_defaultMed","_ADF_TFAR_PersonalRadio", "_ADF_TFAR_SWRadio", "_ADF_TFAR_LRRadio","_ADF_texture"];
 		
 tf_no_auto_long_range_radio 	= true;
 
@@ -75,15 +75,20 @@ if (ADF_mod_ACE3) then {
 _ADF_INF_ACE3_default 		= ["ACE_EarPlugs","ace_mapTools","ACE_CableTie","ACE_IR_Strobe_Item","ACE_morphine","ACE_HandFlare_White","ACE_HandFlare_White","ACE_M84","ACE_M84"];
 _ADF_INF_ACE3_defaultMed		= ["ACE_fieldDressing","ACE_elasticBandage","ACE_quikclot","ACE_fieldDressing","ACE_elasticBandage","ACE_quikclot","ACE_fieldDressing",
 								"ACE_elasticBandage","ACE_quikclot"];
-
 								
+// Strip the unit
+removeAllWeapons _ADF_unit; removeAllItems _ADF_unit; removeAllAssignedItems _ADF_unit; removeVest _ADF_unit; removeBackpack _ADF_unit; removeHeadgear _ADF_unit; removeGoggles _ADF_unit; 
+
+
 /********* DEFAULT TWO SIERRA LOADOUT ********/
 
 // Add Items/gear
-{_ADF_unit linkItem _x} forEach ["ItemWatch","ItemCompass"];
+_ADF_unit forceAddUniform "U_B_CombatUniform_mcam";
+{_ADF_unit linkItem _x} forEach ["ItemWatch","ItemCompass","ItemMap"];
 if (_r != "pc") then {_ADF_unit addHeadgear _ADF_INF_headGear; _ADF_unit addVest "V_TacVest_khk";} else {_ADF_unit addVest "V_Rangemaster_belt";};
 _ADF_unit addWeapon "NVGoggles";
 _ADF_unit addItem "acc_flashlight";
+_ADF_unit addItemToUniform "acc_pointer_IR";
 
 // MicroDAGR. If no ACE or CtAB than add chemlight
 if (ADF_mod_ACE3) then {_ADF_microDAGR = "ACE_microDAGR"};
@@ -105,8 +110,7 @@ ADF_loadout_platoon = {
 	for "_i" from 1 to 2 do {
 		_ADF_unit addItem "SmokeShell"; _ADF_unit addItem "Chemlight_green"; _ADF_unit addItem _ADF_INF_handgrenade;
 		if (!ADF_mod_ACE3) then {_ADF_unit addItem "FirstAidKit";};
-	};
-	
+	};	
 	
 	// Add ACE3 default loadout items
 	if (ADF_mod_ACE3) then {
@@ -124,8 +128,23 @@ ADF_loadout_platoon = {
 	if (ADF_mod_TFAR) then {_ADF_unit linkItem _ADF_TFAR_PersonalRadio}; // TFAR
 	if (!ADF_mod_ACRE && !ADF_mod_TFAR) then {_ADF_unit linkItem "ItemRadio"}; // Vanilla
 	
-	// mircoDAGE
+	// mircoDAGR
 	if (_r == "pc" || _r == "tto" || _r == "sql" || _r == "wtl" || _r == "frl") then {_ADF_unit addItem _ADF_microDAGR;};
+	
+	// Add Uniform EH
+	_ADF_unit addEventHandler ["Take", {
+		(getObjectTextures player + [uniformContainer player getVariable "texture"])
+		params ["_texUniform", "_texInsignia", "_texCustom"];
+		if (isNil "_texCustom") exitWith {};
+		if (_texUniform == _texCustom) exitWith {};
+		player setObjectTextureGlobal [0, _texCustom];
+		if (ADF_Clan_uniformInsignia) then {[player,"CLANPATCH"] call BIS_fnc_setUnitInsignia};
+		false
+	}];
+
+	// Set local Texture
+	_ADF_texture =  "\a3\characters_f\BLUFOR\Data\clothing_sage_co.paa";
+	uniformContainer _ADF_unit setVariable ["texture", _ADF_texture, true];
 	
 	ADF_gearLoaded = true;
 };

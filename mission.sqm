@@ -37,8 +37,8 @@ class Mission
 		"A3_Boat_F_SDV_01",
 		"A3_Weapons_F_Ammoboxes",
 		"A3_Signs_F",
-		"A3_Characters_F_OPFOR",
-		"A3_Characters_F_Civil"
+		"A3_Characters_F_Civil",
+		"A3_Structures_F_Walls"
 	};
 	addOnsAuto[]=
 	{
@@ -70,8 +70,9 @@ class Mission
 		"A3_Data_F",
 		"a3_roads_f",
 		"A3_Structures_F_Mil_Helipads",
-		"A3_Signs_F",
 		"A3_Weapons_F_Ammoboxes",
+		"A3_Signs_F",
+		"A3_Structures_F_Walls",
 		"a3_map_altis"
 	};
 	randomSeed=15384162;
@@ -2089,7 +2090,7 @@ class Mission
 	};
 	class Vehicles
 	{
-		items=91;
+		items=97;
 		class Item0
 		{
 			position[]={23670.318,3.1900001,18494.213};
@@ -2834,141 +2835,203 @@ class Mission
 		};
 		class Item77
 		{
-			position[]={23734.236,3.1900001,18642.867};
-			id=198;
-			side="EMPTY";
-			vehicle="RoadCone_L_F";
-			leader=1;
-			skill=0.2;
-			init="this allowDamage false;";
-		};
-		class Item78
-		{
-			position[]={23738.09,3.1900001,18639.561};
-			id=199;
-			side="EMPTY";
-			vehicle="Land_ClutterCutter_large_F";
-			leader=1;
-			skill=0;
-		};
-		class Item79
-		{
-			position[]={23738.311,3.1900001,18631.582};
-			id=200;
-			side="EMPTY";
-			vehicle="Land_ClutterCutter_large_F";
-			leader=1;
-			skill=0;
-		};
-		class Item80
-		{
 			position[]={23506.471,3.1900001,18636.523};
-			id=201;
+			id=198;
 			side="EMPTY";
 			vehicle="Land_HelipadCircle_F";
 			leader=1;
 			skill=0.33333331;
 			init="null = [this] execVM ""Core\ADF_helipadLights.sqf"";";
 		};
-		class Item81
+		class Item78
 		{
 			position[]={23520.922,3.1900001,18452.264};
-			id=202;
+			id=199;
 			side="EMPTY";
 			vehicle="B_supplyCrate_F";
 			skill=0.2;
 			text="crate_IFT_1";
 			description="ADF - IFT Supply Crate";
 		};
-		class Item82
+		class Item79
 		{
 			position[]={23536.969,3.1900001,18452.654};
-			id=203;
+			id=200;
 			side="EMPTY";
 			vehicle="B_supplyCrate_F";
 			skill=0.2;
 			text="crate_IFT_2";
 			description="ADF - IFT Supply Crate";
 		};
-		class Item83
+		class Item80
 		{
 			position[]={23551.305,3.1900001,18452.752};
-			id=204;
+			id=201;
 			side="EMPTY";
 			vehicle="B_supplyCrate_F";
 			skill=0.2;
 			text="crate_IWT_1";
 			description="ADF - IWT Supply Crate";
 		};
-		class Item84
+		class Item81
 		{
 			position[]={23593.318,3.1900001,18452.439};
-			id=205;
+			id=202;
 			side="EMPTY";
 			vehicle="B_supplyCrate_F";
 			skill=0.2;
 			text="crate_CAV_1";
 			description="ADF - CAV Supply Crate";
 		};
-		class Item85
+		class Item82
 		{
 			position[]={23755.955,3.1900001,18451.963};
-			id=206;
+			id=203;
 			side="EMPTY";
 			vehicle="B_supplyCrate_F";
 			skill=0.2;
 			text="crate_SOR_1";
 			description="ADF - SpecOps Supply Crate";
 		};
-		class Item86
+		class Item83
 		{
 			position[]={23778.266,3.1900001,18451.957};
-			id=207;
+			id=204;
 			side="EMPTY";
 			vehicle="B_supplyCrate_F";
 			skill=0.2;
 			text="crate_SOP_1";
 			description="ADF - SOP JTAC Supply Crate";
 		};
-		class Item87
+		class Item84
 		{
 			position[]={23769.699,3.1900001,18451.961};
-			id=208;
+			id=205;
 			side="EMPTY";
 			vehicle="B_supplyCrate_F";
 			skill=0.2;
 			text="crate_SOD_1";
 			description="ADF - SOD Wetgear Supply Crate";
 		};
-		class Item88
+		class Item85
 		{
-			position[]={23742.162,3.1900001,18642.908};
-			id=209;
+			position[]={23745.838,3.1900001,18642.482};
+			id=206;
 			side="EMPTY";
 			vehicle="RoadCone_L_F";
 			leader=1;
 			skill=0.2;
-			init="this allowDamage false;";
+			init="this setPosATL [getPosATL this select 0, getPosATL this select 1, -.55]; this enableSimulationGlobal false; this allowDamage false;";
+		};
+		class Item86
+		{
+			position[]={23745.813,3.1900001,18627.414};
+			id=207;
+			side="EMPTY";
+			vehicle="RoadCone_L_F";
+			leader=1;
+			skill=0.2;
+			init="this setPosATL [getPosATL this select 0, getPosATL this select 1, -.55]; this enableSimulationGlobal false; this allowDamage false;";
+		};
+		class Item87
+		{
+			position[]={23745.811,3.1900001,18628.934};
+			azimut=90;
+			id=208;
+			side="EMPTY";
+			vehicle="Land_CncBarrier_stripes_F";
+			skill=0.68301886;
+			init="this setPosATL [getPosATL this select 0, getPosATL this select 1, -.5]; this enableSimulationGlobal false; this allowDamage false;";
+		};
+		class Item88
+		{
+			position[]={23745.818,3.1900001,18632.842};
+			azimut=90;
+			id=209;
+			side="EMPTY";
+			vehicle="Land_CncBarrier_stripes_F";
+			skill=0.68301886;
+			init="this setPosATL [getPosATL this select 0, getPosATL this select 1, -.5]; this enableSimulationGlobal false; this allowDamage false;";
 		};
 		class Item89
 		{
-			position[]={23734.275,3.1900001,18627.027};
+			position[]={23745.832,3.1900001,18640.959};
+			azimut=90;
 			id=210;
 			side="EMPTY";
-			vehicle="RoadCone_L_F";
-			leader=1;
-			skill=0.2;
-			init="this allowDamage false;";
+			vehicle="Land_CncBarrier_stripes_F";
+			skill=0.68301886;
+			init="this setPosATL [getPosATL this select 0, getPosATL this select 1, -.5]; this enableSimulationGlobal false; this allowDamage false;";
 		};
 		class Item90
 		{
-			position[]={23742.17,3.1900001,18627.061};
+			position[]={23745.875,3.1900001,18636.975};
+			azimut=90;
 			id=211;
+			side="EMPTY";
+			vehicle="Land_CncBarrier_stripes_F";
+			skill=0.68301886;
+			init="this setPosATL [getPosATL this select 0, getPosATL this select 1, -.5]; this enableSimulationGlobal false; this allowDamage false;";
+		};
+		class Item91
+		{
+			position[]={23753.811,3.1900001,18642.521};
+			id=212;
 			side="EMPTY";
 			vehicle="RoadCone_L_F";
 			leader=1;
 			skill=0.2;
-			init="this allowDamage false;";
+			init="this setPosATL [getPosATL this select 0, getPosATL this select 1, -.55]; this enableSimulationGlobal false; this allowDamage false;";
+		};
+		class Item92
+		{
+			position[]={23753.785,3.1900001,18627.453};
+			id=213;
+			side="EMPTY";
+			vehicle="RoadCone_L_F";
+			leader=1;
+			skill=0.2;
+			init="this setPosATL [getPosATL this select 0, getPosATL this select 1, -.55]; this enableSimulationGlobal false; this allowDamage false;";
+		};
+		class Item93
+		{
+			position[]={23753.783,3.1900001,18628.973};
+			azimut=90;
+			id=214;
+			side="EMPTY";
+			vehicle="Land_CncBarrier_stripes_F";
+			skill=0.68301886;
+			init="this setPosATL [getPosATL this select 0, getPosATL this select 1, -.5]; this enableSimulationGlobal false; this allowDamage false;";
+		};
+		class Item94
+		{
+			position[]={23753.791,3.1900001,18632.879};
+			azimut=90;
+			id=215;
+			side="EMPTY";
+			vehicle="Land_CncBarrier_stripes_F";
+			skill=0.68301886;
+			init="this setPosATL [getPosATL this select 0, getPosATL this select 1, -.5]; this enableSimulationGlobal false; this allowDamage false;";
+		};
+		class Item95
+		{
+			position[]={23753.805,3.1900001,18640.998};
+			azimut=90;
+			id=216;
+			side="EMPTY";
+			vehicle="Land_CncBarrier_stripes_F";
+			skill=0.68301886;
+			init="this setPosATL [getPosATL this select 0, getPosATL this select 1, -.5]; this enableSimulationGlobal false; this allowDamage false;";
+		};
+		class Item96
+		{
+			position[]={23753.848,3.1900001,18637.014};
+			azimut=90;
+			id=217;
+			side="EMPTY";
+			vehicle="Land_CncBarrier_stripes_F";
+			skill=0.68301886;
+			init="this setPosATL [getPosATL this select 0, getPosATL this select 1, -.5]; this enableSimulationGlobal false; this allowDamage false;";
 		};
 	};
 	class Markers
@@ -3022,21 +3085,20 @@ class Mission
 		};
 		class Item5
 		{
-			position[]={23738.215,3.1900001,18634.971};
-			name="vehRepair";
+			position[]={23749.811,3.1900001,18634.959};
+			name="mVehRepair";
 			markerType="RECTANGLE";
 			type="Empty";
 			colorName="ColorYellow";
 			fillName="Border";
-			a=8;
-			b=4;
-			angle=90;
+			a=4;
+			b=8;
 			drawBorder=1;
 		};
 		class Item6
 		{
-			position[]={23738.246,3.1900001,18634.684};
-			name="mVehRepair";
+			position[]={23750.041,3.1900001,18634.785};
+			name="mVehRepairIcon";
 			text=" V";
 			type="b_maint";
 			colorName="ColorYellow";
@@ -3064,7 +3126,7 @@ class Mission
 		class Item1
 		{
 			position[]={23570.281,3.1900001,18635.861};
-			a=8;
+			a=7;
 			b=8;
 			rectangular=1;
 			activationBy="ANY";
@@ -3103,9 +3165,9 @@ class Mission
 		};
 		class Item3
 		{
-			position[]={23738.209,3.1900001,18634.973};
-			a=4;
-			b=8;
+			position[]={23749.807,3.1900001,18634.955};
+			a=3.5;
+			b=6;
 			rectangular=1;
 			activationBy="ANY";
 			repeating=1;
@@ -3114,7 +3176,8 @@ class Mission
 			timeoutMax=3;
 			interruptable=1;
 			age="UNKNOWN";
-			expCond="(""LandVehicle"" countType thislist  > 0) && ((getpos (thislist select 0)) select 2 < 1)";
+			name="tVehRepair";
+			expCond="((""CAR"" countType thislist  > 0) || (""TRUCK"" countType thislist  > 0) || (""TANK"" countType thislist  > 0) || (""APC"" countType thislist  > 0)) &&  ((getpos (thislist select 0)) select 2 < 1);";
 			expActiv="_xhandle= [(thislist select 0)] execVM ""Core\ADF_RRR.sqf"";";
 			class Effects
 			{

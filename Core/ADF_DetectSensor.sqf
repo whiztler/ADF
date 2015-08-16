@@ -22,7 +22,7 @@ On Activation: 0 = [thisTrigger,EAST,500] execVM "Core\ADF_DetectSensor.sqf";
 
 if (ADF_debug) then {["TRIGGER - DetectSensor Activated",false] call ADF_fnc_log};
 
-if (!isServer) exitwith {};
+if (!ADF_HC_execute) exitWith {};
 
 params ["_ADF_trig","_ADF_side","_ADF_rad"];
 _ADF_list = (getPos _ADF_trig) nearEntities [["Man"], _ADF_rad];

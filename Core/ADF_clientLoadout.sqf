@@ -4,7 +4,7 @@ ADF version: 1.41 / JULY 2015
 
 Script: Loadout Client
 Author: Whiztler
-Script version: 5.50
+Script version: 5.60
 
 Game type: n/a
 File: ADF_clientLoadout.sqf
@@ -14,12 +14,22 @@ NOTE: Gear loads on actual players only. Does not load on AI's!!
 
 if (isServer) then {diag_log "ADF RPT: Init - executing ADF_clientLoadout.sqf"}; // Reporting. Do NOT edit/remove
 
+// Let the server apply Two Sierra uniform textures globally after the client loadout has been applied fully > 1.41 - 5.60
+if (isServer && (ADF_clanName == "Two Sierra")) then {
+	[] spawn {
+		if (isMultiplayer) then {ADF_uArray = playableUnits;} else {ADF_uArray = switchableUnits};
+		sleep 20; // wait till units have geared up
+		{_x setObjectTextureGlobal [0, "\a3\characters_f\BLUFOR\Data\clothing_sage_co.paa"]} forEach ADF_uArray; 
+		ADF_uArray = nil;
+	};
+};
+
 _ADF_perfDiagStart = diag_tickTime;
 if (ADF_debug) then {["LOADOUT - Loadout Client started",false] call ADF_fnc_log};
 
 If (IsDedicated || !(local player) || ADF_isHC) exitWith {}; // 5.43
 _ADF_noLoadout = param [15, false, [true,false]];
-if (_ADF_noLoadout) exitWith {if (ADF_debug) then {["Loadout - noLoadout option selected. Exiting loadout client.",false] call ADF_fnc_log; ADF_gearLoaded = true;} else {diag_log "ADF RPT: Loadout - noLoadout option selected. Exiting loadout client."}};
+if (_ADF_noLoadout) exitWith {if (ADF_debug) then {["Loadout - noLoadout option selected. Exiting loadout client.",false] call ADF_fnc_log; ADF_gearLoaded = true; publicVariableServer "ADF_gearLoaded";} else {diag_log "ADF RPT: Loadout - noLoadout option selected. Exiting loadout client."; ADF_gearLoaded = true; publicVariableServer "ADF_gearLoaded";}};
 // Two Sierra exit
 if (ADF_clanName == "TWO SIERRA") exitWith {player execVM "Core\F\ADF_fnc_Loadout2S.sqf";};
 
