@@ -68,9 +68,9 @@ class CfgDebriefing {
 	};
 };
 
-// ACE3 settings v. 3.1.1 
+// ACE3 settings v. 3.2.0 
 
-	class ACE_Settings {
+class ACE_Settings {
 	// Custom ACE3 Setting below
 		
 	class ace_common_forceAllSettings {
@@ -91,6 +91,16 @@ class CfgDebriefing {
 	class ace_common_checkPBOsWhitelist {
 		value = "[]";
 		typeName = "STRING";
+		force = 1;
+	};
+	class ace_finger_enabled {
+		value = 1;
+		typeName = "BOOL";
+		force = 1;
+	};
+	class ace_finger_maxRange {
+		value = 4;
+		typeName = "SCALAR";
 		force = 1;
 	};
 	class ace_frag_Enabled {
@@ -328,6 +338,16 @@ class CfgDebriefing {
 		typeName = "SCALAR";
 		force = 1;
 	};
+	class ace_medical_useCondition_PAK {
+		value = 0;
+		typeName = "SCALAR";
+		force = 1;
+	};
+	class ace_medical_useCondition_SurgicalKit {
+		value = 0;
+		typeName = "SCALAR";
+		force = 1;
+	};
 	class ace_medical_keepLocalSettingsSynced {
 		value = 1;
 		typeName = "BOOL";
@@ -408,6 +428,11 @@ class CfgDebriefing {
 		typeName = "SCALAR";
 		force = 1;
 	};
+	class ace_sitting_enable {
+		value = 1;
+		typeName = "BOOL";
+		force = 1;
+	};
 	class ace_switchunits_EnableSwitchUnits {
 		value = 0;
 		typeName = "BOOL";
@@ -449,7 +474,7 @@ class CfgDebriefing {
 		force = 1;
 	};
 	class ace_vehiclelock_LockVehicleInventory {
-		value = 0;
+		value = 1;
 		typeName = "BOOL";
 		force = 1;
 	};
@@ -559,6 +584,11 @@ class CfgDebriefing {
 		force = 1;
 	};
 	class ace_explosives_PunishNonSpecialists {
+		value = 1;
+		typeName = "BOOL";
+		force = 1;
+	};
+	class ace_explosives_ExplodeOnDefuse {
 		value = 1;
 		typeName = "BOOL";
 		force = 1;

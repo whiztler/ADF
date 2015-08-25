@@ -273,9 +273,7 @@ if (ADF_debug) then {
 // ADF
 player createDiarySubject ["ADF","ADF"];
 player createDiaryRecord ["ADF",["ARMA Mission Development Framework","
-<img shadow='false' image='Core\I\ADF_logo.paa'/><br/><br/>
----------------------------------------------------------------
-<br/><br/>ARMA Mission Development Framework<br/>
-ADF version: 1.41 / JULY 2015
-<br/><br/>
+<img width='375' height='375' shadow='false' image='Core\I\ADF_logo.paa'/><br/><br/>
+<font size='14' color='#d7dbd5'>          ARMA Mission Development Framework</font><br/>
+<font color='#9DA698'>                     ADF version: 1.41 / JULY 2015</font><br/><br/>
 "]];
