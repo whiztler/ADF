@@ -4,7 +4,7 @@ ADF version: 1.41 / JULY 2015
 
 Script: Mission init
 Author: Whiztler
-Script version: 1.13
+Script version: 1.14
 
 Game type: n/a
 File: initServer.sqf
@@ -22,6 +22,11 @@ diag_log text "";
 
 waitUntil {time > 0}; // V1.40B04
 enableEnvironment FALSE; // V1.40B04	
+
+if (isDedicated) then {
+	#include "Core\ADF_init_rpt.sqf"
+};
+
 //  Execute Core Third Party SERVER scripts: (comment out if not applicable)
 
 	

@@ -4,7 +4,7 @@ ADF version: 1.41 / JULY 2015
 
 Script: Mission Config
 Author: Whiztler
-Script version: 1.58
+Script version: 1.60
 
 Game type: n/a
 File: ADF_init_config.sqf
@@ -16,12 +16,12 @@ modules and scripts.
 diag_log "ADF RPT: Init - executing ADF_init_config.sqf"; // Reporting. Do NOT edit/remove
 
 /********** GENERAL **********/
-_ADF_mission_version = 1.0; // Mission version
+ADF_mission_version = 1.0; // Mission version
 _ADF_mission_init_time = 30; // Mission Init time counter. Min 30 secs. Add 1 sec per 2 players. 10 players = 35 secs.
 _ADF_HC_init = true; // Enable the Headless Client [true/false].
 _ADF_HCLB_enable = true; // Enable load balancing across multiple HC's (max 3)
 ADF_playerSide = WEST; // Which side are playable units on [WEST / EAST / GUER / CIV]
-ADF_debug = true; // For mission testing/debugging set to true. Make sure to set to false before compiling your final PBO.
+ADF_debug = false; // For mission testing/debugging set to true. Make sure to set to false before compiling your final PBO.
 ADF_Log_ServerPerfEnable = true; // Enable server performance logging in RPT. [true/false]
 ADF_clanName = "ADF"; // What is the name of your community/clan. Used in Hints, intro's etc.
 ADF_clanTAG = "ADF"; // What is the tag of your community/clan. Used in Hints, intro's etc.
@@ -141,6 +141,6 @@ _ADF_zeusEagle = true; // Enable the Zeus Eagle? False removes the eagle [true/f
 _ADF_altitude = false; // Enable altitude based fatigue (altitude mountain sickness)? True increases fatigue when > 1500 meter altitude [true/false].
 
 /********** ADF DEV BUILD SETTINGS **********/
-_ADF_tpl_version = 1.41; // ADF version DO NOT EDIT
+ADF_tpl_version = 1.41; // ADF version DO NOT EDIT
 _ADF_devBuild = "Beta"; // [Alpha/Beta/Production] DO NOT EDIT
 _ADF_devBuildNr = "02"; // Build number. DO NOT EDIT

@@ -38,7 +38,8 @@ class Mission
 		"A3_Weapons_F_Ammoboxes",
 		"A3_Signs_F",
 		"A3_Characters_F_Civil",
-		"A3_Structures_F_Walls"
+		"A3_Structures_F_Walls",
+		"3DEN"
 	};
 	addOnsAuto[]=
 	{
@@ -49,7 +50,8 @@ class Mission
 		"A3_Characters_F_BLUFOR",
 		"A3_Characters_F_Gamma",
 		"A3_Characters_F_Mark",
-		"A3_Modules_F_Curator_Curator",
+		"3DEN",
+		"a3_modules_f_curator_curator",
 		"A3_Structures_F_System",
 		"A3_Structures_F_Mil_Flags",
 		"A3_Signs_F_AD",
@@ -78,8 +80,8 @@ class Mission
 	randomSeed=15384162;
 	class Intel
 	{
-		briefingName="CO117 ADF v1.41 B02";
-		overviewText="Arma Mission Development Framework v1.41";
+		briefingName="CO117 ADF v2.01 B01";
+		overviewText="Arma Mission Development Framework v2.01";
 		resistanceWest=0;
 		timeOfChanges=7200;
 		startWeather=0;
