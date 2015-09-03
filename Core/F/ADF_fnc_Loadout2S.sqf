@@ -4,7 +4,7 @@ ADF version: 1.41 / JULY 2015
 
 Script: Loadout Gear 2 SIERRA campaign
 Author: Whiztler
-Script version: 1.03
+Script version: 1.04
 
 Game type: n/a
 File: ADF_fnc_loadout2S.sqf
@@ -25,7 +25,7 @@ tf_no_auto_long_range_radio 	= true;
 // Init unit vars
 _ADF_unit 					= _this;
 _ADF_unitString				= str _ADF_unit;
-_u							= [_ADF_unitString, "_"] call CBA_fnc_split;
+_u 							= _ADF_unitString splitString "_";
 _r							= toLower (_u select 1);
 
 // Init gear
@@ -85,7 +85,8 @@ removeAllWeapons _ADF_unit; removeAllItems _ADF_unit; removeAllAssignedItems _AD
 // Add Items/gear
 _ADF_unit forceAddUniform "U_B_CombatUniform_mcam";
 {_ADF_unit linkItem _x} forEach ["ItemWatch","ItemCompass","ItemMap"];
-if (_r != "pc") then {_ADF_unit addHeadgear _ADF_INF_headGear; _ADF_unit addVest "V_TacVest_khk";} else {_ADF_unit addVest "V_Rangemaster_belt";};
+_ADF_unit addHeadgear _ADF_INF_headGear;
+_ADF_unit addVest "V_TacVest_khk";
 _ADF_unit addWeapon "NVGoggles";
 _ADF_unit addItem "acc_flashlight";
 _ADF_unit addItemToUniform "acc_pointer_IR";
@@ -125,7 +126,7 @@ ADF_loadout_platoon = {
 
 	// Personal Radios all units
 	if (ADF_mod_ACRE) then {_ADF_unit linkItem "ACRE_PRC343"}; // ACRE
-	if (ADF_mod_TFAR) then {_ADF_unit linkItem _ADF_TFAR_PersonalRadio}; // TFAR
+	if (ADF_mod_TFAR) then {_ADF_unit linkItem _ADF_TFAR_PersonalRadio; _ADF_unit addItem "tf_microdagr";}; // TFAR
 	if (!ADF_mod_ACRE && !ADF_mod_TFAR) then {_ADF_unit linkItem "ItemRadio"}; // Vanilla
 	
 	// mircoDAGR
@@ -155,7 +156,6 @@ ADF_loadout_platoon = {
 if (_r == "pc") exitWith {
 	_ADF_unit linkItem "ItemGPS";
 	_ADF_unit addGoggles "G_Tactical_Clear";
-	_ADF_unit addHeadgear "H_Cap_tan";	
 	_ADF_unit addWeapon "Laserdesignator";
 	_ADF_unit addItem "Laserbatteries";	
 	

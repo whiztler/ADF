@@ -20,13 +20,10 @@ diag_log text ""; diag_log text ""; diag_log text "";
 diag_log text format["####################   %1   ####################", missionName]; // stamp mission name in RPT log
 diag_log text "";
 
-waitUntil {time > 0}; // V1.40B04
-enableEnvironment FALSE; // V1.40B04	
+[] spawn {waitUntil {time > 0}; enableEnvironment FALSE;};	
 
 if (isDedicated) then {
 	#include "Core\ADF_init_rpt.sqf"
 };
 
 //  Execute Core Third Party SERVER scripts: (comment out if not applicable)
-
-	

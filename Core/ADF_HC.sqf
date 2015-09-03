@@ -4,7 +4,7 @@ ADF version: 1.41 / JULY 2015
 
 Script: Headless Client init
 Author: Whiztler
-Script version: 2.49
+Script version: 2.50
 
 Game type: N/A
 File: ADF_HC.sqf
@@ -37,8 +37,12 @@ params ["_ADF_HCLB_enable"];
 
 // HC check
 if (!isServer && !hasInterface) then {
-	ADF_HC_connected = true; publicVariable "ADF_HC_connected";
-	ADF_HC_execute = true;	
+	ADF_HC_connected 	= true; publicVariable "ADF_HC_connected";
+	ADF_HC_execute 	= true;
+	ADF_isHC 		= true;
+	if !(isNil "ADF_HC1") then {if (player == ADF_HC1) then {ADF_log_CntHC = ADF_log_CntHC + 1}};
+	if !(isNil "ADF_HC2") then {if (player == ADF_HC2) then {ADF_log_CntHC = ADF_log_CntHC + 1}};
+	if !(isNil "ADF_HC3") then {if (player == ADF_HC3) then {ADF_log_CntHC = ADF_log_CntHC + 1}};
 	if (ADF_debug) then {["HC - Headless Client detected",false] call ADF_fnc_log} else {diag_log "ADF RPT: HC - Headless Client detected"};
 } else {	
 	sleep 3; // Wait for HC to publicVar ADF_HC_connected (if a HC is present)
@@ -47,24 +51,11 @@ if (!isServer && !hasInterface) then {
 		if (ADF_debug) then {["HC - NO Headless Client detected, using server",false] call ADF_fnc_log} else {diag_log "ADF RPT: HC - NO Headless Client detected, using server"};
 	} else { 
 		if (isServer || isDedicated) then {ADF_HC_execute = false;}; // HC is connected. Disable ADF_HC_execute on the server so that the HC runs scripts
-	};
-};
-
-// Set a generic HC variable
-if (!hasInterface && !isDedicated) then {
-	ADF_isHC = true;
-	if !(isNil "ADF_HC1") then {
-		if (player == ADF_HC1) then {ADF_log_CntHC = ADF_log_CntHC + 1}
-	};
-	if !(isNil "ADF_HC2") then {
-		if (player == ADF_HC2) then {ADF_log_CntHC = ADF_log_CntHC + 1}
-	};
-	if !(isNil "ADF_HC3") then {
-		if (player == ADF_HC3) then {ADF_log_CntHC = ADF_log_CntHC + 1}
+		diag_log "ADF RPT: HC - Headless Client detected. Using HC re ADF_HC_execute"
 	};
 };
 
 // Run the HC load balancer (if enabled in ADF_init_config.sqf)
-if (!_ADF_HCLB_enable) exitWith {};	
+if (!_ADF_HCLB_enable) exitWith {};
 if (!isServer) exitWith {};
-call compile preprocessFileLineNumbers "Core\F\ADF_fnc_HC_loadBalacing.sqf";
+execVM "Core\F\ADF_fnc_HC_loadBalacing.sqf";

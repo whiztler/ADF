@@ -4,7 +4,7 @@ ADF version: 1.41 / JULY 2015
 
 Script: Loadout Client
 Author: Whiztler
-Script version: 5.60
+Script version: 5.61
 
 Game type: n/a
 File: ADF_clientLoadout.sqf
@@ -92,7 +92,7 @@ if ((_ADF_unitFaction == "BLU_F") && _ADF_customLoadout_MOD) exitWith { // BLUFO
 	
 	// Split the player variable into Squad, Role
 	_ADF_unitString = str _ADF_unit;
-	_u = [_ADF_unitString, "_"] call CBA_fnc_split;
+	_u = _ADF_unitString splitString "_";
 	_s = toLower (_u select 0);
 	_r = toLower (_u select 1);
 	
