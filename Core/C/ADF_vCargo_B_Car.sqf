@@ -78,6 +78,7 @@ if (ADF_mod_ACRE) then {
 };
 if (ADF_mod_TFAR) then {
 	_vAmmo addItemCargoGlobal ["tf_anprc152", 4];
+	_vAmmo addItemCargoGlobal ["tf_microdagr", 4];
 	//_vAmmo addItemCargoGlobal ["tf_rt1523g", 3];
 	_vAmmo addBackpackCargoGlobal ["tf_rt1523g", 1];
 };

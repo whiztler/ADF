@@ -4,7 +4,7 @@ ADF version: 1.41 / JULY 2015
 
 Script: Headless Client init
 Author: Whiztler
-Script version: 2.50
+Script version: 2.51
 
 Game type: N/A
 File: ADF_HC.sqf
@@ -32,17 +32,38 @@ if (!ADF_HC_execute) exitWith {}; // Autodetect: execute on the HC else execute 
 if (isServer) then {diag_log "ADF RPT: Init - executing ADF_HC.sqf"}; // Reporting. Do NOT edit/remove
 
 // Init
-ADF_HC_execute = false;
+ADF_HC_execute = false; // all connected clients + server
 params ["_ADF_HCLB_enable"];
 
 // HC check
-if (!isServer && !hasInterface) then {
+if (!isServer && !hasInterface) then {	
+	// init
 	ADF_HC_connected 	= true; publicVariable "ADF_HC_connected";
 	ADF_HC_execute 	= true;
 	ADF_isHC 		= true;
-	if !(isNil "ADF_HC1") then {if (player == ADF_HC1) then {ADF_log_CntHC = ADF_log_CntHC + 1}};
-	if !(isNil "ADF_HC2") then {if (player == ADF_HC2) then {ADF_log_CntHC = ADF_log_CntHC + 1}};
-	if !(isNil "ADF_HC3") then {if (player == ADF_HC3) then {ADF_log_CntHC = ADF_log_CntHC + 1}};
+	// Check which HC slot is occupied and count HC's
+	if !(isNil "ADF_HC1") then {if (player == ADF_HC1) then {ADF_log_CntHC = ADF_log_CntHC + 1; publicVariable "ADF_log_CntHC";}};
+	if !(isNil "ADF_HC2") then {if (player == ADF_HC2) then {ADF_log_CntHC = ADF_log_CntHC + 1; publicVariable "ADF_log_CntHC";}};
+	if !(isNil "ADF_HC3") then {if (player == ADF_HC3) then {ADF_log_CntHC = ADF_log_CntHC + 1; publicVariable "ADF_log_CntHC";}};	
+	// HC FPS reporting in RPT. The frequency of the reporting is based on HC performance.
+	if (isMultiplayer) then {ADF_log_pUnits = playableUnits;} else {ADF_log_pUnits = switchableUnits};
+	[] spawn {
+		waitUntil {			
+			private ["_ADF_rptSnooz","_ADF_hcFPS","_ADF_GameTime_HMS"];
+			_ADF_rptSnooz = 60;
+			_ADF_hcFPS = round (diag_fps);			
+			if (((count allUnits)-(count ADF_log_pUnits)) < 0) then {ADF_log_ai = 0} else {ADF_log_ai = ((count allUnits)-(count ADF_log_pUnits))};
+			if (_ADF_hcFPS < 40) then {_ADF_rptSnooz = 15};
+			if (_ADF_hcFPS < 30) then {_ADF_rptSnooz = 10};
+			if (_ADF_hcFPS < 20) then {_ADF_rptSnooz = 5};
+			if (_ADF_hcFPS < 15) then {_ADF_rptSnooz = 1};
+			_ADF_GameTime_HMS = [(round time)] call BIS_fnc_secondsToString;
+			diag_log format ["ADF RPT: PERF - Total players: %1  --  Total AI's: %2",count ADF_log_pUnits,ADF_log_ai];
+			diag_log format ["ADF RPT: PERF - Elapsed time: %1  --  HC FPS: %2  --  HC Min FPS: %3",_ADF_GameTime_HMS,_ADF_hcFPS,round (diag_fpsmin)];
+			uiSleep _ADF_rptSnooz;
+			false
+		};
+	};
 	if (ADF_debug) then {["HC - Headless Client detected",false] call ADF_fnc_log} else {diag_log "ADF RPT: HC - Headless Client detected"};
 } else {	
 	sleep 3; // Wait for HC to publicVar ADF_HC_connected (if a HC is present)
@@ -51,7 +72,7 @@ if (!isServer && !hasInterface) then {
 		if (ADF_debug) then {["HC - NO Headless Client detected, using server",false] call ADF_fnc_log} else {diag_log "ADF RPT: HC - NO Headless Client detected, using server"};
 	} else { 
 		if (isServer || isDedicated) then {ADF_HC_execute = false;}; // HC is connected. Disable ADF_HC_execute on the server so that the HC runs scripts
-		diag_log "ADF RPT: HC - Headless Client detected. Using HC re ADF_HC_execute"
+		diag_log "ADF RPT: HC - Headless Client detected. Using HC for ADF_HC_execute"
 	};
 };
 

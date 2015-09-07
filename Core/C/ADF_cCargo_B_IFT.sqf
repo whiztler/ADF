@@ -162,6 +162,7 @@ if (ADF_mod_ACRE) then {
 };
 if (ADF_mod_TFAR) then {
 	_crate addItemCargoGlobal ["tf_anprc152", 5];
+	_crate addItemCargoGlobal ["tf_microdagr", 5];
 	//_crate addItemCargoGlobal ["tf_rt1523g", 3];
 	_crate addBackpackCargoGlobal ["tf_rt1523g", 1];
 };
