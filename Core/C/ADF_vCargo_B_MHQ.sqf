@@ -65,7 +65,7 @@ _vAmmo addMagazineCargoGlobal ["200Rnd_65x39_cased_Box", 5]; // MG
 _vAmmo addweaponCargoGlobal ["launch_NLAW_F", 2];
 
 // Rockets/Missiles
-_vAmmo addMagazineCargoGlobal ["NLAW_F", 10];
+if (!ADF_mod_ACE3) then {_vAmmo addMagazineCargoGlobal ["NLAW_F", 10]};
 
 
 // GL Ammo

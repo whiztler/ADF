@@ -73,7 +73,6 @@ if (isServer) then {
 		if ((count playableUnits) >= _highNr) then {ADF_MB_heavy = true; ADF_missionBalanceStat = "high";};
 		
 		ADF_missionBalanceStat;	
-		if (true) exitWith {}; // All done here. Exit
 	};
 
 	waitUntil {time > 130};
@@ -93,5 +92,3 @@ HintSilent parseText format ["
 	<t color='#A1A4AD' align='left'>Current mission Balance: </t>
 	<t color='#FFFFFF' align='right'>%2</t><br/><br/>
 ",count PlayableUnits,ADF_missionBalanceStat];
-
-if (true) exitWith {}; // All done here. Exit

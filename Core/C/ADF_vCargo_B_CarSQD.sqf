@@ -46,7 +46,7 @@ if (ADF_mod_ACE3) then {
 _vAmmo addweaponCargoGlobal ["launch_NLAW_F", 1];
 
 // Rockets/Missiles
-_vAmmo addMagazineCargoGlobal ["NLAW_F", 2];
+if (!ADF_mod_ACE3) then {_vAmmo addMagazineCargoGlobal ["NLAW_F", 2]};
 
 // Demo/Explosives
 _vAmmo addMagazineCargoGlobal ["DemoCharge_Remote_Mag", 3];

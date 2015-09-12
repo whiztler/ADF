@@ -63,7 +63,7 @@ if (ADF_mod_ACE3) then {
 _crate addMagazineCargoGlobal ["16Rnd_9x21_Mag", _mag];
 
 // Launchers
-_crate addweaponCargoGlobal ["launch_NLAW_F", _lau];
+if (!ADF_mod_ACE3) then {_crate addweaponCargoGlobal ["launch_NLAW_F", _lau]};
 
 // Rockets/Missiles
 _crate addMagazineCargoGlobal ["NLAW_F", _mis];

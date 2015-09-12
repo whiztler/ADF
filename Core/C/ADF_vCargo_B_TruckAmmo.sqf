@@ -62,7 +62,7 @@ _vAmmo addWeaponCargoGlobal ["launch_B_Titan_F", 2];
 _vAmmo addWeaponCargoGlobal ["launch_B_Titan_short_F", 5];
 
 // Rockets/Missiles
-_vAmmo addMagazineCargoGlobal ["NLAW_F", 10];
+if (!ADF_mod_ACE3) then {_vAmmo addMagazineCargoGlobal ["NLAW_F", 10]};
 _vAmmo addMagazineCargoGlobal ["Titan_AT", 10];
 _vAmmo addMagazineCargoGlobal ["Titan_AP", 5];
 _vAmmo addMagazineCargoGlobal ["Titan_AA", 5];

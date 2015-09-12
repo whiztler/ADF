@@ -57,6 +57,10 @@ _v = [getMarkerPos _spawnPos, markerDir _spawnPos, "I_G_Offroad_01_F", _c] call 
 For example:
 [INDEPENDENT, "I_G_Offroad_01_F", "mSpawn", "mPatrol", 800, 5, "MOVE", "SAFE", "RED", "LIMITED", 25] call ADF_fnc_createVehiclePatrol;
 
+Note this function requires the ADF_fnc_position.sqf and ADF_fnc_distance.sqf to be loaded:
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_position.sqf";
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_distance.sqf";
+
 ****************************************************************/
 
 if (isServer) then {diag_log "ADF RPT: Init - executing ADF_fnc_vehiclePatrol.sqf"};
@@ -67,12 +71,12 @@ ADF_fnc_addRoadWaypoint = {
 	params ["_g","_p","_r","_c","_t","_b","_m","_s","_cr"];
 	private ["_wp","_i","_rx"];
 	_rx = _r / _c; // radius divided by number of waypoints
-	_p = getMarkerPos _p;
+	_p = _p call ADF_fnc_checkPosition;
 	_rd = [];
 
 	// Find road position within the parameters (near to the random position)
 	for "_i" from 1 to 4 do {
-		_k = [_p, _r, random 360] call ADF_fnc_randomPos; _p = _k;
+		_p = [_p, _r, random 360] call ADF_fnc_randomPos;
 		_rd = [_p,_rx] call ADF_fnc_roadPos;		
 		if (isOnRoad _rd) exitWith {ADF_VPS = [_i,_rx]};
 		_rx = _rx + 250;
@@ -92,36 +96,6 @@ ADF_fnc_addRoadWaypoint = {
 	
 	// return the waypoint
 	_wp 
-};
-
-ADF_fnc_randomPos = {
-	// Init
-	params ["_p","_r","_d"];
-	private ["_pX","_pY"];
-	
-	// Create random position from centre & radius
-	_pX = (_p select 0) + (_r * sin _d);
-	_pY = (_p select 1) + (_r * cos _d);
-	
-	// Return position
-	[_pX, _pY, 0]
-};
-
-ADF_fnc_roadPos = {
-	// Init
-	params ["_p","_rx"];
-	private ["_rd","_c","_a","_rxd"];
-	
-	// Check nearby raods from passed position
-	_rd		= _p nearRoads _rx;
-	_c		= count _rd;
-	_a		= [];
-
-	// if road position found, use it else use original position
-	if (_c > 0) then {_a = getPos (_rd select 0);} else {_a = _p};
-	
-	// return the position
-	_a
 };
 
 ADF_fnc_vehiclePatrol = {
@@ -155,12 +129,14 @@ ADF_fnc_createVehiclePatrol = {
 	_debugStart = diag_tickTime;
 	
 	// Init
-	params ["_gs","_vc","_vm","_vp","_r","_c","_t","_b","_m","_s","_cr"];
+	params ["_gs","_vc","_vm","_vd","_vp","_r","_c","_t","_b","_m","_s","_cr"];
 	private ["_v","_a"];
 	
 	//Create the vehicle
-	_g = createGroup _gs;
-	_v = [getMarkerPos _vm, markerDir _vm, _vc, _g] call BIS_fnc_spawnVehicle;
+	_g 	= createGroup _gs;
+	_p 	= _vm call ADF_fnc_checkPosition;
+	_vd	= if (typeName _vm == "STRING") then {markerDir _vm} else {getDir _vm};
+	_v 	= [getMarkerPos _p, _vd, _vc, _g] call BIS_fnc_spawnVehicle;
 	
 	// Array to pass
 	_a = [_g,_vp,_r,_c,_t,_b,_m,_s,_cr];	

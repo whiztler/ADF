@@ -34,42 +34,15 @@ Execute the function with below script:
 	"myCode" 	// Code to run (spawned) when the condition is true. E.g. myCode = {hint "The sensor is active";};
 ] spawn ADF_fnc_sensor;
 
-Mycode respresents the code that is executed when players/vehciles get within the sensor radius.
+Mycode represents the code that is executed when players/vehicles get within the sensor radius.
+
+Note this function requires the ADF_fnc_position.sqf and ADF_fnc_distance.sqf to be loaded:
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_position.sqf";
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_distance.sqf";
 
 ****************************************************************/
 
-ADF_fnc_checkPosition = {
-	params ["_p"];
-	private ["_return"];
-	_return = switch (typeName _p) do {
-		case "STRING" : {getMarkerPos _p}; // Marker	
-		case "OBJECT" : {getPosATL _p}; // object / vehicle / etc/
-		case "GROUP" : {	getPosATL (leader _p)}; // group - returns the position of the current group leader
-		default {position _p}; // None of the above
-	};
-	_return
-};
-
-ADF_fnc_checkDistance = {
-	params ["_a","_b"];
-	private ["_return","_pos_a","_pos_b"];
-	_pos_a	= _a call ADF_fnc_checkPosition; // get the position of the first param
-	_pos_b	= _b call ADF_fnc_checkPosition; // get the position of the second param
-	_return	= _pos_a distance2D _pos_b; // return the distance between the first and the second param
-	_return
-};
-
-ADF_fnc_checkClosest = {
-	params ["_a","_b",["_r",10^5,[0]]];	
-	private ["_return"];
-	_return = _r + 1;
-	{
-		_return = [_x, _b] call ADF_fnc_checkDistance;
-		if (ADF_Debug) then {diag_log format ["ADF RPT: Debug - ADF_fnc_checkClosest: distance to %1: %2 meters",_b,_return]};
-		if (_return < _r) then {_r = _return};
-	} forEach _a;
-	_return	
-};
+diag_log "ADF RPT: Init - executing ADF_fnc_sensor.sqf"; // Reporting. Do NOT edit/remove
 
 ADF_fnc_sensor = {
 	// Init
