@@ -11,13 +11,12 @@ File: ADF_fnc_distance.sqf
 ***************************************************************/
 
 // Functions init
-
-if (!ADF_HC_execute) exitWith {}; // HC Autodetect. If no HC present execute on the Server.
 diag_log "ADF RPT: Init - executing ADF_fnc_distance.sqf"; // Reporting. Do NOT edit/remove
 if !(isNil "ADF_fnc_distanceExec") exitWith {};
 ADF_fnc_distanceExec = true;
 // These functions require the ADF_fnc_position.sqf to be loaded. Check if already loaded
 if (isNil "ADF_fnc_positionExec") then {call compile preprocessFileLineNumbers "Core\F\ADF_fnc_position.sqf"};
+
 
 /***************************************************************
 Name: ADF_fnc_checkDistance
@@ -34,6 +33,7 @@ Integer (distance number)
 ***************************************************************/
 
 ADF_fnc_checkDistance = {
+	if (!ADF_HC_execute || !isServer) exitWith {}; // HC Autodetect. If no HC present execute on the Server.
 	params ["_a","_b"];
 	private ["_return","_pos_a","_pos_b"];
 	_pos_a	= _a call ADF_fnc_checkPosition; // get the position of the first param
@@ -58,6 +58,7 @@ Integer (distance number)
 ***************************************************************/
 
 ADF_fnc_checkClosest = {
+	if (!ADF_HC_execute || !isServer) exitWith {}; // HC Autodetect. If no HC present execute on the Server.
 	params ["_a","_b",["_r",10^5,[0]]];	
 	private ["_return"];
 	_return = _r + 1;

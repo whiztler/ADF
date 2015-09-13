@@ -4,7 +4,7 @@ ADF version: 1.41 / JULY 2015
 
 Script: Detect Sensor
 Author: Whiztler
-Script version: 1.02
+Script version: 1.03
 
 Game type: N/A
 File: ADF_fnc_objectMarker.sqf
@@ -25,16 +25,24 @@ _array = ["ClassName","ClassName","ClassName"]; // Array of classnames of object
 
 ****************************************************************/
 
-if (!isServer) exitWith {};
 diag_log "ADF RPT: Init - executing ADF_fnc_objectMarker.sqf"; // Reporting. Do NOT edit/remove
+if !(isNil "ADF_fnc_objectMarkerExec") exitWith {};
+ADF_fnc_objectMarkerExec = true;
 
 ADF_fnc_objectMarker = {
+	if (!ADF_HC_execute || !isServer) exitWith {}; // HC Autodetect. If no HC present execute on the Server.
 	// init
 	params ["_a","_p","_r"];
 	private ["_s","_n","_m","_start","_finish"];
 	_start = diag_tickTime;
 	
-	_p = _p call ADF_fnc_checkPosition;
+	if (ADF_debug) then {diag_log format ["ADF RPT: Debug - ADF_fnc_objectMarker passed position: %1",_p]};
+	
+	if (typeName _p == "STRING") then {_p = getMarkerPos _p};	
+	if (typeName _p == "OBJECT") then {_p = getPosATL _p};
+	if (typeName _p == "ARRAY") then {_p = _p};
+	if (typeName _p == "GROUP") then {_p = getPosATL (leader _p)};
+	
 	_q = nearestObjects [_p,_a,_r];
 	
 	{
@@ -53,6 +61,7 @@ ADF_fnc_objectMarker = {
 };
 
 ADF_fnc_reMarker = {
+	if (!ADF_HC_execute || !isServer) exitWith {}; // HC Autodetect. If no HC present execute on the Server.
 	params ["_a"];
 	
 	// Store marker data

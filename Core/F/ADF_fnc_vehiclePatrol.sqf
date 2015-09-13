@@ -63,21 +63,34 @@ call compile preprocessFileLineNumbers "Core\F\ADF_fnc_distance.sqf";
 
 ****************************************************************/
 
-if (isServer) then {diag_log "ADF RPT: Init - executing ADF_fnc_vehiclePatrol.sqf"};
+// Functions init
+diag_log "ADF RPT: Init - executing ADF_fnc_vehiclePatrol.sqf"; // Reporting. Do NOT edit/remove
+if !(isNil "ADF_fnc_vehiclePatrolExec") exitWith {};
+ADF_fnc_vehiclePatrolExec = true;
+// These functions require the ADF_fnc_position.sqf to be loaded. Check if already loaded
+if (isNil "ADF_fnc_positionExec") then {call compile preprocessFileLineNumbers "Core\F\ADF_fnc_position.sqf"};
+
 ADF_fnc_vehiclePatrolTest = true; // for performance debugging. Use in combination with ADF_debug (true)
 
 ADF_fnc_addRoadWaypoint = {
-	// init
+	if (!ADF_HC_execute || !isServer) exitWith {}; // HC Autodetect. If no HC present execute on the Server.
+	// init	
 	params ["_g","_p","_r","_c","_t","_b","_m","_s","_cr"];
 	private ["_wp","_i","_rx"];
 	_rx = _r / _c; // radius divided by number of waypoints
+	if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_addRoadWaypoint - WP radius: %1",_rx]};
+	if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_addRoadWaypoint - passed pos (before check): %1",_p]};
 	_p = _p call ADF_fnc_checkPosition;
+	if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_addRoadWaypoint - passed pos (after check): %1",_p]};
 	_rd = [];
 
 	// Find road position within the parameters (near to the random position)
 	for "_i" from 1 to 4 do {
-		_p = [_p, _r, random 360] call ADF_fnc_randomPos;
-		_rd = [_p,_rx] call ADF_fnc_roadPos;		
+		private ["_pos"];
+		if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_addRoadWaypoint - pos before ADF_fnc_randomPos: %1",_p]};
+		_pos = [_p, _r, random 360] call ADF_fnc_randomPos;
+		if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_addRoadWaypoint - pos after ADF_fnc_randomPos: %1",_pos]};
+		_rd = [_pos,_rx] call ADF_fnc_roadPos;		
 		if (isOnRoad _rd) exitWith {ADF_VPS = [_i,_rx]};
 		_rx = _rx + 250;
 		if (_i == 3) then {_rx = _rx + 500};
@@ -99,6 +112,7 @@ ADF_fnc_addRoadWaypoint = {
 };
 
 ADF_fnc_vehiclePatrol = {
+	if (!ADF_HC_execute || !isServer) exitWith {}; // HC Autodetect. If no HC present execute on the Server.
 	_debugStart = diag_tickTime;	
 	
 	// Init
@@ -119,13 +133,14 @@ ADF_fnc_vehiclePatrol = {
 	
 	// Debug
 	_debugStop = diag_tickTime;
-	if (ADF_Debug && ADF_fnc_vehiclePatrolTest) then {diag_log format ["ADF Debug: ADF_fnc_vehiclePatrol - %1 -- %2 search(es)",_debugStart - _debugStop, ADF_VPS select 0];};
+	if (ADF_Debug && ADF_fnc_vehiclePatrolTest) then {diag_log format ["ADF Debug: ADF_fnc_vehiclePatrol - %1 -- %2 search(es)",_debugStart - _debugStop, ADF_VPS select 0]};
 	
 	// Destroy vars not needed anymore
 	ADF_VPS = nil;
 };
 
 ADF_fnc_createVehiclePatrol = {
+	if (!ADF_HC_execute || !isServer) exitWith {}; // HC Autodetect. If no HC present execute on the Server.
 	_debugStart = diag_tickTime;
 	
 	// Init
