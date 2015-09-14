@@ -37,7 +37,7 @@
 
 ## Current version
 
-version: 1.41 | build: Beta 02
+version: 1.41 | build: Production
 
 <a name="New-Features"></a>
 ## New Features 1.39+
@@ -54,11 +54,21 @@ version: 1.41 | build: Beta 02
 ### 1.41
 ```
 -	ADDED: Altitude Based Fatigue. Can be switched on/off in ADF_init_config.
-- 	ADDED: Crew Check (ADF_crewCheck.sqf). Checks if player is authorized to operate specific vehicles
-- 	UPDATED: vehicle/crate supplies. Can be initialized from script (ADF_supplyInit) or item init 
-- 	UPDATED: code base updated in line with new scripting commands 1.48
-- 	UPDATED: Notepad++ ARMA plugin (Core\I\SQF_whiz.xml)
--	UPDATED: ADF_init_config.sqf for Supplies function, Altitude Based Fatique (ABF) and Crew Check
+-	ADDED: ADF_fnc_position.sqf - functions re position
+-	ADDED: ADF_fnc_distance.sqf - functions re distance
+-	ADDED: ADF_fnc_createIED.sqf - function to create random IED's
+-	ADDED: ADF_fnc_objectMarker.sqf - function to create object map markers (bounding box marers).
+-	ADDED: ADF_fnc_sensor.sqf - function to create detection sensors (like triggers) with custom check times (W.I.P.).
+-	ADDED: ADF_fnc_typeWriter.sqf - function to create typewriter effect for mission intro's
+-	ADDED: ADF_fnc_vehiclePatrol.sqf - function to create random vehicle patrols (waypoints on roads only).
+-	ADDED: ADF_CAS.sqf - script to add AI CAS functionality to missions.
+-	ADDED: ADF_crewCheck.sqf. Crew check script. Checks if player is authorized to operate specific vehicles.
+-	ADDED: Various functions to support the TWO SIERRA campaign.
+-	FIXED: ADF_HC.sqf. Fixed server init and optimized script for performance
+-	UPDATED: vehicle/crate supplies. Can be initialized from script (ADF_supplyInit) or item init.
+-	UPDATED: code base updated in line with new scripting commands 1.48 and 1.50.
+-	UPDATED: Notepad++ ARMA plugin (Core\I\SQF_whiz.xml).
+-	UPDATED: ADF_init_config.sqf for Supplies function, Altitude Based Fatique (ABF) and Crew Check.
 ```
 
 ### 1.40
