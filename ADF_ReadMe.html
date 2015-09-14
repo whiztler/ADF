@@ -48,7 +48,7 @@
     <h1><img src="Core/I/ADF_logo.png" width="500" height="240" alt="ADF - Arma Mission Development Framework" /></h1>
     <h3 id="curver">Current version</h3>
     <p>version: 1.41<br />
-      build: Beta 02</p>
+      build: Production</p>
     <h2 id="features">New Features 1.39+</h2>
     <ul>
       <li><strong>Support for multiple Headless Clients with automatic Load Balancing</strong> - ADF 1.39 offers up to three HC's that should be named ADF_HC1, ADF_HC2, ADF_HC3. The mission maker can enable/disable load balancing. When enabled ADF transfers AI groups across available HC's (Round Robin method). See 'Core\ADF_HC.sqf' for more information.</li>
@@ -62,10 +62,19 @@
       <h4>1.41</h4>
       <ul>
         <li>ADDED: Altitude Based Fatigue. Can be switched on/off in ADF_init_config.</li>
-        <li>ADDED: Altitude Based Fatigue. Can be switched on/off in ADF_init_config.</li>
-        <li>ADDED: Crew Check (ADF_crewCheck.sqf). Checks if player is authorized to operate specific vehicles.</li>
+        <li>ADDED: ADF_fnc_position.sqf - functions re position</li>
+        <li>ADDED: ADF_fnc_distance.sqf - functions re distance</li>
+        <li>ADDED: ADF_fnc_createIED.sqf - function to create random IED's</li>
+        <li>ADDED: ADF_fnc_objectMarker.sqf - function to create object map markers (bounding box marers).</li>
+        <li>ADDED: ADF_fnc_sensor.sqf - function to create detection sensors (like triggers) with custom check times (W.I.P.).</li>
+        <li>ADDED: ADF_fnc_typeWriter.sqf - function to create typewriter effect for mission intro's</li>
+        <li>ADDED: ADF_fnc_vehiclePatrol.sqf - function to create random vehicle patrols (waypoints on roads only).</li>
+        <li>ADDED: ADF_CAS.sqf - script to add AI CAS functionality to missions.</li>
+        <li>ADDED: ADF_crewCheck.sqf. Crew check script. Checks if player is authorized to operate specific vehicles.</li>
+        <li>ADDED: Various functions to support the TWO SIERRA campaign.</li>
+        <li>FIXED: ADF_HC.sqf. Fixed server init and optimized script for performance</li>
         <li>UPDATED: vehicle/crate supplies. Can be initialized from script (ADF_supplyInit) or item init.</li>
-        <li>UPDATED: code base updated in line with new scripting commands 1.48.</li>
+        <li>UPDATED: code base updated in line with new scripting commands 1.48 and 1.50.</li>
         <li>UPDATED: Notepad++ ARMA plugin (Core\I\SQF_whiz.xml).</li>
         <li>UPDATED: ADF_init_config.sqf for Supplies function, Altitude Based Fatique (ABF) and Crew Check.</li>
       </ul>
