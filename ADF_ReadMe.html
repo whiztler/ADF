@@ -47,8 +47,8 @@
   <article>
     <h1><img src="Core/I/ADF_logo.png" width="500" height="240" alt="ADF - Arma Mission Development Framework" /></h1>
     <h3 id="curver">Current version</h3>
-    <p>version: 1.40<br />
-      build: Production (06RC2)</p>
+    <p>version: 1.41<br />
+      build: Production</p>
     <h2 id="features">New Features 1.39+</h2>
     <ul>
       <li><strong>Support for multiple Headless Clients with automatic Load Balancing</strong> - ADF 1.39 offers up to three HC's that should be named ADF_HC1, ADF_HC2, ADF_HC3. The mission maker can enable/disable load balancing. When enabled ADF transfers AI groups across available HC's (Round Robin method). See 'Core\ADF_HC.sqf' for more information.</li>
@@ -59,7 +59,26 @@
     </ul>
     <h3 id="chglog">Changelog</h3>
     <div id="logBox">
-      <h4>1.40 </h4>
+      <h4>1.41</h4>
+      <ul>
+        <li>ADDED: Altitude Based Fatigue. Can be switched on/off in ADF_init_config.</li>
+        <li>ADDED: ADF_fnc_position.sqf - functions re position</li>
+        <li>ADDED: ADF_fnc_distance.sqf - functions re distance</li>
+        <li>ADDED: ADF_fnc_createIED.sqf - function to create random IED's</li>
+        <li>ADDED: ADF_fnc_objectMarker.sqf - function to create object map markers (bounding box marers).</li>
+        <li>ADDED: ADF_fnc_sensor.sqf - function to create detection sensors (like triggers) with custom check times (W.I.P.).</li>
+        <li>ADDED: ADF_fnc_typeWriter.sqf - function to create typewriter effect for mission intro's</li>
+        <li>ADDED: ADF_fnc_vehiclePatrol.sqf - function to create random vehicle patrols (waypoints on roads only).</li>
+        <li>ADDED: ADF_CAS.sqf - script to add AI CAS functionality to missions.</li>
+        <li>ADDED: ADF_crewCheck.sqf. Crew check script. Checks if player is authorized to operate specific vehicles.</li>
+        <li>ADDED: Various functions to support the TWO SIERRA campaign.</li>
+        <li>FIXED: ADF_HC.sqf. Fixed server init and optimized script for performance</li>
+        <li>UPDATED: vehicle/crate supplies. Can be initialized from script (ADF_supplyInit) or item init.</li>
+        <li>UPDATED: code base updated in line with new scripting commands 1.48 and 1.50.</li>
+        <li>UPDATED: Notepad++ ARMA plugin (Core\I\SQF_whiz.xml).</li>
+        <li>UPDATED: ADF_init_config.sqf for Supplies function, Altitude Based Fatique (ABF) and Crew Check.</li>
+      </ul>
+      <h4>1.40</h4>
       <ul>
         <li>ADDED: Teleport to Group leader script.</li>
         <li>ADDED: ACE 3.1.1 items to loadout/crates (HuntIR, TacLadder, Spotting Scope, Rangecard, etc.).</li>
@@ -293,6 +312,7 @@
       <li>Change '<span class="adf_topic">_ADF_ACRE_interference = <strong>true</strong>;</span>'  to <strong>true</strong> or <strong>false</strong>. Sets whether transmissions will interfere with each other. This, by default, causes signal loss when multiple people are transmitting on the same frequency..</li>
       <li>Change '<span class="adf_topic">_ADF_ACRE_AIcanHear = <strong>true</strong>;</span>'  to <strong>true</strong> or <strong>false</strong>.  Sets whether AI can detect players speaking.</li>
       <li>Change '<span class="adf_topic">ADF_ACRE_preset = <strong>false</strong>;</span>'  to <strong>true</strong> or <strong>false</strong>. When set to true, the mission will use ACRE2 radio frequencies as defined in the <strong>ADF_preset</strong> ( 'Core\F\ADF_fnc_presets.sqf'.). If set to false than all radio's will use a flatnet for SW and one for LR. Please note that ACRE2 is WIP</li>
+      <li>Change '<span class="adf_topic">_ADF_suppliesInit = <strong>true</strong>;</span>'  to <strong>true</strong> or <strong>false</strong>. When set to true all vehicles and crates from the ADF mission template will be supplied with equipment/tooling according to the role of the vehicle/group. The loadout of the supplies can be configured by editing the supply scripts in 'Core\C\'</li>
     </ol>
     <h4 id="misbal">Mission Balancing</h4>
     <ol class="ADF_OL">
@@ -353,6 +373,7 @@
       <li>Change '<span class="adf_topic">_ADF_CleanUp_vehTimer = <strong>600</strong>;</span>'to the number of <strong>seconds</strong> it takes for the script to delete a destroyed vehicle when the viewDist param has cleared</li>
       <li>Change '<span class="adf_topic">_ADF_CleanUp_abaTimer = <strong>6000</strong>;</span>' to the number of <strong>seconds</strong> a deserted/unmanned vehicle will be deleted.</li>
       <li>Change '<span class="adf_topic">_ADF_zeusEagle = <strong>true</strong>;</span>'  to <strong>true</strong> or <strong>false</strong>. Set to true to enable the Zeus Eagle? False removes the eagle.</li>
+      <li>Change '<span class="adf_topic">_ADF_altitude = <strong>false</strong>;</span>'  to <strong>true</strong> or <strong>false</strong>. Enables/disables altitude Mountain Sickness (AMS). Increases fatigue when at 1500+ meters.</li>
     </ol>
     <h3 id="ACE3Settings">ACE3 Settings</h3>
     <p>The mission maker can enforce certain ACE3 settings. <a href="http://ace3mod.com/wiki/framework/settings.html">How to do this can be found here</a>. For ADF you do <strong>not</strong> need to included the '<em>ACE_server.pbo</em>`. Instead you copy the exported settings (clipboard) into the `<strong>missionConfig.hpp</strong>` located in the root folder. Find the '<em>class ACE_Settings {</em>' and copy over the indented existing settings (in between the // Custom ACE3 Setting below'' and '// Custom ACE3 Setting above'). E.g.:</p>
