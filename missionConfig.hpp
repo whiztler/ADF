@@ -1,10 +1,10 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.40 / JUNE 2015
+ADF version: 1.41 / JULY 2015
 
 Script: Cfg entries
 Author: Whiztler
-Script version: 1.2
+Script version: 1.31
 
 Game type: n/a
 File: missionConfig.hpp
@@ -25,17 +25,53 @@ class CfgRespawnTemplates { // F3 Spectator Script
 	class f_Spectator {
 		onPlayerRespawn = "f_fnc_CamInit";
 	};
-
     class Seagull { //Overwrite Vanilla Seagull
         onPlayerRespawn = "";
     };
 };
 
-// ACE3 settings v. 3.1.1 
+class cfgNotifications { // Preconfigured messages
+	class ADF_noticeMsg {
+		title = "NOTICE";
+		description = "%1";
+		iconPicture = "\A3\ui_f\data\map\markers\military\warning_ca.paa";
+		iconText = "";
+		color[] = {1,1,0,1};		
+		duration = 4;
+		priority = 7;
+	};
+};
 
-	class ACE_Settings {
-		// Custom ACE3 Setting below		
+// End Screen / Debriefing
+class CfgDebriefing {  
+	class End1 {
+		title = "Mission Completed";
+		subtitle = "Mission Name";
+		description = "Success message goes here";
+		pictureBackground = ""; // eg. "img\yourpicture.jpg" no picture? use "";
+		picture = "b_HQ"; // Marker icon
+		pictureColor[] = {0.0,0.3,0.6,1}; // Overlay color
+	};
+	class End2 {
+		title = "Mission Failed";
+		subtitle = "Mission Name";
+		description = "Failure message goes here";
+		pictureBackground = "Img\intro_day1.paa"; // eg. "img\yourpicture.jpg" no picture? use "";
+		pictureColor[] = {0.0,0.3,0.6,1}; // Overlay color
+	};
+	class Killed {
+		title = "All players K.I.A.";
+		subtitle = "Mission Name";
+		description = "Failure message goes here";
+		pictureBackground = "Img\intro_day1.paa"; // eg. "img\yourpicture.jpg" no picture? use "";
+		pictureColor[] = {0.0,0.3,0.6,1}; // Overlay color
+	};
+};
 
+// ACE3 settings v. 3.2.0 
+
+class ACE_Settings {
+	// Custom ACE3 Setting below
 		
 	class ace_common_forceAllSettings {
 		value = 0;
@@ -55,6 +91,16 @@ class CfgRespawnTemplates { // F3 Spectator Script
 	class ace_common_checkPBOsWhitelist {
 		value = "[]";
 		typeName = "STRING";
+		force = 1;
+	};
+	class ace_finger_enabled {
+		value = 1;
+		typeName = "BOOL";
+		force = 1;
+	};
+	class ace_finger_maxRange {
+		value = 4;
+		typeName = "SCALAR";
 		force = 1;
 	};
 	class ace_frag_Enabled {
@@ -292,6 +338,16 @@ class CfgRespawnTemplates { // F3 Spectator Script
 		typeName = "SCALAR";
 		force = 1;
 	};
+	class ace_medical_useCondition_PAK {
+		value = 0;
+		typeName = "SCALAR";
+		force = 1;
+	};
+	class ace_medical_useCondition_SurgicalKit {
+		value = 0;
+		typeName = "SCALAR";
+		force = 1;
+	};
 	class ace_medical_keepLocalSettingsSynced {
 		value = 1;
 		typeName = "BOOL";
@@ -372,6 +428,11 @@ class CfgRespawnTemplates { // F3 Spectator Script
 		typeName = "SCALAR";
 		force = 1;
 	};
+	class ace_sitting_enable {
+		value = 1;
+		typeName = "BOOL";
+		force = 1;
+	};
 	class ace_switchunits_EnableSwitchUnits {
 		value = 0;
 		typeName = "BOOL";
@@ -413,7 +474,7 @@ class CfgRespawnTemplates { // F3 Spectator Script
 		force = 1;
 	};
 	class ace_vehiclelock_LockVehicleInventory {
-		value = 0;
+		value = 1;
 		typeName = "BOOL";
 		force = 1;
 	};
@@ -523,6 +584,11 @@ class CfgRespawnTemplates { // F3 Spectator Script
 		force = 1;
 	};
 	class ace_explosives_PunishNonSpecialists {
+		value = 1;
+		typeName = "BOOL";
+		force = 1;
+	};
+	class ace_explosives_ExplodeOnDefuse {
 		value = 1;
 		typeName = "BOOL";
 		force = 1;

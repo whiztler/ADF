@@ -1,7 +1,7 @@
 <p align="center"><img src="https://github.com/whiztler/ADF/raw/master/Core/I/ADF_logo.png" height="240"></p>
 <p align="center">
    <a href="https://github.com/whiztler/ADF/releases">
-        <img src="http://img.shields.io/badge/Version-1.40-blue.svg?style=flat" alt="ADF version">
+        <img src="http://img.shields.io/badge/Version-1.41-blue.svg?style=flat" alt="ADF version">
     </a>
     <a href="https://github.com/whiztler/ADF/archive/master.zip">
         <img src="http://img.shields.io/badge/Download-2.4_MB-green.svg?style=flat" alt="ADF download">
@@ -37,7 +37,7 @@
 
 ## Current version
 
-version: 1.40 | build: Production (06RC2)
+version: 1.41 | build: Beta 02
 
 <a name="New-Features"></a>
 ## New Features 1.39+
@@ -50,6 +50,16 @@ version: 1.40 | build: Production (06RC2)
 
 <a name="Changelog"></a>
 ## Changelog
+
+### 1.41
+```
+-	ADDED: Altitude Based Fatigue. Can be switched on/off in ADF_init_config.
+- 	ADDED: Crew Check (ADF_crewCheck.sqf). Checks if player is authorized to operate specific vehicles
+- 	UPDATED: vehicle/crate supplies. Can be initialized from script (ADF_supplyInit) or item init 
+- 	UPDATED: code base updated in line with new scripting commands 1.48
+- 	UPDATED: Notepad++ ARMA plugin (Core\I\SQF_whiz.xml)
+-	UPDATED: ADF_init_config.sqf for Supplies function, Altitude Based Fatique (ABF) and Crew Check
+```
 
 ### 1.40
 ```
@@ -199,6 +209,7 @@ With Notepad++ open ADF_init_config.sqf which can be found in the mission root f
 12. `_ADF_MissionIntroImage = "img\mission_cover_ADF.paa";` Change to your own image that is displayed after the mission initialization (in-game). E.g. _ADF_MissionIntroImage = "img\mission_cover_**nopryl**.paa. Preset images can be found in the '\Img' folder.
 13. `ADF_Clan_uniformInsignia = true;` Change to **true** or **false**. The clan insignia can be configured in the missionConfig.hpp (mission root folder) file. Default is Nopryl.
 14. `_ADF_preset = "Default";` Change to either **Default** or **Nopryl** or **SHAPE** or **Wolfpack** or **Custom**. The preset file represents clan call signs and preconfigured radio frequencies. The preset file can be found here: 'Core\F\ADF_fnc_presets.sqf'. If you wish to create your own preset than edit the **custom** preset and select _ADF_preset = "Custom";
+15. `_ADF_suppliesInit = true;` Change to true or false. When set to **true** all vehicles and crates from the ADF mission template will be supplied with equipment/tooling according to the role of the vehicle/group. The loadout of the supplies can be configured by editing the supply scripts in 'Core\C\'
 
 <a name="GearAndLoadout"></a>
 #### Gear & Loadout
@@ -297,10 +308,11 @@ With Notepad++ open ADF_init_config.sqf which can be found in the mission root f
 10. `_ADF_ambient_vCiv_del = 1000;` Change to the distance that civilian vehicles will de-spawn from the nearest player location. Do not set too high!
 11. `_ADF_CleanUp = true;` Change to **true** or **false**. Set to true to enable cleaning up of dead bodies (friendly, enemy, vehicles, etc.).
 12. `_ADF_CleanUp_viewDist = 500;` Change to set the minimum distance in meters from a player unit to allow deletion of dead bodies/vehicles, if you don't care if player sees the deletion, set it to 0.
-13. `_ADF_CleanUp_manTimer = 300;` Change to the number of **seconds** it takes for the script to delete a dead bodies when the viewDist param has cleared
-14. `_ADF_CleanUp_vehTimer = 600;` Change to the number of **seconds** it takes for the script to delete a destroyed vehicle when the viewDist param has cleared
+13. `_ADF_CleanUp_manTimer = 300;` Change to the number of **seconds** it takes for the script to delete a dead bodies when the viewDist param has cleared.
+14. `_ADF_CleanUp_vehTimer = 600;` Change to the number of **seconds** it takes for the script to delete a destroyed vehicle when the viewDist param has cleared.
 15. `_ADF_CleanUp_abaTimer = 6000;` Change to the number of **seconds** a deserted/unmanned vehicle will be deleted.
 16. `_ADF_zeusEagle = true;` Change to **true** or **false**. Set to true to enable the Zeus Eagle? False removes the eagle.
+17.	`_ADF_altitude = false;` Change to **true** or **false**. Enables/disables altitude Mountain Sickness (AMS). Increases fatigue when at 1500+ meters.
 
 <a name="ACE3settings"></a>
 ### ACE3 settings
