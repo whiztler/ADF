@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.40 / JUNE 2015
+ADF version: 1.41 / JULY 2015
 
 Script: Killed init
 Author: Whiztler
@@ -51,5 +51,3 @@ if (ADF_sameGearRespawn && !ADF_mod_ACE3) then {
 	ADF_StoreLoadout_items = items _ADF_unit;
 	ADF_StoreLoadout_assignedItems = assignedItems _ADF_unit;
 };
-
-

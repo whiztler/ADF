@@ -1,3 +1,5 @@
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_position.sqf";
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_distance.sqf";
 // Custom and mission scripts below
 
 

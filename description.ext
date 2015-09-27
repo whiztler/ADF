@@ -1,10 +1,10 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.40 / JUNE 2015
+ADF version: 1.41 / JULY 2015
 
 Script: Mission config
 Author: Whiztler
-Script version: 2.62
+Script version: 2.63
 
 Game type: n/a
 File: description.ext
@@ -26,19 +26,19 @@ respawnOnStart = -1; // 1 = Respawn on start. Run respawn script on start, 0 = D
 joinUnassigned = 1; // Where 0 forces joining players into the first empty slot, 1 leaves them to select their own slot. Use 0 if the HC is enabled.
 
 // Respawn Ticket system init. Vars defined in init
-respawnTemplatesWest[] = {"Counter", "Tickets", "Seagull", "f_spectator"};
-respawnTemplatesEast[] = {"Counter", "Tickets", "Seagull", "f_spectator"};
-respawnTemplatesCiv[] = {"Counter"};
+respawnTemplatesWest[] = {"Tickets", "Seagull", "f_spectator"}; // ADF 1.41B010
+respawnTemplatesEast[] = {"Tickets", "Seagull", "f_spectator"}; // ADF 1.41B010
+respawnTemplatesCiv[] = {};
 
 /**********  Loading Screen **********/
 author = "Whiztler";
-overviewText = "ADF by Whiztler";
-onLoadName = "A D F";
-onLoadMission = "Arma Mission Development Framework";
+overviewText = $STR_ADF_DescExt_overviewText; // See Stringtable.xml for input
+onLoadName = $STR_ADF_DescExt_onLoadName;
+onLoadMission = $STR_ADF_DescExt_onLoadMission;
 onLoadIntroTime = false;
 onLoadMissionTime = false;
 loadScreen = "Img\mission_intro_ADF.paa";
-onLoadIntro = "Powered by ADF";
+onLoadIntro = $STR_ADF_DescExt_onLoadIntro;
 
 /**********  Mission specific settings **********/
 showGPS = 1; // Allow GPS where (0=disallowed), (1=allowed).
