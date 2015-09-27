@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.41 / JULY 2015
+ADF version: 1.42 / SEPTEMBER 2015
 
 Script: Mission config
 Author: Whiztler
@@ -32,13 +32,13 @@ respawnTemplatesCiv[] = {};
 
 /**********  Loading Screen **********/
 author = "Whiztler";
-overviewText = $STR_ADF_DescExt_overviewText; // See Stringtable.xml for input
-onLoadName = $STR_ADF_DescExt_onLoadName;
-onLoadMission = $STR_ADF_DescExt_onLoadMission;
+overviewText = "ADF by Whiztler";
+onLoadName = "A D F";
+onLoadMission = "Arma Mission Development Framework";
 onLoadIntroTime = false;
 onLoadMissionTime = false;
 loadScreen = "Img\mission_intro_ADF.paa";
-onLoadIntro = $STR_ADF_DescExt_onLoadIntro;
+onLoadIntro = "Powered by ADF";
 
 /**********  Mission specific settings **********/
 showGPS = 1; // Allow GPS where (0=disallowed), (1=allowed).

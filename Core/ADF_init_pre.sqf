@@ -46,6 +46,9 @@ ADF_microDAGR 				= ""; // 140B06
 ADF_gearLoaded				= false;
 ADF_log_CntHC 				= 0;
 ADF_log_rptMods 				= "";
+ADF_isHC1					= false;
+ADF_isHC2					= false;
+ADF_isHC3					= false;
 if (isNil "ADF_HC_connected") then {ADF_HC_connected = false;}; // HC init
  
 player setVariable ["BIS_noCoreConversations",true]; // Disable AI chatter.

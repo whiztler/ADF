@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.41 / JULY 2015
+ADF version: 1.42 / SEPTEMBER 2015
 
 Script: Local Player init
 Author: Whiztler
@@ -18,10 +18,8 @@ start and JIP).
 diag_log "ADF RPT: Init - executing initPlayerLocal.sqf"; // Reporting. Do NOT edit/remove
 
 // init
-private ["_ADF_unit"];
 ADF_didJIP = false;
-ADF_fnc_respawn = player addEventHandler ["killed", {_this execVM "ADF_onPlayerRespawn.sqf"}];// Respawn client
-_ADF_unit = _this select 0;
+ADF_fnc_respawn = player addEventHandler ["killed", {_this execVM "ADF_onPlayerRespawn.sqf"}]; // Respawn client
 ADF_didJIP = _this select 1;
 
 enableEnvironment false; // Perf saver - remove rabbits, snakes, etc

@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.41 / JULY 2015
+ADF version: 1.42 / SEPTEMBER 2015
 
 Script: Loadout Client
 Author: Whiztler
@@ -15,13 +15,23 @@ NOTE: Gear loads on actual players only. Does not load on AI's!!
 if (isServer) then {diag_log "ADF RPT: Init - executing ADF_clientLoadout.sqf"}; // Reporting. Do NOT edit/remove
 
 // Let the server apply Two Sierra uniform textures globally after the client loadout has been applied fully > 1.41 - 5.60
-if (isServer && (ADF_clanName == "Two Sierra")) then {
-	[] spawn {
-		if (isMultiplayer) then {ADF_uArray = playableUnits;} else {ADF_uArray = switchableUnits};
-		sleep 20; // wait till units have geared up
-		{_x setObjectTextureGlobal [0, "\a3\characters_f\BLUFOR\Data\clothing_sage_co.paa"]} forEach ADF_uArray; 
-		ADF_uArray = nil;
+if (isServer) then {
+	if (ADF_clanName == "Two Sierra") then {
+		[] spawn {
+			if (isMultiplayer) then {ADF_uArray = playableUnits;} else {ADF_uArray = switchableUnits};
+			sleep 20; // wait till units have geared up
+			{_x setObjectTextureGlobal [0, "\a3\characters_f\BLUFOR\Data\clothing_sage_co.paa"]} forEach ADF_uArray; 
+			ADF_uArray = nil;
+		};
 	};
+	if (ADF_clanName == "Wolfpack") then {
+		[] spawn {
+			if (isMultiplayer) then {ADF_uArray = playableUnits;} else {ADF_uArray = switchableUnits};
+			sleep 20; // wait till units have geared up
+			{_x setObjectTextureGlobal [0, "\A3\Characters_F\Common\Data\basicbody_black_co.paa"]} forEach ADF_uArray; 
+			ADF_uArray = nil;
+		};
+	};	
 };
 
 _ADF_perfDiagStart = diag_tickTime;
@@ -122,22 +132,22 @@ if ((_ADF_unitFaction == "BLU_F") && _ADF_customLoadout_MOD) exitWith { // BLUFO
 	// SOR uniform texture update
 	if (_s == "sor") then {
 		[_ADF_unit] spawn {
-			ADF_sorUnits = [];		
-			// Check if the SOR groups are populated/exist and add to ADF_sorUnits array
-			if !(isNil "gCO_4") then {ADF_sorUnits pushBack gCO_4};
-			if !(isNil "gCO_41M") then {ADF_sorUnits pushBack gCO_41M};
-			if !(isNil "gCO_41R") then {ADF_sorUnits pushBack gCO_41R};
-			if !(isNil "gCO_41Y") then {ADF_sorUnits pushBack gCO_41Y};
-			if !(isNil "gCO_41Z") then {ADF_sorUnits pushBack gCO_41Z};			
-		
 			waitUntil {time > 10};
 			
-			player setObjectTexture [0, "\A3\Characters_F\Common\Data\basicbody_black_co.paa"];
-			{
-				{			
-					_x setObjectTexture [0, "\A3\Characters_F\Common\Data\basicbody_black_co.paa"];
-				} forEach units _x;
-			} forEach ADF_sorUnits;
+			// Add Uniform EH
+			player addEventHandler ["Take", {
+				(getObjectTextures player + [uniformContainer player getVariable "texture"])
+				params ["_texUniform", "_texInsignia", "_texCustom"];
+				if (isNil "_texCustom") exitWith {};
+				if (_texUniform == _texCustom) exitWith {};
+				player setObjectTextureGlobal [0, _texCustom];
+				if (ADF_Clan_uniformInsignia) then {[player,"CLANPATCH"] call BIS_fnc_setUnitInsignia};
+				false
+			}];
+
+			// Set local Texture
+			_ADF_texture =  "\A3\Characters_F\Common\Data\basicbody_black_co.paa";
+			uniformContainer player setVariable ["texture", _ADF_texture, true];
 		};
 	};
 	

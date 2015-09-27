@@ -37,7 +37,7 @@
 
 ## Current version
 
-version: 1.41 | build: Production
+version: 1.42 | build: Beta 01
 
 <a name="New-Features"></a>
 ## New Features 1.39+
@@ -364,8 +364,6 @@ By default ADF has implemented ACE3 Advanced settings such as Advanced Medical, 
 
 This section covers spawning of units/groups by scripts. Spawning using scripts we'll call Spawn on Demand (SOD). This enables mission makers to spawn units/groups/vehicles only when it is required/triggered and thus save server/HC performance. SOD can make your missions less linear and more dynamic.
 
-ADF offers a few well documented sample scripts for you to learn about SOD. You'll find them in the `Core\` folder (**ADF_DSG-Airborne.sqf**, **ADF_DSG-FootPatrols.sqf**, **ADF_DSG-Armored.sqf**)
-
 ### The basics
 
 To spawn a unit/group/vehicle ARMA3 requires some information that the script should provide:
@@ -460,7 +458,7 @@ Now you can create a Trigger in the editor with the following settings (I only m
 If you haven't already, create/place a marker on the map and name it "marker1". You may place the marker anywhere you want, inside or outside the trigger area. This is the position your enemy patrol group will spawn and start their patrol from.
 Save your mission and test by entering the trigger area as a Blufor unit. The enemy patrol should spawn immediately.
 
-You can spawn single units, groups, crewed vehicles, empty vehicles, etc. Have a look at the sample spawn scripts. You find then in the Core\\ folder (**ADF_DSG-Airborne.sqf**, **ADF_DSG-FootPatrols.sqf**, **ADF_DSG-Armored.sqf**). For further reading on spawning units and such, have a look at:
+You can spawn single units, groups, crewed vehicles, empty vehicles, etc. For further reading on spawning units and such, have a look at:
 
 -   [BIS spawn vehicle function](https://community.bistudio.com/wiki/BIS\_fnc\_spawnVehicle)
 -   [BIS function createGroup](https://community.bistudio.com/wiki/createGroup)
