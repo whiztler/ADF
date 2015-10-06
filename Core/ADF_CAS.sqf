@@ -219,7 +219,7 @@ ADF_fnc_destroyVars = {
 if !(isNil ADF_CAS_requesterStr) then {
 	if (player != ADF_CAS_requester) exitWith {};
 	_actionText = format ["<t align='left' color='#f4c300' shadow='false'>Request CAS: %1",ADF_CAS_callSign];
-	_actionID = ADF_CAS_requester addAction [_actionText,{[[_this select 1, _this select 2],"ADF_fnc_CAS_SupportRq"] call BIS_fnc_MP;},[],-95,false,true,"",""];
+	_actionID = ADF_CAS_requester addAction [_actionText,{[_this select 1, _this select 2] remoteExec ["ADF_fnc_CAS_SupportRq",0,true]},[],-95,false,true,"",""];
 };
 
 if (hasInterface) then {

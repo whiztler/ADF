@@ -4,7 +4,7 @@ ADF version: 1.42 / SEPTEMBER 2015
 
 Script: Respawn init 
 Author: Whiztler
-Script version: 2.3
+Script version: 2.4
 
 Game type: n/a
 File: ADF_onPlayerRespawn.sqf
@@ -24,7 +24,7 @@ if (ADF_Tickets) then {
 	_ADF_unitName = name vehicle player;
 
 	if (side player == WEST) then {
-		[[[_ADF_unitName,_ADF_wTix],
+		[[_ADF_unitName,_ADF_wTix],
 			{
 				HintSilent parseText format
 					["					
@@ -33,13 +33,13 @@ if (ADF_Tickets) then {
 						<t color='#1262c4' align='left'>BLUEFOR</t><t color='#A1A4AD' align='left'> slots remaining: </t><t color='#FFFFFF' align='right'>%3</t><br/>
 					",ADF_clanName, _this select 0, _this select 1];
 			}
-		],"BIS_fnc_spawn", WEST, true, false] spawn BIS_fnc_MP;
+		] remoteExec ["BIS_fnc_spawn",WEST,false];		
 		sleep 8;
 		hintSilent "";
 	};
 
 	if (side player == EAST) then {	
-		[[[_ADF_unitName,_ADF_eTix],
+		[[_ADF_unitName,_ADF_eTix],
 			{
 				HintSilent parseText format
 					["					
@@ -48,7 +48,7 @@ if (ADF_Tickets) then {
 						<t color='#d45454' align='left'>OPFOR</t><t color='#A1A4AD' align='left'> slots remaining: </t><t color='#FFFFFF' align='right'>%3</t><br/>
 					",ADF_clanName, _this select 0, _this select 1];
 			}
-		],"BIS_fnc_spawn", EAST, true, false] spawn BIS_fnc_MP;
+		] remoteExec ["BIS_fnc_spawn",EAST,false];	
 		sleep 8;
 		hintSilent "";
 	};

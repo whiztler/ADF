@@ -136,7 +136,7 @@ if (isServer) then {
 					};
 					
 					// reApply group directives
-					if (_x getVariable "ADF_HC_garrison_CBA") then {[[_x,ADF_HCLB_storedArr], "ADF_fnc_HCLB_taskDefend", _ADF_HCLB_HCID] call BIS_fnc_MP; _x setVariable ["ADF_noHC_transfer", true]};
+					if (_x getVariable "ADF_HC_garrison_CBA") then {[_x,ADF_HCLB_storedArr] remoteExec ["ADF_fnc_HCLB_taskDefend",_ADF_HCLB_HCID,true]; _x setVariable ["ADF_noHC_transfer", true]};
 					
 					if (_ADF_HCLB_rr) then {_ADF_HCLB_numTransfered = _ADF_HCLB_numTransfered + 1;};
 				};

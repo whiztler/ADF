@@ -12,6 +12,23 @@ File: missionConfig.hpp
 Config entry registration goes in here.
 ****************************************************************/
 
+class CfgRemoteExec {        
+   class Functions {
+		mode = 2;
+		jip = 1;
+		class ADF_fnc_fobDeploy {allowedTargets=0};
+		class ADF_fnc_fobPackUp {allowedTargets=0};
+		class ADF_fnc_fobDeleteObj {allowedTargets=0};
+		class ADF_fnc_MHQ_respawn {allowedTargets=0};
+		class ADF_fnc_MHQ_FinalSpawn {allowedTargets=0};
+		class ADF_fnc_MHQ_addEH {allowedTargets=0};
+		class ADF_fnc_MHQ_respawned {allowedTargets=0};
+		class ADF_fnc_HCLB_taskDefend {allowedTargets=0};
+		class ADF_fnc_CAS_SupportRq {allowedTargets=0};
+		class BIS_fnc_spawn {allowedTargets=0};
+	};
+};
+
 class CfgUnitInsignia {
 	class CLANPATCH {
 		displayName = "Nopryl"; // Name displayed in Arsenal
@@ -68,11 +85,11 @@ class CfgDebriefing {
 	};
 };
 
-// ACE3 settings v. 3.3.1
+// ACE3 settings v. 3.3.2.0
 
 class ACE_Settings {
 	// Custom ACE3 Setting below
-	
+
 	class ace_common_forceAllSettings {
 		value = 0;
 		typeName = "BOOL";
@@ -94,7 +111,7 @@ class ACE_Settings {
 		force = 1;
 	};
 	class ace_finger_enabled {
-		value = 1;
+		value = 0;
 		typeName = "BOOL";
 		force = 1;
 	};
@@ -419,7 +436,7 @@ class ACE_Settings {
 		force = 1;
 	};
 	class ace_repair_engineerSetting_Repair {
-		value = 0;
+		value = 1;
 		typeName = "SCALAR";
 		force = 1;
 	};
@@ -464,7 +481,7 @@ class ACE_Settings {
 		force = 1;
 	};
 	class ace_respawn_SavePreDeathGear {
-		value = 1;
+		value = 0;
 		typeName = "BOOL";
 		force = 1;
 	};
@@ -479,7 +496,7 @@ class ACE_Settings {
 		force = 1;
 	};
 	class ace_sitting_enable {
-		value = 1;
+		value = 0;
 		typeName = "BOOL";
 		force = 1;
 	};
@@ -499,7 +516,7 @@ class ACE_Settings {
 		force = 1;
 	};
 	class ace_spectator_restrictVisions {
-		value = 3;
+		value = 0;
 		typeName = "SCALAR";
 		force = 1;
 	};
