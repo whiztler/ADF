@@ -37,7 +37,7 @@
 
 ## Current version
 
-version: 1.42 | build: Beta 01
+version: 1.42 | build: Beta 03
 
 <a name="New-Features"></a>
 ## New Features 1.39+

@@ -26,6 +26,13 @@ ADF_fnc_HCLB_taskDefend = {
 	if (ADF_Debug) then {diag_log "ADF DEBUG: HC - CBA_fnc_taskDefend reapplied";};
 };
 
+ADF_fnc_HCLB_DefendArea = {
+	params ["_g","_a"];
+	if (ADF_Debug) then {diag_log format ["ADF DEBUG: HC -  ADF_HC_garrison_ADF re-applied for group: %1", _g]; diag_log format ["ADF DEBUG: HC -  ADF_HC_garrisonArr: %1", _a];};
+	_a call ADF_fnc_defendArea;	
+	if (ADF_Debug) then {diag_log "ADF DEBUG: HC - ADF_fnc_defendArea reapplied";};
+};
+
 
 if (isServer) then {
 	waitUntil {time > 60};
@@ -115,6 +122,7 @@ if (isServer) then {
 				if (_x getVariable ["ADF_noHC_transfer", false]) then {_ADF_HCLB_trfr = false};				
 				// Store directives arrays
 				if (_x getVariable "ADF_HC_garrison_CBA") then {ADF_HCLB_storedArr = _x getVariable ["ADF_HC_garrisonArr",[_x, getPos (leader _x), 250, 2, true]]};
+				if (_x getVariable "ADF_HC_garrison_ADF") then {ADF_HCLB_storedArr = _x getVariable ["ADF_HC_garrisonArr",[_x, getPos (leader _x), 250, 2, true]]};
 
 				// If load balance enabled, round robin between the multiple HC's - else pass all to a single HC
 				if (_ADF_HCLB_trfr) then {
@@ -137,6 +145,7 @@ if (isServer) then {
 					
 					// reApply group directives
 					if (_x getVariable "ADF_HC_garrison_CBA") then {[_x,ADF_HCLB_storedArr] remoteExec ["ADF_fnc_HCLB_taskDefend",_ADF_HCLB_HCID,true]; _x setVariable ["ADF_noHC_transfer", true]};
+					if (_x getVariable "ADF_HC_garrison_ADF") then {[_x,ADF_HCLB_storedArr] remoteExec ["ADF_fnc_HCLB_DefendArea",_ADF_HCLB_HCID,true]; _x setVariable ["ADF_noHC_transfer", true]};
 					
 					if (_ADF_HCLB_rr) then {_ADF_HCLB_numTransfered = _ADF_HCLB_numTransfered + 1;};
 				};

@@ -9,9 +9,7 @@ Script version: 1.04
 Game type: N/A
 File: ADF_fnc_vehiclePatrol.sqf
 ****************************************************************
-This is a vehicle patrol function. You can use it on pre-created
-(editor or scripter) vehicles or the function can create the vehicle
-as well.
+This is a vehicle patrol function. 
 
 INSTRUCTIONS:
 load the function on mission start (e.g. in Scr\init.sqf):
@@ -33,9 +31,6 @@ in the init of the vehicle:
 	completion radius		// Number. Info: https://community.bistudio.com/wiki/setWaypointCompletionRadius
 ] call ADF_fnc_vehiclePatrol;
 
-Example for editor placed vehicles:
-[group this, "MyMarker", 800, 5, "MOVE", "SAFE", "RED", "LIMITED", 25] call ADF_fnc_vehiclePatrol;
-
 Example for scripted vehicles:
 [_grp, _myPosition, 800, 5, "MOVE", "SAFE", "RED", "LIMITED", 25] call ADF_fnc_vehiclePatrol;
 [_c, "PatrolMarker", 1000, 6, "MOVE", "SAFE", "RED", "LIMITED",25] call ADF_fnc_vehiclePatrol;
@@ -49,6 +44,10 @@ The patrol start position and the vehicle spawn position do not need to be the s
 _c = createGroup INDEPENDENT;
 _v = [getMarkerPos _spawnPos, markerDir _spawnPos, "I_G_Offroad_01_F", _c] call BIS_fnc_spawnVehicle;
 [_c, getMarkerPos _patrolPos, 1000, 6, "MOVE", "SAFE", "RED", "LIMITED",25] call ADF_fnc_vehiclePatrol;
+
+Note this function requires the ADF_fnc_position.sqf and ADF_fnc_distance.sqf to be loaded:
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_position.sqf";
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_distance.sqf";
 
 *** CREATE VEHICLE + PATROL ***
 
