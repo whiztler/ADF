@@ -4,7 +4,7 @@ ADF version: 1.42 / SEPTEMBER 2015
 
 Script: Position functions
 Author: Whiztler
-Script version: 1.06
+Script version: 1.07
 
 Game type: N/A
 File: ADF_fnc_position.sqf
@@ -55,7 +55,7 @@ Array (position x,y,z)
 
 ADF_fnc_randomPos = {
 	// Init
-	params ["_p","_r","_d"];
+	params ["_p",["_r",0,[0]],["_d",15,[0]]];
 	private ["_pX","_pY"];
 	if (typeName _p != "ARRAY") then {_p = [_p] call ADF_fnc_checkPosition};
 	if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_randomPos - pre-position: %1",_p]};
@@ -86,7 +86,7 @@ Array (position x,y,z)
 
 ADF_fnc_roadPos = {
 	// Init
-	params ["_p","_r"];
+	params ["_p",["_r",0,[0]]];
 	private ["_rd","_c","_return","_rd"];
 	
 	if (typeName _p != "ARRAY") then {_p = [_p] call ADF_fnc_checkPosition};
@@ -133,4 +133,20 @@ ADF_fnc_randomPosInArea = {
 
 	_return = if (_r > 0) then {[_p,_r,_d] call ADF_fnc_randomPos} else {_p};
 	_return
+};
+
+ADF_fnc_getRelPos = {
+	// init
+	params [
+		"_p",
+		["_d",15,[0]],
+		["_r",0,[0]],
+		["_z",-1,[0]]
+	];
+	private "_a";
+
+	_a = [(_p select 0) + sin _d * _r, (_p select 1) + cos _d * _r, _z];
+
+	// return position
+	_a
 };

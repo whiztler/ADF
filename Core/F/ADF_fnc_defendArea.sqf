@@ -4,7 +4,7 @@ ADF version: 1.42 / SEPTEMBER 2015
 
 Script: Defend area script
 Author: Whiztler
-Script version: 1.01
+Script version: 1.05
 
 Game type: N/A
 File: ADF_fnc_defendArea.sqf
@@ -36,64 +36,43 @@ Note this function requires the ADF_fnc_position.sqf:
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_position.sqf";
 ****************************************************************/
 
+diag_log "ADF RPT: Init - executing ADF_fnc_defendArea.sqf"; // Reporting. Do NOT edit/remove
 
-ADF_fnc_garrisonArr = {
-	params ["_p","_r"];
-	private ["_b","_bp"];
-
-	// init
-	_r = if (_r > 0) then {_r} else {75};
+ADF_fnc_buildingArr = {
+	// init	
+	params [["_p", [0,0,0], [[]], [3]],["_r",10,[0]]];
+	private ["_b","_bp","_be"];	
 
 	// Create the building array
-	_b = _p nearObjects ["building",_r];
-	if (count _b == 0) exitWith {[]};
+	_b = nearestObjects [_p,["building"],_r];
+	if (count _b == 0) exitWith {[]};	
 	
-	// Check if the building has garrison positions. If no position available, remove the building from the array
-	{_bp = _x buildingPos 0; 	if (str _bp == "[0,0,0]") then {_b deleteAt (_b find _x)}} forEach _b;	
-	if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_garrisonArr - valid buildings found: %1",_b]};
+	// Check if building can be entered. Then check if the building has garrison positions. If no position available, remove the building from the array
+	{
+		_x setVariable ["ADF_garrPos",0];
+		_be = [_x] call BIS_fnc_isBuildingEnterable;
+		_bp = [_x] call BIS_fnc_buildingPositions; 
+
+		if (!_be || (count _bp == 0)) then {_b = _b - [_x]};
+		_x setVariable ["ADF_garrPos",count _bp];
+		
+	} forEach _b;
 	
 	// return the building array
 	_b
 };
 
-ADF_fnc_buildingPos = {
-	// init
-	params ["_b"];
-	private ["_a"];
-	_a = [];	
-	
-	{
-		// init
-		private ["_i","_e","_bp"];
-		_i = 0;
-		_e = [_x] call BIS_fnc_isBuildingEnterable;
-		_x setVariable ["ADF_garrPos",[]];
-
-		// Loop through available positions inside the building and store them into a variable.
-		while {_e && str (_x buildingPos _i) != "[0,0,0]"} do {
-			_x setVariable ["ADF_garrPos",(_x getVariable "ADF_garrPos") + [_i]];
-			if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_garrisonArr - Found building Position %1 for building %2",_i,_x]};
-			_i = _i + 1;
-		};
-		_a = _x getVariable "ADF_garrPos";
-		if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_garrisonArr - ADF_garrPos set (building: %1): %2",_x,_a]};
-	} forEach _b;
-	
-	// return the building position array
-	_a
-};
-
 ADF_fnc_getTurrets = {
 	// init
-	params ["_p","_r"];
+	params [["_p", [0,0,0], [[]], [3]],["_r",10,[0]]];
 	private ["_t","_a"];
+	_t = [];
+	_a = [];	
 	
-	// Create array of empty turrets
-	_t =  [];
+	// Create array of empty static turrets
 	{_t append nearestObjects [_p,[_x],_r]} forEach ["TANK","APC","CAR","StaticWeapon"];
-
-	_a = [];
-	{if ((_x emptyPositions "gunner") > 0 && ((count crew _x) == 0)) then {_a append [_x]}; if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_getTurrets - Turret found: %1",_x]}} forEach _t;
+	// Remove already populated turrest from the array
+	{if ((_x emptyPositions "gunner") > 0 && ((count crew _x) == 0)) then {_a append [_x]}} forEach _t;
 	
 	// return turrets array
 	_a
@@ -101,87 +80,110 @@ ADF_fnc_getTurrets = {
 
 ADF_fnc_setGarrison = {
 	// init
-	params ["_u","_p","_b","_gt"];
-	if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_defendArea - Garrison position unit: %1",_p]};
+	params ["_u",["_p", [0,0,0], [[]], [3]],"_b","_gt"];
 	
-	// Join a new group and move the unit inside the predefined building position 
+	// Join a new group and move the unit inside the predefined building position
 	[_u] joinSilent _gt;
-	_u setPosATL [_p select 0, _p select 1, ( _p select 2) + .15];
+	_u doMove _p;
+	sleep 5;
+	waitUntil {unitReady _u};	
+	//_u setPosATL [_p select 0, _p select 1, ( _p select 2) + .15]; // Direct placement without movement.
 	_u disableAI "move";
 	_u setUnitPos "UP";
 	// Attempt to make the unit face outside 
 	_u setDir (([_u, _b] call BIS_fnc_dirTo) - 180);
-						
-	_u setVariable ["ADF_garrSetBuilding",true];		
+	doStop _u;
+	
+	_u setVariable ["ADF_garrSetBuilding",true];
 	
 	waitUntil {sleep 1; !(unitReady _u)};
 	_u enableAI "move";
 };
 
+ADF_fnc_setTurretGunner = {
+	// init
+	params ["_u"];
+	
+	// Increase gunner skill so they are more responsive to approaching enemies
+	_u setSkill ["spotDistance",.7 + (random .3)];
+	_u setSkill ["spotTime",.7 + (random .3)];
+	_u setSkill ["aimingAccuracy",.5 + (random .5)];
+	_u setSkill ["aimingSpeed",.5 + (random .5)];
+	_u setCombatMode "YELLOW";
+
+	true
+};
+
 ADF_fnc_defendArea = {	
-	params ["_g","_p","_r"];
-	private ["_b","_bs","_bp","_t","_u","_uf","_c","_ct","_i","_a","_s","_gt","_ADF_perfDiagStart","_ADF_perfDiagStop"];
+	params ["_g","_p",["_r",10,[0]]];
+	private ["_b","_bs","_bp","_t","_u","_uf","_c","_ct","_i","_a","_gt","_ADF_perfDiagStart","_ADF_perfDiagStop"];
 	
 	// init
 	_ADF_perfDiagStart = diag_tickTime;
 	if !(local _g) exitWith {}; 
 	_p	= [_p] call ADF_fnc_checkPosition;
-	_bs	= [_p,_r] call ADF_fnc_garrisonArr;
+	_bs	= [_p,_r] call ADF_fnc_buildingArr;
 	_t	= [_p,_r] call ADF_fnc_getTurrets;
-	[_bs] call ADF_fnc_buildingPos;
 	
 	_g enableAttack false;
-	_s	= side _g;
-	_gt	= createGroup _s;
+	_gt	= createGroup (side _g);
 	_u	= units _g;
 	_c	= count _u;
 	_i	= 0;
+	_l	= 0;
 	
 	// Modified CBA_fnc_taskDefend by Rommel et all
 	
 	{		
-		if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_defendArea - Unit nr.: %1",_i]};
+		// init
 		_ct	= (count _t) - 1;
+		_l = _l + 1;
 		
 		if ((_ct > -1) && (_x != leader _g)) then {
+			[_x] joinSilent _gt;
 			_x assignAsGunner (_t select _ct);
 			_x moveInGunner (_t select _ct);
+			[_x] call ADF_fnc_setTurretGunner;
 			_t resize _ct;
 			_x setVariable ["ADF_garrSetTurret",true];
-			[_x] joinSilent _gt;
 			_i = _i + 1;
 		} else {
-			if (true && {count _bs > 0}) then {
-				private ["_b","_bp","_a"];
+			if (count _bs > 0) then {
+				private ["_b","_bp","_p"];
 				_b = _bs call BIS_fnc_selectRandom;
-				if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_defendArea - building selected: %1",_b]};
-				_a = _b getVariable "ADF_garrPos";
-				if (isNil "_a") then {_a = 0};
-				if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_defendArea - ADF_garrPos: %1",_a]};				
+				_p = _b getVariable "ADF_garrPos";
+				if (isNil "_p") then {_p = 0};	
 				
-				if (count _a > 0) then {
-					_bp = (_b getVariable "ADF_garrPos") call BIS_fnc_selectRandom;
-					if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_defendArea - ADF_garrPos random: %1",_bp]};
-					_a = _a - [_bp];
-					
-					if (count _a == 0) then {
+				if (_p > 0) then {
+					_bp = floor (random _p);
+					_p = _p - 1;
+										
+					if (_p == 0) then {
 						_bs = _bs - [_b];
-						_b setVariable ["ADF_garrPos",nil];
-					};
-					
-					_b setVariable ["ADF_garrPos",_a];					
-					[_x,_b buildingPos _bp,_b,_gt] spawn ADF_fnc_setGarrison;					
+						_b setVariable ["ADF_garrPos",0];
+					} else {
+						_b setVariable ["ADF_garrPos",_p];
+					};					
+									
+					[_x,_b buildingPos _bp,_b,_gt] spawn ADF_fnc_setGarrison;				
 					_i = _i + 1;
-				};
+				} else {if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_defendArea - No positions found for unit %1 (nr. %2)",_x,_l]}};
 			};
 		};
 	} forEach _u;
 	
 	{_x setVariable ["ADF_garrPos",nil]} forEach _bs;
 	
-	// Non garrisoned units patrol the area
-	if (_r < 100) then {_r = 100};
-	[_g, _p, _r, 4, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
+	// Non garrisoned units patrol the area	
+	[_c,_l,_i,_g,_p,_r] spawn {
+		params ["_c","_l","_i","_g","_p","_r"];
+		waitUntil {_c == _l};
+		if (_i < _c) then {
+			if (_r < 75) then {_r = 75};
+			[_g, _p, _r, 4, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
+		};
+	};
+	
 	_ADF_perfDiagStop = diag_tickTime;
 	if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_defendArea processed (DIAG: %1)",_ADF_perfDiagStop - _ADF_perfDiagStart]};
 };

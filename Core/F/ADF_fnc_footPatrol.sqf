@@ -4,7 +4,7 @@ ADF version: 1.42 / SEPTEMBER 2015
 
 Script: foot patrol script
 Author: Whiztler
-Script version: 1.00
+Script version: 1.01
 
 Game type: N/A
 File: ADF_fnc_footPatrol.sqf
@@ -33,8 +33,8 @@ Config:
 ] call ADF_fnc_footPatrol;
 
 Example for scripted groups:
-[_grp, _Position, 300, 5, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 25] call ADF_fnc_footPatrol;
-[_grp, getMarkerPos "PatrolMarker", 500, 6, "MOVE", "SAFE", "RED", "LIMITED","FILE",25] call ADF_fnc_footPatrol;
+[_grp, _Position, 300, 5, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
+[_grp, getMarkerPos "PatrolMarker", 500, 6, "MOVE", "SAFE", "RED", "LIMITED","FILE",5] call ADF_fnc_footPatrol;
 
 Notes
 
@@ -94,9 +94,21 @@ ADF_fnc_addWaypoint = {
 	_wp 
 };
 
+
 ADF_fnc_footPatrol = {
-	params ["_g","_p","_r","_c","_t","_b","_m","_s","_f","_cr"];
-	private ["_a","_i","_cycle"];
+	params [
+		"_g",
+		"_p",
+		["_r",250,[0]],
+		["_c",4,[0]],
+		["_t", ["MOVE","DESTROY","GETIN","SAD","JOIN","LEADER","GETOUT","CYCLE","LOAD","UNLOAD","TR UNLOAD","HOLD","SENTRY","GUARD","TALK","SCRIPTED","SUPPORT","GETIN NEAREST","DISMISS","LOITER"], [""]],
+		["_b", ["UNCHANGED","CARELESS","SAFE","AWARE","COMBAT","STEALTH"], [""]],
+		["_m", ["NO CHANGE","BLUE","GREEN","WHITE","YELLOW","RED"], [""]],
+		["_s", ["UNCHANGED","LIMITED","NORMAL","FULL"], [""]],
+		["_f", ["NO CHANGE","COLUMN","STAG COLUMN","WEDGE","ECH LEFT","ECH RIGHT","VEE","LINE","FILE","DIAMOND"], [""]],
+		["_cr",5,[0]]
+	];
+	private ["_a","_i","_cx"];
 
 	_a = [_g,_p,_r,_t,_b,_m,_s,_f,_cr];
 
@@ -107,9 +119,9 @@ ADF_fnc_footPatrol = {
 	};
 	
 	// Add a cycle waypoint
-	_cycle =+ _a;
-	_cycle set [3, "CYCLE"];
-	_cycle call ADF_fnc_addWaypoint;
+	_cx =+ _a;
+	_cx set [3, "CYCLE"];
+	_cx call ADF_fnc_addWaypoint;
 	if (ADF_debug) then {diag_log " "; diag_log "ADF Debug: ADF_fnc_footPatrol - called ADF_fnc_addWaypoint for cycle WP"};
 
 	// Remove the spawn/start waypoint
@@ -117,8 +129,25 @@ ADF_fnc_footPatrol = {
 };
 
 ADF_fnc_createFootPatrol = {
-	params ["_p","_gs","_gc","_gw","_r","_c","_t","_b","_m","_s","_f","_cr"];
-	private ["_gSize","_gSide","_gFact","_gID","_gStr"];
+	// Init
+	params [
+		"_p",
+		["_gs", [WEST, EAST, INDEPENDENT], [WEST]],
+		["_gc", 5,[0]],
+		["_gw", FALSE, [FALSE]],
+		["_r",250,[0]],
+		["_c",4,[0]],
+		["_t", ["MOVE","DESTROY","GETIN","SAD","JOIN","LEADER","GETOUT","CYCLE","LOAD","UNLOAD","TR UNLOAD","HOLD","SENTRY","GUARD","TALK","SCRIPTED","SUPPORT","GETIN NEAREST","DISMISS","LOITER"], [""]],
+		["_b", ["UNCHANGED","CARELESS","SAFE","AWARE","COMBAT","STEALTH"], [""]],
+		["_m", ["NO CHANGE","BLUE","GREEN","WHITE","YELLOW","RED"], [""]],
+		["_s", ["UNCHANGED","LIMITED","NORMAL","FULL"], [""]],
+		["_f", ["NO CHANGE","COLUMN","STAG COLUMN","WEDGE","ECH LEFT","ECH RIGHT","VEE","LINE","FILE","DIAMOND"], [""]],
+		["_cr",5,[0]]
+	];
+	private ["_g","_gSize","_gSide","_gFact","_gID","_gStr"];
+	_gID		= "";
+	_gSide	= "";
+	_gFact	= "";
 	
 	// check group size/type
 	switch (_gc) do {
@@ -143,12 +172,8 @@ ADF_fnc_createFootPatrol = {
 
 	//Create the group
 	_g = [_p, _gs, (configFile >> "CfgGroups" >> _gSide >> _gFact >> "Infantry" >> _gStr)] call BIS_fnc_spawnGroup;
-	
+
 	[_g, _p, _r, _c, _t, _b, _m, _s , _f , _cr] call ADF_fnc_footPatrol;
 	
 	true	
 };
-
-
-
-
