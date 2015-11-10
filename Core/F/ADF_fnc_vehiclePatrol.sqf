@@ -33,7 +33,7 @@ in the init of the vehicle:
 
 Example for scripted vehicles:
 [_grp, _myPosition, 800, 5, "MOVE", "SAFE", "RED", "LIMITED", 25] call ADF_fnc_vehiclePatrol;
-[_c, "PatrolMarker", 1000, 6, "MOVE", "SAFE", "RED", "LIMITED",25] call ADF_fnc_vehiclePatrol;
+[_c, "PatrolMarker", 1000, 6, "MOVE", "SAFE", "RED", "LIMITED", 25] call ADF_fnc_vehiclePatrol;
 
 Notes
 The function looks for roads. If no nearby road is found a waypoint is created in the 'field'. Make sure the

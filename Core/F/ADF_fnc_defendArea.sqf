@@ -4,7 +4,7 @@ ADF version: 1.42 / SEPTEMBER 2015
 
 Script: Defend area script
 Author: Whiztler
-Script version: 1.05
+Script version: 1.06
 
 Game type: N/A
 File: ADF_fnc_defendArea.sqf
@@ -31,6 +31,8 @@ Example for scripted groups:
 [_grp, getMarkerPos "PatrolMarker", 75] call ADF_fnc_defendArea;
 
 Notes
+
+Lock (all) the vehicle to prevent AI's from populating the turret/static weapon
 
 Note this function requires the ADF_fnc_position.sqf:
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_position.sqf";
@@ -72,7 +74,7 @@ ADF_fnc_getTurrets = {
 	// Create array of empty static turrets
 	{_t append nearestObjects [_p,[_x],_r]} forEach ["TANK","APC","CAR","StaticWeapon"];
 	// Remove already populated turrest from the array
-	{if ((_x emptyPositions "gunner") > 0 && ((count crew _x) == 0)) then {_a append [_x]}} forEach _t;
+	{if ((_x emptyPositions "gunner") > 0 && ((count crew _x) == 0 && (locked _x) != 2)) then {_a append [_x]}} forEach _t;
 	
 	// return turrets array
 	_a

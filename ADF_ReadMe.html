@@ -48,7 +48,7 @@
     <h1><img src="Core/I/ADF_logo.png" width="500" height="240" alt="ADF - Arma Mission Development Framework" /></h1>
     <h3 id="curver">Current version</h3>
     <p>version: 1.42<br />
-      build: Beta 03</p>
+      build: Final 03</p>
     <h2 id="features">New Features 1.39+</h2>
     <ul>
       <li><strong>Support for multiple Headless Clients with automatic Load Balancing</strong> - ADF 1.39 offers up to three HC's that should be named ADF_HC1, ADF_HC2, ADF_HC3. The mission maker can enable/disable load balancing. When enabled ADF transfers AI groups across available HC's (Round Robin method). See 'Core\ADF_HC.sqf' for more information.</li>
@@ -59,6 +59,18 @@
     </ul>
     <h3 id="chglog">Changelog</h3>
     <div id="logBox">
+	  <h4>1.42</h4>
+      <ul>
+		<li>ADDED: ADF_fnc_airPatrol.sqf - function to create random air patrols.</li>
+		<li>ADDED: ADF_fnc_defendArea.sqf - function to garrison a group, man turrets.</li>
+		<li>ADDED: ADF_fnc_seaPatrol.sqf - function to create boat patrols (water waypoints).</li>
+		<li>ADDED: Additional dubug/feedback RPT reporting.</li>
+		<li>UPDATED: ADF_fnc_HC_loadBalancing.sqf - Added a delayed start of 120 seconds so that AO's can init properly.</li>
+		<li>UPDATED: zbe_cache - Added a delayed start of 120 seconds so that AO's can init properly.</li>
+		<li>UPDATED: ADF_SimpleStats.sqf - Now displays stats for up to 3 HC's.</li>
+		<li>UPDATED: code base updated in line with new scripting commands 1.52. Most scripts updated.</li>
+		<li>UPDATED: Notepad++ ARMA plugin (Core\I\SQF_whiz.xml).</li>
+      </ul>	
       <h4>1.41</h4>
       <ul>
         <li>ADDED: Altitude Based Fatigue. Can be switched on/off in ADF_init_config.</li>

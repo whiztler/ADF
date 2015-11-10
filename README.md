@@ -37,7 +37,7 @@
 
 ## Current version
 
-version: 1.42 | build: Beta 03
+version: 1.42 | build: Final 03
 
 <a name="New-Features"></a>
 ## New Features 1.39+
@@ -50,6 +50,19 @@ version: 1.42 | build: Beta 03
 
 <a name="Changelog"></a>
 ## Changelog
+
+### 1.42
+```
+-	ADDED: ADF_fnc_airPatrol.sqf - function to create random air patrols.
+-	ADDED: ADF_fnc_defendArea.sqf - function to garrison a group, man turrets.
+-	ADDED: ADF_fnc_seaPatrol.sqf - function to create boat patrols (water waypoints).
+-	ADDED: Additional dubug/feedback RPT reporting.
+-	UPDATED: ADF_fnc_HC_loadBalancing.sqf - Added a delayed start of 120 seconds so that AO's can init properly.
+-	UPDATED: zbe_cache - Added a delayed start of 120 seconds so that AO's can init properly.
+-	UPDATED: ADF_SimpleStats.sqf - Now displays stats for up to 3 HC's.
+-	UPDATED: code base updated in line with new scripting commands 1.52. Most scripts updated.
+-	UPDATED: Notepad++ ARMA plugin (Core\I\SQF_whiz.xml).
+```
 
 ### 1.41
 ```
