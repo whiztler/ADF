@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.42 / SEPTEMBER 2015
+ADF version: 1.43 / NOVEMBER 2015
 
 Script: Mission Config
 Author: Whiztler
@@ -141,6 +141,6 @@ _ADF_zeusEagle = true; // Enable the Zeus Eagle? False removes the eagle [true/f
 _ADF_altitude = false; // Enable altitude based fatigue (altitude mountain sickness)? True increases fatigue when > 1500 meter altitude [true/false].
 
 /********** ADF DEV BUILD SETTINGS **********/
-ADF_tpl_version = 1.42; // ADF version DO NOT EDIT
+ADF_tpl_version = 1.43; // ADF version DO NOT EDIT
 _ADF_devBuild = "Beta"; // [Alpha/Beta/Production] DO NOT EDIT
-_ADF_devBuildNr = "03"; // Build number. DO NOT EDIT
+_ADF_devBuildNr = "01"; // Build number. DO NOT EDIT

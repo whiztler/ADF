@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.42 / SEPTEMBER 2015
+ADF version: 1.43 / NOVEMBER 2015
 
 Script: Mission init
 Author: Whiztler
@@ -22,8 +22,6 @@ diag_log text "";
 
 [] spawn {waitUntil {time > 0}; enableEnvironment FALSE;};	
 
-if (isDedicated) then {
-	#include "Core\ADF_init_rpt.sqf"
-};
+if (isDedicated) then {execVM "Core\ADF_init_rpt.sqf"}; // 143B01
 
 //  Execute Core Third Party SERVER scripts: (comment out if not applicable)

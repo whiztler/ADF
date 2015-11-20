@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.42 / SEPTEMBER 2015
+ADF version: 1.43 / NOVEMBER 2015
 
 Script: Mission init
 Author: Whiztler
@@ -51,12 +51,12 @@ if (!isDedicated && !ADF_debug && !ADF_missionInit && !ADF_isHC) then {
 /**********  Execute Core init/scripts **********/
 
 if (!ADF_isHC) then {call compile preprocessFileLineNumbers "Core\f\ADF_fnc_presets.sqf";};
-ADF_getLoadOut = [_ADF_customLoadout_MOD,_ADF_uniform_inf,_ADF_uniform_sor,_ADF_add_NVGoggles,_ADF_add_GPS,_ADF_INF_assault_weapon,_ADF_INF_LMG_weapon,_ADF_INF_hand_weapon,_ADF_INF_scopes,_ADF_SOR_assault_weapon,_ADF_SOR_hand_weapon,_ADF_CAV_assault_weapon,_ADF_TFAR_PersonalRadio,_ADF_TFAR_SWRadio,_ADF_TFAR_LRRadio,_ADF_noLoadout,_ADF_TFAR_LRRadioSOR,_ADF_ACE3_microDAGR_all,_ADF_ACE3_microDAGR_leaders,_ADF_cTAB_microDAGR_all,_ADF_cTAB_microDAGR_leaders] execVM "Core\ADF_clientLoadout.sqf"; // Loadout client. Configure in ADF_init_config.sqf
+if (!ADF_isHC) then {ADF_getLoadOut = [_ADF_customLoadout_MOD,_ADF_uniform_inf,_ADF_uniform_sor,_ADF_add_NVGoggles,_ADF_add_GPS,_ADF_INF_assault_weapon,_ADF_INF_LMG_weapon,_ADF_INF_hand_weapon,_ADF_INF_scopes,_ADF_SOR_assault_weapon,_ADF_SOR_hand_weapon,_ADF_CAV_assault_weapon,_ADF_TFAR_PersonalRadio,_ADF_TFAR_SWRadio,_ADF_TFAR_LRRadio,_ADF_noLoadout,_ADF_TFAR_LRRadioSOR,_ADF_ACE3_microDAGR_all,_ADF_ACE3_microDAGR_leaders,_ADF_cTAB_microDAGR_all,_ADF_cTAB_microDAGR_leaders] execVM "Core\ADF_clientLoadout.sqf"}; // Loadout client. Configure in ADF_init_config.sqf
 if (_ADF_mhq_enable) then {[_ADF_mhq_enable,_ADF_mhq_respawn_time,_ADF_mhq_respawn_nr,_ADF_mhq_respawn_class,_ADF_mhq_deploy_time,_ADF_mhq_packup_time,_ADF_wTixNr] execVM "Core\ADF_MHQ.sqf"}; // Configure in ADF_init_config.sqf
-if (_ADF_misBal) then {execVM "Core\F\ADF_fnc_missionBalancer.sqf"};
-[_ADF_zeusEagle] execVM "Core\ADF_GM.sqf";
+if (_ADF_misBal) then {[_ADF_misBal_low,_ADF_misBal_high] execVM "Core\F\ADF_fnc_missionBalancer.sqf";};
+if (!ADF_isHC) then {[_ADF_zeusEagle] execVM "Core\ADF_GM.sqf"};
 if (_ADF_altitude && hasInterface) then {execVM "Core\ADF_ABF.sqf";};
-if (_ADF_crewCheck_Pilots || _ADF_crewCheck_Armoured) then {[_ADF_crewCheck_Pilots,_ADF_crewCheck_Armoured] execVM "Core\ADF_crewCheck.sqf";};
+if (!ADF_isHC && (_ADF_crewCheck_Pilots || _ADF_crewCheck_Armoured)) then {[_ADF_crewCheck_Pilots,_ADF_crewCheck_Armoured] execVM "Core\ADF_crewCheck.sqf";};
 
 // addon scripts
 if (_ADF_civKia_enable) then {execVM "Core\ADF_civKiaCheck.sqf"}; // Civilian KIA checker. Configure in ADF_init_config.sqf
@@ -78,5 +78,5 @@ execVM "Scr\init.sqf"; // Mission custom init
 /********** Post processing **********/
 
 [_ADF_mission_init_time,ADF_tpl_version,ADF_mission_version,_ADF_devBuild,_ADF_devBuildNr] execVM "Core\ADF_init_post.sqf"; // Nr of secs for mission Init countdown. Should be the last line of the init.sqf
-if !(_ADF_Thermal) then {{_x disableTIEquipment true;} forEach vehicles};
+if (!_ADF_Thermal && isServer) then {{_x disableTIEquipment true;} forEach vehicles};
 [_ADF_preset,_ADF_ACRE_fullDuplex,_ADF_ACRE_interference,_ADF_ACRE_AIcanHear,_ADF_TFAR_microDAGR] execVM "Core\ADF_clientPreset.sqf";

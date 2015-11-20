@@ -1,19 +1,19 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.42 / SEPTEMBER 2015
+ADF version: 1.43 / NOVEMBER 2015
 
 Script: Killed init
 Author: Whiztler
-Script version: 1.5
+Script version: 1.6
 
 Game type: n/a
 File: onPlayerKilled.sqf
 ****************************************************************/
 
 // Init
-private["_ADF_wTix","_ADF_eTix","_u","_ADF_unit","_ADF_oldUnit","_ADF_respawnType"];
+params ["_ADF_oldUnit"];
+private["_ADF_wTix","_ADF_eTix","_u","_ADF_unit","_ADF_respawnType"];
 _ADF_unit 		= player;
-_ADF_oldUnit		= _this select 0; // ADF 1.40 B05
 _ADF_wTix 		= [WEST] call BIS_fnc_respawnTickets;
 _ADF_eTix		= [EAST] call BIS_fnc_respawnTickets;
 _ADF_respawnType	= getNumber (missionConfigFile >> "respawn"); // 140B05
