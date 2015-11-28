@@ -4,7 +4,7 @@ ADF version: 1.43 / NOVEMBER 2015
 
 Script: Headless Client init
 Author: whiztler (based on concept by eulerfoiler)
-Script version: 2.07
+Script version: 2.09
 
 Game type: N/A
 File: ADF_HC_loadBalancing.sqf
@@ -24,19 +24,14 @@ ADF_fnc_HCLB_taskDefend = {
 	_g setVariable ["ADF_HC_owner",true];
 	_g setVariable ["ADF_hc_garrison_CBA",true];
 	_g setVariable ["ADF_hc_garrisonArr",_a];	
-	if (ADF_Debug) then {diag_log format ["ADF DEBUG: HC -  ADF_HC_garrison_CBA re-applied for group: %1", _g]; diag_log format ["ADF DEBUG: HC -  ADF_HC_garrisonArr: %1", _a];};
+	if (ADF_Debug) then {diag_log format ["ADF DEBUG: HC -  ADF_fnc_HCLB_taskDefend re-applying for group: %1", _g]};
 	_a call CBA_fnc_taskDefend;	
-	if (ADF_Debug) then {diag_log "ADF DEBUG: HC - CBA_fnc_taskDefend reapplied";};
 };
 
 ADF_fnc_HCLB_DefendArea = {
 	params ["_g","_a"];
-	_g setVariable ["ADF_HC_owner",true];
-	_g setVariable ["ADF_hc_garrison_ADF",true];
-	_g setVariable ["ADF_hc_garrisonArr",_a];
-	if (ADF_Debug) then {diag_log format ["ADF DEBUG: HC -  ADF_HC_garrison_ADF re-applied for group: %1", _g]; diag_log format ["ADF DEBUG: HC -  ADF_HC_garrisonArr: %1", _a];};
-	_a call ADF_fnc_defendArea;	
-	if (ADF_Debug) then {diag_log "ADF DEBUG: HC - ADF_fnc_defendArea_HC reapplied";};
+	if (ADF_Debug) then {diag_log format ["ADF DEBUG: HC -  ADF_fnc_HCLB_DefendArea re-applying for group: %1", _g]};
+	[_a] call ADF_fnc_defendArea_HC;
 };	
 
 if (isServer) then {
@@ -53,6 +48,7 @@ if (isServer) then {
 	while {ADF_HC_connected} do {
 		// Init. Let server initialize and pass through every 60 seconds
 		sleep ADF_HCLB_passTimer;
+		_ADF_HCLB_StartTimer = diag_tickTime;
 		_ADF_HCLB_loadBalance = false;
 		
 		///// Let's see which ADF_HC slot is populated with a HC client. If the slot is not populated the HC variable (e.g. ADF_HC2) will be ObjNull
@@ -128,19 +124,11 @@ if (isServer) then {
 				// Store directives arrays
 				if (_x getVariable "ADF_HC_garrison_CBA") then {
 					ADF_HCLB_storedArr = _x getVariable ["ADF_HC_garrisonArr",[_x, getPos (leader _x), 150, 2, true]];					
-					if (ADF_Debug) then {
-						diag_log "ADF DEBUG: HC LB - ADF_HC_garrisonArr type: CBA";
-						diag_log format ["ADF DEBUG: HC LB - ADF_HC_garrisonArr for group: %1", _x];
-						diag_log format ["ADF DEBUG: HC LB - ADF_HC_garrisonArr array: %1", ADF_HCLB_storedArr];
-					};
+					if (ADF_Debug) then {	diag_log format ["ADF DEBUG: HC LB CBA - ADF_HC_garrisonArr for group: %1 -- array: %1",_x, ADF_HCLB_storedArr]};
 				};
 				if (_x getVariable "ADF_HC_garrison_ADF") then {
-					ADF_HCLB_storedArr = _x getVariable ["ADF_HC_garrisonArr",[_x, getPos (leader _x), 150, 2, true]];					
-					if (ADF_Debug) then {
-						diag_log "ADF DEBUG: HC LB - ADF_HC_garrisonArr type: ADF";
-						diag_log format ["ADF DEBUG: HC LB - ADF_HC_garrisonArr for group: %1", _x];
-						diag_log format ["ADF DEBUG: HC LB - ADF_HC_garrisonArr array: %1", ADF_HCLB_storedArr];
-					};
+					ADF_HCLB_storedArr = _x getVariable "ADF_HC_garrisonArr";					
+					if (ADF_Debug) then {diag_log format ["ADF DEBUG: HC LB ADF - ADF_HC_garrisonArr for group: %1 -- array: %1", _x, ADF_HCLB_storedArr]};
 				};
 
 				// If load balance enabled, round robin between the multiple HC's - else pass all to a single HC
@@ -167,26 +155,22 @@ if (isServer) then {
 						[_x, _ADF_HCLB_HCID] spawn {
 							params ["_g","_ADF_HCLB_HCID"];
 							sleep 3;
-							if (ADF_debug) then {diag_log format ["ADF DEBUG: HC LB - ADF_fnc_HCLB_taskDefend remoteExec for HC with ID %1", _ADF_HCLB_HCID];};
+							if (ADF_debug) then {diag_log format ["ADF DEBUG: HC LB - ADF_fnc_HCLB_taskDefend remoteExec for group: %1 to HC with ID %2", _g, _ADF_HCLB_HCID];};
 							[_g, ADF_HCLB_storedArr] remoteExec ["ADF_fnc_HCLB_taskDefend", _ADF_HCLB_HCID, false];	
 							_g setVariable ["ADF_noHC_transfer", true];
 						};
 					};					
 					
 					if (_x getVariable "ADF_HC_garrison_ADF") then {
-						[_x, _ADF_HCLB_HCID] spawn {
-							params ["_g","_ADF_HCLB_HCID"];
-							sleep 3;
-							if (ADF_debug) then {diag_log format ["ADF DEBUG: HC LB - ADF_fnc_HCLB_DefendArea remoteExec for HC with ID %1", _ADF_HCLB_HCID];};
-							[_g, ADF_HCLB_storedArr] remoteExec ["ADF_fnc_HCLB_DefendArea", _ADF_HCLB_HCID, false];
-							_g setVariable ["ADF_noHC_transfer", true];
-						};
+						if (ADF_debug) then {diag_log format ["ADF DEBUG: HC LB - ADF_fnc_HCLB_DefendArea remoteExec for group: %1 to HC with ID %2", _x, _ADF_HCLB_HCID];};
+						[_x, ADF_HCLB_storedArr] remoteExec ["ADF_fnc_HCLB_DefendArea", _ADF_HCLB_HCID, false];
+						_x setVariable ["ADF_noHC_transfer", true];
 					};
 		
 					// Add to the group to the 'transferred counter'
 					if (_ADF_HCLB_rr) then {_ADF_HCLB_numTransfered = _ADF_HCLB_numTransfered + 1;};
 				};
-			} forEach (allGroups);
+			} forEach allGroups;
 			
 			// Set the group count so that only new groups are processed on next run
 			_ADF_HCLB_GrpCnt = _ADF_HCLB_GrpCnt_New;
@@ -243,6 +227,9 @@ if (isServer) then {
 				diag_log "ADF RPT: HC - No AI groups to transfer at the moment";
 			};
 		};
+		
+		_ADF_HCLB_EndTimer = diag_tickTime;
+		diag_log format ["ADF RPT: HC - Loadbalance (HCLB) run diag: %1 seconds", round (_ADF_HCLB_EndTimer - _ADF_HCLB_StartTimer)];
 	};
 
 	["ADF DEBUG: HC - <ERROR> Headless Client(s) disconnected",true] call ADF_fnc_log;
