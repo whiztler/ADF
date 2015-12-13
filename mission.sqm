@@ -39,7 +39,6 @@ class Mission
 		"A3_Signs_F",
 		"A3_Characters_F_Civil",
 		"A3_Structures_F_Walls",
-		"3DEN"
 	};
 	addOnsAuto[]=
 	{
@@ -50,7 +49,6 @@ class Mission
 		"A3_Characters_F_BLUFOR",
 		"A3_Characters_F_Gamma",
 		"A3_Characters_F_Mark",
-		"3DEN",
 		"a3_modules_f_curator_curator",
 		"A3_Structures_F_System",
 		"A3_Structures_F_Mil_Flags",

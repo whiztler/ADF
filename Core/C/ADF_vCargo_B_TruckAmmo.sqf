@@ -54,12 +54,12 @@ if (ADF_mod_ACE3) then {
 };
 
 // Magazines secondary weapon
-_vSupply addMagazineCargoGlobal ["16Rnd_9x21_Mag", 50];
+_vSupply addMagazineCargoGlobal ["16Rnd_9x21_Mag", 20];
 
 // Launchers
 _vSupply addweaponCargoGlobal ["launch_NLAW_F", 5];
 _vSupply addWeaponCargoGlobal ["launch_B_Titan_F", 2];
-_vSupply addWeaponCargoGlobal ["launch_B_Titan_short_F", 5];
+_vSupply addWeaponCargoGlobal ["launch_B_Titan_short_F", 2];
 
 // Rockets/Missiles
 if (!ADF_mod_ACE3) then {_vSupply addMagazineCargoGlobal ["NLAW_F", 10]};

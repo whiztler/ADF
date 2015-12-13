@@ -32,7 +32,7 @@ clearMagazineCargoGlobal _vSupply; // Empty vehicle CargoGlobal contents on init
 clearItemCargoGlobal _vSupply; // Empty vehicle CargoGlobal contents on init
 
 // Primary weapon
-_vSupply addWeaponCargoGlobal ["arifle_MX_F", 2]; // R
+_vSupply addWeaponCargoGlobal ["arifle_MX_F", 1]; // R
 _vSupply addWeaponCargoGlobal ["arifle_MX_GL_F", 1]; // GL
 _vSupply addWeaponCargoGlobal ["arifle_MX_SW_F", 1]; // LMG
 
@@ -143,8 +143,8 @@ if (ADF_mod_ACE3) then {
 };	
 
 // Gear kit 
-_vSupply addBackpackCargoGlobal ["B_Carryall_Base", 2];
-_vSupply addBackpackCargoGlobal ["B_AssaultPack_blk", 3];
+//_vSupply addBackpackCargoGlobal ["B_Carryall_Base", 2];
+//_vSupply addBackpackCargoGlobal ["B_AssaultPack_blk", 3];
 
 // Misc items
 _vSupply addItemCargoGlobal ["ToolKit", 2];
