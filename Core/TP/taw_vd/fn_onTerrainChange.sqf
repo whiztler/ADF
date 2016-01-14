@@ -6,7 +6,7 @@
 	Updates the players terraingrid when called.
 */
 private["_type"];
-_type = [_this,0,"",[""]] call BIS_fnc_param;
+_type = [_this, 0,"",[""]] call BIS_fnc_param;
 if(_type == "") exitWith {};
 	
 switch (_type) do

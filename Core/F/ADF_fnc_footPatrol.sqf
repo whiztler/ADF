@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.43 / NOVEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: foot patrol script
 Author: Whiztler
@@ -47,7 +47,7 @@ call compile preprocessFileLineNumbers "Core\F\ADF_fnc_position.sqf";
 Config:
 [
 	position,				// Marker, Object or Trigger. E.g.. getMarkerPos "Spawn" -or- "SpawnPos" -or- MyObject
-	side,				// WEST, EAST or INDEPENDENT
+	side,				// west, east or independent
 	group size,			// 2 (sentry), 4 (fireteam), 8 squad
 	weapons squad,			// TRUE or FALSE
 	radius,				// Number - Radius from the start position in which a waypoint is created
@@ -62,8 +62,8 @@ Config:
 ] call ADF_fnc_createFootPatrol;
 
 Example for scripted groups:
-[_spawnPos, WEST, 6, FALSE, 300, 5, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5, TRUE] call ADF_fnc_createFootPatrol;
-[getMarkerPos "myMarker", EAST, 8, TRUE, 500, 6, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5, FALSE] call ADF_fnc_createFootPatrol;
+[_spawnPos, west, 6, FALSE, 300, 5, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5, TRUE] call ADF_fnc_createFootPatrol;
+[getMarkerPos "myMarker", east, 8, TRUE, 500, 6, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5, FALSE] call ADF_fnc_createFootPatrol;
 
 Notes
 
@@ -76,14 +76,14 @@ ADF_fnc_addLandWaypoint = {
 	params ["_g", "_p", "_r", "_t", "_b", "_m", "_s", "_f", "_cr", "_sb"];
 	private ["_wp"];
 
-	if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_addWaypoint - WP radius: %1",_r]};
-	if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_addWaypoint - passed pos (before check): %1",_p]};
+	if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_addWaypoint - WP radius: %1", _r]};
+	if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_addWaypoint - passed pos (before check): %1", _p]};
 	_p = [_p] call ADF_fnc_checkPosition;
-	if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_addWaypoint - passed pos (after check): %1",_p]};
+	if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_addWaypoint - passed pos (after check): %1", _p]};
 
 	// Find a position within the parameters (near to the random position)
 	for "_i" from 1 to 3 do {
-		private ["_pos","_d"];
+		private ["_pos", "_d"];
 		_d = random 360;
 		_pos = [_p, _r, _d] call ADF_fnc_randomPos;				
 		if !(surfaceIsWater _pos) exitWith {_p = _pos};
@@ -128,7 +128,7 @@ ADF_fnc_footPatrol = {
 	// Loop through the number of waypoints needed
 	for "_i" from 0 to (_c - 1) do {
 		_a call ADF_fnc_addLandWaypoint;
-		if (ADF_debug) then {diag_log " "; diag_log format ["ADF Debug: ADF_fnc_footPatrol - called ADF_fnc_addLandWaypoint for WP %1",_i]};
+		if (ADF_debug) then {diag_log " "; diag_log format ["ADF Debug: ADF_fnc_footPatrol - called ADF_fnc_addLandWaypoint for WP %1", _i]};
 	};
 	
 	// Add a cycle waypoint
@@ -145,17 +145,17 @@ ADF_fnc_createFootPatrol = {
 	// Init
 	params [
 		"_p",
-		["_gs", [WEST, EAST, INDEPENDENT], [WEST]],
+		["_gs", [west, east, independent], [west]],
 		["_gc", 5,[0]],
 		["_gw", FALSE, [FALSE]],
-		["_r",250,[0]],
-		["_c",4,[0]],
+		["_r", 250,[0]],
+		["_c", 4,[0]],
 		["_t", ["MOVE", "DESTROY", "GETIN", "SAD", "JOIN", "LEADER", "GETOUT", "CYCLE", "LOAD", "UNLOAD", "TR UNLOAD", "HOLD", "SENTRY", "GUARD", "TALK", "SCRIPTED", "SUPPORT", "GETIN NEAREST", "DISMISS", "LOITER"], [""]],
 		["_b", ["UNCHANGED", "CARELESS", "SAFE", "AWARE", "COMBAT", "STEALTH"], [""]],
 		["_m", ["NO CHANGE", "BLUE", "GREEN", "WHITE", "YELLOW", "RED"], [""]],
 		["_s", ["UNCHANGED", "LIMITED", "NORMAL", "FULL"], [""]],
 		["_f", ["NO CHANGE", "COLUMN", "STAG COLUMN", "WEDGE", "ECH LEFT", "ECH RIGHT", "VEE", "LINE", "FILE", "DIAMOND"], [""]],
-		["_cr",5,[0]],
+		["_cr", 5,[0]],
 		["_sb", false, [false]]
 	];
 	private ["_g", "_gSize", "_gSide", "_gFact", "_gID", "_gStr"];
@@ -177,9 +177,9 @@ ADF_fnc_createFootPatrol = {
 	};
 	
 	switch (_gs) do {
-		case WEST:		{_gSide = "WEST"; _gFact = "BLU_F"; _gID = "BUS_"};
-		case EAST: 		{_gSide = "EAST"; _gFact = "OPF_F"; _gID = "OIA_"};
-		case INDEPENDENT:	{_gSide = "INDEP"; _gFact = "IND_F"; _gID = "HAF_"};
+		case west:		{_gSide = "west"; _gFact = "BLU_F"; _gID = "BUS_"};
+		case east: 		{_gSide = "east"; _gFact = "OPF_F"; _gID = "OIA_"};
+		case independent:	{_gSide = "INDEP"; _gFact = "IND_F"; _gID = "HAF_"};
 	};
 	
 	_gStr = _gID + _gSize;

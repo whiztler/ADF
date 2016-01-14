@@ -2,7 +2,7 @@
      In: [marker,water,blacklist,emptySpace]
     Out: position
 */
-private ["_area","_water","_blist","_pos","_empty"];
+private ["_area", "_water", "_blist", "_pos", "_empty"];
 _area = _this select 0;
 _water = if (count _this > 1) then {_this select 1} else {0};
 _blist = if (count _this > 2) then {_this select 2} else {[]};
@@ -15,19 +15,19 @@ private ["_shape"];
 _shape = _area call SHK_pos_fnc_getMarkerShape;
 
 // Limited loop so the script won't get stuck
-private ["_i","_exit"];
+private ["_i", "_exit"];
 _exit = false;
 for [{_i = 0}, {_i < 1000 && !_exit}, {_i = _i + 1}] do {
 
 	// Rectangle or Ellipse marker given?
-	if (_shape in ["SQUARE","RECTANGLE"]) then {
+	if (_shape in ["SQUARE", "RECTANGLE"]) then {
 	  _pos = _area call SHK_pos_fnc_getPosFromRectangle;
 	} else {
 	  _pos = _area call SHK_pos_fnc_getPosFromEllipse;
 	};
 
   // Find empty position
-  private ["_dst","_veh","_p"];
+  private ["_dst", "_veh", "_p"];
   
   _dst = 200;
   _veh = "";
@@ -43,7 +43,7 @@ for [{_i = 0}, {_i < 1000 && !_exit}, {_i = _i + 1}] do {
     };
   };
 
-  _p = _pos findEmptyPosition [0,_dst,_veh];
+  _p = _pos findEmptyPosition [0, _dst, _veh];
   
   // If an empty position is found, use it. Otherwise, return the original position.
   if (count _p > 0) then {
@@ -90,7 +90,7 @@ for [{_i = 0}, {_i < 1000 && !_exit}, {_i = _i + 1}] do {
 	  // Check each blacklist marker
 	  {
 		// If blacklisted, jump out of blacklist check and continue main loop.
-		if ([_pos,_x] call SHK_pos_fnc_isBlacklisted) exitwith {
+		if ([_pos, _x] call SHK_pos_fnc_isBlacklisted) exitwith {
 		  _exit = false;
 		};
 	  } foreach _blist;

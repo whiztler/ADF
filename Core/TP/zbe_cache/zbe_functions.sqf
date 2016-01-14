@@ -10,8 +10,8 @@ zbe_cache = {
 	_toCache = (units _group) - [(_leader)];
 	{
 		if (!(isPlayer _x) && {!("driver" in assignedVehicleRole _x)}) then {
-			_x enableSimulationglobal false;
-			_x hideObjectglobal true;
+			_x enableSimulationGlobal false;
+			_x hideObjectGlobal true;
 			_x disableAI "FSM"; // ADF 1.42
 		};
 	} forEach _toCache;
@@ -20,17 +20,16 @@ zbe_cache = {
 zbe_unCache = {
 	{
 		if (!(isPlayer _x) && {!("driver" in assignedVehicleRole _x)}) then {
-			_x enableSimulationglobal true;
-			_x hideObjectglobal false;
+			_x enableSimulationGlobal true;
+			_x hideObjectGlobal false;
 			_x enableAI "FSM";  // ADF 1.42
 		};
 	} forEach _toCache;
 };
 
 zbe_closestUnit = {
-	private["_units", "_unit", "_dist", "_udist"];
-	_units = _this select 0;
-	_unit = _this select 1;
+	params ["_units" ,"_unit"];
+	private["_dist", "_udist"];
 	_dist = 10^5;
 	{
 		_udist = _x distance2D _unit; // ADF 1.42
@@ -40,7 +39,7 @@ zbe_closestUnit = {
 };
 
 /* = {
-	private ["_zbe_leader","_trigUnits"];
+	private ["_zbe_leader", "_trigUnits"];
 	_zbe_leader = _this select 0;
 	_trigUnits = [];
 		{if ((((side _x) getFriend (side _zbe_leader)) <= 0.6)) then {
@@ -78,7 +77,7 @@ zbe_removeDead = {
 		if !(alive _x) then {
 			_x enableSimulation true;
 			_x hideObject false;
-			if (zbe_debug) then {diag_log format ["ZBE_Cache %1 died while cached from group %2, uncaching and removing from cache loop",_x,_group];};
+			if (zbe_debug) then {diag_log format ["ZBE_Cache %1 died while cached from group %2, uncaching and removing from cache loop", _x, _group];};
 			_toCache = _toCache - [_x];
 		};
 	} forEach _toCache;

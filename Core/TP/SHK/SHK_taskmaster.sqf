@@ -12,16 +12,16 @@
   Syntax: [[[Task1Data],[Task2Data]],[[Note1Data],[Note2Data]]] execvm "shk_taskmaster.sqf";
   Example:
     [[
-      ["Task1","Task1Title","Task1Desc"],
-      ["Task2","Task2Title","Task2Desc",true,["markerTask2",getpos obj2]]
+      ["Task1", "Task1Title", "Task1Desc"],
+      ["Task2", "Task2Title", "Task2Desc", true,["markerTask2",getpos obj2]]
     ],[
-      ["Note1","Hello West",WEST],
-      ["Note2","Hello East",EAST],
-      ["Credits","<br />Made by: Shuko of LDD Kyllikki<br />Contact: shuko@Quakenet<br />www.kyllikki.fi"]
+      ["Note1", "Hello west",west],
+      ["Note2", "Hello east",east],
+      ["Credits", "<br />Made by: Shuko of LDD Kyllikki<br />Contact: shuko@Quakenet<br />www.kyllikki.fi"]
     ]] execvm "shk_taskmaster.sqf";
   
   -- Task Data ---------------------------------------------------------------------------------
-    ["TaskName","Title","Description",Condition,[Marker],"State"]
+    ["TaskName", "Title", "Description",Condition,[Marker],"State"]
     
     Required parameters:
       TaskName      string     Name used to refer to the task
@@ -47,7 +47,7 @@
     It's possible to specify which units (groups, side etc) you want to create the tasks/notes for.
     
     Examples:
-      [...,WEST]               All playable units on BLUFOR (WEST)
+      [...,west]               All playable units on BLUFOR (west)
       [...,"USMC"]             Faction USMC
       [...,grpMarine1]         Units that belong to group named grpMarine1
       [...,myDude]             Unit named myDude
@@ -71,15 +71,15 @@
   == Updating tasks ============================================================================
   
   Task states are updated by calling a function. Possible states are: succeeded/failed/canceled/assigned/created.
-  Example: ["Task1","succeeded"] call SHK_Taskmaster_upd;
+  Example: ["Task1", "succeeded"] call SHK_Taskmaster_upd;
   
   It's possible to set state of one task and set another as assigned using an optional 3rd parameter.
-  Example: ["Task1","succeeded","Task2"] call SHK_Taskmaster_upd;
+  Example: ["Task1", "succeeded", "Task2"] call SHK_Taskmaster_upd;
   
   This will make task state of task Task1 to succeeded and the state of the task Task2 as assigned.
   
   Another optional 3rd parameter can be used to add a new task after updating another task.
-  Example: ["Task1","succeeded",["Task2","Title","Desc"]] call SHK_Taskmaster_upd;
+  Example: ["Task1", "succeeded",["Task2", "Title", "Desc"]] call SHK_Taskmaster_upd;
   
   This will make task Task1 as succeeded and create a new task Task2. Same set of parameters is used for the
   creation as in init.sqf or SHK_Taskmaster_add.
@@ -89,7 +89,7 @@
   Tasks can be added after briefing with the add function. Same set of parameters is used as in creating a
   briefing.
   
-  Example: ["Task2","Extraction","Get to teh choppa!"] call SHK_Taskmaster_add;
+  Example: ["Task2", "Extraction", "Get to teh choppa!"] call SHK_Taskmaster_add;
   
   == Checking task status ======================================================================
   
@@ -97,20 +97,20 @@
       This function can be used to check if multiple tasks are completed. Task is considered completed with states
       succeeded, failed and canceled. Function returns a boolean (true/false) value.
   
-      Example: ["Task1","Task2"] call SHK_Taskmaster_isCompleted
+      Example: ["Task1", "Task2"] call SHK_Taskmaster_isCompleted
   
     SHK_Taskmaster_isCompleted
       This function can be used to check if a task is completed. Task is considered completed with states
       succeeded, failed and canceled. Function returns a boolean (true/false) value.
   
       Example: "Task1" call SHK_Taskmaster_isCompleted
-      Multiple tasks: ["Task1","Task2"] call SHK_Taskmaster_isCompleted
+      Multiple tasks: ["Task1", "Task2"] call SHK_Taskmaster_isCompleted
     
     SHK_Taskmaster_getAssigned
       Returns list of tasks which have "assigned" as their state.
       
       Example: call SHK_Taskmaster_getAssigned
-      Example result: ["Task1","Task4"]
+      Example result: ["Task1", "Task4"]
       
     SHK_Taskmaster_getState
       Returns the task state (succeeded/failed/canceled/assigned/created).
@@ -120,7 +120,7 @@
     SHK_Taskmaster_hasState
       Checks if a task's state matches the given state. Function returns a boolean value.
       
-      Example: ["Task1","succeeded"] call SHK_Taskmaster_hasState
+      Example: ["Task1", "succeeded"] call SHK_Taskmaster_hasState
 
     SHK_Taskmaster_hasTask
       Checks if a task with the given name has been created. Returns boolean.
@@ -131,17 +131,17 @@
       Sets the given task as the current task.
       
       Example: "Task1" call SHK_Taskmaster_setCurrentLocal;
-      Multiplayer Example: ["Task1","SHK_Taskmaster_setCurrentLocal",true,true] call BIS_fnc_MP
+      Multiplayer Example: ["Task1", "SHK_Taskmaster_setCurrentLocal", true, true] call BIS_fnc_MP
       
     SHK_Taskmaster_addNote (client only)
       Creates a briefing note. This can only be used on client side, and it's not broadcasted for
       other players.
       
-      Parameters: ["Title","TextBody",Condition]
+      Parameters: ["Title", "TextBody",Condition]
       
       Condition is optional.
       
-      Example: Example: ["Enemy forces","Oh noes, there will be enemy soldiers in the area of operation."] call SHK_Taskmaster_addNote
+      Example: Example: ["Enemy forces", "Oh noes, there will be enemy soldiers in the area of operation."] call SHK_Taskmaster_addNote
   
   == Known Issues =========================================================================
     If multiple add/upd calls are used nearly simultaneously (for example in same onAct field of a trigger) the tasks can multiply.
@@ -184,11 +184,11 @@ DEBUG = false;
   SHK_Taskmaster_initDone = false;
   SHK_Taskmaster_add = {
     /*   Take a task data array, apply default params if needed, save to the task list. Send to clients.
-     In: array     ["Name","Title","Desc",[Marker],"State",Destination]
+     In: array     ["Name", "Title", "Desc",[Marker],"State",Destination]
     Out:
     */
     if isserver then {
-      private ["_name","_short","_long","_cond","_marker","_state","_dest"];
+      private ["_name", "_short", "_long", "_cond", "_marker", "_state", "_dest"];
       _name = _this select 0;
       _short = _this select 1;
       _long = _this select 2;
@@ -196,7 +196,7 @@ DEBUG = false;
       if (count _this > 4) then { _marker = _this select 4 } else { _marker = [] };
       if (count _this > 5) then { _state = _this select 5 } else { _state = "created" };
       if (count _this > 6) then { _dest = _this select 6 } else { _dest = 0 };
-      SHK_Taskmaster_Tasks set [count SHK_Taskmaster_Tasks, [_name,_short,_long,_cond,_marker,_state,_dest]];
+      SHK_Taskmaster_Tasks set [count SHK_Taskmaster_Tasks, [_name, _short, _long, _cond, _marker, _state, _dest]];
       publicvariable "SHK_Taskmaster_Tasks";
       /*
         Update for host of the non-dedicated server.
@@ -208,14 +208,14 @@ DEBUG = false;
   };
   SHK_Taskmaster_addNote = {
     /*   Creates a briefing note.
-     In: array     ["Title","TextBody",Condition]
+     In: array     ["Title", "TextBody",Condition]
     Out:
     */
     private "_cond";
     if (count _this > 2) then { _cond = _this select 2 } else { _cond = true };
     {
-      if ( [_x,_cond] call SHK_Taskmaster_checkCond ) then {
-        _x creatediaryrecord ["Diary",[_this select 0,_this select 1]];
+      if ( [_x, _cond] call SHK_Taskmaster_checkCond ) then {
+        _x creatediaryrecord ["Diary",[_this select 0, _this select 1]];
         if (time > 10) then{ hintsilent "Diary note added." };
       };
     } foreach  (if ismultiplayer then {playableunits} else {switchableunits});
@@ -224,16 +224,16 @@ DEBUG = false;
     /*   Creates the given task for each playableunit and saves the handles.
          Adds a task array with name, state and handles to the local task list.
          If marker exists, it will be shown or hidden depending if the unit has the task.
-      In: array     ["Name","Title","Desc",[Marker],"State",Destination]
+      In: array     ["Name", "Title", "Desc",[Marker],"State",Destination]
     */
     
-    private ["_handle","_handles","_name","_state","_marker","_dest"];
+    private ["_handle", "_handles", "_name", "_state", "_marker", "_dest"];
     _handles = [];
     _name = _this select 0;
     _marker = _this select 4;
     _state = _this select 5;
     _dest = _this select 6;
-    if DEBUG then { diag_log format ["SHK_Taskmaster> addTask: %1, %2, %3, %4",_name,_marker,_state,_dest]};
+    if DEBUG then { diag_log format ["SHK_Taskmaster> addTask: %1, %2, %3, %4", _name, _marker, _state, _dest]};
     {
       if ( [_x,(_this select 3)] call SHK_Taskmaster_checkCond ) then {
         _handle = _x createsimpletask [_name];
@@ -244,22 +244,22 @@ DEBUG = false;
           _x setcurrenttask _handle;
         };
         switch (toupper(typename _dest)) do {
-          case "OBJECT": { _handle setsimpletasktarget [_dest,true] };
+          case "OBJECT": { _handle setsimpletasktarget [_dest, true] };
           case "STRING": { _handle setsimpletaskdestination (getmarkerpos _dest) };
           case "ARRAY": { _handle setsimpletaskdestination _dest };
         };
         
-        _handles set [count _handles,_handle];
+        _handles set [count _handles, _handle];
         
         if (_x == player) then {
-          if (SHK_Taskmaster_showHints) then { [_handle,_state] call SHK_Taskmaster_showHint };
+          if (SHK_Taskmaster_showHints) then { [_handle, _state] call SHK_Taskmaster_showHint };
           
           if (count _marker > 0) then {
-            if !(_state in ["succeeded","failed","canceled"]) then {
+            if !(_state in ["succeeded", "failed", "canceled"]) then {
               if (typename (_marker select 0) == typename "") then {
                 _marker = [_marker];
               };
-              private ["_m","_type","_color","_txt","_shape","_size"];
+              private ["_m", "_type", "_color", "_txt", "_shape", "_size"];
               {
                 _m = createmarkerlocal [(_x select 0),(_x select 1)];
                 
@@ -303,14 +303,14 @@ DEBUG = false;
                 };
                 _m setmarkershapelocal _shape;
                 
-                _size = [1,1];
+                _size = [1, 1];
                 if (count _x > 6) then {
                   private "_tmp";
                   _tmp = (_x select 6);
                   if (typeName _tmp == typeName 0) then {
-                    _tmp = [_tmp,_tmp];
+                    _tmp = [_tmp, _tmp];
                   };
-                  if !([_tmp,[1,1]] call BIS_fnc_areEqual) then {
+                  if !([_tmp,[1, 1]] call BIS_fnc_areEqual) then {
                     _size = _tmp;
                   };
                 };
@@ -322,7 +322,7 @@ DEBUG = false;
         };
       };
     } foreach (if ismultiplayer then {playableunits} else {switchableunits});
-    SHK_Taskmaster_TasksLocal set [count SHK_Taskmaster_TasksLocal,[_name,_state,_handles]];
+    SHK_Taskmaster_TasksLocal set [count SHK_Taskmaster_TasksLocal,[_name, _state, _handles]];
   };
   SHK_Taskmaster_areCompleted = {
     /*   Checks if tasks are completed.
@@ -345,7 +345,7 @@ DEBUG = false;
         if (_this == ((SHK_Taskmaster_Tasks select _i) select 0)) then {
           _task =+ SHK_Taskmaster_Tasks select _i;
           _task set [5,"assigned"];
-          SHK_Taskmaster_Tasks set [_i,_task];
+          SHK_Taskmaster_Tasks set [_i, _task];
         };
       };
       publicvariable "SHK_Taskmaster_Tasks";
@@ -362,7 +362,7 @@ DEBUG = false;
      In: array     [Unit,Condition]
     Out: boolean
     */
-    private ["_unit","_cond"];
+    private ["_unit", "_cond"];
     _unit = _this select 0;
     _cond = _this select 1;
     if (!isNil "_cond") then {
@@ -370,14 +370,14 @@ DEBUG = false;
       switch (typename _cond) do {
         case (typename grpNull): { (_unit in (units _cond)) };
         case (typename objNull): { _unit == _cond };
-        case (typename WEST):    { (side _unit == _cond) };
+        case (typename west):    { (side _unit == _cond) };
         case (typename true):    { _cond };
         case (typename []):      { (_unit in _cond) };
         case (typename ""): {
           if (_cond call SHK_Taskmaster_isFaction) then {
             (faction _unit == _cond)
           } else {
-            (call compile format ["%1",_cond])
+            (call compile format ["%1", _cond])
           };
         };
         default { false };
@@ -387,7 +387,7 @@ DEBUG = false;
   SHK_Taskmaster_getAssigned = {
     /*   Returns list of tasks which have "assigned" as their state.
      In:
-    Out: array      ["TaskName","TaskName"]
+    Out: array      ["TaskName", "TaskName"]
     */
     private "_l";
     _l = [];
@@ -422,18 +422,18 @@ DEBUG = false;
       _name = _x select 0;
       if (_name call SHK_Taskmaster_hasTaskLocal) then {
         if ([_name,(_x select 5)] call SHK_Taskmaster_hasStateChanged) then {
-          if DEBUG then { diag_log format ["SHK_Taskmaster> handleEvent calling updateTask: %1",_name]};
+          if DEBUG then { diag_log format ["SHK_Taskmaster> handleEvent calling updateTask: %1", _name]};
           _x call SHK_Taskmaster_updateTask;
         };
       } else {
-        if DEBUG then { diag_log format ["SHK_Taskmaster> handleEvent calling addTask: %1",_name]};
+        if DEBUG then { diag_log format ["SHK_Taskmaster> handleEvent calling addTask: %1", _name]};
         _x call SHK_Taskmaster_addTask;
       };
     } foreach _this;
   };
   SHK_Taskmaster_hasState = {
     /*   Checks if given task has a specific state.
-      In: array     ["Name","State"]
+      In: array     ["Name", "State"]
      Out: boolean
     */
     private "_b";
@@ -449,7 +449,7 @@ DEBUG = false;
   };
   SHK_Taskmaster_hasStateChanged = {
     /*   Checks if the task state of the given task has changed.
-      In: array     ["TaskName","TaskState"]
+      In: array     ["TaskName", "TaskState"]
      Out: boolean
     */
     private "_b";
@@ -493,7 +493,7 @@ DEBUG = false;
      In: array of strings     Task names
     Out: boolean
     */
-    private ["_b","_t","_i","_foreachIndex"];
+    private ["_b", "_t", "_i", "_foreachIndex"];
     _b = false;
     if (typeName _this == typeName "") then {
       _this = [_this];
@@ -504,10 +504,10 @@ DEBUG = false;
       _i = _foreachIndex;
       {
         if (_t == (_x select 0)) then {
-          if ((_x select 5) in ["succeeded","failed","canceled"]) then {
-            _this set [_i,true];
+          if ((_x select 5) in ["succeeded", "failed", "canceled"]) then {
+            _this set [_i, true];
           } else {
-            _this set [_i,false]
+            _this set [_i, false]
           };
         } else {                            // Set unknown tasks names to false to prevent error message
             _this set [_i, false];          // Usually, passing a wrong task name is an error, but it shouldn't give a script error
@@ -570,18 +570,18 @@ DEBUG = false;
   };
   SHK_Taskmaster_upd = {
     /*   Take a task data array, update the task list. Send to clients.
-     In: array     ["Name","Title","Desc",[Marker],"State"]
+     In: array     ["Name", "Title", "Desc",[Marker],"State"]
     Out:
     */
     if isserver then {
-      private ["_task","_state"];
+      private ["_task", "_state"];
       _state = (_this select 1);
       for "_i" from 0 to (count SHK_Taskmaster_Tasks - 1) do {
         _task =+ (SHK_Taskmaster_Tasks select _i);
         if ((_task select 0) == (_this select 0)) then {
-          _task set [5,_state];
+          _task set [5, _state];
         };
-        SHK_Taskmaster_Tasks set [_i,_task];
+        SHK_Taskmaster_Tasks set [_i, _task];
       };
       if (count _this > 2) then {
         switch (typename (_this select 2)) do {
@@ -601,18 +601,18 @@ DEBUG = false;
   SHK_Taskmaster_updateTask = {
     /*   Updates task state for all playableunits and local task list.
          Delete marker of completed task.
-     In: array     ["Name","Title","Desc",[Marker],"State"]
+     In: array     ["Name", "Title", "Desc",[Marker],"State"]
     Out:
     */
-    private ["_task","_name","_state","_handle","_marker"];
+    private ["_task", "_name", "_state", "_handle", "_marker"];
     for "_i" from 0 to (count SHK_Taskmaster_TasksLocal - 1) do {
       _task =+ SHK_Taskmaster_TasksLocal select _i;
       _name = _task select 0;
       if (_name == (_this select 0)) then {
         _marker = _this select 4;
         _state = _this select 5;
-        _task set [1,_state];
-        SHK_Taskmaster_TasksLocal set [_i,_task];
+        _task set [1, _state];
+        SHK_Taskmaster_TasksLocal set [_i, _task];
         {
           _handle = _x;
           {
@@ -620,11 +620,11 @@ DEBUG = false;
               _handle settaskstate _state;
               
               if (_x == player) then {
-                if (SHK_Taskmaster_showHints) then { [_handle,_state] call SHK_Taskmaster_showHint };
+                if (SHK_Taskmaster_showHints) then { [_handle, _state] call SHK_Taskmaster_showHint };
                 
                 if (count _marker > 0) then {
-                  if (_state in ["succeeded","failed","canceled"]) then {
-                    if DEBUG then { diag_log format ["SHK_Taskmaster> updateTask deleting marker: %1, state: %2",_marker,_state]};
+                  if (_state in ["succeeded", "failed", "canceled"]) then {
+                    if DEBUG then { diag_log format ["SHK_Taskmaster> updateTask deleting marker: %1, state: %2", _marker, _state]};
                     if (typename (_marker select 0) == typename "") then {
                       _marker = [_marker];
                     };
@@ -643,13 +643,13 @@ DEBUG = false;
 
 /* == SERVER =================================================================================== */
 if isserver then {
-  SHK_Taskmaster_Tasks = []; // Array member: ["Name","Title","Desc","Marker","State"]
+  SHK_Taskmaster_Tasks = []; // Array member: ["Name", "Title", "Desc", "Marker", "State"]
   /*
     Iterate through the tasks received from init.sqf and add them to an array. Then send it to clients.
   */
   if (!isnil "_this") then {
     if (count _this > 0) then {
-      private ["_task","_tasks","_i"];
+      private ["_task", "_tasks", "_i"];
       _tasks = _this select 0;
       {
         _x call SHK_Taskmaster_add;
@@ -666,13 +666,13 @@ if isserver then {
 /* == CLIENT =================================================================================== */
 if !isdedicated then {
   SHK_Taskmaster_showHints = false;
-  SHK_Taskmaster_TasksLocal = []; // Array member: ["TaskName","TaskState",TaskHandles]
+  SHK_Taskmaster_TasksLocal = []; // Array member: ["TaskName", "TaskState",TaskHandles]
   /*
     If any notes given in init.sqf, simply add them.
   */
   if (!isnil "_this") then {
     if (count _this > 1) then {
-      private ["_notes","_i"];
+      private ["_notes", "_i"];
       _notes = _this select 1;
       for [{_i=(count _notes - 1)},{_i>-1},{_i=_i-1}] do {
         (_notes select _i) call SHK_Taskmaster_addNote;

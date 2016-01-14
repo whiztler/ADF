@@ -1,10 +1,10 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.43 / NOVEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Crate Cargo Script (BLUEFOR) - Cavalry Squadron (Knight)
 Author: Whiztler
-Script version: 1.8
+Script version: 1.9
 
 Game type: n/a
 File: ADF_cCargo_B_Cav.sqf
@@ -23,7 +23,8 @@ if (!isServer) exitWith {};
 waitUntil {time > 0};
 
 // Init
-_crate = _this select 0;
+params ["_crate"];
+private ["_wpn", "_spw", "_lau", "_mag", "_dem", "_mis", "_itm", "_uni"];
 _crate allowDamage false;
 _wpn = 3; 	// Regular Weapons
 _spw = 1; 	// Special Purpose Weapons
@@ -34,13 +35,13 @@ _mis = 1;	// Missiles/Rockets
 _itm = 3;	// Items
 _uni = 1;	// Uniform/Vest/Backpack/etc
 
-// Settings 
-clearWeaponCargoGlobal _crate; // Empty vehicle CargoGlobal contents on init
-clearMagazineCargoGlobal _crate; // Empty vehicle CargoGlobal contents on init
-clearItemCargoGlobal _crate; // Empty vehicle CargoGlobal contents on init
+// Empty vehicle CargoGlobal contents on init
+clearWeaponCargoGlobal _crate; 
+clearMagazineCargoGlobal _crate; 
+clearItemCargoGlobal _crate; 
 
 // Primary weapon
-_crate addWeaponCargoGlobal ["arifle_MXC_F", _wpn]; // Compact
+_crate addWeaponCargoGlobal ["arifle_MXC_F", _wpn]; // Carbine
 		
 // Secondary weapon
 _crate addWeaponCargoGlobal ["hgun_P07_F", _wpn];
@@ -62,8 +63,8 @@ _crate addMagazineCargoGlobal ["SatchelCharge_Remote_Mag", _dem];
 _crate addMagazineCargoGlobal ["ATMine_Range_Mag", _dem];
 _crate addItemCargoGlobal ["MineDetector", _itm];
 if (ADF_mod_ACE3) then {
-	_crate addItemCargoGlobal ["ACE_Clacker",_dem];
-	_crate addItemCargoGlobal ["ACE_DefusalKit",_dem];
+	_crate addItemCargoGlobal ["ACE_Clacker", _dem];
+	_crate addItemCargoGlobal ["ACE_DefusalKit", _dem];
 };	
 
 // Weapon mountings
@@ -86,12 +87,12 @@ _crate addMagazineCargoGlobal ["B_IR_Grenade", _mag];
 
 // Medical Items
 if (ADF_mod_ACE3) then {
-	_crate addItemCargoGlobal ["ACE_fieldDressing",_mag];
-	_crate addItemCargoGlobal ["ACE_morphine",_itm];
-	_crate addItemCargoGlobal ["ACE_packingBandage",_itm];
-	_crate addItemCargoGlobal ["ACE_elasticBandage",_itm];
+	_crate addItemCargoGlobal ["ACE_fieldDressing", _mag];
+	_crate addItemCargoGlobal ["ACE_morphine", _itm];
+	_crate addItemCargoGlobal ["ACE_packingBandage", _itm];
+	_crate addItemCargoGlobal ["ACE_elasticBandage", _itm];
 } else {
-	_crate addItemCargoGlobal ["FirstAidKit",_mag];
+	_crate addItemCargoGlobal ["FirstAidKit", _mag];
 };
 
 // Optical/Bino's/Goggles
@@ -111,7 +112,7 @@ if (ADF_mod_TFAR) then {
 if (!ADF_mod_ACRE && !ADF_mod_TFAR) then {_crate addItemCargoGlobal ["ItemRadio", _itm]};
 if (ADF_mod_CTAB) then {
 	_crate addItemCargoGlobal ["ItemAndroid", 1];
-	_crate addItemCargoGlobal ["ItemcTabHCam",_itm];		
+	_crate addItemCargoGlobal ["ItemcTabHCam", _itm];		
 };
 
 // Misc items
@@ -121,9 +122,9 @@ _crate addItemCargoGlobal ["ItemWatch", _itm];
 _crate addItemCargoGlobal ["ItemCompass", _itm];
 _crate addItemCargoGlobal ["ToolKit", _itm];
 if (ADF_mod_ACE3) then {
-	_crate addItemCargoGlobal ["ACE_EarPlugs",_itm];
-	_crate addItemCargoGlobal ["ace_mapTools",_itm];
-	_crate addItemCargoGlobal ["ACE_CableTie",_itm];
+	_crate addItemCargoGlobal ["ACE_EarPlugs", _itm];
+	_crate addItemCargoGlobal ["ace_mapTools", _itm];
+	_crate addItemCargoGlobal ["ACE_CableTie", _itm];
 };	
 
 

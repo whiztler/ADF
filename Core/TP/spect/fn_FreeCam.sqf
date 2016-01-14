@@ -1,4 +1,4 @@
-private ["_commitTime","_delta","_zLevel","_pos","_visPos","_mode","_currPos","_mX","_mY","_mZ","_accel","_accelshift","_scroll","_rX","_y","_z"];
+private ["_commitTime", "_delta", "_zLevel", "_pos", "_visPos", "_mode", "_currPos", "_mX", "_mY", "_mZ", "_accel", "_accelshift", "_scroll", "_rX", "_y", "_z"];
 // F3 - Spectator Script
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
 // ====================================================================================
@@ -25,7 +25,7 @@ if(f_cam_mode == 0) then
 		//_pos = getpos f_cam_curTarget;
 		_visPos = visiblePositionASL f_cam_curTarget;
 		if(!(surfaceIsWater _visPos)) then {_visPos = ASLtoATL (_visPos)};
-		f_cam_fakecamera camSetPos [_visPos select 0,_visPos select 1,(_visPos select 2) + 1.5];
+		f_cam_fakecamera camSetPos [_visPos select 0, _visPos select 1,(_visPos select 2) + 1.5];
 		f_cam_fakecamera camCommit _commitTime;
 		f_cam_camera camSetRelPos[(sin(f_cam_angleX)*_delta)*cos(f_cam_angleY), (cos(f_cam_angleX)*_delta)*cos(f_cam_angleY), _zLevel];
 		f_cam_camera camCommit _commitTime;
@@ -146,11 +146,11 @@ if(f_cam_mode == 3) then
 	
 	_x = (_currPos select 0) + (f_freecam_x_speed * (cos f_cam_angleX)) + (f_freecam_y_speed * (sin f_cam_angleX));
 	_y = (_currPos select 1) - (f_freecam_x_speed * (sin f_cam_angleX)) + (f_freecam_y_speed * (cos f_cam_angleX));
-	_newHeight = (getTerrainHeightASL [_x,_y]);
+	_newHeight = (getTerrainHeightASL [_x, _y]);
 	_z = ((_currPos select 2) + f_freecam_z_speed) min (650 + _newHeight);
-	f_cam_freecamera setPosASL [_x,_y,_z max _newHeight];
+	f_cam_freecamera setPosASL [_x, _y, _z max _newHeight];
 	f_cam_freecamera setDir f_cam_angleX;
-	[f_cam_freecamera,f_cam_angleY,0] call BIS_fnc_setPitchBank;
+	[f_cam_freecamera,f_cam_angleY, 0] call BIS_fnc_setPitchBank;
 	f_cam_scrollHeight = 0;
 	f_cam_timestamp = time;
 };

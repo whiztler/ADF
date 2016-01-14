@@ -23,7 +23,7 @@
                             
                             Examples:
                               [...,[300,heli]]       Array with distance and vehicle object.
-                              [...,350]              Only distance given
+                              [..., 350]              Only distance given
                               [...,(typeof heli)]    Only vehicle type given
                               [...,heli]             Only vehicle object given
 
@@ -50,7 +50,7 @@
                             
                             Examples:
                               [...,[300,heli]]       Array with distance and vehicle object.
-                              [...,350]              Only distance given
+                              [..., 350]              Only distance given
                               [...,(typeof heli)]    Only vehicle type given
                               [...,heli]             Only vehicle object given                              
     

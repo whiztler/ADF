@@ -1,13 +1,13 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.43 / NOVEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
-Script: Loadout Gear West
+Script: Loadout Gear west
 Author: Whiztler
 Script version: 5.61
 
 Game type: n/a
-File: ADF_fnc_loadoutWest.sqf
+File: ADF_fnc_loadoutwest.sqf
 ****************************************************************
 NOTE: Gear loads on actual players only. Does not load on AI's!!
 
@@ -25,7 +25,7 @@ Make sure to check the capacity of the backpack and vest before adding
 want it included.
 ****************************************************************/
 
-diag_log "ADF RPT: Init - executing ADF_fnc_LoadoutWest.sqf"; // Reporting. Do NOT edit/remove
+diag_log "ADF RPT: Init - executing ADF_fnc_Loadoutwest.sqf"; // Reporting. Do NOT edit/remove
 
 /**[  INFANTRY SQUAD  ]*******************************************************************************/
 
@@ -112,7 +112,7 @@ ADF_fnc_loudoutInf = {
 	[_ADF_unit, ADF_INF_pistol, 3, ADF_INF_pistol_mag] call BIS_fnc_addWeapon;
 	
 	// headgear
-	_ADF_inf_headgear = ["H_HelmetB","H_HelmetB_plain_mcamo","H_HelmetSpecB_paint1","H_HelmetSpecB_paint2","H_Helmet_Kerry"] call BIS_fnc_selectRandom;
+	_ADF_inf_headgear = ["H_HelmetB", "H_HelmetB_plain_mcamo", "H_HelmetSpecB_paint1", "H_HelmetSpecB_paint2", "H_Helmet_Kerry"] call BIS_fnc_selectRandom;
 
 	// ACE3
 	if (ADF_mod_ACE3) then {
@@ -138,10 +138,10 @@ ADF_fnc_loudoutInf = {
 		ADF_gearLoaded = true;
 		_ADF_perfDiagStop = diag_tickTime;
 		if (ADF_debug) then {
-			_debugDiag = format [" (DIAG: %1)",_ADF_perfDiagStop - _ADF_perfDiagStart];
+			_debugDiag = format [" (DIAG: %1)", _ADF_perfDiagStop - _ADF_perfDiagStart];
 			_debugText = "LOADOUT - INF Platoon loadout applied.";
 			_debugMsg = _debugText + _debugDiag;
-			[_debugMsg,false] call ADF_fnc_log;
+			[_debugMsg, false] call ADF_fnc_log;
 		};
 	};
 	
@@ -207,7 +207,7 @@ ADF_fnc_loudoutInf = {
 		// AA Launcher WTL
 		if (_r == "wtl") then {[_ADF_unit, "launch_B_Titan_F", 1, "Titan_AA"] call BIS_fnc_addWeapon};
 		// XO baret
-		[_ADF_unit,_ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
+		[_ADF_unit, _ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
 	}; // Close XO/SQL/FTL/WTL
 	
 	/*****************************************************************************************************/
@@ -225,7 +225,7 @@ ADF_fnc_loudoutInf = {
 		// Primary weapon
 		[_ADF_unit, ADF_INF_wpn_R, 4, ADF_INF_mag_R] call BIS_fnc_addWeapon;
 		_ADF_unit assignItem "B_UavTerminal";
-		[_ADF_unit,_ADF_perfDiagStart] call ADF_loadOut_gearLoaded;		
+		[_ADF_unit, _ADF_perfDiagStart] call ADF_loadOut_gearLoaded;		
 	}; // Close UAV
 	
 	/*****************************************************************************************************/
@@ -274,7 +274,7 @@ ADF_fnc_loudoutInf = {
 		};
 		// Primary weapon. Doc gets no rifle weapon, only hand weapon just like IRL
 		if (_r == "cls") then {[_ADF_unit, ADF_INF_wpn_R, 8, ADF_INF_mag_R] call BIS_fnc_addWeapon};
-		[_ADF_unit,_ADF_perfDiagStart] call ADF_loadOut_gearLoaded;		
+		[_ADF_unit, _ADF_perfDiagStart] call ADF_loadOut_gearLoaded;		
 	}; // Close CLS/DOC
 
 	/*****************************************************************************************************/
@@ -303,7 +303,7 @@ ADF_fnc_loudoutInf = {
 		};
 		// Primary weapon
 		[_ADF_unit, ADF_INF_wpn_R, 8, ADF_INF_mag_R] call BIS_fnc_addWeapon;
-		[_ADF_unit,_ADF_perfDiagStart] call ADF_loadOut_gearLoaded;		
+		[_ADF_unit, _ADF_perfDiagStart] call ADF_loadOut_gearLoaded;		
 	}; // Close RTO	
 	
 	/*****************************************************************************************************/
@@ -323,7 +323,7 @@ ADF_fnc_loudoutInf = {
 		};
 		// Primary weapon
 		[_ADF_unit, ADF_INF_wpn_R, 12, ADF_INF_mag_R] call BIS_fnc_addWeapon;
-		[_ADF_unit,_ADF_perfDiagStart] call ADF_loadOut_gearLoaded;		
+		[_ADF_unit, _ADF_perfDiagStart] call ADF_loadOut_gearLoaded;		
 	}; // Close Rifleman
 	
 	/*****************************************************************************************************/
@@ -349,7 +349,7 @@ ADF_fnc_loudoutInf = {
 
 		// Primary weapon		
 		[_ADF_unit, ADF_INF_wpn_G, 12, ADF_INF_mag_R] call BIS_fnc_addWeapon;
-		[_ADF_unit,_ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
+		[_ADF_unit, _ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
 	}; // Close Grenadier
 	
 	/*****************************************************************************************************/
@@ -371,7 +371,7 @@ ADF_fnc_loudoutInf = {
 		if (ADF_mod_ACE3 && (ADF_INF_wpn_LMG == "LMG_Mk200_MRCO_F")) then {_ADF_unit addItemToBackpack "ACE_SpareBarrel";};
 		// Primary weapon
 		[_ADF_unit, ADF_INF_wpn_LMG, ADF_INF_magCount_LMG, ADF_INF_mag_LMG] call BIS_fnc_addWeapon;
-		[_ADF_unit,_ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
+		[_ADF_unit, _ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
 	}; // Close Auto Rifleman
 	
 	/*****************************************************************************************************/
@@ -394,7 +394,7 @@ ADF_fnc_loudoutInf = {
 		};
 		// Primary weapon
 		[_ADF_unit, ADF_INF_wpn_R, 12, ADF_INF_mag_R] call BIS_fnc_addWeapon;
-		[_ADF_unit,_ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
+		[_ADF_unit, _ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
 	}; // Close Asst Auto Rifleman
 	
 	/*****************************************************************************************************/
@@ -414,7 +414,7 @@ ADF_fnc_loudoutInf = {
 		[_ADF_unit, ADF_INF_wpn_R, 8, ADF_INF_mag_R] call BIS_fnc_addWeapon;
 		// Launcher
 		[_ADF_unit, "launch_NLAW_F", 1, "NLAW_F"] call BIS_fnc_addWeapon; // works both on Vanilla and ACE3
-		[_ADF_unit,_ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
+		[_ADF_unit, _ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
 	}; // Close Rifleman AT
 	
 	/*****************************************************************************************************/
@@ -447,7 +447,7 @@ ADF_fnc_loudoutInf = {
 		};
 		// Primary weapon
 		[_ADF_unit, ADF_INF_wpn_R, 8, ADF_INF_mag_R] call BIS_fnc_addWeapon;
-		[_ADF_unit,_ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
+		[_ADF_unit, _ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
 	}; // Close Engineer	
 	
 	/*****************************************************************************************************/
@@ -467,7 +467,7 @@ ADF_fnc_loudoutInf = {
 		if (ADF_mod_ACE3) then {_ADF_unit addItemToBackpack "ACE_SpareBarrel";};
 		// Primary weapon
 		[_ADF_unit, ADF_INF_wpn_MG, 4, ADF_INF_mag_MG] call BIS_fnc_addWeapon;
-		[_ADF_unit,_ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
+		[_ADF_unit, _ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
 	}; // Close Heavy Machine
 	
 	/*****************************************************************************************************/
@@ -489,7 +489,7 @@ ADF_fnc_loudoutInf = {
 		_ADF_unit addItemToBackpack "Chemlight_green";
 		// Primary weapon
 		[_ADF_unit, ADF_INF_wpn_R, 4, ADF_INF_mag_R] call BIS_fnc_addWeapon;
-		[_ADF_unit,_ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
+		[_ADF_unit, _ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
 	}; // Close Heavy Machine
 	
 	/*****************************************************************************************************/
@@ -513,7 +513,7 @@ ADF_fnc_loudoutInf = {
 		_ADF_unit addItemToVest "Chemlight_green";
 		// Primary weapon
 		[_ADF_unit, ADF_INF_wpn_R, 4, ADF_INF_mag_R] call BIS_fnc_addWeapon;
-		[_ADF_unit,_ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
+		[_ADF_unit, _ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
 	}; // Close Heavy Weapons Team (HMG/GMG/MK6)
 	
 	/*****************************************************************************************************/
@@ -533,7 +533,7 @@ ADF_fnc_loudoutInf = {
 		[_ADF_unit, ADF_INF_wpn_R, 6, ADF_INF_mag_R] call BIS_fnc_addWeapon;
 		// Launcher
 		[_ADF_unit, "launch_B_Titan_short_F", 2, "Titan_AT"] call BIS_fnc_addWeapon;
-		[_ADF_unit,_ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
+		[_ADF_unit, _ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
 	}; // Close Missile Specialist		
 	
 	/*****************************************************************************************************/
@@ -554,7 +554,7 @@ ADF_fnc_loudoutInf = {
 		_ADF_unit addItemToBackpack "Titan_AP";		
 		// Primary weapon
 		[_ADF_unit, ADF_INF_wpn_R, 6, ADF_INF_mag_R] call BIS_fnc_addWeapon;
-		[_ADF_unit,_ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
+		[_ADF_unit, _ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
 	}; // Close Asst. Missile Specialist
 };
 
@@ -601,7 +601,7 @@ ADF_fnc_loadoutSor = {
 	};	
 	
 	// Face paint
-	_ADF_SOR_face = ["GreekHead_A3_10_sa","GreekHead_A3_10_l","GreekHead_A3_10_a","WhiteHead_22_a","WhiteHead_22_l","WhiteHead_22_sa"] call BIS_fnc_selectRandom;
+	_ADF_SOR_face = ["GreekHead_A3_10_sa", "GreekHead_A3_10_l", "GreekHead_A3_10_a", "WhiteHead_22_a", "WhiteHead_22_l", "WhiteHead_22_sa"] call BIS_fnc_selectRandom;
 	_ADF_unit setFace _ADF_SOR_face;
 	
 	///// Default loadout init
@@ -653,7 +653,7 @@ ADF_fnc_loadoutSor = {
 	// hand weapon
 	[_ADF_unit, ADF_SOR_pistol, 3, ADF_SOR_pistol_mag] call BIS_fnc_addWeapon;	
 	// headgear
-	_ADF_sor_headgear = ["H_Bandanna_khk_hs","H_Watchcap_blk","H_Watchcap_cbr","H_Watchcap_khk","H_Bandanna_gry","H_Cap_usblack"] call BIS_fnc_selectRandom;
+	_ADF_sor_headgear = ["H_Bandanna_khk_hs", "H_Watchcap_blk", "H_Watchcap_cbr", "H_Watchcap_khk", "H_Bandanna_gry", "H_Cap_usblack"] call BIS_fnc_selectRandom;
 	_ADF_unit addHeadgear _ADF_sor_headgear;
 	// microDAGR
 	if (ADF_microDAGR_all == 1) then {_ADF_unit addItemToUniform ADF_microDAGR};	
@@ -712,10 +712,10 @@ ADF_fnc_loadoutSor = {
 		ADF_gearLoaded = true;
 		_ADF_perfDiagStop = diag_tickTime;
 		if (ADF_debug) then {
-			_debugDiag = format [" (DIAG: %1)",_ADF_perfDiagStop - _ADF_perfDiagStart];
+			_debugDiag = format [" (DIAG: %1)", _ADF_perfDiagStop - _ADF_perfDiagStart];
 			_debugText = "LOADOUT - INF Platoon loadout applied.";
 			_debugMsg = _debugText + _debugDiag;
-			[_debugMsg,false] call ADF_fnc_log;
+			[_debugMsg, false] call ADF_fnc_log;
 		};
 	};
 	
@@ -747,7 +747,7 @@ ADF_fnc_loadoutSor = {
 				_ADF_unit addItem "ACE_HuntIR_monitor";		
 			};			
 		};
-		[_ADF_unit,_ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
+		[_ADF_unit, _ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
 	}; // close SSC & RTL
 	
 	/*****************************************************************************************************/
@@ -766,7 +766,7 @@ ADF_fnc_loadoutSor = {
 		} else {
 			_ADF_unit addWeapon "Rangefinder";
 		};
-		[_ADF_unit,_ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
+		[_ADF_unit, _ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
 	}; // close Recon Marksman
 	
 	/*****************************************************************************************************/
@@ -786,7 +786,7 @@ ADF_fnc_loadoutSor = {
 			_ADF_unit addItemToBackpack "ACE_Clacker";	
 			_ADF_unit addItemToBackpack "ACE_Cellphone";			
 		};
-		[_ADF_unit,_ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
+		[_ADF_unit, _ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
 	}; // close Recon Demolition
 
 	/*****************************************************************************************************/
@@ -828,7 +828,7 @@ ADF_fnc_loadoutSor = {
 			};
 			_ADF_unit addItemToBackpack "Medikit";
 		};
-		[_ADF_unit,_ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
+		[_ADF_unit, _ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
 	};// close Recon Medic	
 	
 	/*****************************************************************************************************/
@@ -836,9 +836,9 @@ ADF_fnc_loadoutSor = {
 	///// Recon AT
 
 	if (_r == "at") exitWith { 
-		(backpackContainer _ADF_unit) addmagazinecargoGlobal ["Titan_AT",1];
+		(backpackContainer _ADF_unit) addmagazinecargoGlobal ["Titan_AT", 1];
 		[_ADF_unit, "launch_B_Titan_short_F", 1, "Titan_AT"] call BIS_fnc_addWeapon;
-		[_ADF_unit,_ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
+		[_ADF_unit, _ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
 	};// close Recon AT	
 
 	/*****************************************************************************************************/
@@ -853,7 +853,7 @@ ADF_fnc_loadoutSor = {
 			_ADF_unit addItem "ACE_UAVBattery";
 			_ADF_unit addItem "ace_dagr";
 		};
-		[_ADF_unit,_ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
+		[_ADF_unit, _ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
 	};// close UAV specialist
 }; // Close ADF_fnc_loadoutSor	
 
@@ -908,52 +908,52 @@ ADF_fnc_loadoutSod = {
 	if (_r != "uav") then {	
 		_ADF_unit addBackpack "B_Carryall_oli";
 		if (ADF_mod_ACE3) then {
-			(uniformContainer _ADF_unit) addItemCargoGlobal ["ACE_fieldDressing",1];
+			(uniformContainer _ADF_unit) addItemCargoGlobal ["ACE_fieldDressing", 1];
 		} else {
-			(uniformContainer _ADF_unit) addItemCargoGlobal ["FirstAidKit",1];
+			(uniformContainer _ADF_unit) addItemCargoGlobal ["FirstAidKit", 1];
 		};
 		// Store in uniform
-		(uniformContainer _ADF_unit) addmagazinecargoGlobal ["Chemlight_red",1];
-		(uniformContainer _ADF_unit) addmagazinecargoGlobal ["Chemlight_green",1];
-		//(uniformContainer _ADF_unit) addItemCargoGlobal ["acc_flashlight",1];
+		(uniformContainer _ADF_unit) addmagazinecargoGlobal ["Chemlight_red", 1];
+		(uniformContainer _ADF_unit) addmagazinecargoGlobal ["Chemlight_green", 1];
+		//(uniformContainer _ADF_unit) addItemCargoGlobal ["acc_flashlight", 1];
 		//if (ADF_mod_ACE3 && (_r != "add")) then {_ADF_unit addItemToUniform "ACE_M84"};
-		if (ADF_mod_ACE3) then {(uniformContainer _ADF_unit) addItemCargoGlobal ["ACE_HandFlare_Green",1]};		
-		//(uniformContainer _ADF_unit) addmagazinecargoGlobal ["SmokeShell",1];
-		if (ADF_mod_ACE3) then {(uniformContainer _ADF_unit) addItemCargoGlobal ["ACE_EarPlugs",1]};
-		if (ADF_mod_ACE3) then {(uniformContainer _ADF_unit) addItemCargoGlobal ["ace_mapTools",1]};		
-		if (ADF_mod_CTAB) then {(uniformContainer _ADF_unit) additemcargoGlobal ["ACE_CableTie",1]};
-		//if (ADF_mod_CTAB) then {(uniformContainer _ADF_unit) additemcargoGlobal ["ACE_IR_Strobe_Item",1]};
-		_ADF_sor_headgear = ["H_Watchcap_camo","H_Watchcap_blk","H_Booniehat_mcamo","H_Watchcap_khk","H_Bandanna_gry","H_Shemag_olive_hs","H_Bandanna_khk_hs"] call BIS_fnc_selectRandom;
-		(uniformContainer _ADF_unit) addItemCargoGlobal [_ADF_sor_headgear,1];
-		(uniformContainer _ADF_unit) addItemCargoGlobal ["G_Lowprofile",1];
+		if (ADF_mod_ACE3) then {(uniformContainer _ADF_unit) addItemCargoGlobal ["ACE_HandFlare_Green", 1]};		
+		//(uniformContainer _ADF_unit) addmagazinecargoGlobal ["SmokeShell", 1];
+		if (ADF_mod_ACE3) then {(uniformContainer _ADF_unit) addItemCargoGlobal ["ACE_EarPlugs", 1]};
+		if (ADF_mod_ACE3) then {(uniformContainer _ADF_unit) addItemCargoGlobal ["ace_mapTools", 1]};		
+		if (ADF_mod_CTAB) then {(uniformContainer _ADF_unit) additemcargoGlobal ["ACE_CableTie", 1]};
+		//if (ADF_mod_CTAB) then {(uniformContainer _ADF_unit) additemcargoGlobal ["ACE_IR_Strobe_Item", 1]};
+		_ADF_sor_headgear = ["H_Watchcap_camo", "H_Watchcap_blk", "H_Booniehat_mcamo", "H_Watchcap_khk", "H_Bandanna_gry", "H_Shemag_olive_hs", "H_Bandanna_khk_hs"] call BIS_fnc_selectRandom;
+		(uniformContainer _ADF_unit) addItemCargoGlobal [_ADF_sor_headgear, 1];
+		(uniformContainer _ADF_unit) addItemCargoGlobal ["G_Lowprofile", 1];
 		
 		// Store in Backpack		
-		if (ADF_mod_CTAB) then {(backpackContainer _ADF_unit) additemcargoGlobal ["ItemcTabHCam",1]};
+		if (ADF_mod_CTAB) then {(backpackContainer _ADF_unit) additemcargoGlobal ["ItemcTabHCam", 1]};
 
 		if (_r != "rmm") then {
 			if ((_r == "atl") || (_r == "ssc")) then {
-				(backpackContainer _ADF_unit) addweaponcargoGlobal [ADF_SOR_wpn_G,1];				
+				(backpackContainer _ADF_unit) addweaponcargoGlobal [ADF_SOR_wpn_G, 1];				
 			} else {
-				(backpackContainer _ADF_unit) addweaponcargoGlobal [ADF_SOR_wpn_R,1];
+				(backpackContainer _ADF_unit) addweaponcargoGlobal [ADF_SOR_wpn_R, 1];
 			};
-			if (_r == "ad") then {(backpackContainer _ADF_unit) addmagazinecargoGlobal [ADF_SOR_mag_R,9]}; // Assault Diver
-			if (_r == "ssc") then {(backpackContainer _ADF_unit) addmagazinecargoGlobal [ADF_SOR_mag_R,4]}; // leadership
-			if (_r == "atl") then {(backpackContainer _ADF_unit) addmagazinecargoGlobal [ADF_SOR_mag_R,7]}; // leadership
-			if (_r == "rm") then {(backpackContainer _ADF_unit) addmagazinecargoGlobal [ADF_SOR_mag_R,4]}; // Medic
-			if (_r == "add") then {(backpackContainer _ADF_unit) addmagazinecargoGlobal [ADF_SOR_mag_R,4]}; // Demo
-			if (_r == "at") then {(backpackContainer _ADF_unit) addmagazinecargoGlobal [ADF_SOR_mag_R,5]}; // AT			
+			if (_r == "ad") then {(backpackContainer _ADF_unit) addmagazinecargoGlobal [ADF_SOR_mag_R, 9]}; // Assault Diver
+			if (_r == "ssc") then {(backpackContainer _ADF_unit) addmagazinecargoGlobal [ADF_SOR_mag_R, 4]}; // leadership
+			if (_r == "atl") then {(backpackContainer _ADF_unit) addmagazinecargoGlobal [ADF_SOR_mag_R, 7]}; // leadership
+			if (_r == "rm") then {(backpackContainer _ADF_unit) addmagazinecargoGlobal [ADF_SOR_mag_R, 4]}; // Medic
+			if (_r == "add") then {(backpackContainer _ADF_unit) addmagazinecargoGlobal [ADF_SOR_mag_R, 4]}; // Demo
+			if (_r == "at") then {(backpackContainer _ADF_unit) addmagazinecargoGlobal [ADF_SOR_mag_R, 5]}; // AT			
 			
-			if (ADF_SOR_MX) then {(backpackContainer _ADF_unit) addItemCargoGlobal ["muzzle_snds_H",1]};
-			if (ADF_SOR_MK20) then {(backpackContainer _ADF_unit) addItemCargoGlobal ["muzzle_snds_M",1]};
-			if (ADF_SOR_MXC) then {(backpackContainer _ADF_unit) addItemCargoGlobal ["optic_Hamr",1]};
+			if (ADF_SOR_MX) then {(backpackContainer _ADF_unit) addItemCargoGlobal ["muzzle_snds_H", 1]};
+			if (ADF_SOR_MK20) then {(backpackContainer _ADF_unit) addItemCargoGlobal ["muzzle_snds_M", 1]};
+			if (ADF_SOR_MXC) then {(backpackContainer _ADF_unit) addItemCargoGlobal ["optic_Hamr", 1]};
 		};		
-		(backpackContainer _ADF_unit) addItemCargoGlobal ["V_Chestrig_blk",1];
-		(backpackContainer _ADF_unit) addItemCargoGlobal ["U_I_G_Story_Protagonist_F",1];
+		(backpackContainer _ADF_unit) addItemCargoGlobal ["V_Chestrig_blk", 1];
+		(backpackContainer _ADF_unit) addItemCargoGlobal ["U_I_G_Story_Protagonist_F", 1];
 		
 		// Personal Radios all units
-		if (ADF_mod_ACRE) then {(backpackContainer _ADF_unit) addItemCargoGlobal ["ACRE_PRC343",1]};
+		if (ADF_mod_ACRE) then {(backpackContainer _ADF_unit) addItemCargoGlobal ["ACRE_PRC343", 1]};
 		if (ADF_mod_TFAR) then {_ADF_unit linkItem _ADF_TFAR_SWRadio};
-		if (!ADF_mod_ACRE && !ADF_mod_TFAR) then {(backpackContainer _ADF_unit) addItemCargoGlobal ["ItemRadio",1]};		
+		if (!ADF_mod_ACRE && !ADF_mod_TFAR) then {(backpackContainer _ADF_unit) addItemCargoGlobal ["ItemRadio", 1]};		
 	} else { // Add Medkit to UAV specialist uniform
 		if (ADF_mod_ACE3) then {
 			_ADF_unit addItemToUniform "ACE_fieldDressing";
@@ -975,10 +975,10 @@ ADF_fnc_loadoutSod = {
 		ADF_gearLoaded = true;
 		_ADF_perfDiagStop = diag_tickTime;
 		if (ADF_debug) then {
-			_debugDiag = format [" (DIAG: %1)",_ADF_perfDiagStop - _ADF_perfDiagStart];
+			_debugDiag = format [" (DIAG: %1)", _ADF_perfDiagStop - _ADF_perfDiagStart];
 			_debugText = "LOADOUT - INF Platoon loadout applied.";
 			_debugMsg = _debugText + _debugDiag;
-			[_debugMsg,false] call ADF_fnc_log;
+			[_debugMsg, false] call ADF_fnc_log;
 		};
 	};
 		
@@ -999,7 +999,7 @@ ADF_fnc_loadoutSod = {
 			_ADF_unit addItemToUniform "ACE_Clacker";
 			_ADF_unit addItemToUniform "ACE_Cellphone";			
 		};
-		[_ADF_unit,_ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
+		[_ADF_unit, _ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
 	}; // close Assault Demolition Diver
 	
 	/*****************************************************************************************************/
@@ -1023,7 +1023,7 @@ ADF_fnc_loadoutSod = {
 			_ADF_unit addItemToUniform "3Rnd_UGL_FlareCIR_F";	
 			//_ADF_unit addItemToBackpack "3Rnd_UGL_FlareGreen_F";
 		};
-		[_ADF_unit,_ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
+		[_ADF_unit, _ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
 	}; // close SSC & RTL
 	
 	/*****************************************************************************************************/
@@ -1044,33 +1044,33 @@ ADF_fnc_loadoutSod = {
 		if (ADF_dlc_MarksMan) then { // Check if Marksman DLC premium is active
 			// MM DLC active
 			if (ADF_mod_ACE3) then { // ACE3
-				(backpackContainer _ADF_unit) addmagazinecargoGlobal ["ACE_10Rnd_338_API526_Mag",3];
-				(uniformContainer _ADF_unit) addmagazinecargoGlobal ["ACE_10Rnd_338_API526_Mag",2];
+				(backpackContainer _ADF_unit) addmagazinecargoGlobal ["ACE_10Rnd_338_API526_Mag", 3];
+				(uniformContainer _ADF_unit) addmagazinecargoGlobal ["ACE_10Rnd_338_API526_Mag", 2];
 			} else { // Vanilla
-				(backpackContainer _ADF_unit) addmagazinecargoGlobal ["10Rnd_338_Mag",3];
-				(uniformContainer _ADF_unit) addmagazinecargoGlobal ["10Rnd_338_Mag",2];			
+				(backpackContainer _ADF_unit) addmagazinecargoGlobal ["10Rnd_338_Mag", 3];
+				(uniformContainer _ADF_unit) addmagazinecargoGlobal ["10Rnd_338_Mag", 2];			
 			};
-			(backpackContainer _ADF_unit) addWeaponCargoGlobal ["srifle_DMR_02_F",1];
-			(backpackContainer _ADF_unit) addItemCargoGlobal ["acc_pointer_IR",1];
-			(backpackContainer _ADF_unit) addItemCargoGlobal ["muzzle_snds_338_black",1];
-			(backpackContainer _ADF_unit) addItemCargoGlobal ["optic_AMS",1];
+			(backpackContainer _ADF_unit) addWeaponCargoGlobal ["srifle_DMR_02_F", 1];
+			(backpackContainer _ADF_unit) addItemCargoGlobal ["acc_pointer_IR", 1];
+			(backpackContainer _ADF_unit) addItemCargoGlobal ["muzzle_snds_338_black", 1];
+			(backpackContainer _ADF_unit) addItemCargoGlobal ["optic_AMS", 1];
 		} else {
 			// No MM DLC active
 			if (ADF_mod_ACE3) then { // ACE3
-				(backpackContainer _ADF_unit) addmagazinecargoGlobal ["ACE_20Rnd_762x51_Mag_SD",4];
-				(uniformContainer _ADF_unit) addmagazinecargoGlobal ["ACE_20Rnd_762x51_Mag_SD",3];
+				(backpackContainer _ADF_unit) addmagazinecargoGlobal ["ACE_20Rnd_762x51_Mag_SD", 4];
+				(uniformContainer _ADF_unit) addmagazinecargoGlobal ["ACE_20Rnd_762x51_Mag_SD", 3];
 			} else { // Vanilla			
-				(backpackContainer _ADF_unit) addmagazinecargoGlobal ["20Rnd_762x51_Mag",4];
-				(uniformContainer _ADF_unit) addmagazinecargoGlobal ["20Rnd_762x51_Mag",3];
+				(backpackContainer _ADF_unit) addmagazinecargoGlobal ["20Rnd_762x51_Mag", 4];
+				(uniformContainer _ADF_unit) addmagazinecargoGlobal ["20Rnd_762x51_Mag", 3];
 			};
-			(backpackContainer _ADF_unit) addWeaponCargoGlobal ["srifle_EBR_F",1];
-			(backpackContainer _ADF_unit) addItemCargoGlobal ["acc_pointer_IR",1];
-			(backpackContainer _ADF_unit) addItemCargoGlobal ["muzzle_snds_B",1];	
-			(backpackContainer _ADF_unit) addItemCargoGlobal ["optic_DMS",1];	
+			(backpackContainer _ADF_unit) addWeaponCargoGlobal ["srifle_EBR_F", 1];
+			(backpackContainer _ADF_unit) addItemCargoGlobal ["acc_pointer_IR", 1];
+			(backpackContainer _ADF_unit) addItemCargoGlobal ["muzzle_snds_B", 1];	
+			(backpackContainer _ADF_unit) addItemCargoGlobal ["optic_DMS", 1];	
 		};
 	
-		if (ADF_mod_ACRE) then {(backpackContainer _ADF_unit) addItemCargoGlobal ["ACRE_PRC148",1]};
-		[_ADF_unit,_ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
+		if (ADF_mod_ACRE) then {(backpackContainer _ADF_unit) addItemCargoGlobal ["ACRE_PRC148", 1]};
+		[_ADF_unit, _ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
 	
 	}; // close Recon Marksman
 	
@@ -1103,7 +1103,7 @@ ADF_fnc_loadoutSod = {
 			};
 			_ADF_unit addItemToBackpack "Medikit";
 		};
-		[_ADF_unit,_ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
+		[_ADF_unit, _ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
 	};// close Recon Medic	
 	
 	/*****************************************************************************************************/
@@ -1111,9 +1111,9 @@ ADF_fnc_loadoutSod = {
 	///// Recon AT
 
 	if (_r == "at") exitWith { 
-		(backpackContainer _ADF_unit) addmagazinecargoGlobal ["Titan_AT",1];
+		(backpackContainer _ADF_unit) addmagazinecargoGlobal ["Titan_AT", 1];
 		[_ADF_unit, "launch_B_Titan_short_F", 1, "Titan_AT"] call BIS_fnc_addWeapon;
-		[_ADF_unit,_ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
+		[_ADF_unit, _ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
 	};// close Recon AT	
 
 	/*****************************************************************************************************/
@@ -1121,7 +1121,7 @@ ADF_fnc_loadoutSod = {
 	///// Assault Diver
 
 	if (_r == "ad") exitWith { 
-		(uniformContainer _ADF_unit) addmagazinecargoGlobal ["MiniGrenade",3];
+		(uniformContainer _ADF_unit) addmagazinecargoGlobal ["MiniGrenade", 3];
 	};// close Recon AT	
 
 	/*****************************************************************************************************/
@@ -1137,7 +1137,7 @@ ADF_fnc_loadoutSod = {
 			_ADF_unit addItem "ace_dagr";
 		
 		};
-		[_ADF_unit,_ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
+		[_ADF_unit, _ADF_perfDiagStart] call ADF_loadOut_gearLoaded;
 	};// close UAV specialist
 }; // Close ADF_fnc_loadoutSod
 
@@ -1274,7 +1274,7 @@ ADF_fnc_loadoutSop = {
 	};
 	
 	// Face paint
-	_ADF_SOP_face = ["WhiteHead_22_a","WhiteHead_22_l","WhiteHead_22_sa"] call BIS_fnc_selectRandom;
+	_ADF_SOP_face = ["WhiteHead_22_a", "WhiteHead_22_l", "WhiteHead_22_sa"] call BIS_fnc_selectRandom;
 	_ADF_unit setFace _ADF_SOP_face;
 	
 	_ADF_unit selectWeapon (primaryWeapon _ADF_unit);
@@ -1283,10 +1283,10 @@ ADF_fnc_loadoutSop = {
 	ADF_gearLoaded = true;
 	_ADF_perfDiagStop = diag_tickTime;
 	if (ADF_debug) then {
-		_debugDiag = format [" (DIAG: %1)",_ADF_perfDiagStop - _ADF_perfDiagStart];
+		_debugDiag = format [" (DIAG: %1)", _ADF_perfDiagStop - _ADF_perfDiagStart];
 		_debugText = "LOADOUT - SOP units loadout applied.";
 		_debugMsg = _debugText + _debugDiag;
-		[_debugMsg,false] call ADF_fnc_log;
+		[_debugMsg, false] call ADF_fnc_log;
 	};	
 };
 
@@ -1358,10 +1358,10 @@ ADF_fnc_loadoutCav = {
 	ADF_gearLoaded = true;
 	_ADF_perfDiagStop = diag_tickTime;
 	if (ADF_debug) then {
-		_debugDiag = format [" (DIAG: %1)",_ADF_perfDiagStop - _ADF_perfDiagStart];
+		_debugDiag = format [" (DIAG: %1)", _ADF_perfDiagStop - _ADF_perfDiagStart];
 		_debugText = "LOADOUT - CAV Battery loadout applied.";
 		_debugMsg = _debugText + _debugDiag;
-		[_debugMsg,false] call ADF_fnc_log;
+		[_debugMsg, false] call ADF_fnc_log;
 	};	
 }; // Close ADF_fnc_sCav
 
@@ -1429,25 +1429,25 @@ ADF_fnc_loadoutAir = {
 	
 	_ADF_perfDiagStop = diag_tickTime;
 	if (ADF_debug) then {
-		_debugDiag = format [" (DIAG: %1)",_ADF_perfDiagStop - _ADF_perfDiagStart];
+		_debugDiag = format [" (DIAG: %1)", _ADF_perfDiagStop - _ADF_perfDiagStart];
 		_debugText = "LOADOUT - AIR wing loadout applied.";
 		_debugMsg = _debugText + _debugDiag;
-		[_debugMsg,false] call ADF_fnc_log;
+		[_debugMsg, false] call ADF_fnc_log;
 	};
 }; // Close ADF_fnc_sAir
 
 /////  Undefined player
 ADF_fnc_loadoutNotDef = {
 	_ADF_unit = _this select 0;
-	_ADF_inf_headgear = ["H_HelmetB","H_HelmetB_plain_mcamo","H_HelmetSpecB_paint1","H_HelmetSpecB_paint2","H_Helmet_Kerry"] call BIS_fnc_selectRandom;
+	_ADF_inf_headgear = ["H_HelmetB", "H_HelmetB_plain_mcamo", "H_HelmetSpecB_paint1", "H_HelmetSpecB_paint2", "H_Helmet_Kerry"] call BIS_fnc_selectRandom;
 	removeUniform _ADF_unit;
 	// Assign standard Infantry gear	
 	_ADF_unit addUniform "U_B_CombatUniform_mcam";
 	_ADF_unit addVest "V_PlateCarrierGL_rgr";
 	_ADF_unit addBackPack "B_AssaultPack_rgr";
 	_ADF_unit addHeadgear _ADF_inf_headgear;
-	(unitBackpack _ADF_unit) addMagazineCargo ["smokeshell",5];
-	(unitBackpack _ADF_unit) addMagazineCargo ["HandGrenade",3];
+	(unitBackpack _ADF_unit) addMagazineCargo ["smokeshell", 5];
+	(unitBackpack _ADF_unit) addMagazineCargo ["HandGrenade", 3];
 	[_ADF_unit, "arifle_MX_ACO_pointer_F", 12, "30Rnd_65x39_caseless_mag"] call BIS_fnc_addWeapon;
 	[_ADF_unit, "hgun_P07_F", 3,"16Rnd_9x21_Mag"] call BIS_fnc_addWeapon;	
 	_ADF_unit addItem "FirstAidKit";
@@ -1457,10 +1457,10 @@ ADF_fnc_loadoutNotDef = {
 	ADF_gearLoaded = true;
 	_ADF_perfDiagStop = diag_tickTime;
 	if (ADF_debug) then {
-		_debugDiag = format [" (DIAG: %1)",_ADF_perfDiagStop - _ADF_perfDiagStart];
+		_debugDiag = format [" (DIAG: %1)", _ADF_perfDiagStop - _ADF_perfDiagStart];
 		_debugText = "LOADOUT - ERROR undefined unit.";
 		_debugMsg = _debugText + _debugDiag;
-		[_debugMsg,false] call ADF_fnc_log;
+		[_debugMsg, false] call ADF_fnc_log;
 	};	
 	
 	waitUntil {ADF_missionInit};

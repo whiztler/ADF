@@ -1,10 +1,10 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.43 / NOVEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Reload/Rearm/Repair Script
 Author: Xeno (Adapted for ADF by Whiztler)
-Script version: 2.71
+Script version: 2.72
 
 Game type: N/A
 File: ADF_RRR.sqf
@@ -33,10 +33,10 @@ if (isServer) then {diag_log "ADF RPT: Init - executing ADF_RRR.sqf"}; // Report
 
 // Init
 private [
-	"_ADF_turretConfig","_ADF_turretCount","_ADF_vehMag","_ADF_object","_ADF_vehName",
-	"_ADF_vehType","_ADF_vehCat","_ADF_vehDriver","_ADF_objectDamage","_ADF_objectFuel",
-	"_ADF_repairSleep","_ADF_reloadSleep","_ADF_reloadSleep","_ADF_maxTime","_ADF_serviceStartTime",
-	"_ADF_serviceTime","_ADF_serviceTimeType","_ADF_dayType","_ADF_dayTime"
+	"_ADF_turretConfig", "_ADF_turretCount", "_ADF_vehMag", "_ADF_object", "_ADF_vehName",
+	"_ADF_vehType", "_ADF_vehCat", "_ADF_vehDriver", "_ADF_objectDamage", "_ADF_objectFuel",
+	"_ADF_repairSleep", "_ADF_reloadSleep", "_ADF_reloadSleep", "_ADF_maxTime", "_ADF_serviceStartTime",
+	"_ADF_serviceTime", "_ADF_serviceTimeType", "_ADF_dayType", "_ADF_dayTime"
 ];
 
 params ["_ADF_object"];
@@ -67,7 +67,7 @@ _ADF_serviceStartTime = time;
 _ADF_object vehicleChat format ["%1 F.A.R.P.", ADF_clanName];
 _ADF_object vehicleChat format ["Servicing %1", _ADF_vehName];
 _ADF_object vehicleChat format ["%1, please switch off your engine and remain in the %2", _ADF_vehDriver, _ADF_vehCat];
-_ADF_object vehicleChat format ["F.A.R.P. Service can take up to %1 minutes.",_ADF_maxTime];
+_ADF_object vehicleChat format ["Service can take up to %1 minutes.", _ADF_maxTime];
 
 sleep 5;
 
@@ -140,14 +140,14 @@ if (_ADF_turretCount > 0) then {
 };
 _ADF_object setVehicleAmmo 1; // Reload all turrets
 sleep 2;
-_ADF_object vehicleChat format ["%1 is fully rearmed",_ADF_vehName];
+_ADF_object vehicleChat format ["%1 is fully rearmed", _ADF_vehName];
 sleep 2;
 
 // REPAIR
 if (!alive _ADF_object) exitWith {};
 if (_ADF_objectDamage > 0) then {
 	while {_ADF_objectDamage > 0 && alive _ADF_object} do {
-		_ADF_object vehicleChat format ["Repairing %1",_ADF_vehName];
+		_ADF_object vehicleChat format ["Repairing %1", _ADF_vehName];
 		sleep _ADF_repairSleep;
 		_ADF_object setDamage (_ADF_objectDamage - 0.05);
 		_ADF_objectDamage = damage _ADF_object;		
@@ -164,14 +164,14 @@ if (_ADF_objectDamage > 0) then {
 // REFUEL
 if (!alive _ADF_object) exitWith {};
 if (_ADF_objectFuel < 1) then {
-	_ADF_object vehicleChat format ["Refuelling %1",_ADF_vehName];
+	_ADF_object vehicleChat format ["Refuelling %1", _ADF_vehName];
 	while {_ADF_objectFuel < 1 && alive _ADF_object} do {		
 		_ADF_object setFuel (_ADF_objectFuel + 0.01);
 		_ADF_objectFuel = fuel _ADF_object;
 		sleep _ADF_reloadSleep;
 	};
 	sleep 2;
-	_ADF_object vehicleChat format ["%1 is fully refuelled",_ADF_vehName];
+	_ADF_object vehicleChat format ["%1 is fully refuelled", _ADF_vehName];
 	sleep 2;
 } else {
 	_ADF_object vehicleChat "No refuel services needed.";
@@ -185,8 +185,7 @@ _ADF_serviceTime = round ((time - _ADF_serviceStartTime) / 60);
 _ADF_serviceTimeType = "minutes";
 _ADF_dayType = "day";
 _ADF_dayTime = date select 3;
-if (_ADF_dayTime < 12) then {_ADF_dayType = "day"};
-if (_ADF_dayTime > 12) then {_ADF_dayType = "day"};
+if (_ADF_dayTime < 12) then {_ADF_dayType = "morning"};
 if (_ADF_dayTime > 18) then {_ADF_dayType = "evening"};
 if ((time - _ADF_serviceStartTime) < 90) then {_ADF_serviceTime = 1;_ADF_serviceTimeType = "minute"};
-_ADF_object vehicleChat format ["%1 was serviced in %2 %3. Enjoy your %4", _ADF_vehName,_ADF_serviceTime,_ADF_serviceTimeType,_ADF_dayType];
+_ADF_object vehicleChat format ["%1 was serviced in %2 %3. Enjoy your %4", _ADF_vehName, _ADF_serviceTime, _ADF_serviceTimeType, _ADF_dayType];

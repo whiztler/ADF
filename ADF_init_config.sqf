@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.43 / NOVEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Mission Config
 Author: Whiztler
@@ -20,7 +20,7 @@ ADF_mission_version = 1.0; // Mission version
 _ADF_mission_init_time = 30; // Mission Init time counter. Min 30 secs. Add 1 sec per 2 players. 10 players = 35 secs.
 _ADF_HC_init = true; // Enable the Headless Client [true/false].
 _ADF_HCLB_enable = true; // Enable load balancing across multiple HC's (max 3)
-ADF_playerSide = WEST; // Which side are playable units on [WEST / EAST / GUER / CIV]
+ADF_playerSide = west; // Which side are playable units on [west / east / GUER / CIV]
 ADF_debug = false; // For mission testing/debugging set to true. Make sure to set to false before compiling your final PBO.
 ADF_Log_ServerPerfEnable = true; // Enable server performance logging in RPT. [true/false]
 ADF_clanName = "ADF"; // What is the name of your community/clan. Used in Hints, intro's etc.
@@ -52,7 +52,7 @@ _ADF_CAV_assault_weapon = 1; // Cavalry crew weapon: 1 = MX Compact series  #  2
 _ADF_ACE3_microDAGR_all = false; // enable the ACE3 MicroDAGR for all players [true/false]
 _ADF_ACE3_microDAGR_leaders = true; // enable the ACE3 MicroDAGR for leadership only [true/false]. Note that when both are set to false ACE BFT will be disabled.
 // cTAB
-_ADF_cTAB_side = ADF_playerSide; // Gets the information from ADF_playerside. Only change (EAST, WEST) if needed to.
+_ADF_cTAB_side = ADF_playerSide; // Gets the information from ADF_playerside. Only change (east, west) if needed to.
 _ADF_cTAB_microDAGR_all = false; // enable the ACE3 MicroDAGR for all players [true/false]
 _ADF_cTAB_microDAGR_leaders = false; // enable the ACE3 MicroDAGR for leadership only [true/false]
 // TFAR
@@ -100,8 +100,8 @@ ADF_FARP_refuelTime = 90; // Maximum time in seconds it takes to refuel a vehicl
 
 /********** RESPAWN / MOBILE HQ (MOBILE RESPAWN FOB) **********/
 ADF_Tickets = false; // enable respawn tickets [true/false]. Make sure to configure in description.ext as well!!
-_ADF_wTixNr = 10; // Respawn Tickets. Number available respawns for WEST Blufor.
-_ADF_eTixNr = 15; // Respawn Tickets. Number available respawns for EAST Opfor.
+_ADF_wTixNr = 10; // Respawn Tickets. Number available respawns for west Blufor.
+_ADF_eTixNr = 15; // Respawn Tickets. Number available respawns for east Opfor.
 
 _ADF_mhq_enable = false; // enable the MHQ function [true/false].
 _ADF_mhq_respawn_nr = 3; // Number of MHQ vehicle respawn available.
@@ -143,4 +143,4 @@ _ADF_altitude = false; // Enable altitude based fatigue (altitude mountain sickn
 /********** ADF DEV BUILD SETTINGS **********/
 ADF_tpl_version = 1.43; // ADF version DO NOT EDIT
 _ADF_devBuild = "Beta"; // [Alpha/Beta/Production] DO NOT EDIT
-_ADF_devBuildNr = "01"; // Build number. DO NOT EDIT
+_ADF_devBuildNr = "02"; // Build number. DO NOT EDIT

@@ -17,15 +17,15 @@
     5: Number or Object     Optional. Direction the objects will be facing after they are moved.
     
   Examples:
-    nul = [gl1,gl2,50] execvm "shk_moveobjects.sqf"
-    nul = [start,destination,100,"Man"] execvm "shk_moveobjects.sqf"
-    nul = [[3243,5234,0],gl2,50,["Man","Car"]] execvm "shk_moveobjects.sqf"
-    nul = [gl1,gl2,50,[],gl2] execvm "shk_moveobjects.sqf"
-    nul = [gl1,gl2,50,[],45] execvm "shk_moveobjects.sqf"
-    nul = [gl1,gl2,50,[],45,270] execvm "shk_moveobjects.sqf"
+    nul = [gl1,gl2, 50] execvm "shk_moveobjects.sqf"
+    nul = [start,destination, 100,"Man"] execvm "shk_moveobjects.sqf"
+    nul = [[3243, 5234, 0],gl2, 50,["Man", "Car"]] execvm "shk_moveobjects.sqf"
+    nul = [gl1,gl2, 50,[],gl2] execvm "shk_moveobjects.sqf"
+    nul = [gl1,gl2, 50,[], 45] execvm "shk_moveobjects.sqf"
+    nul = [gl1,gl2, 50,[], 45, 270] execvm "shk_moveobjects.sqf"
 
 */
-private ["_range","_objects","_aPos","_dPos","_xPos","_dir","_dst","_types","_dAdj","_fDir"];
+private ["_range", "_objects", "_aPos", "_dPos", "_xPos", "_dir", "_dst", "_types", "_dAdj", "_fDir"];
 _aPos = _this select 0;
 _dPos = _this select 1;
 _range = _this select 2;
@@ -41,7 +41,7 @@ if (typename _dPos == typename objNull) then {_dPos = getpos _dPos};
 if (typename _types == typename "") then {_types = [_types]};
 if (typename _dAdj == typename objNull) then {_dAdj = getdir _dAdj};
 
-_objects = nearestobjects [_aPos,_types,_range];
+_objects = nearestobjects [_aPos, _types, _range];
 
 {
   _xPos = getpos _x;

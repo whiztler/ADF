@@ -2,25 +2,25 @@
 // Out: position
 
 // Center point
-private ["_center","_centerX","_centerY"];
+private ["_center", "_centerX", "_centerY"];
 _center  = getMarkerPos _this;
 _centerX = _center select 0;
 _centerY = _center select 1;
 
 // Size
-private ["_size","_sizeX","_sizeY"];
+private ["_size", "_sizeX", "_sizeY"];
 _size  = getMarkerSize _this;
 _sizeX = _size select 0;
 _sizeY = _size select 1;
 
 // Direction and make sure it's between 0 and 360.
-private ["_dir","_dirCos","_dirSin"];
+private ["_dir", "_dirCos", "_dirSin"];
 _dir    = (markerDir _this) * -1;
 _dir    = _dir % 360;
 _dirCos = cos _dir;
 _dirSin = sin _dir;
 
-private ["_rndX","_rndY","_posX","_posY"];
+private ["_rndX", "_rndY", "_posX", "_posY"];
 // Select random X and Y
 _rndX = (random (_sizeX * 2)) - _sizeX;
 _rndY = (random (_sizeY * 2)) - _sizeY;
@@ -34,4 +34,4 @@ if (_dir != 0) then {
   _posY = _centerY + _rndY;
 };
 
-[_posX,_posY,0]
+[_posX, _posY, 0]

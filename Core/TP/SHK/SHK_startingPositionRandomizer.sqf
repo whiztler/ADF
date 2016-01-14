@@ -35,7 +35,7 @@
     "east", "west", "guer", "civ"
 
   Syntax:
-    [["side",number,<objectrange>,[]],["side",number,[object1,object2],["color","type","text"]],...] call compile preprocessfile "SHK_startingPositionRandomizer.sqf"
+    [["side",number,<objectrange>,[]],["side",number,[object1,object2],["color", "type", "text"]],...] call compile preprocessfile "SHK_startingPositionRandomizer.sqf"
   
   Parameters:
     0   String    One of the four sides.
@@ -51,11 +51,11 @@
                   2  Text   Optional. Text to display next to the marker.
   
   Examples:
-    [["west",3]] call compile preprocessfile "SHK_startingPositionRandomizer.sqf"
-    [["west",3],["east",2]] call compile preprocessfile "SHK_startingPositionRandomizer.sqf"
-    [["west",2,20],["east",5,[car1,truck4]]] call compile preprocessfile "SHK_startingPositionRandomizer.sqf"
-    [["west",3,0,[]]] call compile preprocessfile "SHK_startingPositionRandomizer.sqf"
-    [["west",3,50,["blue","b_inf","Infantry"]]] call compile preprocessfile "SHK_startingPositionRandomizer.sqf"
+    [["west", 3]] call compile preprocessfile "SHK_startingPositionRandomizer.sqf"
+    [["west", 3],["east", 2]] call compile preprocessfile "SHK_startingPositionRandomizer.sqf"
+    [["west", 2, 20],["east", 5,[car1,truck4]]] call compile preprocessfile "SHK_startingPositionRandomizer.sqf"
+    [["west", 3, 0,[]]] call compile preprocessfile "SHK_startingPositionRandomizer.sqf"
+    [["west", 3, 50,["blue", "b_inf", "Infantry"]]] call compile preprocessfile "SHK_startingPositionRandomizer.sqf"
   
   Briefing:
     If marker parameter(s) is defined for a side, a marker with name "startpos" is created at the starting location.
@@ -73,7 +73,7 @@
 // Move an object to a new position while retaining direction and distance to a certain position
 // [Object, Position of old point of reference, Position of new point of reference]
 SHK_RandStaPos_fnc_move = {
-	private ["_dir","_dst","_obj","_new","_old","_pos"];
+	private ["_dir", "_dst", "_obj", "_new", "_old", "_pos"];
 	_obj = _this select 0;
 	_old = _this select 1;
 	_new = _this select 2;
@@ -85,24 +85,24 @@ SHK_RandStaPos_fnc_move = {
 
 // Take in an array of numbers, which mean a certain marker for each side
 SHK_RandStaPos_fnc_moveObjects = {
-  private ["_side","_oldPos","_newPos","_rand"];
+  private ["_side", "_oldPos", "_newPos", "_rand"];
   {
     _side = tolower(_x select 0);
     _rand = _this select _forEachIndex;
     
-    _oldPos = getmarkerpos format ["startpos_%1",_side];
+    _oldPos = getmarkerpos format ["startpos_%1", _side];
     _newPos = [];
     
     // Only move if randomly selected position is other than the current/original position
     if (_rand > 0) then {
-      _newPos = getmarkerpos format ["startpos_%1_%2",_side,_rand];
+      _newPos = getmarkerpos format ["startpos_%1_%2", _side, _rand];
       
       // Move objects, AIs and playable (non-human) units on the server
       if isServer then {
         // Move playable units (AIs not picked by a human player)
         {
           if (_side == tolower(format ["%1",side _x])) then {
-            [_x,_oldPos,_newPos] call SHK_RandStaPos_fnc_move;
+            [_x, _oldPos, _newPos] call SHK_RandStaPos_fnc_move;
           };
         } foreach (if ismultiplayer then {playableunits} else {switchableunits});
 
@@ -115,15 +115,15 @@ SHK_RandStaPos_fnc_moveObjects = {
           if (typename _range  == (typename [])) then {
             if (count _range > 0) then {
               {
-                [_x,_oldPos,_newPos] call SHK_RandStaPos_fnc_move;
+                [_x, _oldPos, _newPos] call SHK_RandStaPos_fnc_move;
               } foreach _range;
             };
 
           // Only range given
           } else {
             if (_range > 0) then {
-              private ["_objects","_xPos","_dir","_dst"];
-              _objects = nearestobjects [_oldPos,[],_range];
+              private ["_objects", "_xPos", "_dir", "_dst"];
+              _objects = nearestobjects [_oldPos,[], _range];
 
               {
                 _xPos = getpos _x;
@@ -144,7 +144,7 @@ SHK_RandStaPos_fnc_moveObjects = {
   if !isDedicated then {
     // Move the player unit on the client side
     _this spawn {
-      private ["_sidePlayer","_side","_oldPos","_newPos","_mrkPos"];
+      private ["_sidePlayer", "_side", "_oldPos", "_newPos", "_mrkPos"];
       
       waituntil {!isnull player};
       
@@ -153,24 +153,24 @@ SHK_RandStaPos_fnc_moveObjects = {
         _side = tolower(_x select 0);
         _rand = _this select _forEachIndex;
         
-        _oldPos = getmarkerpos format ["startpos_%1",_side];
+        _oldPos = getmarkerpos format ["startpos_%1", _side];
         _mrkPos = _oldPos;
         
         // Only move if randomly selected position is other than the current/original position
         if (_rand > 0) then {
-          _newPos = getmarkerpos format ["startpos_%1_%2",_side,_rand];
+          _newPos = getmarkerpos format ["startpos_%1_%2", _side, _rand];
           _mrkPos = _newPos;
           
           if (_sidePlayer == _side) then {
             if !isServer then {
-              [player,_oldPos,_newPos] call SHK_RandStaPos_fnc_move;
+              [player, _oldPos, _newPos] call SHK_RandStaPos_fnc_move;
             };
           };
         };
       
         // Marker data
         if (count _x > 3) then {
-          private ["_p","_color","_type","_text"];
+          private ["_p", "_color", "_type", "_text"];
           _p = _x select 3;
           _text = "";
           if (count _p == 0) then {
@@ -186,7 +186,7 @@ SHK_RandStaPos_fnc_moveObjects = {
           
           // Create local marker
           if (_sidePlayer == _side) then {
-            _marker = createMarkerLocal ["startpos",_mrkPos];
+            _marker = createMarkerLocal ["startpos", _mrkPos];
             _marker setMarkerShapeLocal "ICON";
             _marker setMarkerTypeLocal _type;
             _marker setMarkerColorLocal _color;
@@ -206,11 +206,11 @@ SHK_RandStaPos_Parameters = _this;
 if isServer then {
   // Pick random location for each side. Random number is chosen between 0 and parameter given maximum.
   // This number is used in the marker names for the wanted locations.
-  private ["_randomizerResults","_random"];
+  private ["_randomizerResults", "_random"];
   _randomizerResults = [];
   {
     _random = floor(random (_x select 1));
-    _randomizerResults set [count _randomizerResults,_random];
+    _randomizerResults set [count _randomizerResults, _random];
   } foreach _this;
   
   // Send the results to clients

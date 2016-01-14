@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.43 / NOVEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Respawn init 
 Author: Whiztler
@@ -11,20 +11,20 @@ File: ADF_onPlayerRespawn.sqf
 ****************************************************************/
 
 // Init
-private["_cID","_ADF_unit"];
+private["_cID", "_ADF_unit"];
 _ADF_unit = player;
 waitUntil {alive _ADF_unit};
 
 /////  Respawn params/vars - announce (hint) number of remaining respawn tickets per side
 if (ADF_Tickets) then {
-	private["_ADF_wTix","_ADF_eTix","_ADF_unitName"];
-	_ADF_wTix = [WEST] call BIS_fnc_respawnTickets;
-	_ADF_eTix = [EAST] call BIS_fnc_respawnTickets;
+	private["_ADF_wTix", "_ADF_eTix", "_ADF_unitName"];
+	_ADF_wTix = [west] call BIS_fnc_respawnTickets;
+	_ADF_eTix = [east] call BIS_fnc_respawnTickets;
 
 	_ADF_unitName = name vehicle player;
 
-	if (side player == WEST) then {
-		[[_ADF_unitName,_ADF_wTix],
+	if (side player == west) then {
+		[[_ADF_unitName, _ADF_wTix],
 			{
 				HintSilent parseText format
 					["					
@@ -33,13 +33,13 @@ if (ADF_Tickets) then {
 						<t color='#1262c4' align='left'>BLUEFOR</t><t color='#A1A4AD' align='left'> slots remaining: </t><t color='#FFFFFF' align='right'>%3</t><br/>
 					",ADF_clanName, _this select 0, _this select 1];
 			}
-		] remoteExec ["BIS_fnc_spawn",WEST,false];		
+		] remoteExec ["BIS_fnc_spawn",west, false];		
 		sleep 8;
 		hintSilent "";
 	};
 
-	if (side player == EAST) then {	
-		[[_ADF_unitName,_ADF_eTix],
+	if (side player == east) then {	
+		[[_ADF_unitName, _ADF_eTix],
 			{
 				HintSilent parseText format
 					["					
@@ -48,7 +48,7 @@ if (ADF_Tickets) then {
 						<t color='#d45454' align='left'>OPFOR</t><t color='#A1A4AD' align='left'> slots remaining: </t><t color='#FFFFFF' align='right'>%3</t><br/>
 					",ADF_clanName, _this select 0, _this select 1];
 			}
-		] remoteExec ["BIS_fnc_spawn",EAST,false];	
+		] remoteExec ["BIS_fnc_spawn",east, false];	
 		sleep 8;
 		hintSilent "";
 	};
@@ -80,7 +80,7 @@ if (ADF_Clan_uniformInsignia) then {[_ADF_unit,"CLANPATCH"] call BIS_fnc_setUnit
 
 // (re-apply) SOR uniform texture
 
-if ((typeOf player) IN ["B_recon_F","B_recon_LAT_F","B_recon_exp_F","B_recon_medic_F","B_recon_TL_F","B_recon_M_F","B_recon_JTAC_F"]) then {
+if ((typeOf player) IN ["B_recon_F", "B_recon_LAT_F", "B_recon_exp_F", "B_recon_medic_F", "B_recon_TL_F", "B_recon_M_F", "B_recon_JTAC_F"]) then {
 	[_ADF_unit] spawn {
 		ADF_sorUnits = [];		
 		// Check if the SOR groups are populated/exist and add to ADF_sorUnits array

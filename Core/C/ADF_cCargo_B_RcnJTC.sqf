@@ -1,10 +1,10 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.43 / NOVEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Crate Cargo Script (BLUEFOR) - Recon/JTAC teams
 Author: Whiztler
-Script version: 2.1
+Script version: 2.2
 
 Game type: n/a
 File: ADF_cCargo_B_RcnJTC.sqf
@@ -23,15 +23,16 @@ if (!isServer) exitWith {};
 waitUntil {time > 0};
 
 // Init
-_crate = _this select 0;
+params ["_crate"];
+private ["_wpn", "_spw", "_lau", "_mag", "_dem", "_mis", "_itm", "_uni"];
 _crate allowDamage false;
-_wpn = 3; 	// Regular Weapons
-_spw = 2; 	// Special Purpose Weapons
+_wpn = 1; 	// Regular Weapons
+_spw = 1; 	// Special Purpose Weapons
 _lau = 1;	// Launchers
 _mag = 10;	// Magazines
 _dem = 5;	// Demo/Explosives
 _mis = 1;	// Missiles/Rockets
-_itm = 5;	// Items
+_itm = 2;	// Items
 _uni = 5;	// Uniform/Vest/Backpack/etc
 
 // Settings 
@@ -82,10 +83,10 @@ _crate addMagazineCargoGlobal ["APERSMine_Range_Mag", _itm];
 _crate addMagazineCargoGlobal ["APERSTripMine_Wire_Mag", _itm];
 _crate addMagazineCargoGlobal ["ClaymoreDirectionalMine_Remote_Mag", _itm];
 if (ADF_mod_ACE3) then {
-	_crate addItemCargoGlobal ["ACE_Cellphone",1];
-	_crate addItemCargoGlobal ["ACE_Clacker",_itm];
-	_crate addItemCargoGlobal ["ACE_DefusalKit",_itm];
-	_crate addItemCargoGlobal ["ACE_wirecutter",_itm];
+	_crate addItemCargoGlobal ["ACE_Cellphone", 1];
+	_crate addItemCargoGlobal ["ACE_Clacker", _itm];
+	_crate addItemCargoGlobal ["ACE_DefusalKit", _itm];
+	_crate addItemCargoGlobal ["ACE_wirecutter", _itm];
 };
 
 // Weapon mountings
@@ -145,8 +146,8 @@ _crate addMagazineCargoGlobal ["UGL_FlareGreen_F", _mag];
 _crate addMagazineCargoGlobal ["UGL_FlareRed_F", _mag];
 _crate addMagazineCargoGlobal ["UGL_FlareYellow_F", _mag];
 if (ADF_mod_ACE3) then {
-	_crate addItemCargoGlobal ["ACE_HuntIR_M203",10];
-	_crate addItemCargoGlobal ["ACE_HuntIR_monitor",2];
+	_crate addItemCargoGlobal ["ACE_HuntIR_M203", 10];
+	_crate addItemCargoGlobal ["ACE_HuntIR_monitor", 2];
 };
  
 // Grenades/Chemlights
@@ -164,27 +165,27 @@ _crate addMagazineCargoGlobal ["Chemlight_yellow", _mag];
 _crate addMagazineCargoGlobal ["Chemlight_blue", _mag]; 
 _crate addMagazineCargoGlobal ["B_IR_Grenade", _mag];
 if (ADF_mod_ACE3) then {
-	_crate addItemCargoGlobal ["ACE_HandFlare_White",_mag];
-	_crate addItemCargoGlobal ["ACE_HandFlare_Red",_mag];
-	_crate addItemCargoGlobal ["ACE_HandFlare_Green",_mag];
-	_crate addItemCargoGlobal ["ACE_HandFlare_Yellow",_mag];
+	_crate addItemCargoGlobal ["ACE_HandFlare_White", _mag];
+	_crate addItemCargoGlobal ["ACE_HandFlare_Red", _mag];
+	_crate addItemCargoGlobal ["ACE_HandFlare_Green", _mag];
+	_crate addItemCargoGlobal ["ACE_HandFlare_Yellow", _mag];
 };
 
 // ACE3 Specific	
 if (ADF_mod_ACE3) then {
-	_crate addItemCargoGlobal ["ACE_EarPlugs",15];
-	_crate addItemCargoGlobal ["ace_mapTools",_itm];
+	_crate addItemCargoGlobal ["ACE_EarPlugs", 15];
+	_crate addItemCargoGlobal ["ace_mapTools", _itm];
 };
 
 // Medical Items
 if (ADF_mod_ACE3) then {
-	_crate addItemCargoGlobal ["ACE_fieldDressing",_mag];
-	_crate addItemCargoGlobal ["ACE_personalAidKit",1];
-	_crate addItemCargoGlobal ["ACE_morphine",10];
-	_crate addItemCargoGlobal ["ACE_epinephrine",_itm];
+	_crate addItemCargoGlobal ["ACE_fieldDressing", _mag];
+	_crate addItemCargoGlobal ["ACE_personalAidKit", 1];
+	_crate addItemCargoGlobal ["ACE_morphine", 10];
+	_crate addItemCargoGlobal ["ACE_epinephrine", _itm];
 } else {
-	_crate addItemCargoGlobal ["FirstAidKit",_mag];
-	_crate addItemCargoGlobal ["Medikit",1];
+	_crate addItemCargoGlobal ["FirstAidKit", _mag];
+	_crate addItemCargoGlobal ["Medikit", 1];
 };
 
 // Optical/Bino's/Goggles
@@ -193,14 +194,14 @@ _crate addWeaponCargoGlobal ["RangeFinder", _itm];
 _crate addItemCargoGlobal ["G_Tatical_Clear", _itm];
 _crate addItemCargoGlobal ["NVGoggles", _itm];
 if (ADF_mod_ACE3) then {
-	_crate addItemCargoGlobal ["ACE_Vector",_itm];
-	_crate addItemCargoGlobal ["ACE_Kestrel4500",_itm];
-	_crate addItemCargoGlobal ["ACE_RangeCard",_itm];		
-	_crate addItemCargoGlobal ["ACE_ATragMX",_itm];		
-	_crate addItemCargoGlobal ["ace_spottingscope",2];		
-	_crate addItemCargoGlobal ["ace_mx2a",1];		
-	_crate addItemCargoGlobal ["ace_yardage450",1];		
-	_crate addItemCargoGlobal ["ace_dagr",_itm];		
+	_crate addItemCargoGlobal ["ACE_Vector", _itm];
+	_crate addItemCargoGlobal ["ACE_Kestrel4500", _itm];
+	_crate addItemCargoGlobal ["ACE_RangeCard", _itm];		
+	_crate addItemCargoGlobal ["ACE_ATragMX", _itm];		
+	_crate addItemCargoGlobal ["ace_spottingscope", 2];		
+	_crate addItemCargoGlobal ["ace_mx2a", 1];		
+	_crate addItemCargoGlobal ["ace_yardage450", 1];		
+	_crate addItemCargoGlobal ["ace_dagr", _itm];		
 };	
 
 // ACRE / TFAR and cTAB
@@ -217,7 +218,7 @@ if (!ADF_mod_ACRE && !ADF_mod_TFAR) then {_crate addItemCargoGlobal ["ItemRadio"
 if (ADF_mod_CTAB) then {
 	_crate addItemCargoGlobal ["ItemAndroid", 3];
 	_crate addItemCargoGlobal ["ItemcTab", 1];
-	_crate addItemCargoGlobal ["ItemcTabHCam",_itm];		
+	_crate addItemCargoGlobal ["ItemcTabHCam", _itm];		
 };
 
 // Gear kit (not working from crates/veh)

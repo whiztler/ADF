@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.43 / NOVEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Crew check. Check if Pilot or MBT/APC crew
 Author: Whiztler
@@ -28,8 +28,8 @@ RHS classes can be added/edited in: Core\ADF_crewCheck_RHS/sqf
 if (hasInterface) then { // Do NOT edit/remove
 	"ADF_CC_msg" addPublicVariableEventHandler {
 		private ["_ADF_CC_unitMsg"];
-		params ["_ADF_CC_unit","_ADF_CC_objectName"];
-		_ADF_CC_unitMsg = format ["%1, you cannot operate a %2.", name vehicle player,_ADF_CC_objectName];
+		params ["_ADF_CC_unit", "_ADF_CC_objectName"];
+		_ADF_CC_unitMsg = format ["%1, you cannot operate a %2.", name vehicle player, _ADF_CC_objectName];
 		["ADF_noticeMsg",[_ADF_CC_unitMsg]] call BIS_fnc_showNotification;
 	};
 };
@@ -123,7 +123,7 @@ ADF_CC_armVeh_Restric	= [
 	"B_MBT_01_TUSK_F",
 	"B_MBT_01_cannon_F",
 	"B_APC_Tracked_01_AA_F",
-	"B_MBT_01_arty_F","B_MBT_01_mlrs_F" 	// never place a comma after the last entry!!!
+	"B_MBT_01_arty_F", "B_MBT_01_mlrs_F" 	// never place a comma after the last entry!!!
 ];
 
 // Enter the names (editor name) of vehicles that are white listed (both Air, Armored)
@@ -138,7 +138,7 @@ if (ADF_mod_RHS) then {
 	#include "ADF_crewCheck_RHS.sqf"
 };
 
-params ["_ADF_crewCheck_Pilots","_ADF_crewCheck_Armoured"];
+params ["_ADF_crewCheck_Pilots", "_ADF_crewCheck_Armoured"];
 ADF_CC_AirVehArray	= [];
 ADF_CC_ArmVehArray	= [];
 

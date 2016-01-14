@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.43 / NOVEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: sea patrol script
 Author: Whiztler
@@ -34,7 +34,7 @@ Config:
 
 Example for scripted groups:
 [_grp, _Position, 1000, 5, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_seaPatrol;
-[_grp, getMarkerPos "PatrolMarker", 1000, 6, "MOVE", "SAFE", "RED", "LIMITED","FILE",5] call ADF_fnc_seaPatrol;
+[_grp, getMarkerPos "PatrolMarker", 1000, 6, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_seaPatrol;
 
 Notes
 
@@ -47,7 +47,7 @@ Config:
 [
 	Spawn position,		// E.g. getMarkerPos "Spawn" -or- Position Player
 	Patrol position,		// E.g. getMarkerPos "Patrol" -or- Position Player
-	side,				// WEST, EAST or INDEPENDENT
+	side,				// west, east or independent
 	Vessel,				// 1 - speedboat minigun
 						// 2 - assault boat (RHIB)
 	Gunners,				// TRUE - driver + gunners
@@ -63,8 +63,8 @@ Config:
 ] call ADF_fnc_createSeaPatrol;
 
 Example for scripted groups:
-[_spawnPos, PatrolPos, WEST, 1, FALSE, 300, 5, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_createSeaPatrol;
-[getMarkerPos "myMarker", getMarkerPos "PatrolMarker", EAST, 2, FALSE, 500, 6, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_createSeaPatrol;
+[_spawnPos, PatrolPos, west, 1, FALSE, 300, 5, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_createSeaPatrol;
+[getMarkerPos "myMarker", getMarkerPos "PatrolMarker", east, 2, FALSE, 500, 6, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_createSeaPatrol;
 
 Notes
 
@@ -74,13 +74,13 @@ call compile preprocessFileLineNumbers "Core\F\ADF_fnc_position.sqf";
 
 ADF_fnc_addWaterWaypoint = {
 	// init	
-	params ["_g","_p","_r","_t","_b","_m","_s","_f","_cr"];
+	params ["_g", "_p", "_r", "_t", "_b", "_m", "_s", "_f", "_cr"];
 	private ["_wp"];
 
-	if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_addWaypoint - WP radius: %1",_r]};
-	if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_addWaypoint - passed pos (before check): %1",_p]};
+	if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_addWaypoint - WP radius: %1", _r]};
+	if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_addWaypoint - passed pos (before check): %1", _p]};
 	_p = [_p] call ADF_fnc_checkPosition;
-	if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_addWaypoint - passed pos (after check): %1",_p]};
+	if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_addWaypoint - passed pos (after check): %1", _p]};
 
 	// Find a position within the parameters (near to the random position)
 	for "_i" from 1 to 10 do {
@@ -110,23 +110,23 @@ ADF_fnc_seaPatrol = {
 	params [
 		"_g",
 		"_p",
-		["_r",250,[0]],
-		["_c",4,[0]],
-		["_t", ["MOVE","DESTROY","GETIN","SAD","JOIN","LEADER","GETOUT","CYCLE","LOAD","UNLOAD","TR UNLOAD","HOLD","SENTRY","GUARD","TALK","SCRIPTED","SUPPORT","GETIN NEAREST","DISMISS","LOITER"], [""]],
-		["_b", ["UNCHANGED","CARELESS","SAFE","AWARE","COMBAT","STEALTH"], [""]],
-		["_m", ["NO CHANGE","BLUE","GREEN","WHITE","YELLOW","RED"], [""]],
-		["_s", ["UNCHANGED","LIMITED","NORMAL","FULL"], [""]],
-		["_f", ["NO CHANGE","COLUMN","STAG COLUMN","WEDGE","ECH LEFT","ECH RIGHT","VEE","LINE","FILE","DIAMOND"], [""]],
-		["_cr",5,[0]]
+		["_r", 250,[0]],
+		["_c", 4,[0]],
+		["_t", ["MOVE", "DESTROY", "GETIN", "SAD", "JOIN", "LEADER", "GETOUT", "CYCLE", "LOAD", "UNLOAD", "TR UNLOAD", "HOLD", "SENTRY", "GUARD", "TALK", "SCRIPTED", "SUPPORT", "GETIN NEAREST", "DISMISS", "LOITER"], [""]],
+		["_b", ["UNCHANGED", "CARELESS", "SAFE", "AWARE", "COMBAT", "STEALTH"], [""]],
+		["_m", ["NO CHANGE", "BLUE", "GREEN", "WHITE", "YELLOW", "RED"], [""]],
+		["_s", ["UNCHANGED", "LIMITED", "NORMAL", "FULL"], [""]],
+		["_f", ["NO CHANGE", "COLUMN", "STAG COLUMN", "WEDGE", "ECH LEFT", "ECH RIGHT", "VEE", "LINE", "FILE", "DIAMOND"], [""]],
+		["_cr", 5,[0]]
 	];
-	private ["_a","_i","_cx"];
+	private ["_a", "_i", "_cx"];
 
-	_a = [_g,_p,_r,_t,_b,_m,_s,_f,_cr];
+	_a = [_g, _p, _r, _t, _b, _m, _s, _f, _cr];
 
 	// Loop through the number of waypoints needed
 	for "_i" from 0 to (_c - 1) do {
 		_a call ADF_fnc_addWaterWaypoint;
-		if (ADF_debug) then {diag_log " "; diag_log format ["ADF Debug: ADF_fnc_seaPatrol - called ADF_fnc_addWaterWaypoint for WP %1",_i]};
+		if (ADF_debug) then {diag_log " "; diag_log format ["ADF Debug: ADF_fnc_seaPatrol - called ADF_fnc_addWaterWaypoint for WP %1", _i]};
 	};
 	
 	// Add a cycle waypoint
@@ -144,19 +144,19 @@ ADF_fnc_createSeaPatrol = {
 	params [
 		"_vs",
 		"_vp",
-		["_gs", [WEST, EAST, INDEPENDENT], [WEST]],
+		["_gs", [west, east, independent], [west]],
 		["_gc", 1,[0]],
 		["_gt", TRUE, [TRUE]],
-		["_r",1000,[0]],
-		["_c",4,[0]],
-		["_t", ["MOVE","DESTROY","GETIN","SAD","JOIN","LEADER","GETOUT","CYCLE","LOAD","UNLOAD","TR UNLOAD","HOLD","SENTRY","GUARD","TALK","SCRIPTED","SUPPORT","GETIN NEAREST","DISMISS","LOITER"], [""]],
-		["_b", ["UNCHANGED","CARELESS","SAFE","AWARE","COMBAT","STEALTH"], [""]],
-		["_m", ["NO CHANGE","BLUE","GREEN","WHITE","YELLOW","RED"], [""]],
-		["_s", ["UNCHANGED","LIMITED","NORMAL","FULL"], [""]],
-		["_f", ["NO CHANGE","COLUMN","STAG COLUMN","WEDGE","ECH LEFT","ECH RIGHT","VEE","LINE","FILE","DIAMOND"], [""]],
-		["_cr",5,[0]]
+		["_r", 1000,[0]],
+		["_c", 4,[0]],
+		["_t", ["MOVE", "DESTROY", "GETIN", "SAD", "JOIN", "LEADER", "GETOUT", "CYCLE", "LOAD", "UNLOAD", "TR UNLOAD", "HOLD", "SENTRY", "GUARD", "TALK", "SCRIPTED", "SUPPORT", "GETIN NEAREST", "DISMISS", "LOITER"], [""]],
+		["_b", ["UNCHANGED", "CARELESS", "SAFE", "AWARE", "COMBAT", "STEALTH"], [""]],
+		["_m", ["NO CHANGE", "BLUE", "GREEN", "WHITE", "YELLOW", "RED"], [""]],
+		["_s", ["UNCHANGED", "LIMITED", "NORMAL", "FULL"], [""]],
+		["_f", ["NO CHANGE", "COLUMN", "STAG COLUMN", "WEDGE", "ECH LEFT", "ECH RIGHT", "VEE", "LINE", "FILE", "DIAMOND"], [""]],
+		["_cr", 5,[0]]
 	];
-	private ["_g","_v","_vc","_cc","_bc","_i"];
+	private ["_g", "_v", "_vc", "_cc", "_bc", "_i"];
 	_vc	= "";
 	_cc	= "";
 	if (_gc == 2) then {_gt = FALSE};
@@ -164,15 +164,15 @@ ADF_fnc_createSeaPatrol = {
 	_ps 	= [_vs] call ADF_fnc_checkPosition;
 	_pp 	= [_vp] call ADF_fnc_checkPosition;	
 
-	if (_gs == WEST) then {
+	if (_gs == west) then {
 		if (_gc == 1) then {_vc = "B_Boat_Armed_01_minigun_F"} else {_vc = "B_Boat_Transport_01_F";};
 		_cc = "B_Soldier_F";
 	};
-	if (_gs == EAST) then {
+	if (_gs == east) then {
 		if (_gc == 1) then {_vc = "O_Boat_Armed_01_hmg_F"} else {_vc = "O_Boat_Transport_01_F";};
 		_cc = "O_Soldier_F";
 	};
-	if (_gs == INDEPENDENT) then {
+	if (_gs == independent) then {
 		if (_gc == 1) then {_vc = "I_Boat_Armed_01_minigun_F"} else {_vc = "I_Boat_Transport_01_F";};
 		_cc = "I_Soldier_F";
 	};

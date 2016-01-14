@@ -1,6 +1,6 @@
 ﻿/****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.43 / NOVEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Call Sings & Radio configuration
 Author: Whiztler
@@ -41,7 +41,7 @@ private [
 ];
 
 params [
-	["_ADF_preset", "DEFAULT", ["SHAPE","DEFAULT","CUSTOM","WOLFPACK","2SIERRA"]],
+	["_ADF_preset", "DEFAULT", ["SHAPE", "DEFAULT", "CUSTOM", "WOLFPACK", "2SIERRA"]],
 	"_ADF_ACRE_fullDuplex",
 	"_ADF_ACRE_interference",
 	"_ADF_ACRE_AIcanHear",
@@ -68,11 +68,11 @@ If (_ADF_preset == "WOLFPACK") then {ADF_presetData = ADF_preset_WP;};
 If (_ADF_preset == "2SIERRA") then {ADF_presetData = ADF_preset_2S;};
 
 ADF_fnc_PresetSetGroupID = { // 1.40B03
-	private ["_g","_cs"];
+	private ["_g", "_cs"];
 	if (!isNil (_this select 0)) then {
-		_g = call compile format ["%1",_this select 0];
+		_g = call compile format ["%1", _this select 0];
 		_cs = _this select 1;
-		_g setGroupId [format ["%1",_cs]];
+		_g setGroupId [format ["%1", _cs]];
 	};
 	ADF_set_callSigns = true;
 	true	
@@ -131,7 +131,7 @@ if (ADF_mod_ACRE) then { // ACRE2 detected
 	[_ADF_ACRE_fullDuplex] call acre_api_fnc_setFullDuplex;
 	[_ADF_ACRE_interference] call acre_api_fnc_setInterference;
 	[_ADF_ACRE_AIcanHear] call acre_api_fnc_setRevealToAI;
-	if (ADF_debug) then {["MOD - ACRE settings initialized",false] call ADF_fnc_log};
+	if (ADF_debug) then {["MOD - ACRE settings initialized", false] call ADF_fnc_log};
 };
 
 
@@ -141,7 +141,7 @@ if (hasInterface) then {
 	waitUntil {time > 10}; // Let TFAR init properly
 	// Find the players group in the '_ADF_preset_companyGroups' array
 	_i = _ADF_preset_companyGroups find _ADF_uGroupID;
-	if (_i == -1) exitWith {["PRESETS - ERROR! Unknown group or unit. Roster NOT created. Call sign NOT applied. Please use ADF units only!",true] call ADF_fnc_log};
+	if (_i == -1) exitWith {["PRESETS - ERROR! Unknown group or unit. Roster NOT created. Call sign NOT applied. Please use ADF units only!", true] call ADF_fnc_log};
 	ADF_uPreset = [ADF_presetData select _i, []] select (_i < 0);
 
 	//  Apply call signs across the board
@@ -149,7 +149,7 @@ if (hasInterface) then {
 	waitUntil {ADF_set_callSigns}; // wait until a call sign has been been applied > 140B05
 	//_ADF_uGroup setGroupIdGlobal [ADF_uPreset select 1]; // 141B01
 	
-	if (ADF_debug) then {["PRESETS - Preset call signs applied",false] call ADF_fnc_log};
+	if (ADF_debug) then {["PRESETS - Preset call signs applied", false] call ADF_fnc_log};
 
 	if (ADF_mod_TFAR) then {
 		ADF_TFAR_LR_freq = ADF_uPreset select 2; // 1.40B03
@@ -163,7 +163,7 @@ if (ADF_mod_ACE3 && (ADF_microDAGR == "ACE_microDAGR")) then { //  140B06
 	ace_map_BFT_Enabled = true;
 	ace_map_BFT_markers = [];
 	[ace_map_fnc_blueForceTrackingUpdate, 1, []] call CBA_fnc_addPerFrameHandler;	
-	if (ADF_debug) then {["PRESETS - ACE3 BluForce Tracking initialized",false] call ADF_fnc_log};
+	if (ADF_debug) then {["PRESETS - ACE3 BluForce Tracking initialized", false] call ADF_fnc_log};
 };
 
 ///// Apply the Radio Frequencies
@@ -176,7 +176,7 @@ if (ADF_mod_TFAR && ADF_TFAR_preset && !isDedicated) then {
 	// Apply SW & LR frequencies
 	if (_ADF_TFAR_SW_radio) then {[(call TFAR_fnc_activeSwRadio), 1, str ADF_TFAR_SW_freq] call TFAR_fnc_SetChannelFrequency};
 	if (_ADF_TFAR_LR_radio) then {[(call TFAR_fnc_activeLrRadio), 1, str ADF_TFAR_LR_freq] call TFAR_fnc_SetChannelFrequency};
-	if (ADF_debug) then {["RADIO - TFAR radios configured",false] call ADF_fnc_log};
+	if (ADF_debug) then {["RADIO - TFAR radios configured", false] call ADF_fnc_log};
 	
 	// Announce to player
 	if (!_ADF_TFAR_LR_radio && _ADF_TFAR_SW_radio) then {systemChat format ["%1: %2, TFAR radio tuned in. SW: %3",ADF_clanTAG,name vehicle player,ADF_TFAR_SW_freq]};
@@ -190,7 +190,7 @@ if (ADF_mod_TFAR && ADF_TFAR_preset && !isDedicated) then {
 if (ADF_mod_ACRE && ADF_ACRE_preset) then {
 	// Apply ACRE channels WIP
 	ADF_set_radios = true;
-	if (ADF_debug) then {["RADIO - ACRE2 radios configured",false] call ADF_fnc_log};
+	if (ADF_debug) then {["RADIO - ACRE2 radios configured", false] call ADF_fnc_log};
 };
 
 // Set radios to true in case TFAR and ACRE are not active
@@ -216,11 +216,11 @@ if (isMultiplayer) then {ADF_roster_uArray = playableUnits;} else {ADF_roster_uA
 		_ADF_roster_uRole = " - " + roleDescription _x + " - (" + getText(configFile >> "CfgVehicles" >> typeOf(_x) >> "displayName") + ")"; // V1.41B01
 		if (ADF_TFAR_preset && ADF_mod_TFAR) then {
 			if (_ADF_roster_groupNew != _ADF_roster_groupOld) then {
-				ADF_roster_userGroup = format ["<br/><font size='16' color='#D7DBD5'>%1</font>  <font color='#9DA698'>[</font><font color='#FF9E05'>%2</font><font color='#9DA698'>][</font><font color='#10D471'>%3</font><font color='#9DA698'>]<br/>",_ADF_roster_uGroupName, ADF_TFAR_LR_freq, ADF_TFAR_SW_freq];
+				ADF_roster_userGroup = format ["<br/><font size='16' color='#D7DBD5'>%1</font>  <font color='#9DA698'>[</font><font color='#FF9E05'>%2</font><font color='#9DA698'>][</font><font color='#10D471'>%3</font><font color='#9DA698'>]<br/>", _ADF_roster_uGroupName, ADF_TFAR_LR_freq, ADF_TFAR_SW_freq];
 			}
 		} else { // to add ACRE2 (WIP)
 			if (_ADF_roster_groupNew != _ADF_roster_groupOld) then {
-				ADF_roster_userGroup = format ["<br/><font size='16' color='#D7DBD5'>%1</font><br/>",_ADF_roster_uGroupName];
+				ADF_roster_userGroup = format ["<br/><font size='16' color='#D7DBD5'>%1</font><br/>", _ADF_roster_uGroupName];
 			}
 		};
 		
@@ -248,13 +248,13 @@ if (!(ADF_TFAR_preset && ADF_mod_TFAR) && !(ADF_ACRE_preset && ADF_mod_ACRE)) th
 
 // Roster publish
 _ADF_rosterPub = ADF_roster_Intro + ADF_roster_line;
-player createDiaryRecord ["Deployment Roster",["Deployment Roster",_ADF_rosterPub]];
+player createDiaryRecord ["Deployment Roster",["Deployment Roster", _ADF_rosterPub]];
 ADF_set_roster = true;
 
 // Announce call sign
 if (player == leader (group player)) then {player groupChat format ["Our call sign is: %1",groupID (_ADF_uGroup)];};
 
-if (ADF_debug) then {["INIT - Roster generated",false] call ADF_fnc_log};
+if (ADF_debug) then {["INIT - Roster generated", false] call ADF_fnc_log};
 
 waitUntil {ADF_set_roster && ADF_set_radios};
 // Everything is set, lets destroy the variables, we don't need them anymore
@@ -264,16 +264,16 @@ ADF_preset_NOPRYL = nil; ADF_preset_DEFAULT = nil; ADF_preset_CUSTOM = nil; ADF_
 
 _ADF_perfDiagStop = diag_tickTime;
 if (ADF_debug) then {
-	_debugDiag = format [" (DIAG: %1)",_ADF_perfDiagStop - _ADF_perfDiagStart];
+	_debugDiag = format [" (DIAG: %1)", _ADF_perfDiagStop - _ADF_perfDiagStart];
 	_debugText = "PRESETS - Preset processed.";
 	_debugMsg = _debugText + _debugDiag;
-	[_debugMsg,false] call ADF_fnc_log;
+	[_debugMsg, false] call ADF_fnc_log;
 };
 
 // ADF
-player createDiarySubject ["ADF","ADF"];
-player createDiaryRecord ["ADF",["ARMA Mission Development Framework","
+player createDiarySubject ["ADF", "ADF"];
+player createDiaryRecord ["ADF",["ARMA Mission Development Framework", "
 <img width='375' height='375' shadow='false' image='Core\I\ADF_logo.paa'/><br/><br/>
 <font size='14' color='#d7dbd5'>          ARMA Mission Development Framework</font><br/>
-<font color='#9DA698'>                     ADF version: 1.43 / NOVEMBER 2015</font><br/><br/>
+<font color='#9DA698'>                     ADF version: 1.43 / JANUARY 2016</font><br/><br/>
 "]];

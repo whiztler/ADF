@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.43 / NOVEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Objects Counter
 Author: Whiztler
@@ -27,12 +27,12 @@ In game use 0-0-1 to check the number of units
 Playable slots are only shown in a MP session!
 ****************************************************************/
 
-_cntO = {(side _x) == EAST} count allUnits;
-_cntOg = {(side _x) == EAST} count allGroups;
-_cntOp = {(side _x) == EAST} count playableUnits;
-_cntB = {(side _x) == WEST} count allUnits;
-_cntBg = {(side _x) == WEST} count allGroups;
-_cntBp = {(side _x) == WEST} count playableUnits;
+_cntO = {(side _x) == east} count allUnits;
+_cntOg = {(side _x) == east} count allGroups;
+_cntOp = {(side _x) == east} count playableUnits;
+_cntB = {(side _x) == west} count allUnits;
+_cntBg = {(side _x) == west} count allGroups;
+_cntBp = {(side _x) == west} count playableUnits;
 _cntI = {(side _x) == RESISTANCE} count allUnits;
 _cntIg = {(side _x) == RESISTANCE} count allGroups;
 _cntIp = {(side _x) == RESISTANCE} count playableUnits;

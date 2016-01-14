@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.43 / NOVEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Killed init
 Author: Whiztler
@@ -12,16 +12,16 @@ File: onPlayerKilled.sqf
 
 // Init
 params ["_ADF_oldUnit"];
-private["_ADF_wTix","_ADF_eTix","_u","_ADF_unit","_ADF_respawnType"];
+private["_ADF_wTix", "_ADF_eTix", "_u", "_ADF_unit", "_ADF_respawnType"];
 _ADF_unit 		= player;
-_ADF_wTix 		= [WEST] call BIS_fnc_respawnTickets;
-_ADF_eTix		= [EAST] call BIS_fnc_respawnTickets;
+_ADF_wTix 		= [west] call BIS_fnc_respawnTickets;
+_ADF_eTix		= [east] call BIS_fnc_respawnTickets;
 _ADF_respawnType	= getNumber (missionConfigFile >> "respawn"); // 140B05
 
 if ((_ADF_respawnType == 0) || (_ADF_respawnType == 1)) exitWith {}; // No respawn (0) or Bird respawn (1) > 140B05
 
 // Check if respawn-tickets are enabled and check if there are no more tickets left. If true evoke spectator.
-if (	ADF_Tickets && (((side _ADF_unit == WEST) && (_ADF_wTix < 1)) || ((side _ADF_unit == EAST) && (_ADF_eTix < 1)))) exitWith { // 140B05
+if (	ADF_Tickets && (((side _ADF_unit == west) && (_ADF_wTix < 1)) || ((side _ADF_unit == east) && (_ADF_eTix < 1)))) exitWith { // 140B05
 	if (ADF_mod_ACE3) then {
 		_ADF_unit setVariable ["ACE_Medical_hasPain", false]; // 139A12
 		_ADF_unit setVariable ["ACE_Medical_isBleeding", false]; // 139A12
@@ -30,7 +30,7 @@ if (	ADF_Tickets && (((side _ADF_unit == WEST) && (_ADF_wTix < 1)) || ((side _AD
 		ace_hearing_disableVolumeUpdate = true; // 1.40 B05
 	};
 	"chromAberration" ppEffectEnable false; // 139A12	
-	[_ADF_unit,_ADF_oldUnit,true] call f_fnc_CamInit; // force into F3 Spectator > 140B05
+	[_ADF_unit, _ADF_oldUnit, true] call f_fnc_CamInit; // force into F3 Spectator > 140B05
 };
 
 // Save the player loadout when ACE3 SameGearRespawn is NOT enabled

@@ -19,9 +19,9 @@
     
     Starting Examples:
       nul = dude1 execvm "SHK_intercept.sqf";
-      nul = grpWest1 execvm "SHK_intercept.sqf";
-      nul = [dude2,5,50] execvm "SHK_intercept.sqf";
-      nul = [dude2,5,20] execvm "SHK_intercept.sqf";
+      nul = grpwest1 execvm "SHK_intercept.sqf";
+      nul = [dude2, 5, 50] execvm "SHK_intercept.sqf";
+      nul = [dude2, 5, 20] execvm "SHK_intercept.sqf";
 
     
   Getting the Direction
@@ -44,11 +44,11 @@
                     by info age, which is included in the average calculation as well.
     
     Examples:
-      dir = grpWest1 call SHK_Intercept_getDir;
-      dir = [grpWest1,0.3] call SHK_Intercept_getDir;
-      dir = [grpWest1,10,5] call SHK_Intercept_getDir;
+      dir = grpwest1 call SHK_Intercept_getDir;
+      dir = [grpwest1, 0.3] call SHK_Intercept_getDir;
+      dir = [grpwest1, 10, 5] call SHK_Intercept_getDir;
 */
-private ["_grp","_time","_size"];
+private ["_grp", "_time", "_size"];
 _time = 5;
 _size = 20;
 
@@ -64,7 +64,7 @@ switch (typename _this) do {
 };
 
 SHK_intercept_getDir = {
-  private ["_grp","_ldr","_hst","_age","_samples","_cnt","_dir","_old","_prv","_cur","_ave"];
+  private ["_grp", "_ldr", "_hst", "_age", "_samples", "_cnt", "_dir", "_old", "_prv", "_cur", "_ave"];
   _age = 3;
   _samples = 0;
   _dir = -1;
@@ -101,7 +101,7 @@ SHK_intercept_getDir = {
         _samples = (_cnt - _old);
       };
       
-      private ["_a","_b","_r","_s","_c","_x","_y"];
+      private ["_a", "_b", "_r", "_s", "_c", "_x", "_y"];
       _a = [];
       _b = [];
       
@@ -118,13 +118,13 @@ SHK_intercept_getDir = {
         _s = _a select _r;
         _x = _x + (_s select 0);
         _y = _y + (_s select 1);
-        _b set [count _b,_s];
+        _b set [count _b, _s];
         _a set [_r,"DELETE"];
         _a = _a - ["DELETE"];
       };
       _x = _x / _samples;
       _y = _y / _samples;
-      _ave = [_x,_y];
+      _ave = [_x, _y];
     };
     
     _dir = (((_cur select 0) - (_ave select 0)) atan2 ((_cur select 1) - (_ave select 1)));
@@ -134,7 +134,7 @@ SHK_intercept_getDir = {
     // -- debug -------------------------------------------------------------------
     /*
     private "_m";
-    _m = createMarker [format["mAve%1%2%3",(floor(_ave select 0)),(floor(_ave select 1)),floor time],_ave];
+    _m = createMarker [format["mAve%1%2%3",(floor(_ave select 0)),(floor(_ave select 1)),floor time], _ave];
     _m setMarkerShape "Icon";
     _m setMarkerType "Dot";
     _m setmarkerColor "ColorBlue";
@@ -143,7 +143,7 @@ SHK_intercept_getDir = {
   _dir
 };
 
-private ["_ldr","_old","_hst","_cnt","_cur"];
+private ["_ldr", "_old", "_hst", "_cnt", "_cur"];
 _ldr = leader _grp;
 _ldr setvariable ["shk_intercept_positionhistory",[]];
 _old = _ldr;
@@ -164,7 +164,7 @@ while { ({alive _x} count units _grp) > 0 } do {
   // add position
   _cnt = count _hst;
   _cur = getpos _ldr;
-  _hst set [_cnt,[_cur select 0,_cur select 1]];
+  _hst set [_cnt,[_cur select 0, _cur select 1]];
   
   // max size reached, remove first (oldest) position
   if (_cnt == _size) then {
@@ -172,24 +172,24 @@ while { ({alive _x} count units _grp) > 0 } do {
     _hst = _hst - ["DELETE"];
   };
   
-  _ldr setvariable ["shk_intercept_positionhistory",_hst];
+  _ldr setvariable ["shk_intercept_positionhistory", _hst];
 
   // -- debug -------------------------------------------------------------------
   /*
-  private ["_d","_m"];
+  private ["_d", "_m"];
   if (_debugCounter % 10 == 0) then {
     if (_cnt > 0) then {
-      _d = [_grp,5,3] call SHK_Intercept_getDir;
-      _m = createMarker [format["mDir%1%2%3",(floor(_cur select 0)),(floor(_cur select 1)),floor time],_cur];
+      _d = [_grp, 5, 3] call SHK_Intercept_getDir;
+      _m = createMarker [format["mDir%1%2%3",(floor(_cur select 0)),(floor(_cur select 1)),floor time], _cur];
       _m setMarkerShape "Icon";
       _m setMarkerType "mil_arrow";
       _m setmarkerColor "ColorBlack";
       _m setmarkerdir _d;
-      _m setmarkersize [0.7,0.7];
+      _m setmarkersize [0.7, 0.7];
       _m setmarkertext str _d;
     };
   } else {
-    _m = createMarker [format["mPos%1%2%3",(floor(_cur select 0)),(floor(_cur select 1)),floor time],_cur];
+    _m = createMarker [format["mPos%1%2%3",(floor(_cur select 0)),(floor(_cur select 1)),floor time], _cur];
     _m setMarkerShape "Icon";
     _m setMarkerType "Dot";
     _m setmarkerColor "ColorRed";

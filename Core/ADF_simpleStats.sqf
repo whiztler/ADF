@@ -1,10 +1,10 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.43 / NOVEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Simple Server/Mission Stats (Headless Client enabled)
 Author: Whiztler
-Script version: 3.10
+Script version: 3.14
 
 Game type: n/a
 File: ADF_simpleStats.sqf
@@ -15,20 +15,20 @@ Execute the script using a trigger with radio alpha/bravo/etc
 ****************************************************************/
 
 // Init
-private ["_ADF_cnt"];
+private ["_c", "_s"];
 ADF_sStats_textServer 	= "";
 ADF_sStats_textHeadless1	= "";
 ADF_sStats_textHeadless2	= "";
 ADF_sStats_textHeadless3	= "";
-ADF_sStats_pause			= .5;
-_ADF_cnt					= 0;
+_s						= 0.5;
+_c						= 0;
 
-while {(_ADF_cnt != 20)} do {
-	private ["_ADF_textIntro"];
-	_ADF_cnt = _ADF_cnt + 1;
+while {(_c != 20)} do {
+	private "_ADF_textIntro";
+	_c = _c + 1;
 	
 	ADF_fnc_SimpleStatsCheck = {
-		params ["_c","_n","_m"];
+		params ["_c", "_n", "_m"];
 		private ["_ADF_FPS"];
 		
 		if (isMultiplayer) then {_ADF_FPS = round (diag_fps)} else {_ADF_FPS = "N/A";};
@@ -39,20 +39,20 @@ while {(_ADF_cnt != 20)} do {
 			<t color='#A1A4AD' align='left' font='PuristaMedium' size='.9'>FPS:</t>
 			<t color='#FFFFFF' align='right' font='PuristaMedium' size='.9'>%2</t><br/>
 			
-			<t color='#A1A4AD' align='left' font='PuristaMedium' size='.9'>Units West:</t>
+			<t color='#A1A4AD' align='left' font='PuristaMedium' size='.9'>Units west:</t>
 			<t color='#799cff' align='right' font='PuristaBold' size='.9'>%3</t><br/>
-			<t color='#A1A4AD' align='left' font='PuristaMedium' size='.9'>Units East:</t>
+			<t color='#A1A4AD' align='left' font='PuristaMedium' size='.9'>Units east:</t>
 			<t color='#ff8989' align='right' font='PuristaBold' size='.9'>%4</t><br/>
-			<t color='#A1A4AD' align='left' font='PuristaMedium' size='.9'>Units Independent:</t>
+			<t color='#A1A4AD' align='left' font='PuristaMedium' size='.9'>Units independent:</t>
 			<t color='#d8ff5f' align='right' font='PuristaBold' size='.9'>%5</t><br/>
 			<t color='#A1A4AD' align='left' font='PuristaMedium' size='.9'>Units Civilian:</t>
 			<t color='#eebffd' align='right' font='PuristaBold' size='.9'>%6</t><br/><br/>",
 			_n,																	// 1
 			_ADF_FPS, 															// 2			
-			{(local _x) && (side _x == WEST) && (alive _x)} count allUnits, 			// 3
-			{(local _x) && (side _x == EAST) && (alive _x)} count allUnits, 			// 4
-			{(local _x) && (side _x == INDEPENDENT) && (alive _x)} count allUnits, 	// 5
-			{(local _x) && (side _x == CIVILIAN) && (alive _x)} count allUnits 		// 6
+			{(local _x) && (side _x == west)} count allUnits, 			// 3
+			{(local _x) && (side _x == east)} count allUnits, 			// 4
+			{(local _x) && (side _x == independent)} count allUnits, 	// 5
+			{(local _x) && (side _x == CIVILIAN)} count allUnits 		// 6
 		];
 
 		if (_c == 0) exitWith {ADF_sStats_textServer = _m; publicVariable "ADF_sStats_textServer"};
@@ -77,15 +77,15 @@ while {(_ADF_cnt != 20)} do {
 		<t color='#FFFFFF' align='right' font='PuristaMedium' size='.9'>%3</t><br/>	
 		<t color='#A1A4AD' align='left' font='PuristaMedium' size='.9'>Total Groups:</t>
 		<t color='#FFFFFF' align='right' font='PuristaMedium' size='.9'>%4</t><br/><br/>",
-		[(round time)] call BIS_fnc_secondsToString, 	//1
-		count allUnits,								//2
-		{alive _x} count allPlayers,					//3
-		count allGroups								//4		
+		[(round time)] call BIS_fnc_secondsToString, 					//1
+		count allUnits,												//2
+		{alive _x} count (allPlayers - entities "HeadlessClient_F"),	//3
+		count allGroups												//4		
 	];
 		
 	if (hasInterface) then {hintSilent parseText (_ADF_textIntro + ADF_sStats_textServer + ADF_sStats_textHeadless1 + ADF_sStats_textHeadless2 + ADF_sStats_textHeadless3)}; // v1.42B01
 	
-	UiSleep ADF_sStats_pause;
+	UiSleep _s;
 };
 
 hintSilent "";

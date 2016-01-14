@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.43 / NOVEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Distance calculator (player to object)
 Author: Whiztler
@@ -15,7 +15,7 @@ A hint is displayed showing the Opfor units, distance between then
 player and the Opfor units and the 'knows about' detection ratio (0-4)
 
 Instructions:
-Only works with EAST Opfor units
+Only works with east Opfor units
 ****************************************************************/
 
 // init
@@ -38,7 +38,7 @@ ADF_detect_stopped = {
 	ADF_detect_stop = true;
 };
 
-_cnt = {((side _x) == EAST) && alive _x} count allUnits;
+_cnt = {((side _x) == east) && alive _x} count allUnits;
 if (_cnt == 0) exitwith {call ADF_detect_noOpfor};
 
 // Start the detection loop
@@ -50,7 +50,7 @@ ADF_fnc_detect = [] spawn {
 		_msg = "<t size='1.2' color='#FFFFFF' align='left'>OpFor Detection</t><br/><br/><t color='#A1A4AD' align='left'>The function determines if (and by how much) an OpFor unit knows about a target (player). The function returns values between 0 (does not know about the target) and 4 (is fully aware of the target).<br/><br/>When the ratio > 1.3, the player is spotted and OpFor will search and engage. Note that the ratio differs according to weather and time conditions.</t><br/><br/><br/><t color='#A1A4AD' align='left'>OpFor unit</t><t color='#F7D358' align='center'>Detect Ratio</t><t color='#A1A4AD' align='right'>Distance</t>";
 		_msg = _msg + "<br/>";	
 		{
-			if (side _x == EAST) then {
+			if (side _x == east) then {
 				_msg = _msg + format ["
 					<t color='#FFFFFF' align='left'>%1</t><t color='#F7D358' align='center'>%2</t><t color='#FFFFFF' align='right'>%3</t>
 				", _x, round ((_x knowsAbout player) * (10 ^ 1)) / (10 ^ 1), round (_x distance player)];	
@@ -60,7 +60,7 @@ ADF_fnc_detect = [] spawn {
 
 		hintSilent parseText _msg;
 
-		if ({(side _x == East) && (alive _x)} count allUnits == 0) then {terminate ADF_fnc_detect; call ADF_detect_noOpfor};
+		if ({(side _x == east) && (alive _x)} count allUnits == 0) then {terminate ADF_fnc_detect; call ADF_detect_noOpfor};
 		if (ADF_terminate_detect) exitWith {call ADF_detect_stopped};
 	}; // /while alive player
 	if !(ADF_detect_stop) then {hintSilent parseText "<t size='1.2' color='#FFFFFF' align='left'>OpFor Detection</t><br/><br/><t color='#A1A4AD' align='left'>Player is no longer alive</t>"}; // break out due to dead player

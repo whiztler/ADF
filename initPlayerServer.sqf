@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.43 / NOVEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Local Player init
 Author: Whiztler
@@ -21,5 +21,5 @@ if (isMultiplayer) then {
 
 
 // Cuyrator inits
-{_x addCuratorEditableObjects [[_this select 0],true]} forEach allCurators;  
+{_x addCuratorEditableObjects [[_this select 0], true]} forEach allCurators;  
 

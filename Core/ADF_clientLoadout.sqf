@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.43 / NOVEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Loadout Client
 Author: Whiztler
@@ -35,42 +35,42 @@ if (isServer) then {
 };
 
 _ADF_perfDiagStart = diag_tickTime;
-if (ADF_debug) then {["LOADOUT - Loadout Client started",false] call ADF_fnc_log};
+if (ADF_debug) then {["LOADOUT - Loadout Client started", false] call ADF_fnc_log};
 
 If (IsDedicated || !(local player)) exitWith {}; // 5.43
-_ADF_noLoadout = param [15, false, [true,false]];
-if (_ADF_noLoadout) exitWith {if (ADF_debug) then {["Loadout - noLoadout option selected. Exiting loadout client.",false] call ADF_fnc_log; ADF_gearLoaded = true; publicVariableServer "ADF_gearLoaded";} else {diag_log "ADF RPT: Loadout - noLoadout option selected. Exiting loadout client."; ADF_gearLoaded = true; publicVariableServer "ADF_gearLoaded";}};
+_ADF_noLoadout = param [15, false, [true, false]];
+if (_ADF_noLoadout) exitWith {if (ADF_debug) then {["Loadout - noLoadout option selected. Exiting loadout client.", false] call ADF_fnc_log; ADF_gearLoaded = true; publicVariableServer "ADF_gearLoaded";} else {diag_log "ADF RPT: Loadout - noLoadout option selected. Exiting loadout client."; ADF_gearLoaded = true; publicVariableServer "ADF_gearLoaded";}};
 // Two Sierra exit
 if (ADF_clanName == "TWO SIERRA") exitWith {player execVM "Core\F\ADF_fnc_Loadout2S.sqf";};
 
 //Init vars
 private [
-	"_ADF_customLoadout_MOD","_ADF_uniform_inf","_ADF_uniform_sor","_ADF_NVGoggles","_ADF_GPS","_ADF_INF_assault_weapon",
-	"_ADF_INF_LMG_weapon","_ADF_INF_hand_weapon","_ADF_INF_scopes","_ADF_SOR_assault_weapon","_ADF_SOR_hand_weapon",
-	"_ADF_CAV_assault_weapon","_ADF_TFAR_PersonalRadio","_ADF_TFAR_SWRadio","_ADF_TFAR_LRRadio","_ADF_TFAR_LRRadioSOR",
-	"_ADF_unitFaction","_ADF_inf_headgear","_ADF_unit","_ADF_unitCheck","_ADF_unitString","_u","_p","_r"
+	"_ADF_customLoadout_MOD", "_ADF_uniform_inf", "_ADF_uniform_sor", "_ADF_NVGoggles", "_ADF_GPS", "_ADF_INF_assault_weapon",
+	"_ADF_INF_LMG_weapon", "_ADF_INF_hand_weapon", "_ADF_INF_scopes", "_ADF_SOR_assault_weapon", "_ADF_SOR_hand_weapon",
+	"_ADF_CAV_assault_weapon", "_ADF_TFAR_PersonalRadio", "_ADF_TFAR_SWRadio", "_ADF_TFAR_LRRadio", "_ADF_TFAR_LRRadioSOR",
+	"_ADF_unitFaction", "_ADF_inf_headgear", "_ADF_unit", "_ADF_unitCheck", "_ADF_unitString", "_u", "_p", "_r"
 ];
 
-_ADF_customLoadout_MOD 		= param [0, false, [true,false]];
+_ADF_customLoadout_MOD 		= param [0, false, [true, false]];
 _ADF_uniform_inf 				= _this select 1;
 _ADF_uniform_sor 				= _this select 2;
-_ADF_NVGoggles 				= param [3, true, [true,false]];
-_ADF_GPS 					= param [4, false, [true,false]];
-_ADF_INF_assault_weapon		= param [5, 1, [1,2]];
-_ADF_INF_LMG_weapon 			= param [6, 1, [1,2]];
-_ADF_INF_hand_weapon 			= param [7, 1, [1,2]];
-_ADF_INF_scopes 				= param [8, false, [true,false]];
-_ADF_SOR_assault_weapon		= param [9, 1, [1,2,3]];
-_ADF_SOR_hand_weapon 			= param [10, 1, [1,2]];
-_ADF_CAV_assault_weapon 		= param [11, 1, [1,2]];
-_ADF_TFAR_PersonalRadio 		= param [12, "tf_rf7800str", ["tf_rf7800str","tf_anprc152"]];
-_ADF_TFAR_SWRadio 			= param [13, "tf_anprc152", ["tf_rf7800str","tf_anprc152"]];
-_ADF_TFAR_LRRadio 			= param [14, "tf_rt1523g_big", ["tf_rt1523g","tf_rt1523g_big","tf_rt1523g_black","tf_rt1523g_fabric","tf_rt1523g_green","tf_rt1523g_rhs","tf_rt1523g_sage"]];
-_ADF_TFAR_LRRadioSOR 			= param [16, "tf_rt1523g_black", ["tf_rt1523g","tf_rt1523g_big","tf_rt1523g_black","tf_rt1523g_fabric","tf_rt1523g_green","tf_rt1523g_rhs","tf_rt1523g_sage"]];
-_ADF_ACE3_microDAGR_all 		= param [17, false, [true,false]];
-_ADF_ACE3_microDAGR_leaders 	= param [18, false, [true,false]];
-_ADF_cTAB_microDAGR_all 		= param [19, false, [true,false]];
-_ADF_cTAB_microDAGR_leaders 	= param [20, false, [true,false]];
+_ADF_NVGoggles 				= param [3, true, [true, false]];
+_ADF_GPS 					= param [4, false, [true, false]];
+_ADF_INF_assault_weapon		= param [5, 1, [1, 2]];
+_ADF_INF_LMG_weapon 			= param [6, 1, [1, 2]];
+_ADF_INF_hand_weapon 			= param [7, 1, [1, 2]];
+_ADF_INF_scopes 				= param [8, false, [true, false]];
+_ADF_SOR_assault_weapon		= param [9, 1, [1, 2, 3]];
+_ADF_SOR_hand_weapon 			= param [10, 1, [1, 2]];
+_ADF_CAV_assault_weapon 		= param [11, 1, [1, 2]];
+_ADF_TFAR_PersonalRadio 		= param [12, "tf_rf7800str", ["tf_rf7800str", "tf_anprc152"]];
+_ADF_TFAR_SWRadio 			= param [13, "tf_anprc152", ["tf_rf7800str", "tf_anprc152"]];
+_ADF_TFAR_LRRadio 			= param [14, "tf_rt1523g_big", ["tf_rt1523g", "tf_rt1523g_big", "tf_rt1523g_black", "tf_rt1523g_fabric", "tf_rt1523g_green", "tf_rt1523g_rhs", "tf_rt1523g_sage"]];
+_ADF_TFAR_LRRadioSOR 			= param [16, "tf_rt1523g_black", ["tf_rt1523g", "tf_rt1523g_big", "tf_rt1523g_black", "tf_rt1523g_fabric", "tf_rt1523g_green", "tf_rt1523g_rhs", "tf_rt1523g_sage"]];
+_ADF_ACE3_microDAGR_all 		= param [17, false, [true, false]];
+_ADF_ACE3_microDAGR_leaders 	= param [18, false, [true, false]];
+_ADF_cTAB_microDAGR_all 		= param [19, false, [true, false]];
+_ADF_cTAB_microDAGR_leaders 	= param [20, false, [true, false]];
 
 tf_no_auto_long_range_radio 	= true;
 ADF_SOR_MK20 				= false;
@@ -82,7 +82,7 @@ _ADF_unit 					= player;
 // BluFor Faction
 if ((_ADF_unitFaction == "BLU_F") && _ADF_customLoadout_MOD) exitWith { // BLUFOR: Custom loadout = true
 
-	call compile preprocessFileLineNumbers "Core\F\ADF_fnc_LoadoutWest.sqf";
+	call compile preprocessFileLineNumbers "Core\F\ADF_fnc_Loadoutwest.sqf";
 				
 	// Check if the player is a ADF unit
 	_ADF_unitCheck = toLower str (vehicle _ADF_unit);
@@ -152,12 +152,12 @@ if ((_ADF_unitFaction == "BLU_F") && _ADF_customLoadout_MOD) exitWith { // BLUFO
 	};
 	
 	// Load the appropriate Squad/Role gear											
-	if (_s == "inf") exitWith {[_s,_r] call ADF_fnc_loudoutInf}; // Infantry Platoon
-	if (_s == "cav") exitWith {[_s,_r] call ADF_fnc_loadoutCav}; // Cavalry Battery
-	if (_s == "air") exitWith {[_s,_r] call ADF_fnc_loadoutAir}; // Air wing
-	if (_s == "sor") exitWith {[_s,_r] call ADF_fnc_loadoutSor}; // SpecOp/Recon Squadron
-	if (_s == "sod") exitWith {[_s,_r] call ADF_fnc_loadoutSod}; // Divers
-	if (_s == "sop") exitWith {[_s,_r] call ADF_fnc_loadoutSop}; // Snipers/JTAC
+	if (_s == "inf") exitWith {[_s, _r] call ADF_fnc_loudoutInf}; // Infantry Platoon
+	if (_s == "cav") exitWith {[_s, _r] call ADF_fnc_loadoutCav}; // Cavalry Battery
+	if (_s == "air") exitWith {[_s, _r] call ADF_fnc_loadoutAir}; // Air wing
+	if (_s == "sor") exitWith {[_s, _r] call ADF_fnc_loadoutSor}; // SpecOp/Recon Squadron
+	if (_s == "sod") exitWith {[_s, _r] call ADF_fnc_loadoutSod}; // Divers
+	if (_s == "sop") exitWith {[_s, _r] call ADF_fnc_loadoutSop}; // Snipers/JTAC
 	if (_s == "dev") exitWith {								 // Mission Developer
 		_ADF_unit addVest "V_Rangemaster_belt";
 		_ADF_unit unassignItem "NVGoggles";
@@ -169,16 +169,16 @@ if ((_ADF_unitFaction == "BLU_F") && _ADF_customLoadout_MOD) exitWith { // BLUFO
 		if (ADF_mod_CTAB) then {_ADF_unit addItemToBackpack "ItemcTab"};
 		_ADF_perfDiagStop = diag_tickTime;
 		if (ADF_debug) then {
-			_debugDiag = format [" (DIAG: %1)",_ADF_perfDiagStop - _ADF_perfDiagStart];
+			_debugDiag = format [" (DIAG: %1)", _ADF_perfDiagStop - _ADF_perfDiagStart];
 			_debugText = "LOADOUT - loadout applied.";
 			_debugMsg = _debugText + _debugDiag;
-			[_debugMsg,false] call ADF_fnc_log;
+			[_debugMsg, false] call ADF_fnc_log;
 		};
 	};
 }; // close _ADF_customLoadout_MOD
 
 if ((faction player == "BLU_F") && !(_ADF_customLoadout_MOD)) exitWith { // BLUFOR: Custom loadout = false
-	private ["_ADF_unit","_ADF_unitCheck"];
+	private ["_ADF_unit", "_ADF_unitCheck"];
 	_ADF_unit = player;
 	_ADF_unitString = str _ADF_unit;
 	_u = [_ADF_unitString, "_"] call CBA_fnc_split;

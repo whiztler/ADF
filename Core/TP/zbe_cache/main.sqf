@@ -29,12 +29,11 @@ waitUntil {sleep 1; time > 120}; // delayed start so that AO's can initialize be
 [] spawn  {
 	while {true} do {
 		sleep 15;
-		zbe_players = (switchableUnits + playableUnits);
+		zbe_players = allPlayers - entities "HeadlessClient_F";
 		{
-			_disable = _x getVariable "zbe_cacheDisabled";
-			_disable = if (isNil "_disable") then {false} else {_disable};
-			if (!_disable && !(_x in zbe_cachedGroups)) then {
-				zbe_cachedGroups = zbe_cachedGroups + [_x];
+			_disable = _x getVariable ["zbe_cacheDisabled", false];
+			if !(_disable && (_x in zbe_cachedGroups)) then {
+				zbe_cachedGroups append [_x];
 				[zbe_aiCacheDist, _x, zbe_minFrameRate, zbe_debug] execFSM "Core\TP\zbe_cache\zbe_aiCaching.fsm";
 			};
 		} forEach allGroups;
@@ -47,44 +46,50 @@ waitUntil {sleep 1; time > 120}; // delayed start so that AO's can initialize be
 	zbe_cached_cars 	= [];
 	zbe_cached_air 	= [];
 	zbe_cached_boat 	= [];
+	
 	while {true} do {
 		_assetscar = zbe_centerPOS nearEntities ["LandVehicle", zbe_mapside];
 		{
 			if !(_x in zbe_cached_cars) then {
-				zbe_cached_cars = zbe_cached_cars + [_x];
+				zbe_cached_cars append [_x];
 				[_x, zbe_vehicleCacheDistCar] execFSM "Core\TP\zbe_cache\zbe_vehicleCaching.fsm";
 			};
 		} forEach _assetscar;
+		
 		_assetsair = zbe_centerPOS nearEntities ["Air", zbe_mapside];
 		{
 			if !(_x in zbe_cached_air) then {
-				zbe_cached_air = zbe_cached_air + [_x];
+				zbe_cached_air append [_x];
 				[_x, zbe_vehicleCacheDistAir] execFSM "Core\TP\zbe_cache\zbe_vehicleCaching.fsm";
 			};
 		} forEach _assetsair;
+		
 		_assetsboat = zbe_centerPOS nearEntities ["Ship", zbe_mapside];
 		{
 			if !(_x in zbe_cached_boat) then {
-				zbe_cached_boat = zbe_cached_boat + [_x];
+				zbe_cached_boat append [_x];
 				[_x, zbe_vehicleCacheDistBoat] execFSM "Core\TP\zbe_cache\zbe_vehicleCaching.fsm";
 			};
 		} forEach _assetsboat;
 
 		{
-			if (!(_x in _assetscar)) then {
+			if !(_x in _assetscar) then {
 				zbe_cached_cars = zbe_cached_cars - [_x];
 			};
 		} forEach zbe_cached_cars;
+		
 		{
-			if (!(_x in _assetsair)) then {
+			if !(_x in _assetsair) then {
 				zbe_cached_air = zbe_cached_air - [_x];
 			};
 		} forEach zbe_cached_air;
+		
 		{
-			if (!(_x in _assetsboat)) then {
+			if !(_x in _assetsboat) then {
 				zbe_cached_boat = zbe_cached_boat - [_x];
 			};
 		} forEach zbe_cached_boat;
+		
 		zbe_allVehicles = (_assetscar + _assetsair + _assetsboat);
 		sleep 15;
 	};
@@ -95,7 +100,7 @@ if (zbe_debug && _ADF_Caching_debugInfo) then {
 		while {true} do {
 			uiSleep 15;
 			zbe_cachedUnits = (count allUnits - ({simulationEnabled _x} count allUnits));
-			zbe_cachedVehicles = (count zbe_allVehicles - ({simulationEnabled _x} count zbe_allVehicles));
+			zbe_cachedVehicles = (zbe_allVehicles - ({simulationEnabled _x} count zbe_allVehicles));
 			zbe_allVehiclesCount = (count zbe_allVehicles);
 			hintSilent parseText format ["<t color='#FFFFFF' size='1.5'>ZBE Caching</t><br/><t color='#FFFFFF'>Debug data</t><br/><br/><t color='#A1A4AD' align='left'>Game time in seconds:</t><t color='#FFFFFF' align='right'>%1</t><br/><br/><t color='#A1A4AD' align='left'>Number of groups:</t><t color='#FFFFFF' align='right'>%2</t><br/><t color='#A1A4AD' align='left'>All units:</t><t color='#FFFFFF' align='right'>%3</t><br/><t color='#A1A4AD' align='left'>Cached units:</t><t color='#39a0ff' align='right'>%4</t><br/><br/><t color='#A1A4AD' align='left'>All vehicles:</t><t color='#FFFFFF' align='right'>%5</t><br/><t color='#A1A4AD' align='left'>Cached vehicles:</t><t color='#00ff33' align='right'>%6</t><br/><br/><t color='#A1A4AD' align='left'>FPS:</t><t color='#FFFFFF' align='right'>%7</t><br/><br/><t color='#A1A4AD' align='left'>Obj draw distance:</t><t color='#FFFFFF' align='right'>%8</t><br/>", (round time), count allGroups, count allUnits, zbe_cachedUnits, zbe_allVehiclesCount, zbe_cachedVehicles, (round diag_fps), zbe_objectView];			zbe_log_stats = format ["Groups: %1 # All/Cached Units: %2/%3 # All/Cached Vehicles: %4/%5 # FPS: %6 # ObjectDrawDistance: %7", count allGroups, count allUnits, zbe_cachedUnits, zbe_allVehiclesCount, zbe_cachedVehicles, (round diag_fps), zbe_objectView];
 			diag_log format ["%1 ZBE_Cache (%2) ---  %3", (round time), name player, zbe_log_stats];

@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.43 / NOVEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Detect Sensor
 Author: Whiztler
@@ -21,17 +21,17 @@ You'll need to define the array of units/players/vehicles it needs to
 check against.
 
 for instance to check against all players:
-_checkArr = allPlayers;
+_cArr = allPlayers;
 
 Execute the function with below script:
 
 [
-	_checkArr, 	// (player) array to check against. E.g. _checkArr = allPlayers;
+	_cArr, 	// (player) array to check against. E.g. _cArr = allPlayers;
 	obj, 		// object/vehicle/marker to check distance to players
-	10, 		// radius
+	10, 			// radius
 	5, 			// How often (in seconds) should the function check the condition
 	true, 		// true = persistent sensor, false = non-persistent
-	"myCode" 	// Code to run (spawned) when the condition is true. E.g. myCode = {hint "The sensor is active";};
+	"myCode" 		// Code to run (spawned) when the condition is true. E.g. myCode = {hint "The sensor is active";};
 ] spawn ADF_fnc_sensor;
 
 Mycode represents the code that is executed when players/vehicles get within the sensor radius.
@@ -46,44 +46,46 @@ diag_log "ADF RPT: Init - executing ADF_fnc_sensor.sqf"; // Reporting. Do NOT ed
 
 ADF_fnc_sensor = {
 	// Init
-	params ["_a","_b","_r","_s","_p","_cIN","_cOUT"];
-	private ["_codeIn","_codeOut","_codeOutExec"];
+	params ["_a", "_b", "_r", "_s", "_p", "_cIN", "_cOUT"];
+	private ["_codeIn", "_codeOut", "_codeOutExec"];
 	_codeOutExec = false;
-	_codeIn 		= call compile format ["%1",_cIN];
-	_codeOut		= if (_cOUT != "") then {_codeOutExec = true; call compile format ["%1",_cOUT]};
+	_codeIn 		= call compile format ["%1", _cIN];
+	_codeOut		= if (_cOUT != "") then {_codeOutExec = true; call compile format ["%1", _cOUT]};
 	
 	// Check distance loop
 	waitUntil {
-		_check = [_a, _b, _r] call ADF_fnc_checkClosest;
-		_exit = false;	
+		private ["_c", ""];
+		_c = [_a, _b, _r] call ADF_fnc_cClosest;
+		_e = false;	
 		
-		if (_check < _r) then {		
+		if (_c < _r) then {		
 			[] spawn _codeIn;			
 			if !(_p) then {
-				_exit = true; _s = 0;
+				_e = true;
+				_s = 0;
 			} else {
 				waitUntil {
 					sleep _s;
-					_check = [_a, _b, _r] call ADF_fnc_checkClosest;
-					_check > _r
+					_c = [_a, _b, _r] call ADF_fnc_cClosest;
+					_c > _r
 				};
 				if (_codeOutExec) then {[] spawn _codeOut};
 			};			
 		};		
 		
 		sleep _s;
-		_exit
+		_e
 	};
-	if (ADF_Debug) then {diag_log format ["ADF RPT: Debug - ADF_fnc_checkClosest: sensor %1 deactivated",_b]};
+	if (ADF_Debug) then {diag_log format ["ADF RPT: Debug - ADF_fnc_cClosest: sensor %1 deactivated", _b]};
 };
 
 /******************* EXAMPLE *******************
 
 ADF_debug = true;
-_checkArr = allPlayers;
+_cArr = allPlayers;
 
 [
-	_checkArr, 	// (player) array to check against. E.g. _checkArr = allPlayers;
+	_cArr, 	// (player) array to check against. E.g. _cArr = allPlayers;
 	myObject,		// object/vehicle/marker to check distance to players. Name the object in the editor or script. 
 	500, 		// radius (same as the trigger size. Only circular!)
 	5, 			// How often (in seconds) should the function check the condition?

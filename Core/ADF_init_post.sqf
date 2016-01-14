@@ -1,10 +1,10 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.43 / NOVEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Mission initialization countdown timer
 Author: Whiztler
-Script version: 1.48
+Script version: 1.49
 
 Game type: n/a
 File: ADF_init_post.sqf
@@ -18,63 +18,62 @@ diag_log "ADF RPT: Init - executing ADF_init_post.sqf"; // Reporting. Do NOT edi
 
 if (ADF_debug) then {
 	{
-		_diagMsg = "DIAG - Script executed: " + str _x;
-		[_diagMsg,false] call ADF_fnc_log;
+		private "_m";
+		_m = "DIAG - Script executed: " + str _x;
+		[_m, false] call ADF_fnc_log;
 	} forEach diag_activeSQFScripts;
 };
 
 // Init
-private ["_ADF_unit","_cnt","_TimerInput","_mVersion","_timer"];
-_ADF_unit 		= player;
-_cnt 			= 0;
-_TimerInput 		= _this select 0;
-_ADF_tVersion 	= str (_this select 1);
-_mVersion 		= str (_this select 2);
-_ADF_devBuild 	= _this select 3;
-_ADF_devBuildNr 	= _this select 4;
-_ADF_devBuildRun 	= false;
-_timer = _TimerInput / 100;
-_ADF_mapMrkText = "[ADF] ARMA Mission Development Framework v";
+params ["_t", "_vt", "_vm", "_db", "_dn"];
+private ["_u", "_c", "_ms"];
 
+_u 	= player;
+_vt 	= str _vt;
+_vm 	= str _vm;
+_t 	= _t / 100;
+_ms 	= "[ADF] ARMA Mission Development Framework v";
+_c	= 0;
 
 if (isServer) then {
-	private ["_bVersion","_m"];
-	If ((_ADF_devBuild == "Alpha") || (_ADF_devBuild == "Beta")) then {
-		_bVersion =  format [" (Build: %1 %2)", _ADF_devBuild,_ADF_devBuildNr];
-		_ADF_mapMrkText = _ADF_mapMrkText + _ADF_tVersion + _bVersion;	
+	private ["_vb"];
+	If ((_db == "Alpha") || (_db == "Beta")) then {
+		_vb =  format [" (Build: %1 %2)", _db, _dn];
+		_ms = _ms + _vt + _vb;	
 	} else {
-		_ADF_mapMrkText = _ADF_mapMrkText + _ADF_tVersion;
+		_ms = _ms + _vt;
 	};
 
-	_m = createMarker ["mADF_version",[5,-200,0]];
-	_m setMarkerSize [0,0];
+	_m = createMarker ["mADF_version",[5,-200, 0]];
+	_m setMarkerSize [0, 0];
 	_m setMarkerShape "ICON";
 	_m setMarkerType "mil_box";
 	_m setMarkerColor "ColorGrey";
 	_m setMarkerDir 0;
-	_m setMarkerText _ADF_mapMrkText;
+	_m setMarkerText _ms;
 	
-	if ({side _x == EAST} count allUnits == 0) then {createCenter EAST;};
-	if ({side _x == west} count allUnits == 0) then {createCenter WEST;};
-	if ({side _x == RESISTANCE} count allUnits == 0) then {createCenter RESISTANCE;};
-	if ({side _x == CIVILIAN} count allUnits == 0) then {createCenter CIVILIAN;};
+	if ({side _x == east} count allUnits == 0) then {createCenter east};
+	if ({side _x == west} count allUnits == 0) then {createCenter west};
+	if ({side _x == resistance} count allUnits == 0) then {createCenter resistance};
+	if ({side _x == civilian} count allUnits == 0) then {createCenter civilian};
 };
 
-if (time > 300) exitWith {ADF_missionInit = true;};
 If (isDedicated || ADF_isHC) exitWith {ADF_missionInit = true;};
-if (ADF_debug) exitWith {ADF_missionInit = true; publicVariable "ADF_missionInit";["INIT - debug mode detected, skipping mission init timer",false] call ADF_fnc_log;};
-if (isMultiplayer) then {_ADF_unit enableSimulation false;};
+if (time > 300) exitWith {ADF_missionInit = true;};
+if (ADF_debug) exitWith {ADF_missionInit = true; publicVariable "ADF_missionInit"; ["INIT - debug mode detected, skipping mission init timer", false] call ADF_fnc_log;};
+if (isMultiplayer) then {_u enableSimulation false; showMap false;};
 
-If ((_ADF_devBuild == "Alpha") || (_ADF_devBuild == "Beta")) then {
-	_ADF_debugLog_msg = format ["This is a development build of ADF (%1 - %2 %3). Do not use for live missions!",_ADF_tVersion,_ADF_devBuild,_ADF_devBuildNr];
-	_ADF_debugLog_msg remoteExec ["systemChat", -2, false];  // v.1.42 B01
-	
+If ((_db == "Alpha") || (_db == "Beta")) then {
+	private "_msg";
+	_msg = format ["This is a development build of ADF (%1 - %2 %3). Do not use for live missions!", _vt, _db, _dn];
+	_msg remoteExec ["systemChat", -2, false];  // v.1.42 B01	
 };
 		
-while {(_cnt != 100)} do {
-	_cnt = _cnt + 1;
+while {(_c != 100)} do {
+	private "_msg";
+	_c = _c + 1;
 	
-	ADF_initMsg = format ["
+	_msg = format ["
 		<br/>
 		<t align='left' size='1.1' color='#A1A4AD'>Mission Initializing: </t>
 		<t size='1.1' align='left' color='#F7D358' font='PuristaBold'>%1&#0037;</t><t size='1.1' align='left' color='#A1A4AD'> done</t><br/><br/>
@@ -83,20 +82,21 @@ while {(_cnt != 100)} do {
 		<t align='left' color='#A1A4AD'>- Follow TL orders</t><br/>
 		<t align='left' color='#A1A4AD'>- Init takes approx %2 secs</t><br/><br/>
 		<t align='left' color='#A1A4AD'>Tpl: <t color='#FFFFFF' align='left'>%3</t>  |  Mission: </t><t color='#FFFFFF' align='left'>%4</t><br/>
-	", _cnt,_TimerInput,_ADF_tVersion,_mVersion];
+	", _c, _t * 100, _vt, _vm];
 
-	If ((_ADF_devBuild == "Alpha") || (_ADF_devBuild == "Beta")) then {
-		ADF_initMsg = ADF_initMsg + format ["
+	If ((_db == "Alpha") || (_db == "Beta")) then {
+		_msg = _msg + format ["
 			<t align='left' color='#A1A4AD'>Build: <t color='#FFFFFF' align='left'>%1</t>  |  Build version: </t><t color='#FFFFFF' align='left'>%2</t><br/>
-		", _ADF_devBuild,_ADF_devBuildNr];
+		", _db, _dn];
 	};	
-	sleep _timer;
-	hintSilent parseText ADF_initMsg; 
+	sleep _t;
+	hintSilent parseText _msg; 
 };
 
-if (isMultiplayer) then {_ADF_unit enableSimulation true;};
+if (isMultiplayer) then {_u enableSimulation true; showMap true;};
 
-ADF_postInitMsg = format ["
+private "_msg";
+_msg = format ["
 	<br/>
 	<t size='1.1' color='#FFFFFF' align='left'>Mission initializing complete</t>
 	<t size='1' align='left' color='#A1A4AD'><br/><br/>
@@ -105,17 +105,17 @@ ADF_postInitMsg = format ["
 	- Follow TL orders<br/>
 	- Init takes approx %1 secs<br/><br/>
 	Tpl: %2  |  Mission: %3</t><br/><br/>
-",_TimerInput,_ADF_tVersion,_mVersion];
+", _t * 100, _vt, _vm];
 
-If ((_ADF_devBuild == "Alpha") || (_ADF_devBuild == "Beta")) then {
-	ADF_postInitMsg = ADF_postInitMsg + format ["
+If ((_db == "Alpha") || (_db == "Beta")) then {
+	_msg = _msg + format ["
 		<t align='left' color='#A1A4AD'>Build: %1 | Build version: %2</t><br/>
-	", _ADF_devBuild,_ADF_devBuildNr];
+	", _db, _dn];
 };
 
-hintSilent parseText ADF_postInitMsg;
+hintSilent parseText _msg;
 finishMissionInit;
 sleep 3; hintSilent "";
-ADF_missionInit = true; //publicVariable "ADF_missionInit"; // > 140B06
-if (ADF_debug) then {["INIT - MissionInit Timer done",false] call ADF_fnc_log};
-ADF_postInitMsg = nil; ADF_initMsg = nil;
+ADF_missionInit = true; 
+if (ADF_debug) then {["INIT - MissionInit Timer done", false] call ADF_fnc_log};
+

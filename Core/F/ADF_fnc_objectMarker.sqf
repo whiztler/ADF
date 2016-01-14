@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.43 / NOVEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Detect Sensor
 Author: Whiztler
@@ -15,12 +15,12 @@ objects. They then appear as map objects.
 
 Usage:
 
-_array = ["ClassName","ClassName","ClassName"]; // Array of classnames of objects to mark on the map
+_array = ["ClassName", "ClassName", "ClassName"]; // Array of classnames of objects to mark on the map
 
 [
 	_array,			// Array
 	"MyMarker"		// Center position (object, marker, trigger, etc)
-	,150				// radius from center position
+	, 150				// radius from center position
 ] call ADF_fnc_objectMarker;
 
 ****************************************************************/
@@ -29,17 +29,17 @@ diag_log "ADF RPT: Init - executing ADF_fnc_objectMarker.sqf"; // Reporting. Do 
 
 ADF_fnc_objectMarker = {
 	// init
-	params ["_a","_p","_r"];
-	private ["_s","_n","_m","_start","_finish"];
-	_start = diag_tickTime;
+	params ["_a", "_p", "_r"];
+	private ["_s", "_n", "_m", "_ds"];
+	_ds = diag_tickTime;
 	
-	if (ADF_debug) then {diag_log format ["ADF RPT: Debug - ADF_fnc_objectMarker passed position: %1",_p]};
+	if (ADF_debug) then {diag_log format ["ADF RPT: Debug - ADF_fnc_objectMarker passed position: %1", _p]};
 	
 	if (typeName _p == "STRING") then {_p = getMarkerPos _p};	
 	if (typeName _p == "OBJECT") then {_p = getPosATL _p};
 	if (typeName _p == "ARRAY") then {_p = _p};
 	
-	_q = nearestObjects [_p,_a,_r];
+	_q = nearestObjects [_p, _a, _r];
 	
 	{
 		_s = (boundingBoxReal _x) select 1; _s resize 2;
@@ -52,12 +52,12 @@ ADF_fnc_objectMarker = {
 		_m setMarkerDir (getDir _x);
 	} forEach _q;
 	
-	_finish = diag_tickTime;
-	if (ADF_debug) then {diag_log format ["ADF RPT: Debug - ADF_fnc_objectMarker diag: %1",_finish - _start];};
+	if (ADF_debug) then {diag_log format ["ADF RPT: Debug - ADF_fnc_objectMarker diag: %1", diag_tickTime - _ds];};
 };
 
 ADF_fnc_reMarker = {
 	params ["_a"];
+	private ["_mn", "_mp", "_mt", "_mc", "_my", "_md", "_md", "_ms", "_mx", "_ma", "_mb"];
 	
 	// Store marker data
 	_mn = _a;
@@ -75,7 +75,7 @@ ADF_fnc_reMarker = {
 	deleteMarker _a;
 	
 	// re-create the marker on top of the object markers
-	_m = createMarker [_mn,_mp];
+	_m = createMarker [_mn, _mp];
 	_m setMarkerType _mt;
 	_m setMarkerColor _mc;
 	_m setMarkerShape _my;

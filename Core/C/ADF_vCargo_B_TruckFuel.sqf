@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.43 / NOVEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Vehicle Cargo Script (BLUEFOR) (BLUEFOR) - Fuel Truck
 Author: Whiztler
@@ -24,51 +24,51 @@ if (!isServer) exitWith {};
 waitUntil {time > 0};
 
 // Init
-_vSupply = _this select 0;
+params ["_v"];
 
 // Settings 
-clearWeaponCargoGlobal _vSupply; // Empty vehicle CargoGlobal contents on init
-clearMagazineCargoGlobal _vSupply; // Empty vehicle CargoGlobal contents on init
-clearItemCargoGlobal _vSupply; // Empty vehicle CargoGlobal contents on init
+clearWeaponCargoGlobal _v; // Empty vehicle CargoGlobal contents on init
+clearMagazineCargoGlobal _v; // Empty vehicle CargoGlobal contents on init
+clearItemCargoGlobal _v; // Empty vehicle CargoGlobal contents on init
 
 // Magazines primary weapon
-_vSupply addMagazineCargoGlobal ["30Rnd_65x39_caseless_mag", 5];
+_v addMagazineCargoGlobal ["30Rnd_65x39_caseless_mag", 5];
 
 // Demo/Explosives
-_vSupply addMagazineCargoGlobal ["DemoCharge_Remote_Mag", 1];
+_v addMagazineCargoGlobal ["DemoCharge_Remote_Mag", 1];
 if (ADF_mod_ACE3) then {
-	_vSupply addItemCargoGlobal ["ACE_Clacker",1];
-	_vSupply addItemCargoGlobal ["ACE_wirecutter",1];
+	_v addItemCargoGlobal ["ACE_Clacker", 1];
+	_v addItemCargoGlobal ["ACE_wirecutter", 1];
 };
 
 // ACRE / TFAR and cTAB
 if (ADF_mod_ACRE) then {
-	_vSupply addItemCargoGlobal ["ACRE_PRC343", 2];
-	_vSupply addItemCargoGlobal ["ACRE_PRC148", 1];
+	_v addItemCargoGlobal ["ACRE_PRC343", 2];
+	_v addItemCargoGlobal ["ACRE_PRC148", 1];
 };
 if (ADF_mod_TFAR) then {
-	_vSupply addItemCargoGlobal ["tf_anprc152", 2];
-	//_vSupply addItemCargoGlobal ["tf_rt1523g", 3];
-	_vSupply addBackpackCargoGlobal ["tf_rt1523g", 1];
+	_v addItemCargoGlobal ["tf_anprc152", 2];
+	//_v addItemCargoGlobal ["tf_rt1523g", 3];
+	_v addBackpackCargoGlobal ["tf_rt1523g", 1];
 };
-if (!ADF_mod_ACRE && !ADF_mod_TFAR) then {_vSupply addItemCargoGlobal ["ItemRadio", 2]};
+if (!ADF_mod_ACRE && !ADF_mod_TFAR) then {_v addItemCargoGlobal ["ItemRadio", 2]};
 /*if (ADF_mod_CTAB) then {
-	_vSupply addItemCargoGlobal ["ItemAndroid", 1];	
-	_vSupply addItemCargoGlobal ["ItemcTabHCam",1];
+	_v addItemCargoGlobal ["ItemAndroid", 1];	
+	_v addItemCargoGlobal ["ItemcTabHCam", 1];
 };*/
 
 
 // Grenades
-_vSupply addMagazineCargoGlobal ["HandGrenade", 3]; 	 
-_vSupply addMagazineCargoGlobal ["SmokeShell", 2]; 	 
+_v addMagazineCargoGlobal ["HandGrenade", 3]; 	 
+_v addMagazineCargoGlobal ["SmokeShell", 2]; 	 
 
 // Medical Items
-_vSupply addItemCargoGlobal ["FirstAidKit", 2];
+_v addItemCargoGlobal ["FirstAidKit", 2];
 
 // Misc items
-if (ADF_mod_ACE3) then {_vSupply addItemCargoGlobal ["ACE_EarPlugs",2]};
+if (ADF_mod_ACE3) then {_v addItemCargoGlobal ["ACE_EarPlugs", 2]};
 
 //hintSilent "vAmmo loaded."; // For debug only.
 
 // Misc items
-_vSupply addItemCargoGlobal ["ToolKit", 2];
+_v addItemCargoGlobal ["ToolKit", 2];

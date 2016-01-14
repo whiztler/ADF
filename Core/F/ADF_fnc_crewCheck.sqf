@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.43 / NOVEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Crew check. Check if Pilot or MBT/APC crew
 Author: Whiztler
@@ -20,8 +20,8 @@ ADF_CC_addEH = {
 	(_this select 0) addEventHandler ["GetIn", {
 		
 		// init
-		private ["_ADF_CC_uID","_ADF_CC_airRestrict","_ADF_CC_objectType","_ADF_CC_objectName","_ADF_CC_msg"];
-		params ["_ADF_CC_object","_ADF_CC_objectPos","_ADF_CC_unit","_ADF_CC_turretPath"];
+		private ["_ADF_CC_uID", "_ADF_CC_airRestrict", "_ADF_CC_objectType", "_ADF_CC_objectName", "_ADF_CC_msg"];
+		params ["_ADF_CC_object", "_ADF_CC_objectPos", "_ADF_CC_unit", "_ADF_CC_turretPath"];
 		_ADF_CC_airRestrict 	= true;
 		_ADF_CC_uID			= owner _ADF_CC_unit;
 		_ADF_CC_objectType	= typeOf _ADF_CC_object;
@@ -65,8 +65,8 @@ ADF_CC_addEH = {
 }; // close function
 
 ADF_CC_checkTurret = {
-	private ["_ADF_CC_unitCargo","_ADF_CC_allTurrets","_ADF_CC_unitTurret"];
-	params ["_ADF_CC_unit","_ADF_CC_object"];
+	private ["_ADF_CC_unitCargo", "_ADF_CC_allTurrets", "_ADF_CC_unitTurret"];
+	params ["_ADF_CC_unit", "_ADF_CC_object"];
 	_ADF_CC_inTurret 		= !isNull (_ADF_CC_object turretUnit ((allTurrets [_ADF_CC_object, false]) select 0));
 	_ADF_CC_unitCmd		= commander _ADF_CC_object == _ADF_CC_unit;
 	_ADF_CC_TurretActive	= _ADF_CC_inTurret || _ADF_CC_unitCmd;
@@ -75,7 +75,7 @@ ADF_CC_checkTurret = {
 
 ADF_CC_checkDriver = {
 	private ["_ADF_CC_unitDriver"];
-	params ["_ADF_CC_unit","_ADF_CC_object"];
+	params ["_ADF_CC_unit", "_ADF_CC_object"];
 	_ADF_CC_unitDriver	= (driver _ADF_CC_object == _ADF_CC_unit);
 	_ADF_CC_unitDriver
 };
@@ -89,7 +89,7 @@ ADF_CC_checkCargo = {
 ADF_CC_checkVehiclePos = {
 	// Player is in cargo, Check if player switches seats to driver/gunner/commander
 
-	private ["_ADF_CC_unit","_ADF_CC_object","_ADF_CC_objectName","_ADF_CC_SwitchedToTurret","_ADF_CC_SwitchedToDriver","_ADF_CC_msg","_ADF_CC_cargoIdx","_ADF_CC_uID"];
+	private ["_ADF_CC_unit", "_ADF_CC_object", "_ADF_CC_objectName", "_ADF_CC_SwitchedToTurret", "_ADF_CC_SwitchedToDriver", "_ADF_CC_msg", "_ADF_CC_cargoIdx", "_ADF_CC_uID"];
 	_ADF_CC_unit 		= _this;
 	_ADF_CC_uID			= owner _ADF_CC_unit;
 	_ADF_CC_object 		= vehicle _ADF_CC_unit;
@@ -100,8 +100,8 @@ ADF_CC_checkVehiclePos = {
 	// Start a loop that checks if the player changes from cargo to a crew position
 	while {alive _ADF_CC_unit && ((vehicle _ADF_CC_unit) == _ADF_CC_object)} do { // check every 2 seconds
 		
-		_ADF_CC_SwitchedToTurret	= [_ADF_CC_unit,_ADF_CC_object] call ADF_CC_checkTurret;
-		_ADF_CC_SwitchedToDriver	= [_ADF_CC_unit,_ADF_CC_object] call ADF_CC_checkDriver;		
+		_ADF_CC_SwitchedToTurret	= [_ADF_CC_unit, _ADF_CC_object] call ADF_CC_checkTurret;
+		_ADF_CC_SwitchedToDriver	= [_ADF_CC_unit, _ADF_CC_object] call ADF_CC_checkDriver;		
 
 		if (	(alive _ADF_CC_unit) && ((vehicle _ADF_CC_unit) == _ADF_CC_object) && (_ADF_CC_SwitchedToTurret || _ADF_CC_SwitchedToDriver)) then {
 	

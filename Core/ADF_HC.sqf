@@ -1,10 +1,10 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.43 / NOVEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Headless Client init
 Author: Whiztler
-Script version: 2.55
+Script version: 2.56
 
 Game type: N/A
 File: ADF_HC.sqf
@@ -51,7 +51,7 @@ You need to store the information with setVariable and re-apply the instructions
 after transfer to the hC. For example in case with CBA_fnc_taskDefend:
 
 _defArr = [_g, _spawnPos, 100, 2, true];
-_g setVariable ["ADF_HC_garrisonArr",_defArr];
+_g setVariable ["ADF_HC_garrisonArr", _defArr];
 _defArr call CBA_fnc_taskDefend;
 
 to re-apply:
@@ -79,32 +79,14 @@ if (!isServer && !hasInterface) then {
 	if !(isNil "ADF_HC3") then {if (player == ADF_HC3) then {ADF_log_CntHC = ADF_log_CntHC + 1; publicVariable "ADF_log_CntHC"; ADF_isHC3 = true; diag_log "ADF RPT: HC - Headless Client detected: ADF_HC3";}};	
 	
 	// HC FPS reporting in RPT. The frequency of the reporting is based on HC performance.
-	[] spawn {
-		waitUntil {			
-			private ["_ADF_log_ai","_ADF_players","_ADF_rptSnooz","_ADF_hcFPS","_ADF_GameTime_HMS"];			
-			_ADF_rptSnooz = 60;
-			_ADF_hcFPS = round (diag_fps);	
-			_ADF_players = {alive _x} count allPlayers;
-			_ADF_log_ai = {(local _x) && (alive _x)} count allUnits;
-			if (_ADF_log_ai < 0) then {_ADF_log_ai = 0};
-			if (_ADF_hcFPS < 40) then {_ADF_rptSnooz = 15};
-			if (_ADF_hcFPS < 30) then {_ADF_rptSnooz = 10};
-			if (_ADF_hcFPS < 20) then {_ADF_rptSnooz = 5};
-			if (_ADF_hcFPS < 15) then {_ADF_rptSnooz = 1};
-			_ADF_GameTime_HMS = [(round time)] call BIS_fnc_secondsToString;
-			diag_log format ["ADF RPT: PERF - Total players: %1  --  Total AI's: %2",_ADF_players,_ADF_log_ai];
-			diag_log format ["ADF RPT: PERF - Elapsed time: %1  --  %2 FPS: %3  --  %2 Min FPS: %4",_ADF_GameTime_HMS,name player,_ADF_hcFPS,round (diag_fpsmin)];
-			uiSleep _ADF_rptSnooz;
-			false
-		};
-	};
+	[60, "Headless Client", "HC"] spawn ADF_fnc_statsReporting;
 } else {	
 	sleep 3; // Wait for HC to publicVar ADF_HC_connected (if a HC is present)
 	if (!ADF_HC_connected && isServer) then { // No HC present. Disable ADF_HC_execute on all clients except the server
 		ADF_HC_execute = true;
-		if (ADF_debug) then {["HC - NO Headless Client detected, using server",false] call ADF_fnc_log} else {diag_log "ADF RPT: HC - NO Headless Client detected, using server"};
+		if (ADF_debug) then {["HC - NO Headless Client detected, using server", false] call ADF_fnc_log} else {diag_log "ADF RPT: HC - NO Headless Client detected, using server"};
 	} else { 
-		if (isServer || isDedicated) then {ADF_HC_execute = false;}; // HC is connected. Disable ADF_HC_execute on the server so that the HC runs scripts
+		if (isServer || isDedicated) then {ADF_HC_execute = false; ADF_HC_connected = true;}; // HC is connected. Disable ADF_HC_execute on the server so that the HC runs scripts
 		diag_log "ADF RPT: HC - Headless Client detected. Using HC for ADF_HC_execute"
 	};
 };

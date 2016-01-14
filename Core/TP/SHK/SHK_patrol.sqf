@@ -19,15 +19,15 @@
       
     Examples:
       nul = this execVM "shk_patrol.sqf";
-      nul = [this,350] execVM "shk_patrol.sqf";
-      nul = [grpA,300] execVM "shk_patrol.sqf";
+      nul = [this, 350] execVM "shk_patrol.sqf";
+      nul = [grpA, 300] execVM "shk_patrol.sqf";
 */
 DEBUG = false;
 
 if !isserver exitwith {};
 
 // Handle parameters
-private ["_grp","_dst"];
+private ["_grp", "_dst"];
 _dst = 250;
 switch (typename _this) do {
   case (typename grpNull): { _grp = _this };
@@ -44,7 +44,7 @@ _grp setSpeedMode "LIMITED";
 _grp setCombatMode "YELLOW";
 _grp setFormation (["STAG COLUMN", "WEDGE", "ECH LEFT", "ECH RIGHT", "VEE", "DIAMOND"] call BIS_fnc_selectRandom);
 
-private ["_cnt","_ang","_wps","_slack","_aos"];
+private ["_cnt", "_ang", "_wps", "_slack", "_aos"];
 _cnt = 4 + (floor random 3) + (floor (_dst / 100)); // number of waypoints
 _ang = (360 / (_cnt - 1)); // split circle depending on number of waypoints
 _wps = [];
@@ -53,7 +53,7 @@ if (_slack < 20) then {_slack = 20};
 _aos = random 360;
 
 // Find positions for waypoints
-private ["_a","_p","_pos"];
+private ["_a", "_p", "_pos"];
 _pos = getpos leader _grp;
 
 while {count _wps < _cnt} do {
@@ -67,23 +67,23 @@ while {count _wps < _cnt} do {
 };
 
 // Create waypoints
-private ["_cur","_wp"];
+private ["_cur", "_wp"];
 for "_i" from 1 to (_cnt - 1) do {
     _cur = (_wps select _i);
 
     _wp = _grp addWaypoint [_cur, 0];
     _wp setWaypointType "MOVE";
     _wp setWaypointCompletionRadius (5 + _slack);
-    [_grp,_i] setWaypointTimeout [0,2,16];
+    [_grp, _i] setWaypointTimeout [0, 2, 16];
     
     // When completing waypoint have 33% chance to choose a random next wp
-    [_grp,_i] setWaypointStatements ["true", "if ((random 3) > 2) then { group this setCurrentWaypoint [(group this), (floor (random (count (waypoints (group this)))))];};"];
+    [_grp, _i] setWaypointStatements ["true", "if ((random 3) > 2) then { group this setCurrentWaypoint [(group this), (floor (random (count (waypoints (group this)))))];};"];
     
     if (DEBUG) then {
       private "_m";
-      _m = createMarker [format["SHK_patrol_WP%1%2",(floor(_cur select 0)),(floor(_cur select 1))],_cur];
+      _m = createMarker [format["SHK_patrol_WP%1%2",(floor(_cur select 0)),(floor(_cur select 1))], _cur];
       _m setMarkerShape "Ellipse";
-      _m setMarkerSize [20,20];
+      _m setMarkerSize [20, 20];
       _m setmarkerColor "ColorRed";
     };
 };
@@ -96,9 +96,9 @@ _wp1 setWaypointCompletionRadius 50;
 
 if (DEBUG) then {
     while {sleep 5; {alive _x} count (units _grp) > 0} do {
-      private ["_m","_p"];
+      private ["_m", "_p"];
       _p = getpos leader _grp;
-      _m = createMarker [format["SHK_patrol_%1%2%3",(floor(_p select 0)),(floor(_p select 1)),floor time],_p];
+      _m = createMarker [format["SHK_patrol_%1%2%3",(floor(_p select 0)),(floor(_p select 1)),floor time], _p];
       _m setMarkerShape "Icon";
       _m setMarkerType "mil_dot";
       _m setmarkerColor "ColorBlue";

@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.43 / NOVEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: customize call signs and radio freq/channels for groups
 Author: Whiztler
@@ -283,4 +283,4 @@ ADF_preset_2S = [
 	[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[] 		// 		13 - 37					
 ];	
 
-if (ADF_debug) then {["PRESETS - presets function processed",false] call ADF_fnc_log};
+if (ADF_debug) then {["PRESETS - presets function processed", false] call ADF_fnc_log};

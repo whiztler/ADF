@@ -35,7 +35,7 @@ Config:
 
 Example for scripted groups:
 [_grp, _Position, 1000, 100, 5, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 250] call ADF_fnc_airPatrol;
-[_grp, getMarkerPos "PatrolMarker", 1000, 100, 6, "MOVE", "SAFE", "RED", "LIMITED","FILE", 250] call ADF_fnc_airPatrol;
+[_grp, getMarkerPos "PatrolMarker", 1000, 100, 6, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 250] call ADF_fnc_airPatrol;
 
 Notes
 
@@ -48,7 +48,7 @@ Config:
 [
 	Spawn position,		// E.g. getMarkerPos "Spawn" -or- Position Player
 	Patrol position,		// E.g. getMarkerPos "Patrol" -or- Position Player
-	side,				// WEST, EAST or INDEPENDENT
+	side,				// west, east or independent
 	Aircraft,				// Number:
 						// 1 - Unarmed transport helicopter
 						// 2 - Armed transport helicopter
@@ -67,8 +67,8 @@ Config:
 ] call ADF_fnc_createAirPatrol;
 
 Example for scripted groups:
-[_spawnPos, PatrolPos, WEST, 1, 2500, 100, 5, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 250] call ADF_fnc_createAirPatrol;
-[getMarkerPos "myMarker", getMarkerPos "PatrolMarker", EAST, 2, 3500, 50, 6, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 250] call ADF_fnc_createAirPatrol;
+[_spawnPos, PatrolPos, west, 1, 2500, 100, 5, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 250] call ADF_fnc_createAirPatrol;
+[getMarkerPos "myMarker", getMarkerPos "PatrolMarker", east, 2, 3500, 50, 6, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 250] call ADF_fnc_createAirPatrol;
 
 Notes
 
@@ -78,13 +78,13 @@ call compile preprocessFileLineNumbers "Core\F\ADF_fnc_position.sqf";
 
 ADF_fnc_addAirWaypoint = {
 	// init	
-	params ["_g","_p","_r","_t","_b","_m","_s","_f","_cr"];
+	params ["_g", "_p", "_r", "_t", "_b", "_m", "_s", "_f", "_cr"];
 	private ["_wp"];
 
-	if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_addWaypoint - WP radius: %1",_r]};
-	if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_addWaypoint - passed pos (before check): %1",_p]};
+	if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_addWaypoint - WP radius: %1", _r]};
+	if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_addWaypoint - passed pos (before check): %1", _p]};
 	_p = [_p] call ADF_fnc_checkPosition;
-	if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_addWaypoint - passed pos (after check): %1",_p]};
+	if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_addWaypoint - passed pos (after check): %1", _p]};
 	
 	_p = [_p, _r, ((random 180) + (random 180))] call ADF_fnc_randomPos;				
 	
@@ -108,24 +108,24 @@ ADF_fnc_airPatrol = {
 	params [
 		"_g",
 		"_p",
-		["_r",2500,[0]],
-		["_h",100,[0]],
-		["_c",4,[0]],
-		["_t", ["MOVE","DESTROY","GETIN","SAD","JOIN","LEADER","GETOUT","CYCLE","LOAD","UNLOAD","TR UNLOAD","HOLD","SENTRY","GUARD","TALK","SCRIPTED","SUPPORT","GETIN NEAREST","DISMISS","LOITER"], [""]],
-		["_b", ["UNCHANGED","CARELESS","SAFE","AWARE","COMBAT","STEALTH"], [""]],
-		["_m", ["NO CHANGE","BLUE","GREEN","WHITE","YELLOW","RED"], [""]],
-		["_s", ["UNCHANGED","LIMITED","NORMAL","FULL"], [""]],
-		["_f", ["NO CHANGE","COLUMN","STAG COLUMN","WEDGE","ECH LEFT","ECH RIGHT","VEE","LINE","FILE","DIAMOND"], [""]],
-		["_cr",250,[0]]
+		["_r", 2500, [0]],
+		["_h" , 100, [0]],
+		["_c", 4, [0]],
+		["_t", ["MOVE", "DESTROY", "GETIN", "SAD", "JOIN", "LEADER", "GETOUT", "CYCLE", "LOAD", "UNLOAD", "TR UNLOAD", "HOLD", "SENTRY", "GUARD", "TALK", "SCRIPTED", "SUPPORT", "GETIN NEAREST", "DISMISS", "LOITER"], [""]],
+		["_b", ["UNCHANGED", "CARELESS", "SAFE", "AWARE", "COMBAT", "STEALTH"], [""]],
+		["_m", ["NO CHANGE", "BLUE", "GREEN", "WHITE", "YELLOW", "RED"], [""]],
+		["_s", ["UNCHANGED", "LIMITED", "NORMAL", "FULL"], [""]],
+		["_f", ["NO CHANGE", "COLUMN", "STAG COLUMN", "WEDGE", "ECH LEFT", "ECH RIGHT", "VEE", "LINE", "FILE", "DIAMOND"], [""]],
+		["_cr", 250, [0]]
 	];
-	private ["_a","_i","_cx","_gl"];
+	private ["_a", "_i", "_cx", "_gl"];
 
-	_a = [_g,_p,_r,_t,_b,_m,_s,_f,_cr];
+	_a = [_g, _p, _r, _t, _b, _m, _s, _f, _cr];
 
 	// Loop through the number of waypoints needed
 	for "_i" from 0 to (_c - 1) do {
 		_a call ADF_fnc_addAirWaypoint;
-		if (ADF_debug) then {diag_log " "; diag_log format ["ADF Debug: ADF_fnc_airPatrol - called ADF_fnc_addAirWaypoint for WP %1",_i]};
+		if (ADF_debug) then {diag_log " "; diag_log format ["ADF Debug: ADF_fnc_airPatrol - called ADF_fnc_addAirWaypoint for WP %1", _i]};
 	};
 	
 	// Add a cycle waypoint
@@ -147,48 +147,48 @@ ADF_fnc_createAirPatrol = {
 	params [
 		"_vs",
 		"_vp",
-		["_gs", [WEST, EAST, INDEPENDENT], [WEST]],
-		["_gc", 1,[0]],
-		["_r",2500,[0]],
-		["_h",100,[0]],		
-		["_c",4,[0]],
-		["_t", ["MOVE","DESTROY","GETIN","SAD","JOIN","LEADER","GETOUT","CYCLE","LOAD","UNLOAD","TR UNLOAD","HOLD","SENTRY","GUARD","TALK","SCRIPTED","SUPPORT","GETIN NEAREST","DISMISS","LOITER"], [""]],
-		["_b", ["UNCHANGED","CARELESS","SAFE","AWARE","COMBAT","STEALTH"], [""]],
-		["_m", ["NO CHANGE","BLUE","GREEN","WHITE","YELLOW","RED"], [""]],
-		["_s", ["UNCHANGED","LIMITED","NORMAL","FULL"], [""]],
-		["_f", ["NO CHANGE","COLUMN","STAG COLUMN","WEDGE","ECH LEFT","ECH RIGHT","VEE","LINE","FILE","DIAMOND"], [""]],
-		["_cr",5,[0]]
+		["_gs", [west, east, independent], [west]],
+		["_gc", 1, [0]],
+		["_r", 2500, [0]],
+		["_h", 100, [0]],		
+		["_c", 4, [0]],
+		["_t", ["MOVE", "DESTROY", "GETIN", "SAD", "JOIN", "LEADER", "GETOUT", "CYCLE", "LOAD", "UNLOAD", "TR UNLOAD", "HOLD", "SENTRY", "GUARD", "TALK", "SCRIPTED", "SUPPORT", "GETIN NEAREST", "DISMISS", "LOITER"], [""]],
+		["_b", ["UNCHANGED", "CARELESS", "SAFE", "AWARE", "COMBAT", "STEALTH"], [""]],
+		["_m", ["NO CHANGE", "BLUE", "GREEN", "WHITE", "YELLOW", "RED"], [""]],
+		["_s", ["UNCHANGED", "LIMITED", "NORMAL", "FULL"], [""]],
+		["_f", ["NO CHANGE", "COLUMN", "STAG COLUMN", "WEDGE", "ECH LEFT", "ECH RIGHT", "VEE", "LINE", "FILE", "DIAMOND"], [""]],
+		["_cr", 5, [0]]
 	];
-	private ["_g","_v","_vc"];
+	private ["_g", "_v", "_vc"];
 	_vc	= "";
 
 	_ps 	= [_vs] call ADF_fnc_checkPosition;
 	_pp 	= [_vp] call ADF_fnc_checkPosition;	
 
-	if (_gs == WEST) then {
+	if (_gs == west) then {
 		switch (_gc) do {
-			case 1: {_vc = ["B_Heli_Light_01_F","B_Heli_Transport_03_unarmed_F","B_Heli_Transport_03_unarmed_green_F"] call BIS_fnc_selectRandom};
-			case 2: {_vc = ["B_Heli_Transport_01_F","B_Heli_Transport_01_camo_F","B_Heli_Transport_03_F","B_Heli_Transport_03_black_F"] call BIS_fnc_selectRandom};
-			case 3: {_vc = ["B_Heli_Attack_01_F","B_Heli_Light_01_armed_F"] call BIS_fnc_selectRandom};
+			case 1: {_vc = ["B_Heli_Light_01_F", "B_Heli_Transport_03_unarmed_F", "B_Heli_Transport_03_unarmed_green_F"] call BIS_fnc_selectRandom};
+			case 2: {_vc = ["B_Heli_Transport_01_F", "B_Heli_Transport_01_camo_F", "B_Heli_Transport_03_F", "B_Heli_Transport_03_black_F"] call BIS_fnc_selectRandom};
+			case 3: {_vc = ["B_Heli_Attack_01_F", "B_Heli_Light_01_armed_F"] call BIS_fnc_selectRandom};
 			case 4: {_vc = "B_Plane_CAS_01_F"};
 			case 5: {_vc = "B_UAV_02_CAS_F"};
 		}
 	};
-	if (_gs == EAST) then {
+	if (_gs == east) then {
 		switch (_gc) do {		
-			case 1: {_vc = ["O_Heli_Light_02_unarmed_F","O_Heli_Transport_04_F","O_Heli_Transport_04_ammo_F","O_Heli_Transport_04_bench_F","O_Heli_Transport_04_box_F","O_Heli_Transport_04_covered_F","O_Heli_Transport_04_fuel_F","O_Heli_Transport_04_medevac_F","O_Heli_Transport_04_repair_F","O_Heli_Transport_04_black_F"] call BIS_fnc_selectRandom};
-			case 2: {_vc = ["O_Heli_Light_02_F","O_Heli_Light_02_v2_F"] call BIS_fnc_selectRandom};
-			case 3: {_vc = ["O_Heli_Attack_02_F","O_Heli_Attack_02_black_F"] call BIS_fnc_selectRandom};
+			case 1: {_vc = ["O_Heli_Light_02_unarmed_F", "O_Heli_Transport_04_F", "O_Heli_Transport_04_ammo_F", "O_Heli_Transport_04_bench_F", "O_Heli_Transport_04_box_F", "O_Heli_Transport_04_covered_F", "O_Heli_Transport_04_fuel_F", "O_Heli_Transport_04_medevac_F", "O_Heli_Transport_04_repair_F", "O_Heli_Transport_04_black_F"] call BIS_fnc_selectRandom};
+			case 2: {_vc = ["O_Heli_Light_02_F", "O_Heli_Light_02_v2_F"] call BIS_fnc_selectRandom};
+			case 3: {_vc = ["O_Heli_Attack_02_F", "O_Heli_Attack_02_black_F"] call BIS_fnc_selectRandom};
 			case 4: {_vc = "O_Plane_CAS_02_F"};
 			case 5: {_vc = "O_UAV_02_CAS_F"};
 		};
 	};
-	if (_gs == INDEPENDENT) then {
+	if (_gs == independent) then {
 		switch (_gc) do {
-			case 1: {_vc = ["I_Heli_light_03_unarmed_F","I_Heli_Transport_02_F"] call BIS_fnc_selectRandom};
+			case 1: {_vc = ["I_Heli_light_03_unarmed_F", "I_Heli_Transport_02_F"] call BIS_fnc_selectRandom};
 			case 2: {_vc = "I_Heli_light_03_F"};
 			case 3: {_vc = "I_Heli_light_03_F"};
-			case 4: {_vc = ["I_Plane_Fighter_03_CAS_F","I_Plane_Fighter_03_AA_F"] call BIS_fnc_selectRandom};
+			case 4: {_vc = ["I_Plane_Fighter_03_CAS_F", "I_Plane_Fighter_03_AA_F"] call BIS_fnc_selectRandom};
 			case 5: {_vc = "I_UAV_02_CAS_F"};
 		};
 	};

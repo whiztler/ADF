@@ -1,10 +1,10 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.43 / NOVEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Crate Cargo Script (BLUEFOR) - SpecOps items/weapons (Wolf)
 Author: Whiztler
-Script version: 1.6
+Script version: 1.7
 
 Game type: n/a
 File: ADF_cCargo_B_WetGear.sqf
@@ -23,7 +23,8 @@ if (!isServer) exitWith {};
 waitUntil {time > 0};
 
 // Init
-_crate = _this select 0;
+params ["_crate"];
+private ["_wpn", "_mag", "_uni"];
 _crate allowDamage false;
 _wpn = 10; 	// Regular Weapons
 _mag = 40;	// Magazines

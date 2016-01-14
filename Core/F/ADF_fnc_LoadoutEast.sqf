@@ -1,13 +1,13 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.43 / NOVEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
-Script: Loadouts EAST
+Script: Loadouts east
 Author: Saetheer
 Script version: 2.31
 
 Game type: n/a
-File: ADF_loadOutsEast.sqf
+File: ADF_loadOutseast.sqf
 ****************************************************************
 Instructions:
 
@@ -24,4 +24,4 @@ want it included.
 The script runs on initial join, on jip and on respawn.
 ****************************************************************/
 
-diag_log "ADF RPT: Init - executing ADF_fnc_LoadoutEast.sqf"; // Reporting. Do NOT edit/remove
+diag_log "ADF RPT: Init - executing ADF_fnc_Loadouteast.sqf"; // Reporting. Do NOT edit/remove

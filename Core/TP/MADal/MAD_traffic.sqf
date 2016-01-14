@@ -131,7 +131,7 @@ MAD_spawnCar = {
 
 		//Driver
 		_civtype = MAD_civlist select (floor (random (count MAD_civlist)));
-		_driver = _sqname createUnit [_civtype,_spawnpos, [], 0, "FORM"];
+		_driver = _sqname createUnit [_civtype, _spawnpos, [], 0, "FORM"];
 		_driver moveindriver _spawncar;
 		_driver setbehaviour "SAFE";
 		_spawncar setvariable ["MAD_car_driver", _driver];
@@ -143,7 +143,7 @@ MAD_spawnCar = {
 MAD_carWaypoint = {
 	_driver = _this select 0;
 	_grp = group _driver;
-	_locations = nearestLocations [getPos _driver, ["NameVillage","NameCity","NameCityCapital","NameLocal","CityCenter"], 30000];
+	_locations = nearestLocations [getPos _driver, ["NameVillage", "NameCity", "NameCityCapital", "NameLocal", "CityCenter"], 30000];
 	_randomLocation = _locations select (floor (random (count _locations)));
 	_locationPos = locationPosition _randomLocation;
 	
@@ -152,7 +152,7 @@ MAD_carWaypoint = {
 	_road = _roads select (floor (random (count _roads)));
 	_wp = getposasl _road; 
 	_waypoint = _grp addWaypoint [_wp, 0];
-	[_grp,0] setWaypointCompletionRadius 30;
+	[_grp, 0] setWaypointCompletionRadius 30;
 	_waypoint setWaypointStatements ["true", "[this] call MAD_carWaypoint"]
 };
 
@@ -171,7 +171,7 @@ MAD_deleteCars = {
 		_car = _x;
 		_c = 0;
 		{
-			if (_car distance _x > MAD_maxCarDistance and ((lineintersects [eyepos _x,getposasl _car,_x,_car]) || (terrainintersectasl [eyepos _x,getposasl _car]))) then {_c = _c + 1;};
+			if (_car distance _x > MAD_maxCarDistance and ((lineintersects [eyepos _x,getposasl _car, _x, _car]) || (terrainintersectasl [eyepos _x,getposasl _car]))) then {_c = _c + 1;};
 		} forEach _players;
 		
 		if (_c == (count _players)) then {_driver = (_car getvariable ["MAD_car_driver", objNull]);

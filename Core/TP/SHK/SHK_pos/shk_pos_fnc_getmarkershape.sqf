@@ -1,7 +1,7 @@
 //  In: marker
 // Out: string (marker shape)
 
-private ["_size","_x","_y","_ret"];
+private ["_size", "_x", "_y", "_ret"];
 _size = markersize _this;
 _x = _size select 0;
 _y = _size select 1;

@@ -83,7 +83,7 @@ MAD_getHouses = {
 	_temphouses = [];
 
 	{
-		if (_x getvariable ["MAD_isHouse",false]) then {
+		if (_x getvariable ["MAD_isHouse", false]) then {
 			_temphouses = _temphouses + [_x];
 		} else {
 			_housestring = str (typeof _x);
@@ -91,7 +91,7 @@ MAD_getHouses = {
 
 			if (_ishouse) then {
 				_temphouses = _temphouses + [_x];
-				_x setvariable ["MAD_isHouse",true];
+				_x setvariable ["MAD_isHouse", true];
 			};
 		};
 	} forEach _allhouses;
@@ -118,7 +118,7 @@ MAD_spawnciv = {
 
 			_civ = leader _sqname;
 			
-			if (ADF_debug) then {diag_log format ["ADF Debug: Civilians - Spawned %1 civilian (%2) at position %3",_class,_civ,_spawnpos];};
+			if (ADF_debug) then {diag_log format ["ADF Debug: Civilians - Spawned %1 civilian (%2) at position %3", _class, _civ, _spawnpos];};
 
 			MAD_CivsArray = MAD_CivsArray + [_civ];
 
@@ -132,7 +132,7 @@ MAD_spawnciv = {
 			for "_i" from 0 to MAD_maxCivWaypoints do {
 				_house = _temphouses select (floor (random (count _temphouses)));
 
-				_waypoint = _sqname addWaypoint [getposasl _house,_i];
+				_waypoint = _sqname addWaypoint [getposasl _house, _i];
 				_waypoint setWaypointType "Move";
 			};
 
@@ -184,7 +184,7 @@ if (ADF_terminateCivScr) exitWith {};
 		_civ = _x;
 		_c = 0;
 		{
-			if (_civ distance _x > MAD_maxCivDistance and ((lineintersects [eyepos _x,getposasl _civ,_x,_civ]) || (terrainintersectasl [eyepos _x,getposasl _civ]))) then {	_c = _c + 1;};
+			if (_civ distance _x > MAD_maxCivDistance and ((lineintersects [eyepos _x,getposasl _civ, _x, _civ]) || (terrainintersectasl [eyepos _x,getposasl _civ]))) then {	_c = _c + 1;};
 		} forEach _players;
 
 		if (_c == (count _players)) then

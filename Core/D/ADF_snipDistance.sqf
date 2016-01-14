@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.43 / NOVEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Distance calculator (player to object)
 Author: Whiztler
@@ -56,4 +56,4 @@ HintSilent parseText format["
 <t color='#A1A4AD' align='left'>You are </t><t align='left' color='#F7D358'>%1</t><t color='#A1A4AD' align='left'> %2 away from the object.</t><br/><br/>
 <t color='#A1A4AD' align='left'>The object is at </t><t align='left' color='#F7D358'>%3</t><t color='#A1A4AD' align='left'> degrees, relative from your current position</t><br/><br/>
 <t color='#A1A4AD' align='left'>The object is located at grid: <t align='left' color='#F7D358'>%4 %5 </t>and is <t align='left' color='#F7D358'>%6 </t>meter(s) above sea level.</t>
-",_objDisR, disVal, _objDir, _objLat, _objLon, _objAlt];
+", _objDisR, disVal, _objDir, _objLat, _objLon, _objAlt];

@@ -13,4 +13,4 @@ _ai = [];
 	};
 
 } foreach allGroups;
-[_players,_ai]
+[_players, _ai]

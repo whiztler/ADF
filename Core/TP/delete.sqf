@@ -13,7 +13,7 @@
 	Uses allMissionObjects "" to iterate over all objects.
 	Adds objects for deletion only if players are specified distance away from them.
 	If you want something to withstand the clean up, paste this into it's init:
-	this setVariable["persistent",true];
+	this setVariable["persistent", true];
 
 	USAGE:
 	paste into init
@@ -42,15 +42,15 @@ GVAR(isRunning)=true;
 //=============================== CNFIGURATION start ===============================//
 //==================================================================================//
 
-params ["_viewDist","_ttdBodies","_ttdVehiclesDead","_ttdVehiclesImmobile"];
+params ["_viewDist", "_ttdBodies", "_ttdVehiclesDead", "_ttdVehiclesImmobile"];
 
 GVAR(deleteClassesConfig) = [
-	[5*60, ["WeaponHolder","GroundWeaponHolder","WeaponHolderSimulated"]],
+	[5*60, ["WeaponHolder", "GroundWeaponHolder", "WeaponHolderSimulated"]],
 	[60*60, ["TimeBombCore"]],
 	[10*60, ["SmokeShell"]],
-	[5*60, ["CraterLong_small","CraterLong"]],
-	[20*60, ["AGM_SpareWheel","AGM_JerryCan","AGM_SpareTrack","AGM_FastRoping_Helper"]],
-	[20*60, ["#dynamicsound","#destructioneffects","#track","#particlesource"]]
+	[5*60, ["CraterLong_small", "CraterLong"]],
+	[20*60, ["AGM_SpareWheel", "AGM_JerryCan", "AGM_SpareTrack", "AGM_FastRoping_Helper"]],
+	[20*60, ["#dynamicsound", "#destructioneffects", "#track", "#particlesource"]]
 ];
 
 GVAR(resetTimeIfPlayerIsWithin) = _viewDist; // how far away from object player needs to be so it can delete
@@ -98,11 +98,11 @@ GVAR(addToCleanup) = {
 	params [
 		"_object",
 		["_delay", 60, [0]],
-		["_resetTimerIfPlayerNearby", true, [true,false]],
-		["_resetValuesIfObjectAlreadyPresent", false, [true,false]]
+		["_resetTimerIfPlayerNearby", true, [true, false]],
+		["_resetValuesIfObjectAlreadyPresent", false, [true, false]]
 	];
 	private ["_newTime", "_index", "_currentTime"];
-	if(IS_SANE(_object) && {!(_object getVariable["persistent",false])}) then {
+	if(IS_SANE(_object) && {!(_object getVariable["persistent", false])}) then {
 		_newTime = _delay + time;
 		_index = GVAR(objectsToCleanup) find _object;
 		if(_index == -1) then {
@@ -155,11 +155,11 @@ while{GVAR(isRunning)} do {
 	} forEach allMissionObjects "";
 
 
-	/*{ // might be causing some bugs in other scripts
+	{ // might be causing some bugs in other scripts
 		if ((count units _x)==0) then {
 			deleteGroup _x;
 		};
-	} forEach allGroups;*/
+	} forEach allGroups;
 
 
 	if (_ttdBodies>0) then {

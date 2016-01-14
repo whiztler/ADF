@@ -16,7 +16,7 @@ case "MouseButtonDown":
 	if(_args select 1 == 1 && f_cam_mode != 1) then
 	{
         _button = _args select 1;
-        f_cam_MouseButton set [_button,true];
+        f_cam_MouseButton set [_button, true];
 
 	};
     if(_args select 1 == 1) then
@@ -33,7 +33,7 @@ case "MouseButtonUp":
 	if(_args select 1 == 1 && f_cam_mode != 1) then
 	{
         _button = _args select 1;
-        f_cam_MouseButton set [_button,false];
+        f_cam_MouseButton set [_button, false];
          [] spawn f_fnc_HandleCamera;
 	};
     if(_args select 1 == 1) then
@@ -62,7 +62,7 @@ case "MouseMoving":
 {
     _x = _args select 1;
     _y = _args select 2;
-    f_cam_mouseCord = [_x,_y];
+    f_cam_mouseCord = [_x, _y];
     [] spawn f_fnc_HandleCamera;
 
 };
@@ -111,7 +111,7 @@ case "LBListSelChanged":
                 _pos = getpos _unit;
                 _x = _pos select 0;
                 _y = _pos select 1;
-                f_cam_freecamera setPosASL [_x,_y,((getposASL f_cam_freecamera) select 2 ) max ((getTerrainHeightASL [_x,_y])+1)];
+                f_cam_freecamera setPosASL [_x, _y,((getposASL f_cam_freecamera) select 2 ) max ((getTerrainHeightASL [_x, _y])+1)];
             };
         };
     };
@@ -217,7 +217,7 @@ case "KeyDown":
                         waitUntil {sleep 0.1;isNull (findDisplay 312)}; // then wait until its not open
                         if(isnil "bis_fnc_moduleRemoteControl_unit") then // check if someone is being remote controled
                         {
-                            [player,player,player,0,true] spawn F_fnc_CamInit; // if not retoggle
+                            [player,player,player, 0, true] spawn F_fnc_CamInit; // if not retoggle
                             _done = true;
                         }; // restart spectator once exit.
                     };
@@ -227,10 +227,10 @@ case "KeyDown":
 
 
                 // black out the screen
-                ["F_ScreenSetup",false] call BIS_fnc_blackOut;
+                ["F_ScreenSetup", false] call BIS_fnc_blackOut;
                 if(isNull (getAssignedCuratorLogic player)) then
                 {
-                    [[player,true,playableUnits],'f_fnc_zeusInit',false] spawn BIS_fnc_MP;
+                    [[player, true,playableUnits],'f_fnc_zeusInit', false] spawn BIS_fnc_MP;
                 };
                 [] spawn {
                     waitUntil {!isNull (getAssignedCuratorLogic player)};
@@ -272,39 +272,39 @@ case "KeyDown":
         // Freecam movement keys
         case 17: // W
         {
-            f_cam_freecam_buttons set [0,true];
+            f_cam_freecam_buttons set [0, true];
             _handled = true;
         };
         case 31: // S
         {
-            f_cam_freecam_buttons set [1,true];
+            f_cam_freecam_buttons set [1, true];
             _handled = true;
         };
         case 30: // A
         {
-            f_cam_freecam_buttons set [2,true];
+            f_cam_freecam_buttons set [2, true];
             _handled = true;
         };
         case 32: // D
         {
-            f_cam_freecam_buttons set [3,true];
+            f_cam_freecam_buttons set [3, true];
             _handled = true;
         };
         case 49: // N
         {
             _index = (lbCurSel 2101)+1;
             if(_index >= (lbSize 2101 )) then { _index = 0};
-            lbSetCurSel [2101,_index];
+            lbSetCurSel [2101, _index];
             _handled = true;
         };
         case 16: // Q
         {
-            f_cam_freecam_buttons set [4,true];
+            f_cam_freecam_buttons set [4, true];
             _handled = true;
         };
         case 44: // Z
         {
-            f_cam_freecam_buttons set [5,true];
+            f_cam_freecam_buttons set [5, true];
             _handled = true;
         };
         case 57: // SPACE
@@ -313,7 +313,7 @@ case "KeyDown":
             if(f_cam_freecamOn) then
             {
                 f_cam_angleY = 10;
-                [f_cam_freecamera,f_cam_angleY,0] call BIS_fnc_setPitchBank;
+                [f_cam_freecamera,f_cam_angleY, 0] call BIS_fnc_setPitchBank;
                 f_cam_freecamera cameraEffect ["internal", "BACK"];
                 f_cam_mode = 3;
                 f_cam_freecamera setPosASL getPosASL f_cam_camera;
@@ -322,7 +322,7 @@ case "KeyDown":
             }
             else
             {
-                f_cam_freecamera cameraEffect ["Terminate","BACK"];
+                f_cam_freecamera cameraEffect ["Terminate", "BACK"];
                 f_cam_angleY = 45;
                 f_cam_camera cameraEffect ["internal", "BACK"];
                 f_cam_mode = 0;
@@ -382,26 +382,26 @@ case "KeyDown":
                 // no maps
                 case 0:
                 {
-                    ctrlShow [2110,true];
-                    ctrlShow [2010,true];
-                    ctrlShow [1350,false];
-                    ctrlShow [1360,false];
+                    ctrlShow [2110, true];
+                    ctrlShow [2010, true];
+                    ctrlShow [1350, false];
+                    ctrlShow [1360, false];
                 };
 
                 case 1:
                 {
-                    ctrlShow [2110,true];
-                    ctrlShow [2010,true];
-                    ctrlShow [1350,true];
-                    ctrlShow [1360,false];
+                    ctrlShow [2110, true];
+                    ctrlShow [2010, true];
+                    ctrlShow [1350, true];
+                    ctrlShow [1360, false];
                 };
                 // big map
                 case 2:
                 {
-                    ctrlShow [2110,false];
-                    ctrlShow [2010,false];
-                    ctrlShow [1350,false];
-                    ctrlShow [1360,true];
+                    ctrlShow [2110, false];
+                    ctrlShow [2010, false];
+                    ctrlShow [1350, false];
+                    ctrlShow [1360, true];
                     _displayDialog = (findDisplay 9228);
                     _fullmapWindow = _displayDialog displayCtrl 1360;
                     ctrlMapAnimClear _fullmapWindow;
@@ -480,32 +480,32 @@ case "KeyUp":
         };
         case 17:
         {
-            f_cam_freecam_buttons set [0,false];
+            f_cam_freecam_buttons set [0, false];
             _handled = true;
         };
         case 31:
         {
-            f_cam_freecam_buttons set [1,false];
+            f_cam_freecam_buttons set [1, false];
             _handled = true;
         };
         case 30:
         {
-            f_cam_freecam_buttons set [2,false];
+            f_cam_freecam_buttons set [2, false];
             _handled = true;
         };
         case 32:
         {
-            f_cam_freecam_buttons set [3,false];
+            f_cam_freecam_buttons set [3, false];
             _handled = true;
         };
         case 16:
         {
-            f_cam_freecam_buttons set [4,false];
+            f_cam_freecam_buttons set [4, false];
             _handled = true;
         };
         case 44:
         {
-            f_cam_freecam_buttons set [5,false];
+            f_cam_freecam_buttons set [5, false];
             _handled = true;
         };
     };

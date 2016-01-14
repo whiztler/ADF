@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.43 / NOVEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Vehicle Cargo Script (BLUEFOR) (BLUEFOR) - Transport Truck
 Author: Whiztler
@@ -24,34 +24,34 @@ if (!isServer) exitWith {};
 waitUntil {time > 0};
 
 // Init
-_vSupply = _this select 0;
+params ["_v"];
 
 // Settings 
-clearWeaponCargoGlobal _vSupply; // Empty vehicle CargoGlobal contents on init
-clearMagazineCargoGlobal _vSupply; // Empty vehicle CargoGlobal contents on init
-clearItemCargoGlobal _vSupply; // Empty vehicle CargoGlobal contents on init
+clearWeaponCargoGlobal _v; // Empty vehicle CargoGlobal contents on init
+clearMagazineCargoGlobal _v; // Empty vehicle CargoGlobal contents on init
+clearItemCargoGlobal _v; // Empty vehicle CargoGlobal contents on init
 
 // Primary weapon
-_vSupply addWeaponCargoGlobal ["arifle_MX_GL_F", 2]; // GL
+_v addWeaponCargoGlobal ["arifle_MX_GL_F", 2]; // GL
 
 if (ADF_mod_ACE3) then {
-	_vSupply addMagazineCargoGlobal ["ACE_30Rnd_65x39_caseless_mag_Tracer_Dim", 25];
+	_v addMagazineCargoGlobal ["ACE_30Rnd_65x39_caseless_mag_Tracer_Dim", 25];
 } else {
-	_vSupply addMagazineCargoGlobal ["30Rnd_65x39_caseless_mag", 25]
+	_v addMagazineCargoGlobal ["30Rnd_65x39_caseless_mag", 25]
 };
 
 // Demo/Explosives
-_vSupply addMagazineCargoGlobal ["SatchelCharge_Remote_Mag", 5];
+_v addMagazineCargoGlobal ["SatchelCharge_Remote_Mag", 5];
 
 // GL Ammo
-_vSupply addMagazineCargoGlobal ["3Rnd_HE_Grenade_shell", 5];
+_v addMagazineCargoGlobal ["3Rnd_HE_Grenade_shell", 5];
 
 // Grenades
-_vSupply addMagazineCargoGlobal ["HandGrenade", 5]; 	 
-_vSupply addMagazineCargoGlobal ["SmokeShell", 5]; 	 
+_v addMagazineCargoGlobal ["HandGrenade", 5]; 	 
+_v addMagazineCargoGlobal ["SmokeShell", 5]; 	 
 
 // Medical Items
-_vSupply addItemCargoGlobal ["FirstAidKit", 5];
+_v addItemCargoGlobal ["FirstAidKit", 5];
 
 // Misc items
-_vSupply addItemCargoGlobal ["ToolKit", 2];
+_v addItemCargoGlobal ["ToolKit", 2];

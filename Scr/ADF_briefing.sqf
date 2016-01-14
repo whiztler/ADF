@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.43 / NOVEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Mission Briefing
 Author: Whiztler
@@ -20,13 +20,13 @@ diag_log "ADF RPT: Init - executing briefing.sqf"; // Reporting. Do NOT edit/rem
 if (!hasInterface) exitWith {};
 
 ///// CREDITS
-player createDiaryRecord ["Diary",["Credits","
+player createDiaryRecord ["Diary",["Credits", "
 <br/><br/><font size='18'>CREDITS</font><br/><br/>
 <font color='#9DA698'>Mission by {yourname}</font>
 "]];
 
 ///// SUPPORT & LOGISTICS
-player createDiaryRecord ["Diary",["MOB & Logistics","
+player createDiaryRecord ["Diary",["MOB & Logistics", "
 <br/><br/><font size='18'>PLAYER RESPAWN</font>
 <br/><font color='#9DA698'>Text goes here<br/>This goes on a new line.</font>
 
@@ -44,7 +44,7 @@ player createDiaryRecord ["Diary",["MOB & Logistics","
 "]];
 
 ///// TACTICAL PLAN & EXECUTION
-player createDiaryRecord ["Diary",["Tactical / Execution","
+player createDiaryRecord ["Diary",["Tactical / Execution", "
 <br/><br/><font size='18'>CONCEPT OF OPERATIONS</font>
 <br/><font color='#9DA698'>This is a statement of your intent which explains your mission in relation to the higher commander's intent.
 It consists of an explanation of the purpose of the task, a general method to achieve the task and an end result desired.</font>
@@ -64,7 +64,7 @@ limits of exploitation, assembly areas, axes of advance, etc. </font>
 "]];
 
 ///// OBJECTIVES
-player createDiaryRecord ["Diary",["Objectives","
+player createDiaryRecord ["Diary",["Objectives", "
 <br/><br/><font size='18'>MISSION OBJECTIVES</font>
 <br/><font color='#9DA698'>The mission will be the principal task along with a statement of the purpose behind the task.
 It is expressed as to ...(mission task verb) in order to ... (purpose). It is stated twice for emphasis.</font>
@@ -72,7 +72,7 @@ It is expressed as to ...(mission task verb) in order to ... (purpose). It is st
 
 ///// SITUATION
 
-player createDiaryRecord ["Diary",["Situation","
+player createDiaryRecord ["Diary",["Situation", "
 <br/><br/><font size='18'>SUMMARY</font>
 <br/><font color='#9DA698'>Text goes here<br/>This goes on a new line.</font>
 

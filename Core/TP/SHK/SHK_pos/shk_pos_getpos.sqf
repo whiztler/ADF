@@ -2,12 +2,12 @@
      In: [position,distance,direction,water,road,emptySpace]
     Out: position
 */
-private ["_org","_dst","_dir","_pos","_water","_road","_empty"];
+private ["_org", "_dst", "_dir", "_pos", "_water", "_road", "_empty"];
 _org = _this select 0;
 _dst = _this select 1;
 _dir = if (count _this > 2) then {_this select 2} else {random 360};
 _water = if (count _this > 3) then {_this select 3} else {0};
-_road = if (count _this > 4) then {_this select 4} else {[0,200]};
+_road = if (count _this > 4) then {_this select 4} else {[0, 200]};
 _empty = if (count _this > 5) then {_this select 5} else {[]};
 
 // Object instead of position array given
@@ -15,7 +15,7 @@ if (typename _org == "OBJECT") then {_org = getpos _org};
 
 // Distance given as an array of min and max. Pick a random between them.
 if (typename _dst == "ARRAY") then {
-  private ["_min","_max"];
+  private ["_min", "_max"];
   _min = _dst select 0;
   _max = _dst select 1;
   _dst = (_min + random(_max - _min));
@@ -23,7 +23,7 @@ if (typename _dst == "ARRAY") then {
 
 // Direction given as an array of min and max. Pick a random dir between them.
 if (typename _dir == "ARRAY") then {
-  private ["_min","_max","_ang"];
+  private ["_min", "_max", "_ang"];
   _min = _dir select 0;
   _max = _dir select 1;
   
@@ -35,21 +35,21 @@ if (typename _dir == "ARRAY") then {
   _dir = (_min + random _ang);
 };
 
-_pos = [_org,_dst,_dir] call SHK_pos_fnc_getPos;
+_pos = [_org, _dst, _dir] call SHK_pos_fnc_getPos;
 
 // Water position
 if (typeName _water == "SCALAR") then {
   switch _water do {
     case 0: { // Water not allowed
       if (surfaceIsWater _pos) then {
-        private ["_p","_d","_l"];
+        private ["_p", "_d", "_l"];
         _d = 0; _l = true;
         
         // Search for a land position starting from the randomly picked position and
         // then going outwards from it in full circles in 20m steps.
         while {_d = _d + 20; _l && _d < 5000} do {
           for "_i" from 0 to 340 step 20 do {
-            _p = [_pos,_d,_i] call SHK_pos_fnc_getpos;
+            _p = [_pos, _d, _i] call SHK_pos_fnc_getpos;
             if (!surfaceIsWater _p) exitwith {_l = false};
           };
         };
@@ -61,14 +61,14 @@ if (typeName _water == "SCALAR") then {
     };
     case 2: { // Only water allowed
       if !(surfaceIsWater _pos) then {
-        private ["_p","_d","_l"];
+        private ["_p", "_d", "_l"];
         _d = 0; _l = true;
         
         // Search for a water position starting from the randomly picked position and
         // then going outwards from it in full circles in 20m steps.
         while {_d = _d + 20; _l && _d < 5000} do {
           for "_i" from 0 to 340 step 20 do {
-            _p = [_pos,_d,_i] call SHK_pos_fnc_getpos;
+            _p = [_pos, _d, _i] call SHK_pos_fnc_getpos;
             if (surfaceIsWater _p) exitwith {_l = false};
           };
         };
@@ -80,14 +80,14 @@ if (typeName _water == "SCALAR") then {
   // Water position is not allowed
   if !_water then {
     if (surfaceIsWater _pos) then {
-      private ["_p","_d","_l"];
+      private ["_p", "_d", "_l"];
       _d = 0; _l = true;
       
       // Search for a land position starting from the randomly picked position and
       // then going outwards from it in full circles in 20m steps.
       while {_d = _d + 20; _l && _d < 5000} do {
         for "_i" from 0 to 340 step 20 do {
-          _p = [_pos,_d,_i] call SHK_pos_fnc_getpos;
+          _p = [_pos, _d, _i] call SHK_pos_fnc_getpos;
           if (!surfaceIsWater _p) exitwith {_l = false};
         };
       };
@@ -99,7 +99,7 @@ if (typeName _water == "SCALAR") then {
 // Road position.
 if (count _road > 0) then {
   if ((_road select 0) > 0) then {
-    private ["_mode","_range","_roads","_cnt","_p","_p2"];
+    private ["_mode", "_range", "_roads", "_cnt", "_p", "_p2"];
     _mode  = _road select 0;
     _range = _road select 1;
     _roads = _pos nearroads _range;
@@ -141,7 +141,7 @@ if (count _road > 0) then {
 };
 
 // Find empty position 
-private ["_dst","_veh","_p"]; 
+private ["_dst", "_veh", "_p"]; 
 
 _dst = 200; 
 _veh = ""; 
@@ -158,7 +158,7 @@ switch (typename _empty) do {
 }; 
 
 _p = []; 
-if (count _pos > 0) then {_p = _pos findEmptyPosition [0,_dst,_veh];}; 
+if (count _pos > 0) then {_p = _pos findEmptyPosition [0, _dst, _veh];}; 
 
 
 // If an empty position is found, use it. Otherwise, return the original position. 

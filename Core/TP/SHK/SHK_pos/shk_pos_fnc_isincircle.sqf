@@ -1,7 +1,7 @@
 //  In: [position,marker]
 // Out: boolean
 
-private ["_pos","_area","_posX","_posY"];
+private ["_pos", "_area", "_posX", "_posY"];
 _pos = _this select 0;
 _area = _this select 1;
 
@@ -9,7 +9,7 @@ _posX = _pos select 0;
 _posY = _pos select 1;
 
 // Center point
-private ["_center","_centerX","_centerY"];
+private ["_center", "_centerX", "_centerY"];
 _center  = getMarkerPos _area;
 _centerX = _center select 0;
 _centerY = _center select 1;
@@ -20,7 +20,7 @@ _size  = getMarkerSize _area;
 _size = _size select 0;
 
 // Difference in coordinates
-private ["_difX","_difY"];
+private ["_difX", "_difY"];
 _difX = _posX - _centerX;
 _difY = _posY - _centerY;
 

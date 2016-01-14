@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.43 / NOVEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Cfg entries
 Author: Whiztler
@@ -38,7 +38,7 @@ class cfgNotifications { // Preconfigured messages
 		description = "%1";
 		iconPicture = "\A3\ui_f\data\map\markers\military\warning_ca.paa";
 		iconText = "";
-		color[] = {1,1,0,1};		
+		color[] = {1, 1, 0, 1};		
 		duration = 4;
 		priority = 7;
 	};
@@ -52,21 +52,21 @@ class CfgDebriefing {
 		description = "Success message goes here";
 		pictureBackground = ""; // eg. "img\yourpicture.jpg" no picture? use "";
 		picture = "b_HQ"; // Marker icon
-		pictureColor[] = {0.0,0.3,0.6,1}; // Overlay color
+		pictureColor[] = {0.0, 0.3, 0.6, 1}; // Overlay color
 	};
 	class End2 {
 		title = "Mission Failed";
 		subtitle = "Mission Name";
 		description = "Failure message goes here";
 		pictureBackground = "Img\intro_day1.paa"; // eg. "img\yourpicture.jpg" no picture? use "";
-		pictureColor[] = {0.0,0.3,0.6,1}; // Overlay color
+		pictureColor[] = {0.0, 0.3, 0.6, 1}; // Overlay color
 	};
 	class Killed {
 		title = "All players K.I.A.";
 		subtitle = "Mission Name";
 		description = "Failure message goes here";
 		pictureBackground = "Img\intro_day1.paa"; // eg. "img\yourpicture.jpg" no picture? use "";
-		pictureColor[] = {0.0,0.3,0.6,1}; // Overlay color
+		pictureColor[] = {0.0, 0.3, 0.6, 1}; // Overlay color
 	};
 };
 
@@ -510,17 +510,17 @@ class ACE_Settings {
 		typeName = "BOOL";
 		force = 1;
 	};
-	class ace_switchunits_SwitchToWest {
+	class ace_switchunits_SwitchTowest {
 		value = 0;
 		typeName = "BOOL";
 		force = 1;
 	};
-	class ace_switchunits_SwitchToEast {
+	class ace_switchunits_SwitchToeast {
 		value = 0;
 		typeName = "BOOL";
 		force = 1;
 	};
-	class ace_switchunits_SwitchToIndependent {
+	class ace_switchunits_SwitchToindependent {
 		value = 0;
 		typeName = "BOOL";
 		force = 1;

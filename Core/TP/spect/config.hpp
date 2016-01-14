@@ -1,5 +1,5 @@
-#define BACKGROUND_COLOR {0.059,0.059,0.059,1}
-#define PRIMARYCOLOR {0.918,0.655,0.141,1}
+#define BACKGROUND_COLOR {0.059, 0.059, 0.059, 1}
+#define PRIMARYCOLOR {0.918, 0.655, 0.141, 1}
 class RscSpectListBox {
     access = 0;
     type = 5;
@@ -15,8 +15,8 @@ class RscSpectListBox {
     colorSelectBackground2[] = {1, 1, 1, 0.5};
     colorBackground[] = {0, 0, 0, 1};
     soundSelect[] = {"", 0.1, 1};
-    arrowEmpty = "#(argb,8,8,3)color(1,1,1,1)";
-    arrowFull = "#(argb,8,8,3)color(1,1,1,1)";
+    arrowEmpty = "#(argb, 8, 8, 3)color(1, 1, 1, 1)";
+    arrowFull = "#(argb, 8, 8, 3)color(1, 1, 1, 1)";
     class ListScrollBar {
         color[] = {1, 1, 1, 0.6};
         colorActive[] = {1, 1, 1, 1};
@@ -57,31 +57,31 @@ class RscSpectMapControl
     access = 0;
     alphaFadeEndScale = 2;
     alphaFadeStartScale = 2;
-    colorBackground[] = {0.969,0.957,0.949,1};
-    colorCountlines[] = {0.572,0.354,0.188,0.25};
-    colorCountlinesWater[] = {0.491,0.577,0.702,0.3};
-    colorForest[] = {0.624,0.78,0.388,0.5};
-    colorForestBorder[] = {0,0,0,0};
-    colorGrid[] = {0.1,0.1,0.1,0.6};
-    colorGridMap[] = {0.1,0.1,0.1,0.6};
-    colorInactive[] = {1,1,1,0.5};
-    colorLevels[] = {0.286,0.177,0.094,0.5};
-    colorMainCountlines[] = {0.572,0.354,0.188,0.5};
-    colorMainCountlinesWater[] = {0.491,0.577,0.702,0.6};
-    colorMainRoads[] = {0.9,0.5,0.3,1};
-    colorMainRoadsFill[] = {1,0.6,0.4,1};
-    colorNames[] = {0.1,0.1,0.1,0.9};
-    colorOutside[] = {0,0,0,1};
-    colorPowerLines[] = {0.1,0.1,0.1,1};
-    colorRailWay[] = {0.8,0.2,0,1};
-    colorRoads[] = {0.7,0.7,0.7,1};
-    colorRoadsFill[] = {1,1,1,1};
-    colorRocks[] = {0,0,0,0.3};
-    colorRocksBorder[] = {0,0,0,0};
-    colorSea[] = {0.467,0.631,0.851,0.5};
-    colorText[] = {0,0,0,1};
-    colorTracks[] = {0.84,0.76,0.65,0.15};
-    colorTracksFill[] = {0.84,0.76,0.65,1};
+    colorBackground[] = {0.969, 0.957, 0.949, 1};
+    colorCountlines[] = {0.572, 0.354, 0.188, 0.25};
+    colorCountlinesWater[] = {0.491, 0.577, 0.702, 0.3};
+    colorForest[] = {0.624, 0.78, 0.388, 0.5};
+    colorForestBorder[] = {0, 0, 0, 0};
+    colorGrid[] = {0.1, 0.1, 0.1, 0.6};
+    colorGridMap[] = {0.1, 0.1, 0.1, 0.6};
+    colorInactive[] = {1, 1, 1, 0.5};
+    colorLevels[] = {0.286, 0.177, 0.094, 0.5};
+    colorMainCountlines[] = {0.572, 0.354, 0.188, 0.5};
+    colorMainCountlinesWater[] = {0.491, 0.577, 0.702, 0.6};
+    colorMainRoads[] = {0.9, 0.5, 0.3, 1};
+    colorMainRoadsFill[] = {1, 0.6, 0.4, 1};
+    colorNames[] = {0.1, 0.1, 0.1, 0.9};
+    colorOutside[] = {0, 0, 0, 1};
+    colorPowerLines[] = {0.1, 0.1, 0.1, 1};
+    colorRailWay[] = {0.8, 0.2, 0, 1};
+    colorRoads[] = {0.7, 0.7, 0.7, 1};
+    colorRoadsFill[] = {1, 1, 1, 1};
+    colorRocks[] = {0, 0, 0, 0.3};
+    colorRocksBorder[] = {0, 0, 0, 0};
+    colorSea[] = {0.467, 0.631, 0.851, 0.5};
+    colorText[] = {0, 0, 0, 1};
+    colorTracks[] = {0.84, 0.76, 0.65, 0.15};
+    colorTracksFill[] = {0.84, 0.76, 0.65, 1};
     font = "TahomaB";
     fontGrid = "TahomaB";
     fontInfo = "PuristaMedium";
@@ -114,10 +114,10 @@ class RscSpectMapControl
     sizeExLevel = 0.02;
     sizeExNames = "(            (           (           ((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8) * 2";
     sizeExUnits = "(            (           (           ((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
-    stickX[] = {0.2,["Gamma",1,1.5]};
-    stickY[] = {0.2,["Gamma",1,1.5]};
+    stickX[] = {0.2,["Gamma", 1, 1.5]};
+    stickY[] = {0.2,["Gamma", 1, 1.5]};
     style = 48;
-    text = "#(argb,8,8,3)color(1,1,1,1)";
+    text = "#(argb, 8, 8, 3)color(1, 1, 1, 1)";
     type = 101;
     w = "SafeZoneWAbs";
     x = "SafeZoneXAbs";
@@ -149,7 +149,7 @@ class RscSpectMapControl
         colorCanceled[] = {0.7, 0.7, 0.7, 1};
         colorDone[] = {0.7, 1, 0.3, 1};
         colorFailed[] = {1, 0.3, 0.2, 1};
-        color[] = {"(profilenamespace getvariable ['IGUI_TEXT_RGB_R',0])", "(profilenamespace getvariable ['IGUI_TEXT_RGB_G',1])", "(profilenamespace getvariable ['IGUI_TEXT_RGB_B',1])", "(profilenamespace getvariable ['IGUI_TEXT_RGB_A',0.8])"};
+        color[] = {"(profilenamespace getvariable ['IGUI_TEXT_RGB_R', 0])", "(profilenamespace getvariable ['IGUI_TEXT_RGB_G', 1])", "(profilenamespace getvariable ['IGUI_TEXT_RGB_B', 1])", "(profilenamespace getvariable ['IGUI_TEXT_RGB_A', 0.8])"};
         icon = "\A3\ui_f\data\map\mapcontrol\taskIcon_CA.paa";
         iconCreated = "\A3\ui_f\data\map\mapcontrol\taskIconCreated_CA.paa";
         iconCanceled = "\A3\ui_f\data\map\mapcontrol\taskIconCanceled_CA.paa";
@@ -406,22 +406,22 @@ class RscSpectPic
     w = 0.5;
     font = "EtelkaNarrowMediumPro";
     sizeEx = 0.05;
-    colorBackground[] = {1,1,1,1}; //white background
-    colorText[] = {1,1,1,1}; //grey foreground
-    text = "#(argb,8,8,3)color(0.918,0.655,0.141,1)";
+    colorBackground[] = {1, 1, 1, 1}; //white background
+    colorText[] = {1, 1, 1, 1}; //grey foreground
+    text = "#(argb, 8, 8, 3)color(0.918, 0.655, 0.141, 1)";
     lineSpacing = 1; //required for multi-line style
 };
 class RscSpectButton {
     access = 0;
     borderSize = 0.001 * safezoneW;
     colorBorder[] = PRIMARYCOLOR;
-    colorBackgroundActive[] = {0.314,0.314,0.314,1};
+    colorBackgroundActive[] = {0.314, 0.314, 0.314, 1};
     colorBackgroundDisabled[] = BACKGROUND_COLOR;
-    colorDisabled[] = {0.4,0.4,0.4,1};
+    colorDisabled[] = {0.4, 0.4, 0.4, 1};
     colorFocused[] = BACKGROUND_COLOR;
     colorShadow[] = PRIMARYCOLOR;
     colorText[] = PRIMARYCOLOR;
-    color[] = {1,1,1,1};
+    color[] = {1, 1, 1, 1};
     colorBackground[] = BACKGROUND_COLOR;
     font = "PuristaLight";
     h = 0.039216;
@@ -431,10 +431,10 @@ class RscSpectButton {
     offsetY = 0;
     shadow = 0;
     sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
-    soundClick[] = {"\A3\ui_f\data\sound\RscSpectButton\soundClick",0.09,1};
-    soundEnter[] = {"\A3\ui_f\data\sound\RscSpectButton\soundEnter",0.09,1};
-    soundEscape[] = {"\A3\ui_f\data\sound\RscSpectButton\soundEscape",0.09,1};
-    soundPush[] = {"\A3\ui_f\data\sound\RscSpectButton\soundPush",0.09,1};
+    soundClick[] = {"\A3\ui_f\data\sound\RscSpectButton\soundClick", 0.09, 1};
+    soundEnter[] = {"\A3\ui_f\data\sound\RscSpectButton\soundEnter", 0.09, 1};
+    soundEscape[] = {"\A3\ui_f\data\sound\RscSpectButton\soundEscape", 0.09, 1};
+    soundPush[] = {"\A3\ui_f\data\sound\RscSpectButton\soundPush", 0.09, 1};
     style = 0x02 + 160;
     text = "";
     type = 1;
@@ -474,7 +474,7 @@ class RscSpectIGUIBack {
     y = 0.1;
     w = 0.1;
     h = 0.1;
-    colorbackground[] = {"(profilenamespace getvariable ['IGUI_BCG_RGB_R',0])", "(profilenamespace getvariable ['IGUI_BCG_RGB_G',1])", "(profilenamespace getvariable ['IGUI_BCG_RGB_B',1])", "(profilenamespace getvariable ['IGUI_BCG_RGB_A',0.8])"};
+    colorbackground[] = {"(profilenamespace getvariable ['IGUI_BCG_RGB_R', 0])", "(profilenamespace getvariable ['IGUI_BCG_RGB_G', 1])", "(profilenamespace getvariable ['IGUI_BCG_RGB_B', 1])", "(profilenamespace getvariable ['IGUI_BCG_RGB_A', 0.8])"};
 };
 class RscSpectText {
     access = 0;
@@ -504,7 +504,7 @@ class RscSpectControlsGroup {
     w = 1;
     h = 1;
     class VScrollbar  {
-    	color[] = {1,1,1,1 };
+    	color[] = {1, 1, 1, 1 };
     	width = 0.021000;
     	autoScrollSpeed = -1;
     	autoScrollDelay = 5;
@@ -518,9 +518,9 @@ class RscSpectControlsGroup {
         arrowEmpty = "\A3\ui_f\data\gui\cfg\scrollbar\arrowEmpty_ca.paa";
         arrowFull = "\A3\ui_f\data\gui\cfg\scrollbar\arrowFull_ca.paa";
         border = "\A3\ui_f\data\gui\cfg\scrollbar\border_ca.paa";
-        color[] = {1,1,1,0.6};
-        colorActive[] = {1,1,1,1};
-        colorDisabled[] = {1,1,1,0.3};
+        color[] = {1, 1, 1, 0.6};
+        colorActive[] = {1, 1, 1, 1};
+        colorDisabled[] = {1, 1, 1, 0.3};
         shadow = 0;
         thumb = "\A3\ui_f\data\gui\cfg\scrollbar\thumb_ca.paa";
     };
@@ -535,22 +535,22 @@ class RscSpectList
     rowWidth = 0;
     arrowEmpty = "";
     arrowFull = "";
-    color[] = {1,1,1,1};
-    colorActive[] = {1,0,0,0.8};
-    colorBackground[] = {0,0,0,0};
-    colorDisabled[] = {1,1,1,0.25};
-    colorScrollbar[] = {1,0,0,0};
-    colorSelect[] = {1,1,1,0.8};
-    colorSelectBackground[] = {1,1,1,0.7};
-    colorText[] = {1,1,1,1};
+    color[] = {1, 1, 1, 1};
+    colorActive[] = {1, 0, 0, 0.8};
+    colorBackground[] = {0, 0, 0, 0};
+    colorDisabled[] = {1, 1, 1, 0.25};
+    colorScrollbar[] = {1, 0, 0, 0};
+    colorSelect[] = {1, 1, 1, 0.8};
+    colorSelectBackground[] = {1, 1, 1, 0.7};
+    colorText[] = {1, 1, 1, 1};
     font = "TahomaB";
     h = 0.035;
     maxHistoryDelay = 1;
     shadow = 1;
     sizeEx = "(         (           (           ((safezoneW / safezoneH) min 0.9) / 1.2) / 25) * 1)";
-    soundCollapse[] = {"\A3\ui_f\data\sound\RscCombo\soundCollapse",0.1,1};
-    soundExpand[] = {"\A3\ui_f\data\sound\RscCombo\soundExpand",0.1,1};
-    soundSelect[] = {"\A3\ui_f\data\sound\RscCombo\soundSelect",0.1,1};
+    soundCollapse[] = {"\A3\ui_f\data\sound\RscCombo\soundCollapse", 0.1, 1};
+    soundExpand[] = {"\A3\ui_f\data\sound\RscCombo\soundExpand", 0.1, 1};
+    soundSelect[] = {"\A3\ui_f\data\sound\RscCombo\soundSelect", 0.1, 1};
   //  style = "0x10 + 0x200";
     type = 5;
      //   type = 5;
@@ -564,9 +564,9 @@ class RscSpectList
         arrowEmpty = "";
         arrowFull = "";
         border = "";
-        color[] = {1,1,1,0};
-        colorActive[] = {1,1,1,0};
-        colorDisabled[] = {1,1,1,0.1};
+        color[] = {1, 1, 1, 0};
+        colorActive[] = {1, 1, 1, 0};
+        colorDisabled[] = {1, 1, 1, 0.1};
         shadow = 0;
         thumb = "";
     };
@@ -579,14 +579,14 @@ class RscSpectList
 class RscSpectCombo
 {
     access = 0;
-    arrowEmpty = "#(argb,8,8,3)color(0.918,0.655,0.141,1)";
-    arrowFull = "#(argb,8,8,3)color(0.918,0.655,0.141,1)";
+    arrowEmpty = "#(argb, 8, 8, 3)color(0.918, 0.655, 0.141, 1)";
+    arrowFull = "#(argb, 8, 8, 3)color(0.918, 0.655, 0.141, 1)";
     color[] = PRIMARYCOLOR;
     colorActive[] = BACKGROUND_COLOR;
     colorBackground[] = BACKGROUND_COLOR;
-    colorDisabled[] = {1,1,1,0.25};
+    colorDisabled[] = {1, 1, 1, 0.25};
     colorScrollbar[] = BACKGROUND_COLOR;
-    colorSelect[] = {1,1,1,1};
+    colorSelect[] = {1, 1, 1, 1};
     colorSelectBackground[] = BACKGROUND_COLOR;
     colorText[] = PRIMARYCOLOR;
     font = "PuristaLight";
@@ -595,9 +595,9 @@ class RscSpectCombo
     shadow = 0;
     colorBorder[] = PRIMARYCOLOR;
     sizeEx = "(         (           (           ((safezoneW / safezoneH) min 1.0) / 1.0) / 25) * 1)";
-    soundCollapse[] = {"\A3\ui_f\data\sound\RscCombo\soundCollapse",0.1,1};
-    soundExpand[] = {"\A3\ui_f\data\sound\RscCombo\soundExpand",0.1,1};
-    soundSelect[] = {"\A3\ui_f\data\sound\RscCombo\soundSelect",0.1,1};
+    soundCollapse[] = {"\A3\ui_f\data\sound\RscCombo\soundCollapse", 0.1, 1};
+    soundExpand[] = {"\A3\ui_f\data\sound\RscCombo\soundExpand", 0.1, 1};
+    soundSelect[] = {"\A3\ui_f\data\sound\RscCombo\soundSelect", 0.1, 1};
     style = 0x02 + 160;
     type = 4;
     w = 0.12;
@@ -609,9 +609,9 @@ class RscSpectCombo
         arrowEmpty = "";
         arrowFull = "";
         border = "";
-        color[] = {1,1,1,0.0};
-        colorActive[] = {1,1,1,0.0};
-        colorDisabled[] = {1,1,1,0.0};
+        color[] = {1, 1, 1, 0.0};
+        colorActive[] = {1, 1, 1, 0.0};
+        colorDisabled[] = {1, 1, 1, 0.0};
         shadow = 0;
         thumb = "\A3\ui_f\data\gui\cfg\scrollbar\thumb_ca.paa";
     };
@@ -626,25 +626,25 @@ class f_spec_dialog {
 	fadein = 0;
 	fadeout = 0;
     duration = 2147483647;
-    onKeyDown = "[""KeyDown"",_this] call F_fnc_EventHandler";
-    onKeyUp= "[""KeyUp"",_this] call F_fnc_EventHandler";
+    onKeyDown = "[""KeyDown"", _this] call F_fnc_EventHandler";
+    onKeyUp= "[""KeyUp"", _this] call F_fnc_EventHandler";
     onUnload = "[] spawn f_fnc_OnUnload";
 	class controlsBackground {
 		class mouseHandler: RscSpectControlsGroup {
             class ListScrollBar
             {
-                color[] = {1,1,1,0.6};
-                colorActive[] = {1,1,1,1};
-                colorDisabled[] = {1,1,1,0.0};
+                color[] = {1, 1, 1, 0.6};
+                colorActive[] = {1, 1, 1, 1};
+                colorDisabled[] = {1, 1, 1, 0.0};
                 thumb = "";
                 arrowFull = "";
                 arrowEmpty = "";
                 border = "";
             };
-			onMouseButtonDown = "[""MouseButtonDown"",_this] call F_fnc_EventHandler";
-			onMouseButtonUp = "[""MouseButtonUp"",_this] call F_fnc_EventHandler";
-            onMouseZChanged = "[""MouseZChanged"",_this] call F_fnc_EventHandler";
-            onMouseMoving = "['MouseMoving',_this] call F_fnc_EventHandler";
+			onMouseButtonDown = "[""MouseButtonDown"", _this] call F_fnc_EventHandler";
+			onMouseButtonUp = "[""MouseButtonUp"", _this] call F_fnc_EventHandler";
+            onMouseZChanged = "[""MouseZChanged"", _this] call F_fnc_EventHandler";
+            onMouseMoving = "['MouseMoving', _this] call F_fnc_EventHandler";
 		    idc = 123;
             x = SafeZoneX; y = SafeZoneY;
             w = SafeZoneW; h = SafeZoneH;
@@ -662,15 +662,15 @@ class f_spec_dialog {
             onMouseHolding = "f_cam_menuShownTime=time";
             onMouseMoving = "f_cam_menuShownTime=time";
             borderSize = 0;
-            colorBorder[] = {0,0,0,0};
-            colorBackgroundActive[] = {0,0,0,0};
-            colorBackgroundDisabled[] = {0,0,0,0};
-            colorDisabled[] = {0,0,0,0};
-            colorFocused[] = {0,0,0,0};
-            colorShadow[] = {0,0,0,0};
-            colorText[] = {0,0,0,0};
-            color[] = {0,0,0,0};
-            colorBackground[] = {0,0,0,0};
+            colorBorder[] = {0, 0, 0, 0};
+            colorBackgroundActive[] = {0, 0, 0, 0};
+            colorBackgroundDisabled[] = {0, 0, 0, 0};
+            colorDisabled[] = {0, 0, 0, 0};
+            colorFocused[] = {0, 0, 0, 0};
+            colorShadow[] = {0, 0, 0, 0};
+            colorText[] = {0, 0, 0, 0};
+            color[] = {0, 0, 0, 0};
+            colorBackground[] = {0, 0, 0, 0};
         };
         class Devider: RscSpectPic
         {
@@ -722,7 +722,7 @@ class f_spec_dialog {
             text = "All units";
             tooltip = "Toggle AI";
             sizeEx = "(         (           (           ((safezoneW / safezoneH) min 0.9) / 1.2) / 25) * 1)";
-            onButtonClick = "[_this select 0,0] call f_fnc_HandleMenu";
+            onButtonClick = "[_this select 0, 0] call f_fnc_HandleMenu";
             onMouseHolding = "f_cam_menuShownTime=time";
             onMouseMoving = "f_cam_menuShownTime=time";
 
@@ -737,7 +737,7 @@ class f_spec_dialog {
             text = "All Sides";
             tooltip = "Filter by side";
             sizeEx = "(((((safezoneW / safezoneH) min 0.9) / 1.2) / 25) * 1)";
-            onButtonClick = "[_this select 0,1] call f_fnc_HandleMenu";
+            onButtonClick = "[_this select 0, 1] call f_fnc_HandleMenu";
             onMouseHolding = "f_cam_menuShownTime=time";
             onMouseMoving = "f_cam_menuShownTime=time";
         };
@@ -751,7 +751,7 @@ class f_spec_dialog {
             text = "Tags";
             tooltip = "Toggle tags";
             sizeEx = "(((((safezoneW / safezoneH) min 0.9) / 1.2) / 25) * 1)";
-            onButtonClick = "[_this select 0,2] call f_fnc_HandleMenu";
+            onButtonClick = "[_this select 0, 2] call f_fnc_HandleMenu";
             onMouseHolding = "f_cam_menuShownTime=time";
             onMouseMoving = "f_cam_menuShownTime=time";
         };
@@ -765,7 +765,7 @@ class f_spec_dialog {
             text = "First Person";
             tooltip = "Switch between First Person or Third person";
             sizeEx = "(((((safezoneW / safezoneH) min 0.9) / 1.2) / 25) * 1)";
-            onButtonClick = "[_this select 0,3] call f_fnc_HandleMenu";
+            onButtonClick = "[_this select 0, 3] call f_fnc_HandleMenu";
             onMouseHolding = "f_cam_menuShownTime=time";
             onMouseMoving = "f_cam_menuShownTime=time";
         };
@@ -776,7 +776,7 @@ class f_spec_dialog {
             y = 0.03 * safezoneH + safezoneY;
             w = 0.1 * safezoneW;
             h = 0.9 * safezoneH;
-            onLBSelChanged = "[""LBListSelChanged"",_this] call F_fnc_EventHandler";
+            onLBSelChanged = "[""LBListSelChanged"", _this] call F_fnc_EventHandler";
         };
         class SpecModes: RscSpectCombo
         {
@@ -786,7 +786,7 @@ class f_spec_dialog {
             w = 0.07 * safezoneW;
             h = 0.02 * safezoneH;
             sizeEx = "(((((safezoneW / safezoneH) min 0.9) / 1.2) / 25) * 1)";
-            onLBSelChanged = "[""LBListSelChanged_modes"",_this] call F_fnc_EventHandler";
+            onLBSelChanged = "[""LBListSelChanged_modes"", _this] call F_fnc_EventHandler";
             onMouseHolding = "f_cam_menuShownTime=time";
             onMouseMoving = "f_cam_menuShownTime=time";
         };
@@ -807,7 +807,7 @@ class f_spec_dialog {
             y = 0.772714 * safezoneH + safezoneY;
             w = 0.132213 * safezoneW;
             h = 0.21629 * safezoneH;
-            onMouseZChanged = "[""MapZoom"",_this] call F_fnc_EventHandler;";
+            onMouseZChanged = "[""MapZoom"", _this] call F_fnc_EventHandler;";
             onMouseButtonClick = "_this call F_fnc_OnMapClick";
             onDraw = "_this call F_fnc_DrawMarkers";
         };

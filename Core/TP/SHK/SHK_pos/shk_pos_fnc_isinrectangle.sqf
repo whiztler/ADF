@@ -1,11 +1,11 @@
 //  In: [pointPosition,corners]
 // Out: boolean
-private ["_pos","_corners","_return"];
+private ["_pos", "_corners", "_return"];
 _pos     = _this select 0;
 _corners = _this select 1;
 _return  = false;
 
-private ["_dotX","_dotY","_bottomLeft","_left","_bottom","_topRight","_right","_top"];
+private ["_dotX", "_dotY", "_bottomLeft", "_left", "_bottom", "_topRight", "_right", "_top"];
 _dotX = _pos select 0;
 _dotY = _pos select 1;
 

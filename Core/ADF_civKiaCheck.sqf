@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.43 / NOVEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Civilian KIA Check
 Author: Shuko (Adapted for A3 by Whiztler)
@@ -16,24 +16,29 @@ by BlueFor. When a civilian is KIA, a warning message is displayed.
 The location is marked on the map with a green mil-dot.
 ****************************************************************/
 
-_ADF_civKia = 0;
+
+ADF_civKilled = 0;
 if (isServer) then {
 	ADF_fnc_civKia_EH = {
-		private ["_ADF_side","_ADF_kiaPoss"];
-		_ADF_kiaPos = getPos (_this select 0);
-		_ADF_side = side (_this select 1);
+		private ["_s", "_p"];
+		_p = getPos (_this select 0);
+		_s = side (_this select 1);
 		ADF_civKiller = _this select 1;
+		
 		if (rating ADF_civKiller < 0) then {ADF_civKiller addRating 9999; publicVariable "ADF_civKiller";}; 
-		if (_ADF_side == ADF_playerSide) then {
-			_ADF_civKia = _ADF_civKia + 1;
-			publicVariable "_ADF_civKia"; publicVariable "ADF_civKiller";
-			ADF_mCivKia = createMarker [format ["m__ADF_civKia_%1", _ADF_civKia], _ADF_kiaPos];
-			ADF_mCivKia setMarkerShape "ICON"; ADF_mCivKia setMarkerType "mil_dot"; ADF_mCivKia setMarkerColor "ColorCIV"; ADF_mCivKia setMarkerText format ["%1",_ADF_civKia];
-			publicVariable "ADF_mCivKia";			
+		
+		if (_s == ADF_playerSide) then {
+			private "_m";
+			ADF_civKilled = ADF_civKilled + 1;
+			publicVariable "ADF_civKilled"; publicVariable "ADF_civKiller";
+			_m = createMarker [format ["m_ADF_civKilled_%1", ADF_civKilled], _p];
+			_m setMarkerShape "ICON"; _m setMarkerType "mil_dot"; _m setMarkerSize [0.7, 0.7]; _m setMarkerColor "ColorCIV"; _m setMarkerText format ["%1", ADF_civKilled];
 		}
-	};{
-		if ((side _x == Civilian) && (_x isKindOf "Man")) then {
-		  _x addEventhandler ["killed",ADF_fnc_civKia_EH];
+	};
+	
+	{
+		if ((side _x == civilian) && (_x isKindOf "Man")) then {
+		  _x addEventhandler ["killed", ADF_fnc_civKia_EH];
 		};
 	} foreach allUnits;
 } else {
@@ -45,7 +50,7 @@ if (isServer) then {
 		<t color='#FFFFFF' align='left' size='1.2'>%3 </t><br/><br/>
 		<t color='#A1A4AD' align='left' size='1'>Civilians KIA are marked on the map with a </t>
 		<t color='#AE1AB0' align='left' shadow='1.2'>purple dot</t>
-		", name vehicle ADF_civKiller, ADF_civKiller, _ADF_civKia];
+		", name vehicle ADF_civKiller, ADF_civKiller, ADF_civKilled];
 	};
-  "_ADF_civKia" addPublicVariableEventHandler {call ADF_fnc_civKia_msg}; // JIP compatible EH
+  "ADF_civKilled" addPublicVariableEventHandler {call ADF_fnc_civKia_msg}; // JIP compatible EH
 };

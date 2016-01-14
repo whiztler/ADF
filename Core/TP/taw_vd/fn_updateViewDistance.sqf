@@ -22,6 +22,6 @@ switch (true) do
 };
 
 if(tawvd_syncObject) then {
-	setObjectViewDistance [tawvd_dist,100];
+	setObjectViewDistance [tawvd_dist, 100];
 	tawvd_object = tawvd_dist;
 };

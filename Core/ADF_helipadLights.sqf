@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.43 / NOVEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Helipad lights
 Author: Whiztler
@@ -26,7 +26,7 @@ Runway lights that can be used:
 
 if (isServer) then { // Executed by the server entity only.
 	// init
-	private ["_ADF_hpl_hpLight","_ADF_hpl_hpLoc","_ADF_hpl_rd","_ADF_hpl_nr","_ADF_hpl_sp","_ADF_hpl_pX","_ADF_hpl_pY","_ADF_hpl_oPos","_ADF_hpl_cLight"];
+	private ["_ADF_hpl_hpLight", "_ADF_hpl_hpLoc", "_ADF_hpl_rd", "_ADF_hpl_nr", "_ADF_hpl_sp", "_ADF_hpl_pX", "_ADF_hpl_pY", "_ADF_hpl_oPos", "_ADF_hpl_cLight"];
 	_ADF_hpl_hpLight 	= []; // Define the array.
 	_ADF_hpl_hpLoc 	= getPos (_this select 0); // get the object's location and alt.
 	_ADF_hpl_rd 		= 5.75; // Radius. 5.75 creates the light on the edge of the helipad.

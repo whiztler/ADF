@@ -4,14 +4,14 @@ _ADF_aPos	= _this select 2; // grab altitude offset from object
 
 _ADF_dir	= getDir _ADF_h;
 _ADF_hLoc 	= getPosASL _ADF_h; // get the location and alt.
-_ADF_lLoc	= [0,0,0]; // set the light loc offset
+_ADF_lLoc	= [0, 0, 0]; // set the light loc offset
 
  // create the floodlight
 _ADF_fl = "Land_floodLight_F" createVehicleLocal _ADF_hloc;
 
 for "_i" from 1 to 2 do { // exec twice do to SetDir bug
-	_ADF_fl attachto [_ADF_h,[0,-0.2,_ADF_aPos]];
-	_ADF_fl setVectorDirAndUp [[1,0,0],[0,-0.9,0]];
+	_ADF_fl attachto [_ADF_h,[0,-0.2, _ADF_aPos]];
+	_ADF_fl setVectorDirAndUp [[1, 0, 0],[0,-0.9, 0]];
 };
 
  // Create the light
