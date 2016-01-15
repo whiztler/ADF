@@ -143,4 +143,4 @@ _ADF_altitude = false; // Enable altitude based fatigue (altitude mountain sickn
 /********** ADF DEV BUILD SETTINGS **********/
 ADF_tpl_version = 1.43; // ADF version DO NOT EDIT
 _ADF_devBuild = "Beta"; // [Alpha/Beta/Production] DO NOT EDIT
-_ADF_devBuildNr = "02"; // Build number. DO NOT EDIT
+_ADF_devBuildNr = "03"; // Build number. DO NOT EDIT

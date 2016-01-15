@@ -37,7 +37,7 @@
 
 ## Current version
 
-version: 1.43 | build: Final 02
+version: 1.43 | build: Final 03
 
 <a name="New-Features"></a>
 ## New Features 1.39+
