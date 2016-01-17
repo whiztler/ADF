@@ -27,9 +27,7 @@ params ["_v"];
 _mag = 25;
 
 // Settings 
-clearWeaponCargoGlobal _v; // Empty vehicle CargoGlobal contents on init
-clearMagazineCargoGlobal _v; // Empty vehicle CargoGlobal contents on init
-clearItemCargoGlobal _v; // Empty vehicle CargoGlobal contents on init
+[_v] call ADF_fnc_stripVehicle;
 
 // Primary weapon
 _v addWeaponCargoGlobal ["srifle_EBR_DMS_pointer_snds_F", 1]; // Marksman

@@ -36,9 +36,7 @@ _itm = 1;	// Items
 _uni = 1;	// Uniform/Vest/Backpack/etc
 
 // Settings 
-clearWeaponCargoGlobal _crate; // Empty vehicle CargoGlobal contents on init
-clearMagazineCargoGlobal _crate; // Empty vehicle CargoGlobal contents on init
-clearItemCargoGlobal _crate; // Empty vehicle CargoGlobal contents on init
+_crate call ADF_fnc_stripVehicle;
 
 // Primary weapon
 _crate addWeaponCargoGlobal ["arifle_MX_F", _wpn];

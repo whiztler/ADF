@@ -37,9 +37,7 @@ _itm = 3;	// Items
 _uni = 5;	// Uniform/Vest/Backpack/etc
 
 // Settings 
-clearWeaponCargo _crate; // Empty vehicle CargoGlobal contents on init
-clearMagazineCargoGlobal _crate; // Empty vehicle CargoGlobal contents on init
-clearItemCargoGlobal _crate; // Empty vehicle CargoGlobal contents on init
+_crate call ADF_fnc_stripVehicle;
 
 
 // Primary weapon

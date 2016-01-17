@@ -31,9 +31,7 @@ _mag = 40;	// Magazines
 _uni = 10;	// Uniform/Vest/Backpack/etc
 
 // Settings 
-clearWeaponCargo _crate; // Empty vehicle CargoGlobal contents on init
-clearMagazineCargoGlobal _crate; // Empty vehicle CargoGlobal contents on init
-clearItemCargoGlobal _crate; // Empty vehicle CargoGlobal contents on init
+_crate call ADF_fnc_stripVehicle;
 
 // Primary weapon
 _crate addWeaponCargoGlobal ["arifle_SDAR_F", _wpn]; // Divers

@@ -27,9 +27,7 @@ waitUntil {time > 0};
 params ["_v"];
 
 // Settings 
-clearWeaponCargoGlobal _v; // Empty vehicle Cargo contents on init
-clearMagazineCargoGlobal _v; // Empty vehicle Cargo contents on init
-clearItemCargoGlobal _v; // Empty vehicle Cargo contents on init
+[_v] call ADF_fnc_stripVehicle;
 
 // Primary weapon
 _v addWeaponCargoGlobal ["arifle_MX_GL_F", 2]; // GL

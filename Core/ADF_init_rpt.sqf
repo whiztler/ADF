@@ -39,7 +39,7 @@ if (ADF_debug) then {
 	[_msg, false] call ADF_fnc_log;
 	_msg = format ["Init - Mission version: %1",ADF_mission_version];
 	[_msg, false] call ADF_fnc_log;
-	_msg = format ["Init - Number of players connected: %1", allPlayers];
+	_msg = format ["Init - Number of players connected: %1", count allPlayers];
 	[_msg, false] call ADF_fnc_log;
 	_msg = format ["Init - Number of HC's connected: %1", _hc];
 	[_msg, false] call ADF_fnc_log;	
@@ -55,7 +55,7 @@ if (ADF_debug) then {
 	diag_log format ["ADF RPT: Init - Mission name: %1",(getText (missionConfigFile >> "overviewText"))];
 	diag_log format ["ADF RPT: Init - Mission developer: %1",(getText (missionConfigFile >> "author"))];
 	diag_log "--------------------------------------------------------------------------------------";
-	diag_log format ["ADF RPT: Init - Number of players connected: %1", allPlayers];
+	diag_log format ["ADF RPT: Init - Number of players connected: %1", count allPlayers];
 	diag_log format ["ADF RPT: Init - Number of HC's connected: %1", _hc];
 	diag_log "--------------------------------------------------------------------------------------";
 	diag_log format ["ADF RPT: Init - Number of AI's active: %1", _ai];

@@ -30,10 +30,10 @@ Integer (distance number)
 
 ADF_fnc_checkDistance = {
 	params ["_a", "_b"];
-	private ["_return", "_pos_a", "_pos_b"];
-	_pos_a	= _a call ADF_fnc_checkPosition; // get the position of the first param
-	_pos_b	= _b call ADF_fnc_checkPosition; // get the position of the second param
-	_return	= round (_pos_a distance2D _pos_b); // return the distance between the first and the second param
+	private ["_return"];
+	_a		= _a call ADF_fnc_checkPosition; // get the position of the first param
+	_b		= _b call ADF_fnc_checkPosition; // get the position of the second param
+	_return	= round (_a distance2D _b); // return the distance between the first and the second param
 	_return
 };
 
@@ -63,4 +63,37 @@ ADF_fnc_checkClosest = {
 	} forEach _a;
 	_return	
 };
+
+
+/***************************************************************
+Name: ADF_fnc_countRadius
+
+Parameters required:
+a. position (Marker, unit, group, object)
+1. side to check (east, wets, independent, etc)
+2. radius (number)
+
+Optional parameters:
+3. type ("man", "car", "apc", "tank", "all" - default: "man")
+   either string for a single type or an array for multiple types
+
+Returns:
+Integer (number of units / vehicles / etc.)
+***************************************************************/
+
+ADF_fnc_countRadius = {
+	params [
+		"_p",
+		["_s", east, [west]],
+		["_r", 100, [0]],
+		"_t"
+	];
+	private "_c";
+	
+	_p	= [_p] call ADF_fnc_checkPosition;
+	
+	_c = {side _x == _s} count (_p nearEntities [_t, _r]);
+	_c	
+};
+
 

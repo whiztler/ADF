@@ -27,9 +27,7 @@ waitUntil {time > 0};
 params ["_v"];
 
 // Settings 
-clearWeaponCargoGlobal _v; // Empty vehicle CargoGlobal contents on init
-clearMagazineCargoGlobal _v; // Empty vehicle CargoGlobal contents on init
-clearItemCargoGlobal _v; // Empty vehicle CargoGlobal contents on init
+[_v] call ADF_fnc_stripVehicle;
 
 // Magazines primary weapon
 _v addMagazineCargoGlobal ["30Rnd_65x39_caseless_mag", 5];

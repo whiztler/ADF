@@ -27,9 +27,7 @@ waitUntil {time > 0};
 params ["_v"];
 
 // Settings 
-clearWeaponCargoGlobal _v; // Empty vehicle CargoGlobal contents on init
-clearMagazineCargoGlobal _v; // Empty vehicle CargoGlobal contents on init
-clearItemCargoGlobal _v; // Empty vehicle CargoGlobal contents on init
+[_v] call ADF_fnc_stripVehicle;
 
 // Magazines primary weapon
 if (ADF_mod_ACE3) then {

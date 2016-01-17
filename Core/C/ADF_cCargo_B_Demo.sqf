@@ -30,9 +30,7 @@ _dem = 25;
 _itm = 5;
 
 // Settings 
-clearWeaponCargoGlobal _crate; // Empty vehicle CargoGlobal contents on init
-clearMagazineCargoGlobal _crate; // Empty vehicle CargoGlobal contents on init
-clearItemCargoGlobal _crate; // Empty vehicle CargoGlobal contents on init
+_crate call ADF_fnc_stripVehicle;
 
 // Demo/Explosives
 _crate addMagazineCargoGlobal ["DemoCharge_Remote_Mag", _dem];
